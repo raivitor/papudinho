@@ -112,7 +112,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
-
+/*
       function initialize() {
         var myLatlng = new google.maps.LatLng(-5.794478499999999000,-35.210953099999980000);
         
@@ -123,7 +123,7 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
         };
         var map = new google.maps.Map(document.getElementById("map"),
             mapOptions);
-
+/*
         var marker = new google.maps.Marker({
           position: myLatlng,
           map: map,
@@ -136,6 +136,9 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
 
         $scope.map = map;
       }
+
+*/
+/*
       var mapDiv = document.getElementById('map');
       $("#addBar").load('pageload', function() {
           //alert("oi");
@@ -146,7 +149,6 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
           google.maps.event.addDomListener(window, 'load', initialize);
         //alert("oi");
       });
-            //
       
       $scope.centerOnMe = function() {
         if(!$scope.map) {
@@ -165,5 +167,52 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
           alert('Não foi possível pegar localização: ' + error.message);
         });
       };
-      
+      */
     });
+
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(-5.794478499999999000,-35.210953099999980000);
+        
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+    /*
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });*/
+
+       // $scope.map = map;
+      }
+
+
+      function teste(){
+        //alert(window.location.href);
+        var url = window.location.href;
+        var bar = "addBar";
+        //console.log(url.search(bar));
+        if(url.search(bar)>0){
+          //alert("entrei");
+          initialize();
+        }
+        
+      }
+
+      var recursiva = function () {
+          //console.log("Se passaram 1 segundo!");
+          teste();
+          setTimeout(recursiva,1000);
+      }
+
+      
+      recursiva();
+
