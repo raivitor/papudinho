@@ -215,4 +215,15 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
 
       
       recursiva();
+      console.log('Success');
+      app.controller('MainCtrl', function($scope, $http) {
+       $http.get('http://developer-papudinho.herokuapp.com/webservice/bars/').then(function(resp) {
+          console.log('Success', resp);
+          $scope.array = resp.data;
+          // For JSON responses, resp.data contains the result
+        }, function(err) {
+          console.error('ERR', err);
+          // err.status will contain the status code
+        })
+      })
 
