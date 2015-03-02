@@ -195,7 +195,8 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
       }
 
 
-      function teste(){
+      // Testa a cada segundo se o usuario está na página do mapa, se tiver ele inicializa.
+      function InicializarMapa(){
         //alert(window.location.href);
         var url = window.location.href;
         var bar = "addBar";
@@ -209,21 +210,75 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
 
       var recursiva = function () {
           //console.log("Se passaram 1 segundo!");
-          teste();
+          InicializarMapa();
           setTimeout(recursiva,1000);
       }
 
-      
       recursiva();
-      console.log('Success');
-      app.controller('MainCtrl', function($scope, $http) {
-       $http.get('http://developer-papudinho.herokuapp.com/webservice/bars/').then(function(resp) {
-          console.log('Success', resp);
-          $scope.array = resp.data;
-          // For JSON responses, resp.data contains the result
+
+      app.controller('LoginForm', ['$scope', '$http', '$location',  function($scope, $http, $location) {
+        $scope.submit = function() {
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/login/', 
+            method: "POST",
+            params: {
+              email: $scope.email,
+              password: $scope.senha
+            }
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $location.path('/menu/home');  
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error');
+            alert("Erro");
+          });
+        };
+      }])
+
+
+      app.controller('CadastroForm', ['$scope', '$http', '$location',  function($scope, $http, $location) {
+        $scope.submitcadastro = function() {
+          alert("User: "+$scope.user+" email: "+$scope.email+" senha: "+$scope.password+" - "+$scope.password2);
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
+            method: "POST",
+            params: {
+              name: $scope.user,
+              email: $scope.email,
+              password: $scope.password,
+              password_confirmation: $scope.password2
+            }
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $location.path('home');  
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error');
+          });
+        };
+      }]);
+
+
+
+
+/*
+      app.controller('MainCtrl', function($scope, $rootScope, $http) {
+        $http.get('http://developer-papudinho.herokuapp.com/webservice/bars/').
+          then(function(resp) {
+            //console.log('Success', resp);
+            $scope.array = resp.data;
+            // For JSON responses, resp.data contains the result
         }, function(err) {
           console.error('ERR', err);
           // err.status will contain the status code
-        })
-      })
+        });
 
+              });
+*/

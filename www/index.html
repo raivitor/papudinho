@@ -16,30 +16,30 @@
     <script src="js/app.js"></script>
 
   </head>
-  <body ng-app="app" ng-controller="MainCtrl">
+  <body ng-app="app" >
 
     <ion-nav-view></ion-nav-view>
 
-    <script id="login" type="text/ng-template">
+    <script id="login" type="text/ng-template" >
       <ion-view title="Papudinho">
           <ion-nav-bar class="bar-positive"></ion-nav-bar> 
           <ion-content padding="true" class="has-header">
               <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
                   <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
               </div>
-              <form>
+              <form ng-submit="submit()" ng-controller="LoginForm">
                   <ion-list>
                       <label class="item item-input">
                           <span class="input-label">Usuário  </span>
-                          <input id="usuario" name="usuario" type="text" placeholder="">
+                          <input id="usuario" name="usuario" type="text" placeholder="" ng-model="email" >
                       </label>
                       <label class="item item-input">
                           <span class="input-label">Senha</span>
-                          <input id="senha" name="senha" type="password" placeholder="">
+                          <input id="senha" name="senha" type="password" placeholder="" ng-model="senha">
                       </label>
                   </ion-list>
                   <div class="spacer" style="height: 40px;"></div>
-                  <a href="#/menu/home" class="button button-stable button-block">Entrar</a>
+                  <input type="submit" id="submit" value="Entrar" class="button button-stable button-block" />
                   <a href="#/signup" class="button button-positive button-clear button-block">Criar Conta</a>
               </form>
           </ion-content>
@@ -58,22 +58,26 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
-            <form>
+            <form ng-submit="submitcadastro()" ng-controller="CadastroForm">
                 <ion-list>
                     <label class="item item-input">
                         <span class="input-label">Usuario</span>
-                        <input type="text" placeholder="">
+                        <input type="text" placeholder="" ng-model="user">
                     </label>
                     <label class="item item-input">
                         <span class="input-label">Email</span>
-                        <input type="email" placeholder="">
+                        <input type="email" placeholder="" ng-model="email">
                     </label>
                     <label class="item item-input">
                         <span class="input-label">Senha</span>
-                        <input type="password" placeholder="">
+                        <input type="password" placeholder="" ng-model="password">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Confirmar Senha</span>
+                        <input type="password" placeholder="" ng-model="password2">
                     </label>
                 </ion-list>
-                <a href="#/login" class="button button-stable button-block">Cadastrar</a>
+                <input type="submit" id="submit" value="Cadastrar" class="button button-stable button-block" />
             </form>
         </ion-content>
 
