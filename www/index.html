@@ -58,8 +58,10 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
+
             <form ng-submit="submitcadastro()" ng-controller="CadastroForm">
                 <ion-list>
+                    {{erro}}
                     <label class="item item-input">
                         <span class="input-label">Usuario</span>
                         <input type="text" placeholder="" ng-model="user">

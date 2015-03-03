@@ -241,27 +241,36 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
 
 
       app.controller('CadastroForm', ['$scope', '$http', '$location',  function($scope, $http, $location) {
+        
         $scope.submitcadastro = function() {
-          alert("User: "+$scope.user+" email: "+$scope.email+" senha: "+$scope.password+" - "+$scope.password2);
-          $http({
-            url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
-            method: "POST",
-            params: {
-              name: $scope.user,
-              email: $scope.email,
-              password: $scope.password,
-              password_confirmation: $scope.password2
-            }
-          }).
 
-          success(function (data, status, headers, config) {
-            console.log('Success', status);
-            $location.path('home');  
-          }).
+          //alert("User: "+$scope.user+" email: "+$scope.email+" senha: "+$scope.password+" - "+$scope.password2);
+          if($scope.password == $scope.password2){
+            $http({
+              url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
+              method: "POST",
+              params: {
+                name: $scope.user,
+                email: $scope.email,
+                password: $scope.password,
+                password_confirmation: $scope.password2
+              }
+            }).
 
-          error(function (data, status, headers, config) {
-            console.log('Error');
-          });
+            success(function (data, status, headers, config) {
+              console.log('Success', status);
+              $location.path('home');  
+            }).
+
+            error(function (data, status, headers, config) {
+              $scope.erro = "Erro ao cadastrar, tente novamente mais tarde.";
+              console.log('Error');
+            });
+          }
+          else{
+            $scope.erro = "Senhas diferentes";
+          }
+          
         };
       }]);
 
