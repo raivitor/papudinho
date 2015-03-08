@@ -215,11 +215,13 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
       }
 
       recursiva();
+      
 
-      app.controller('LoginForm', ['$scope', '$http', '$location',  function($scope, $http, $location) {
+      app.controller('LoginForm', ['$scope', '$http', '$location', '$rootScope', function($scope, $http, $location, $rootScope) {
+        window.localStorage['login'] = 0;
         $scope.submit = function() {
           $http({
-            url: 'http://developer-papudinho.herokuapp.com/webservice/login/', 
+            url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/', 
             method: "POST",
             params: {
               email: $scope.email,
@@ -229,6 +231,10 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
 
           success(function (data, status, headers, config) {
             console.log('Success', status);
+            window.localStorage['login'] = 1;
+            window.localStorage['id'] = data.id;
+            window.localStorage['email'] = data.email;
+            window.localStorage['name'] = data.name;
             $location.path('/menu/home');  
           }).
 
@@ -241,10 +247,7 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
 
 
       app.controller('CadastroForm', ['$scope', '$http', '$location',  function($scope, $http, $location) {
-        
         $scope.submitcadastro = function() {
-
-          //alert("User: "+$scope.user+" email: "+$scope.email+" senha: "+$scope.password+" - "+$scope.password2);
           if($scope.password == $scope.password2){
             $http({
               url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
@@ -274,20 +277,181 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
         };
       }]);
 
+    app.controller('Home', ['$scope', '$http',  function($scope, $http) {
+      
+      $scope.msg = "Cartões perto do vencimento (falta css)";
 
+      function timedCount() {
+        var time;
+        if(window.localStorage['login'] == 1){
+          clearTimeout(time);
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/cards/due_date', 
+            method: "GET",
+            params: {
+              user: window.localStorage['id']
+            }
+          }).
 
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $scope.CartoesVencimento = data;
+            if(data == 0){
+              $scope.msg = "Nenhum cartão perto do vencimento (falta css)";
+            }
+          }).
 
-/*
-      app.controller('MainCtrl', function($scope, $rootScope, $http) {
-        $http.get('http://developer-papudinho.herokuapp.com/webservice/bars/').
-          then(function(resp) {
-            //console.log('Success', resp);
-            $scope.array = resp.data;
-            // For JSON responses, resp.data contains the result
-        }, function(err) {
-          console.error('ERR', err);
-          // err.status will contain the status code
-        });
+          error(function (data, status, headers, config) {
+            console.log('Error');
+            alert("Erro");
+          });
 
-              });
-*/
+          return 0;
+        }
+        else{
+          time = setTimeout(function(){ timedCount() }, 500);
+        }
+      }
+
+      timedCount();
+    }]);
+  
+  app.controller('Bares', ['$scope', '$http',  function($scope, $http) {
+      function timedCount() {
+        var time;
+        if(window.localStorage['login'] == 1){
+          clearTimeout(time);
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
+            method: "GET"
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $scope.Bares = data;
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error');
+            alert("Erro");
+          });
+
+          return 0;
+        }
+        else{
+          time = setTimeout(function(){ timedCount() }, 500);
+        }
+      }
+
+      timedCount();
+    }]);
+
+  app.controller('Cartoes', ['$scope', '$http',  function($scope, $http) {
+      function timedCount() {
+        var time;
+        if(window.localStorage['login'] == 1){
+          clearTimeout(time);
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
+            method: "GET",
+            params: {
+              //user: 3
+              user: window.localStorage['id']
+            }
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $scope.Cartoes = data;
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error');
+            alert("Erro");
+          });
+
+          return 0;
+        }
+        else{
+          time = setTimeout(function(){ timedCount() }, 500);
+        }
+      }
+
+      timedCount();
+    }]);
+
+  app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
+      function timedCount() {
+        var time;
+        if(window.localStorage['login'] == 1){
+          clearTimeout(time);
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/promotions/', 
+            method: "GET"
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $scope.Promocoes = data;
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error');
+            alert("Erro");
+          });
+
+          return 0;
+        }
+        else{
+          time = setTimeout(function(){ timedCount() }, 500);
+        }
+      }
+
+      timedCount();
+    }]);
+
+  app.controller('NovoCartao', ['$scope', '$http',  function($scope, $http) {
+      $scope.volume = 10;
+      function timedCount() {
+        var time;
+        if(window.localStorage['login'] == 1){
+          clearTimeout(time);
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/drinks/', 
+            method: "GET"            
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success bebida', data);
+            $scope.Bebidas = data;
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error');
+            alert("Erro");
+          });
+
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
+            method: "GET"
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $scope.Bares = data;
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error');
+            alert("Erro");
+          });
+
+          return 0;
+        }
+        else{
+          time = setTimeout(function(){ timedCount() }, 500);
+        }
+      }
+
+      timedCount();
+    }]);

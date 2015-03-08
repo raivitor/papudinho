@@ -86,7 +86,7 @@
     </ion-view>
     </script>
 
-    <script id="sideMenu" type="text/ng-template">
+    <script id="sideMenu" type="text/ng-template" >
       <ion-side-menus enable-menu-with-back-views="false">
 
         <ion-side-menu-content>
@@ -120,36 +120,19 @@
     </script>
 
     <script id="home" type="text/ng-template">
-      <ion-view view-title="Papudinho">
+      <ion-view view-title="Papudinho" ng-controller="Home">
         <ion-content padding="true" class="has-header">
-          <div class="card">
-            <div class="item item-text-wrap">
-              <p>
-                Bebida: Ballantines <br>
-                Bar: Jobim<br>
-                Doses restantes: 4 <br>
-                Vencimento: 5 dias <br>
-              </p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="item item-text-wrap">
-              <p>
-                Bebida: Black And White <br>
-                Bar: Casa do Whisky<br>
-                Doses restantes: 8 <br>
-                Vencimento: 9 dias <br>
-              </p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="item item-text-wrap">
-              <p>
-                Bebida: Burrberrys <br>
-                Bar: Whiskritorio<br>
-                Doses restantes: 2 <br>
-                Vencimento: 16 dias <br>
-              </p>
+          {{msg}}
+          <div ng-repeat="cartao in CartoesVencimento">
+            <div class="card">
+              <div class="item item-text-wrap" >
+                <p>
+                  Bebida: {{ cartao.drink_id }} <br>
+                  Bar:  {{ cartao.bar_id }}<br>
+                  Doses restantes: {{ cartao.doses }} <br>
+                  Vencimento: {{ cartao.due_date }} <br>
+                </p>
+              </div>
             </div>
           </div>
         </ion-content>
@@ -197,7 +180,7 @@
 
 
     <script id="bares" type="text/ng-template">
-      <ion-view view-title="Bares">
+      <ion-view view-title="Bares" ng-controller="Bares">
 
         <ion-nav-bar class="bar-positive">
           <ion-nav-buttons side="left">
@@ -210,12 +193,12 @@
 
         <ion-content padding="true" class="has-header">
           <div class="list">
-            <div ng-repeat="module in array">
+            <div ng-repeat="module in Bares">
              <a class="item item-thumbnail-left" href="#">
                 <img src="#">
                 <h2>{{ module.name }}</h2>
                 <p>{{ module.city }} - {{ module.street }}, {{ module.number }}<br>
-                (84) {{ module.phone }}</p>
+                {{ module.phone }}</p>
               </a>
             </div>
           </div>
@@ -225,7 +208,7 @@
 
 
     <script id="cartoes" type="text/ng-template">
-      <ion-view title="Cartões">
+      <ion-view title="Cartões" ng-controller="Cartoes">
 
           <ion-nav-bar class="bar-positive">
             <ion-nav-buttons side="left">
@@ -238,90 +221,47 @@
 
           <ion-content padding="true" class="has-header">
             <div class="list">
+              <div ng-repeat="module in Cartoes">
+
                 <a class="item item-thumbnail-left" href="#/timeline">
-                  <img src="cover.jpg">
+                  <img src='{{ module.card_picture.thumb.url }}'>
                   <div class="row">
                     <div class="col">
-                      <p><b>Jobim</b><br>
-                      Ballantines<br>
-                      17 Doses restantes</p>
+                      <p><b>{{ module.bar_id }}</b><br>
+                      {{ module.drink_id }}<br>
+                      {{ module.doses }} Doses restantes</p>
                     </div>
                     <div class="col">
                       <p><i class="icon ion-location" style="font-size: 20px"></i> 20km <br> 
-                      Venc: 12/05/2015</p>
+                      Venc: {{ module.due_date }}</p>
                     </div>
                   </div>
                 </a>
 
-                <a class="item item-thumbnail-left" href="#/timeline">
-                  <img src="cover.jpg">
-                  <div class="row">
-                    <div class="col">
-                      <p><b>Casa do Whisky</b><br>
-                      Black And White<br>
-                      01 Dose restante</p>
-                    </div>
-                    <div class="col">
-                      <p><i class="icon ion-location" style="font-size: 20px"></i> 10km <br> 
-                      Venc: 10/03/2015</p>
-                    </div>
-                  </div>
-                </a>
-
-                <a class="item item-thumbnail-left" href="#/timeline">
-                  <img src="cover.jpg">
-                  <div class="row">
-                    <div class="col">
-                      <p><b>Whiskritorio</b><br>
-                      Burrberrys<br>
-                      19 Doses restantes</p>
-                    </div>
-                    <div class="col">
-                      <p><i class="icon ion-location" style="font-size: 20px"></i> 30km <br> 
-                      Venc: 01/06/2015</p>
-                    </div>
-                  </div>
-                </a>
+              </div>
             </div>
           </ion-content>
       </ion-view>
     </script>
 
     <script id="promocao" type="text/ng-template">
-      <ion-view title="Promoções">
+      <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
             <div class="list">
-                <a class="item item-avatar" href="#">
-                  <img src="img.jpg">
-                  <h2>Nome do Bar</h2>
-                  <p>Whisky x com 15% de desconto<br>
-                   Válido até 31/01/2015</p>
-                </a>
-                <a class="item item-avatar" href="#">
-                  <img src="img.jpg">
-                  <h2>Nome do Bar 2</h2>
-                  <p>Whisky x com 25% de desconto<br>
-                   Válido até 31/01/2015</p>
-                </a>
-                <a class="item item-avatar" href="#">
-                  <img src="img.jpg">
-                  <h2>Nome do Bar 3</h2>
-                  <p>Whisky x com 35% de desconto<br>
-                   Válido até 31/01/2015</p>
-                </a>
-                <a class="item item-avatar" href="#">
-                  <img src="img.jpg">
-                  <h2>Nome do Bar 4</h2>
-                  <p>Whisky x com 45% de desconto<br>
-                   Válido até 31/01/2015</p>
-                </a>
+              <a class="item item-avatar" href="#" ng-repeat="module in Promocoes">
+                <img src="{{module.avatar.thumb.url}}">
+                <h2>{{module.bar_id}}</h2>
+                <h3>{{module.title}}</h3>
+                <p>{{module.description}}<br>
+                 Válido até {{module.date}}</p>
+              </a>
             </div>
           </ion-content>
       </ion-view>
     </script>
 
     <script id="addCartao" type="text/ng-template">
-      <ion-view view-title="Novo Cartão">
+      <ion-view view-title="Novo Cartão" ng-controller="NovoCartao">
 
         <ion-nav-bar class="bar-positive">
           <ion-nav-buttons side="left">
@@ -343,11 +283,9 @@
                 <div class="input-label">
                   Bebida
                 </div>
-                <select>
+                <select >
                   <option selected> -- Escolha -- </option>
-                  <option>Ballantines</option>
-                  <option >Black And White</option>
-                  <option>Burrberrys</option>
+                  <option align="center" ng-repeat="module in Bebidas">{{module.name}} </option>
                 </select>
               </label>
             </div>
@@ -360,9 +298,7 @@
                 </div>
                 <select>
                   <option selected> -- Escolha -- </option>
-                  <option>Jobim</option>
-                  <option>Casa do Whisky</option>
-                  <option>Whiskritorio</option>
+                  <option align="center" ng-repeat="module in Bares">{{module.name}} </option>
                 </select>
               </label>
             </div>
@@ -393,11 +329,11 @@
           <div class="row">
             <div class="col col-80">
               <div class="item range range-positive">
-                <input type="range" name="volume" min="0" max="20" value="1" ng-model="data.volume">
+                <input type="range" name="volume" min="0" max="20" value="1" ng-model="volume">
               </div>
             </div>
             <div class="col col-center" align="center">
-              <p>Doses : {{data.volume}}</p>
+              <p>Doses : {{volume}}</p>
             </div>
           </div>
           <br>
