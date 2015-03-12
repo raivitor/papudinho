@@ -127,9 +127,9 @@
             <div class="card">
               <div class="item item-text-wrap" >
                 <p>
-                  Bebida: {{ cartao.drink_id }} <br>
-                  Bar:  {{ cartao.bar_id }}<br>
-                  Doses restantes: {{ cartao.doses }} <br>
+                  Bebida: {{ cartao.drink_name }} <br>
+                  Bar:  {{ cartao.bar_name }}<br>
+                  Doses restantes: {{ cartao.doses_restantes }} <br>
                   Vencimento: {{ cartao.due_date }} <br>
                 </p>
               </div>
@@ -140,7 +140,7 @@
     </script>
 
     <script id="amigos" type="text/ng-template">
-      <ion-view view-title="Amigos">
+      <ion-view view-title="Amigos" ng-controller="Amigos">
 
         <ion-nav-bar class="bar-positive">
           <ion-nav-buttons side="left">
@@ -153,26 +153,14 @@
 
         <ion-content padding="true" class="has-header">
           <div class="list">
-            <a class="item item-icon-left item-icon-right" href="#">
+
+            <a class="item item-icon-left item-icon-right" href="#" ng-repeat="amigo in Amigos">
               <i class="icon ion-person-stalker"></i>
-                ‎Gabriela Cavalcante
+                ‎{{amigo.name}}<br>
+                <small>{{amigo.email}}</small>
               <i class="icon ion-ios7-telephone"></i>
             </a>
-            <a class="item item-icon-left item-icon-right" href="#">
-              <i class="icon ion-person-stalker"></i>
-                Luan Fonseca 
-              <i class="icon ion-ios7-telephone"></i>
-            </a>
-            <a class="item item-icon-left item-icon-right" href="#">
-              <i class="icon ion-person-stalker"></i>
-                Mayron Cachina 
-              <i class="icon ion-ios7-telephone"></i>
-            </a>
-            <a class="item item-icon-left item-icon-right" href="#">
-              <i class="icon ion-person-stalker"></i>
-                Raí Vitor
-              <i class="icon ion-ios7-telephone"></i>
-            </a>
+
           </div>
         </ion-content>
       </ion-view>
@@ -218,21 +206,21 @@
               <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
             </ion-nav-buttons>
           </ion-nav-bar>
-
+          {{msgCartoes}}
           <ion-content padding="true" class="has-header">
             <div class="list">
               <div ng-repeat="module in Cartoes">
 
                 <a class="item item-thumbnail-left" href="#/timeline">
-                  <img src='{{ module.card_picture.thumb.url }}'>
+                  <img src='{{ module.card_picture.card_picture.thumb.url }}'>
                   <div class="row">
                     <div class="col">
-                      <p><b>{{ module.bar_id }}</b><br>
-                      {{ module.drink_id }}<br>
-                      {{ module.doses }} Doses restantes</p>
+                      <p><b>{{ module.bar_name }}</b><br>
+                      {{ module.drink_name }}<br>
+                      {{ module.total_doses }} doses totais</p>
                     </div>
                     <div class="col">
-                      <p><i class="icon ion-location" style="font-size: 20px"></i> 20km <br> 
+                      <p>{{ module.remaining_doses }} Doses restantes<br>
                       Venc: {{ module.due_date }}</p>
                     </div>
                   </div>
@@ -250,7 +238,7 @@
             <div class="list">
               <a class="item item-avatar" href="#" ng-repeat="module in Promocoes">
                 <img src="{{module.avatar.thumb.url}}">
-                <h2>{{module.bar_id}}</h2>
+                <h2>{{module.bar_name}}</h2>
                 <h3>{{module.title}}</h3>
                 <p>{{module.description}}<br>
                  Válido até {{module.date}}</p>
@@ -388,7 +376,7 @@
     </script>
 
     <script id="addAmigo" type="text/ng-template">
-      <ion-view view-title="Adicionar Amigo">
+      <ion-view view-title="Adicionar Amigo" >
 
         <ion-nav-bar class="bar-positive">
           <ion-nav-buttons side="left">

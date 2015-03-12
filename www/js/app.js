@@ -217,7 +217,7 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
       recursiva();
       
 
-      app.controller('LoginForm', ['$scope', '$http', '$location', '$rootScope', function($scope, $http, $location, $rootScope) {
+      app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
         window.localStorage['login'] = 0;
         $scope.submit = function() {
           $http({
@@ -303,7 +303,7 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
 
           error(function (data, status, headers, config) {
             console.log('Error');
-            alert("Erro");
+            alert("Erro Home");
           });
 
           return 0;
@@ -327,13 +327,12 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success', status);
             $scope.Bares = data;
           }).
 
           error(function (data, status, headers, config) {
             console.log('Error');
-            alert("Erro");
+            alert("Erro Bares");
           });
 
           return 0;
@@ -361,12 +360,14 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success', status);
             $scope.Cartoes = data;
+            if(data == 0){
+              $scope.msgCartoes = "Sem cartões!";
+            }
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error');
+            console.log('Error cartoes');
             alert("Erro");
           });
 
