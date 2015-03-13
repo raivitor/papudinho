@@ -109,112 +109,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
   
   $urlRouterProvider.otherwise('/login');
 });
-
-
-app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
-/*
-      function initialize() {
-        var myLatlng = new google.maps.LatLng(-5.794478499999999000,-35.210953099999980000);
-        
-        var mapOptions = {
-          center: myLatlng,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
-/*
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'Uluru (Ayers Rock)'
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
-
-        $scope.map = map;
-      }
-
-*/
-/*
-      var mapDiv = document.getElementById('map');
-      $("#addBar").load('pageload', function() {
-          //alert("oi");
-        //initialize();
-        //google.maps.event.addDomListener(window, 'load', initialize);
-      });
-      $("#addBar").ready(function( $ ) {
-          google.maps.event.addDomListener(window, 'load', initialize);
-        //alert("oi");
-      });
-      
-      $scope.centerOnMe = function() {
-        if(!$scope.map) {
-          return;
-        }
-
-        $scope.loading = $ionicLoading.show({
-          content: 'Pegando localização',
-          showBackdrop: false
-        });
-
-        navigator.geolocation.getCurrentPosition(function(pos) {
-          $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-          $scope.loading.hide();
-        }, function(error) {
-          alert('Não foi possível pegar localização: ' + error.message);
-        });
-      };
-      */
-    });
-
-      function initialize() {
-        var myLatlng = new google.maps.LatLng(-5.794478499999999000,-35.210953099999980000);
-        
-        var mapOptions = {
-          center: myLatlng,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
-    /*
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'Uluru (Ayers Rock)'
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });*/
-
-       // $scope.map = map;
-      }
-
-
-      // Testa a cada segundo se o usuario está na página do mapa, se tiver ele inicializa.
-      function InicializarMapa(){
-        //alert(window.location.href);
-        var url = window.location.href;
-        var bar = "addBar";
-        //console.log(url.search(bar));
-        if(url.search(bar)>0){
-          //alert("entrei");
-          initialize();
-        }
-        
-      }
-
-      var recursiva = function () {
-          //console.log("Se passaram 1 segundo!");
-          InicializarMapa();
-          setTimeout(recursiva,1000);
-      }
-
-      recursiva();
       
 
       app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
@@ -379,6 +273,43 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
       }
 
       timedCount();
+
+      function atualizar() {
+        var time;
+        if(window.localStorage['atualizar'] == 1){
+          clearTimeout(time);
+          window.localStorage['atualizar'] = 0;
+
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
+            method: "GET",
+            params: {
+              user: window.localStorage['id']
+            }
+          }).
+
+          success(function (data, status, headers, config) {
+            $scope.Cartoes = data;
+            if(data == 0){
+              $scope.msgCartoes = "Sem cartões!";
+            }
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error cartoes');
+            alert("Erro");
+          });
+
+          return 0;
+
+        }
+        else{
+          time = setTimeout(function(){ atualizar() }, 500);
+        }
+      }
+      
+      atualizar();
+
     }]);
 
   app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
@@ -411,7 +342,69 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
       timedCount();
     }]);
 
-  app.controller('NovoCartao', ['$scope', '$http',  function($scope, $http) {
+  app.controller('Amigos', ['$scope', '$http',  function($scope, $http) {
+      function timedCount() {
+        var time;
+        if(window.localStorage['login'] == 1){
+          clearTimeout(time);
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/friends', 
+            method: "GET",
+            params: {
+              id: window.localStorage['id']
+              //user: window.localStorage['id']
+            }
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $scope.Amigos = data;
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error ');
+            alert("Erro Amigos");
+          });
+
+          return 0;
+        }
+        else{
+          time = setTimeout(function(){ timedCount() }, 500);
+        }
+      }
+
+      timedCount();
+    }]);
+
+  app.controller('addAmigo', ['$scope', '$http', '$location', function($scope, $http, $location) {
+
+      $scope.submitamigo = function() {
+        $http({
+          url: 'http://developer-papudinho.herokuapp.com/webservice/new_friendship', 
+          method: "POST",
+          params: {
+            id: window.localStorage['id'],
+            email: $scope.email
+          }
+        }).
+
+        success(function (data, status, headers, config) {
+          console.log('Success', status);
+          alert("Amigo Adicionado com sucesso");
+          //scope.$apply();
+          $location.path('/menu/amigos'); 
+        }).
+
+        error(function (data, status, headers, config) {
+          console.log('Error ');
+          alert("Erro add Amigo");
+        });
+
+        return 0; 
+      }
+    }]);
+
+  app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $http, $location) {
       $scope.volume = 10;
       function timedCount() {
         var time;
@@ -431,6 +424,7 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
             console.log('Error');
             alert("Erro");
           });
+
 
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
@@ -455,4 +449,67 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
       }
 
       timedCount();
+
+      $scope.submitcartao = function() {
+        arrayOfObjects = $scope.Bebidas;
+        id_bebida = 0; flag = 0;
+        for (var i = 0; i < arrayOfObjects.length; i++) {
+            var object = arrayOfObjects[i];
+            for (var property in object) {
+                //alert('item ' + i + ': ' + property + '=' + object[property]);
+                if(property == "id"){
+                  id_bebida = object[property];
+                }
+                if(object[property] = $scope.bebida){
+                  flag = 1;
+                  break;
+                }
+            }
+            if(flag == 1)
+              break;
+          }
+          
+          arrayOfObjects = $scope.Bares;
+          id_bar = 0; flag = 0;
+          for (var i = 0; i < arrayOfObjects.length; i++) {
+            var object = arrayOfObjects[i];
+            for (var property in object) {
+                //alert('item ' + i + ': ' + property + '=' + object[property]);
+                if(property == "id"){
+                  id_bar = object[property];
+                }
+                if(object[property] = $scope.bar){
+                  flag = 1;
+                  break;
+                }
+            }
+            if(flag == 1)
+              break;
+          }
+        $http({
+          url: 'http://developer-papudinho.herokuapp.com/webservice/new_card', 
+          method: "POST",
+          params: {
+            drink_id: id_bebida,
+            bar_id: id_bar,
+            user_id: window.localStorage['id'],
+            due_date: "30/03/2015",
+            total_doses: $scope.volume
+          }
+        }).
+
+        success(function (data, status, headers, config) {
+          console.log('Success', status);
+          alert("Cartão Adicionado");
+          window.localStorage['atualizar'] = 1;
+          $location.path('/menu/cartoes'); 
+        }).
+
+        error(function (data, status, headers, config) {
+          console.log('Error ', data);
+          alert("Erro add Cartao");
+        });
+
+        return 0; 
+      }
     }]);
