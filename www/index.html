@@ -106,14 +106,14 @@
           <ion-header-bar class="bar-positive">
              <h1 class="title">Papudinho</h1>
           </ion-header-bar>
-          <ion-content>
+          <ion-content ng-controller="sidebar">
             <ul class="list">
               <a href="#/menu/home" class="item" menu-close>Home</a>
               <a href="#/menu/amigos" class="item" menu-close>Amigos</a>
               <a href="#/menu/bares" class="item" menu-close>Bares</a>
               <a href="#/menu/cartoes" class="item" menu-close>Cartões</a>
               <a href="#/menu/promocao" class="item" menu-close>Promoções</a>
-              <a href="#/login" class="item" menu-close>Sair</a>
+              <a href="#/login" class="item" menu-close ng-click="sair()">Sair</a>
             </ul>
           </ion-content>
         </ion-side-menu>
@@ -124,7 +124,7 @@
     <script id="home" type="text/ng-template">
       <ion-view view-title="Papudinho" ng-controller="Home">
         <ion-content padding="true" class="has-header">
-          {{msg}}
+          <div align="center">{{msg}}</div>
           <div ng-repeat="cartao in CartoesVencimento">
             <div class="card">
               <div class="item item-text-wrap" >
@@ -210,8 +210,7 @@
             <div class="list">
               <div ng-repeat="module in Cartoes">
 
-                <a class="item item-thumbnail-left" href="#/timeline">
-                  <img src='{{ module.card_picture.card_picture.thumb.url }}'>
+                <a class="item " href="#/timeline">
                   <div class="row">
                     <div class="col">
                       <p><b>{{ module.bar_name }}</b><br>
@@ -235,8 +234,8 @@
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
             <div class="list">
-              <a class="item item-avatar" href="#" ng-repeat="module in Promocoes">
-                <img src="{{module.avatar.thumb.url}}">
+              <a class="item " href="#" ng-repeat="module in Promocoes">
+               <!-- item-avatar <img src="{{module.avatar.thumb.url}}"> -->
                 <h2>{{module.bar_name}}</h2>
                 <h3>{{module.title}}</h3>
                 <p>{{module.description}}<br>
@@ -255,11 +254,6 @@
             <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
             <i class="ion-ios7-arrow-back"></i> Voltar
           </button>
-          </ion-nav-buttons>
-          <ion-nav-buttons side="right">
-            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
-              Salvar <i class="ion-checkmark-round"></i> 
-            </button>
           </ion-nav-buttons>
         </ion-nav-bar>
 

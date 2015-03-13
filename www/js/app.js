@@ -125,6 +125,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
           success(function (data, status, headers, config) {
             console.log('Success', status);
+            window.localStorage['atualizarHome'] = 1;
             window.localStorage['login'] = 1;
             window.localStorage['id'] = data.id;
             window.localStorage['email'] = data.email;
@@ -133,8 +134,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error');
-            alert("Erro");
+            console.log('Error LoginForm');
           });
         };
       }])
@@ -161,7 +161,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
             error(function (data, status, headers, config) {
               $scope.erro = "Erro ao cadastrar, tente novamente mais tarde.";
-              console.log('Error');
+              console.log('Error CadastroForm');
             });
           }
           else{
@@ -172,9 +172,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }]);
 
     app.controller('Home', ['$scope', '$http',  function($scope, $http) {
-      
-      $scope.msg = "Cartões perto do vencimento (falta css)";
-
       function timedCount() {
         var time;
         if(window.localStorage['login'] == 1){
@@ -191,13 +188,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
             console.log('Success', status);
             $scope.CartoesVencimento = data;
             if(data == 0){
-              $scope.msg = "Nenhum cartão perto do vencimento (falta css)";
+              $scope.msg = "Nenhum cartão perto do vencimento";
+            }
+            else{
+              $scope.msg = "Cartões perto do vencimento (falta css)";
             }
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error');
-            alert("Erro Home");
+            console.log('Error home');
           });
 
           return 0;
@@ -208,6 +207,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
 
       timedCount();
+
+      function atualizar() {
+        var time;
+        if(window.localStorage['atualizarHome'] == 1){
+          clearTimeout(time);
+          window.localStorage['atualizarHome'] = 0;
+          location.reload();
+        }
+        else{
+          time = setTimeout(function(){ atualizar() }, 500);
+        }
+      }
+      
+      atualizar();
     }]);
   
   app.controller('Bares', ['$scope', '$http',  function($scope, $http) {
@@ -225,8 +238,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error');
-            alert("Erro Bares");
+            console.log('Error bares');
           });
 
           return 0;
@@ -248,7 +260,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
             method: "GET",
             params: {
-              //user: 3
               user: window.localStorage['id']
             }
           }).
@@ -262,7 +273,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
           error(function (data, status, headers, config) {
             console.log('Error cartoes');
-            alert("Erro");
           });
 
           return 0;
@@ -276,9 +286,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
       function atualizar() {
         var time;
-        if(window.localStorage['atualizar'] == 1){
+        if(window.localStorage['atualizarCartao'] == 1){
           clearTimeout(time);
-          window.localStorage['atualizar'] = 0;
+          window.localStorage['atualizarCartao'] = 0;
 
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
@@ -296,12 +306,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error cartoes');
-            alert("Erro");
+            console.log('Error cartoes', data);
           });
-
           return 0;
-
         }
         else{
           time = setTimeout(function(){ atualizar() }, 500);
@@ -328,8 +335,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error');
-            alert("Erro");
+            console.log('Error promocoes');
           });
 
           return 0;
@@ -352,7 +358,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             method: "GET",
             params: {
               id: window.localStorage['id']
-              //user: window.localStorage['id']
             }
           }).
 
@@ -362,8 +367,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error ');
-            alert("Erro Amigos");
+            console.log('Error Amigos');
+
           });
 
           return 0;
@@ -374,6 +379,38 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
 
       timedCount();
+
+      function atualizar() {
+        var time;
+        if(window.localStorage['atualizarAmigo'] == 1){
+          clearTimeout(time);
+          window.localStorage['atualizarAmigo'] = 0;
+
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/friends', 
+            method: "GET",
+            params: {
+              id: window.localStorage['id']
+            }
+          }).
+
+          success(function (data, status, headers, config) {
+            console.log('Success', status);
+            $scope.Amigos = data;
+          }).
+
+          error(function (data, status, headers, config) {
+            console.log('Error Amigos');
+
+          });
+
+        }
+        else{
+          time = setTimeout(function(){ atualizar() }, 500);
+        }
+      }
+      
+      atualizar();
     }]);
 
   app.controller('addAmigo', ['$scope', '$http', '$location', function($scope, $http, $location) {
@@ -390,14 +427,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
         success(function (data, status, headers, config) {
           console.log('Success', status);
-          alert("Amigo Adicionado com sucesso");
-          //scope.$apply();
+          window.localStorage['atualizarAmigo'] = 1
           $location.path('/menu/amigos'); 
         }).
 
         error(function (data, status, headers, config) {
-          console.log('Error ');
-          alert("Erro add Amigo");
+          console.log('Error add Amigo');
         });
 
         return 0; 
@@ -421,8 +456,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error');
-            alert("Erro");
+            console.log('Error drink');
           });
 
 
@@ -437,8 +471,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           error(function (data, status, headers, config) {
-            console.log('Error');
-            alert("Erro");
+            console.log('Error bar');
           });
 
           return 0;
@@ -500,16 +533,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
         success(function (data, status, headers, config) {
           console.log('Success', status);
-          alert("Cartão Adicionado");
-          window.localStorage['atualizar'] = 1;
+          window.localStorage['atualizarCartao'] = 1;
           $location.path('/menu/cartoes'); 
         }).
 
         error(function (data, status, headers, config) {
-          console.log('Error ', data);
-          alert("Erro add Cartao");
+          console.log('Error add Cartao', data);
         });
 
         return 0; 
+      }
+    }]);
+
+    app.controller('sidebar', ['$scope', '$http', '$location', function($scope, $http, $location) {
+      $scope.sair = function() {
+        window.localStorage['login'] = 0;
       }
     }]);
