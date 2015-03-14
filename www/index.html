@@ -233,14 +233,13 @@
     <script id="promocao" type="text/ng-template">
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
-            <div class="list">
-              <a class="item " href="#" ng-repeat="module in Promocoes">
-               <!-- item-avatar <img src="{{module.avatar.thumb.url}}"> -->
+            <div class=" card">
+              <div class="item item-text-wrap" ng-repeat="module in Promocoes">
                 <h2>{{module.bar_name}}</h2>
                 <h3>{{module.title}}</h3>
                 <p>{{module.description}}<br>
-                 Válido até {{module.date}}</p>
-              </a>
+                  Válido até {{module.date}}</p>
+              </div>
             </div>
           </ion-content>
       </ion-view>
