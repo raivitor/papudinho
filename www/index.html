@@ -259,13 +259,14 @@
 
         <ion-content padding="true" class="has-header">
           <form ng-submit="submitcartao()" ng-controller="NovoCartao">
+            <div align="center">{{msg}}</div>
             <div class="row">
               <div class="col">
                 <label class="item item-input item-select">
                   <div class="input-label">
                     Bebida
                   </div>
-                  <select ng-model="bebida">
+                  <select ng-model="bebida" required>
                     <option selected > -- Escolha -- </option>
                     <option align="center"  ng-repeat="module in Bebidas" >{{module.name}} </option>
                   </select>
@@ -279,7 +280,7 @@
                   <div class="input-label">
                     Bar
                   </div>
-                  <select ng-model="bar">
+                  <select ng-model="bar" required>
                     <option selected> -- Escolha -- </option>
                     <option align="center" ng-repeat="module in Bares" >{{module.name}} </option>
                   </select>
@@ -291,7 +292,7 @@
               <div class="col">
                 <label class="item item-input">
                   <span class="input-label">Data de Vencimento</span>
-                  <input type="date" ng-model="vencimento">
+                  <input type="date" ng-model="vencimento" required>
                 </label>
               </div>
               <!--
@@ -309,11 +310,11 @@
             <div class="row">
               <div class="col col-80">
                 <div class="item range range-positive">
-                  <input type="range" name="volume" min="0" max="20" value="1" ng-model="volume">
+                  <input type="range" name="doses" min="0" max="20" value="1" ng-model="doses">
                 </div>
               </div>
               <div class="col col-center" align="center">
-                <p>Doses : {{volume}}</p>
+                <p>Doses : {{doses}}</p>
               </div>
             </div>
             <br>
@@ -324,47 +325,6 @@
             <input type="submit" id="SalvarCartao" value="Salvar" class="button button-stable button-block" />
           </form>
         </ion-content>
-      </ion-view>
-    </script>
-
-
-    <script id="addBar" type="text/ng-template" >
-      
-      <ion-view view-title="Novo Bar">
-
-        <ion-nav-bar class="bar-positive">
-          <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
-            <i class="ion-ios7-arrow-back"></i> Voltar
-          </button>
-          </ion-nav-buttons>
-          <ion-nav-buttons side="right">
-            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
-              Salvar <i class="ion-checkmark-round"></i> 
-            </button>
-          </ion-nav-buttons>
-        </ion-nav-bar> 
-
-        <ion-content padding="true" class="has-header">
-          <div class="row">
-            <div class="col">
-              <label class="item item-input">
-                <input type="text" placeholder="Nome do Bar">
-              </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label class="item item-input">
-                <input type="text" placeholder="Telefone">
-              </label>
-            </div>
-          </div>
-          <div id="map" data-tap-disabled="true"></div>
-        </ion-content>
-        <ion-footer-bar class="bar-balanced">
-          <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate">Pegar Localização</a>
-        </ion-footer-bar>
       </ion-view>
     </script>
 

@@ -90,11 +90,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'addCartao'
     })
 
-    .state('addBar', {
-      url: '/addBar',
-      templateUrl: 'addBar'
-    })
-
     .state('addAmigo', {
       url: '/addAmigo',
       templateUrl: 'addAmigo'
@@ -124,7 +119,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success', status);
             window.localStorage['atualizarHome'] = 1;
             window.localStorage['login'] = 1;
             window.localStorage['id'] = data.id;
@@ -440,7 +434,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }]);
 
   app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $http, $location) {
-      $scope.volume = 10;
+      $scope.doses = 10;
       function timedCount() {
         var time;
         if(window.localStorage['login'] == 1){
@@ -451,7 +445,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success bebida', data);
             $scope.Bebidas = data;
           }).
 
@@ -484,41 +477,75 @@ app.config(function($stateProvider, $urlRouterProvider) {
       timedCount();
 
       $scope.submitcartao = function() {
-        arrayOfObjects = $scope.Bebidas;
-        id_bebida = 0; flag = 0;
-        for (var i = 0; i < arrayOfObjects.length; i++) {
-            var object = arrayOfObjects[i];
-            for (var property in object) {
-                //alert('item ' + i + ': ' + property + '=' + object[property]);
-                if(property == "id"){
-                  id_bebida = object[property];
-                }
-                if(object[property] = $scope.bebida){
-                  flag = 1;
-                  break;
-                }
-            }
-            if(flag == 1)
-              break;
+        var dataUsuario = (new Date($scope.vencimento)).toString().split(' ');
+        dataUsuario[1] = new Date(Date.parse(dataUsuario[1] +" 1, "+dataUsuario[3])).getMonth()+1;
+        data = [dataUsuario[2],dataUsuario[1],dataUsuario[3]].join('/');
+
+        var dataAtual = (new Date()).toString().split(' ');
+        dataAtual[1] = new Date(Date.parse(dataAtual[1] +" 1, "+dataAtual[3])).getMonth()+1;
+        data1 = [dataAtual[2],dataAtual[1],dataAtual[3]].join('/');
+
+        if (dataUsuario[3]<dataAtual[3]) { //ano anterior
+          $scope.msg = "Data inválida";
+          return 0;
+        }
+        else{ //ano atual
+          if (dataUsuario[1]<dataAtual[1]) { //mes anterior
+            $scope.msg = "Data inválida";
+            return 0;
           }
+          else{ //mes atual
+            if(dataUsuario[2]<dataAtual[2]){ // dia anterior
+              $scope.msg = "Data inválida";
+              return 0;
+            }
+          }
+        }
           
-          arrayOfObjects = $scope.Bares;
-          id_bar = 0; flag = 0;
+        id_bebida = validar($scope.Bebidas, $scope.bebida);
+        if(id_bebida <= 0){
+          $scope.msg = "Bebida inválida";
+          return 0;
+        }
+        console.log("Bebida: "+id_bebida);
+
+        id_bar = validar($scope.Bares, $scope.bar);
+        if(id_bar <= 0){
+          $scope.msg = "Bar inválido";
+          return 0;
+        }
+
+        function validar(lista, nome){
+          if(nome == undefined){
+            return -1;
+          }
+          arrayOfObjects = lista;
+          id = 0; flag = 0;
           for (var i = 0; i < arrayOfObjects.length; i++) {
             var object = arrayOfObjects[i];
             for (var property in object) {
                 //alert('item ' + i + ': ' + property + '=' + object[property]);
                 if(property == "id"){
-                  id_bar = object[property];
+                  id = object[property];
                 }
-                if(object[property] = $scope.bar){
-                  flag = 1;
-                  break;
+                if(property == "name"){
+                  var aux = nome;
+                  var aux2 = object[property];
+                  if(aux2.trim() == aux.trim()){
+                    flag = 1;
+                    break;
+                  }
                 }
             }
             if(flag == 1)
               break;
           }
+          if(flag==0)
+            return 0;
+          else
+            return id;
+        }
+
         $http({
           url: 'http://developer-papudinho.herokuapp.com/webservice/new_card', 
           method: "POST",
@@ -526,8 +553,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
             drink_id: id_bebida,
             bar_id: id_bar,
             user_id: window.localStorage['id'],
-            due_date: "30/03/2015",
-            total_doses: $scope.volume
+            due_date: data,
+            total_doses: $scope.doses
           }
         }).
 
