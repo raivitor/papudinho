@@ -149,7 +149,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }).
 
             success(function (data, status, headers, config) {
-              console.log('Success', status);
               $location.path('home');  
             }).
 
@@ -179,13 +178,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success', status);
             $scope.CartoesVencimento = data;
             if(data == 0){
               $scope.msg = "Nenhum cartão perto do vencimento";
             }
             else{
-              $scope.msg = "Cartões perto do vencimento (falta css)";
+              $scope.msg = "Cartões perto do vencimento";
             }
           }).
 
@@ -283,26 +281,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         if(window.localStorage['atualizarCartao'] == 1){
           clearTimeout(time);
           window.localStorage['atualizarCartao'] = 0;
-
-          $http({
-            url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
-            method: "GET",
-            params: {
-              user: window.localStorage['id']
-            }
-          }).
-
-          success(function (data, status, headers, config) {
-            $scope.Cartoes = data;
-            if(data == 0){
-              $scope.msgCartoes = "Sem cartões!";
-            }
-          }).
-
-          error(function (data, status, headers, config) {
-            console.log('Error cartoes', data);
-          });
-          return 0;
+          location.reload();
         }
         else{
           time = setTimeout(function(){ atualizar() }, 500);
@@ -324,7 +303,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success', status);
             $scope.Promocoes = data;
           }).
 
@@ -356,7 +334,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success', status);
             $scope.Amigos = data;
           }).
 
@@ -389,13 +366,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success', status);
             $scope.Amigos = data;
           }).
 
           error(function (data, status, headers, config) {
             console.log('Error Amigos');
-
           });
 
         }
@@ -420,7 +395,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }).
 
         success(function (data, status, headers, config) {
-          console.log('Success', status);
           window.localStorage['atualizarAmigo'] = 1
           $location.path('/menu/amigos'); 
         }).
@@ -459,7 +433,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
-            console.log('Success', status);
             $scope.Bares = data;
           }).
 
@@ -507,7 +480,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           $scope.msg = "Bebida inválida";
           return 0;
         }
-        console.log("Bebida: "+id_bebida);
 
         id_bar = validar($scope.Bares, $scope.bar);
         if(id_bar <= 0){
@@ -559,7 +531,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }).
 
         success(function (data, status, headers, config) {
-          console.log('Success', status);
           window.localStorage['atualizarCartao'] = 1;
           $location.path('/menu/cartoes'); 
         }).
