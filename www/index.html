@@ -34,11 +34,11 @@
                   <ion-list>
                       <label class="item item-input">
                           <span class="input-label">Usuário</span>
-                          <input id="usuario" name="usuario" type="email" placeholder="" required ng-model="email" >
+                          <input id="usuario" name="usuario" type="email" placeholder=""  ng-model="email" >
                       </label>
                       <label class="item item-input">
                           <span class="input-label">Senha</span>
-                          <input id="senha" name="senha" type="password" placeholder="" ng-model="senha" required>
+                          <input id="senha" name="senha" type="password" placeholder="" ng-model="senha" >
                       </label>
                   </ion-list>
                   <div class="spacer" style="height: 40px;"></div>
@@ -156,7 +156,7 @@
 
         <ion-content padding="true" class="has-header">
           <div class="list">
-
+            <div align="center" class="msg" id="msgamigos">{{msg}}</div>
             <a class="item item-icon-left item-icon-right" href="#" ng-repeat="amigo in Amigos">
               <i class="icon ion-person-stalker"></i>
                 ‎{{amigo.name}}<br>
@@ -206,9 +206,9 @@
               <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
             </ion-nav-buttons>
           </ion-nav-bar>
-          {{msgCartoes}}
           <ion-content padding="true" class="has-header">
             <div class="list">
+              <div align="center" class="msg" id="msgcartoes">{{msg}}</div>
               <div ng-repeat="module in Cartoes">
 
                 <a class="item " href="#/timeline">
@@ -235,6 +235,7 @@
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
             <div class=" card">
+              <div align="center" class="msg" id="msgpromocoes">{{msg}}</div>
               <div class="item item-text-wrap" ng-repeat="module in Promocoes">
                 <h2>{{module.bar_name}}</h2>
                 <h3>{{module.title}}</h3>
@@ -345,15 +346,15 @@
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Nome</span>
-                    <input type="text" placeholder="" ng-model="name" required>
+                    <input type="text" placeholder="" ng-model="name" >
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Email</span>
-                    <input type="email" placeholder="" ng-model="email" required>
+                    <input type="email" placeholder="" ng-model="email" >
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Telefone</span>
-                    <input type="text" placeholder="" ng-model="phone" required>
+                    <input type="text" placeholder="" ng-model="phone" >
                 </label>
             </ion-list>
             <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-stable button-block" />

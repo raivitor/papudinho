@@ -172,7 +172,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             return 0;
           }
 
-          
+          $scope.msg = "";
 
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
@@ -291,7 +291,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           success(function (data, status, headers, config) {
             $scope.Cartoes = data;
             if(data == 0){
-              $scope.msgCartoes = "Sem cartões!";
+              $scope.msg = "Sem cartões, para cadastrar um novo cartão clique no +";
             }
           }).
 
@@ -335,6 +335,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
+            if(data == 0){
+              $scope.msg = "Nenhuma promoção disponível no momento."
+            }
             $scope.Promocoes = data;
           }).
 
@@ -366,7 +369,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
+            if( data == 0){
+              $scope.msg = "Você ainda não tem amigos, clique no + para adicionar novos amigos";
+            }
             $scope.Amigos = data;
+
           }).
 
           error(function (data, status, headers, config) {
