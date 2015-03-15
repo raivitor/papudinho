@@ -30,14 +30,15 @@
               </div>
 
               <form ng-submit="submit()" ng-controller="LoginForm">
+                  <div align="center" class="msg" id="msghome">{{msg}}</div>
                   <ion-list>
                       <label class="item item-input">
-                          <span class="input-label">Usuário  </span>
-                          <input id="usuario" name="usuario" type="text" placeholder="" ng-model="email" >
+                          <span class="input-label">Usuário</span>
+                          <input id="usuario" name="usuario" type="email" placeholder="" required ng-model="email" >
                       </label>
                       <label class="item item-input">
                           <span class="input-label">Senha</span>
-                          <input id="senha" name="senha" type="password" placeholder="" ng-model="senha">
+                          <input id="senha" name="senha" type="password" placeholder="" ng-model="senha" required>
                       </label>
                   </ion-list>
                   <div class="spacer" style="height: 40px;"></div>
@@ -63,9 +64,9 @@
 
             <form ng-submit="submitcadastro()" ng-controller="CadastroForm">
                 <ion-list>
-                    {{erro}}
+                    <div align="center" class="msg" id="msgcadastro">{{msg}}</div>
                     <label class="item item-input">
-                        <span class="input-label">Usuario</span>
+                        <span class="input-label">Nome</span>
                         <input type="text" placeholder="" ng-model="user">
                     </label>
                     <label class="item item-input">
@@ -340,18 +341,19 @@
 
         <ion-content padding="true" class="has-header">
           <form ng-submit="submitamigo()" ng-controller="addAmigo">
+            <div align="center" class="msg" id="msgcadastro">{{msg}}</div>  
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Nome</span>
-                    <input type="text" placeholder="" ng-model="name">
+                    <input type="text" placeholder="" ng-model="name" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Email</span>
-                    <input type="text" placeholder="" ng-model="email">
+                    <input type="email" placeholder="" ng-model="email" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Telefone</span>
-                    <input type="text" placeholder="" ng-model="phone">
+                    <input type="text" placeholder="" ng-model="phone" required>
                 </label>
             </ion-list>
             <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-stable button-block" />

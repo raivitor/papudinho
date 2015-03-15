@@ -109,6 +109,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
       app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
         window.localStorage['login'] = 0;
         $scope.submit = function() {
+          if($scope.senha.length < 8 ){
+            $scope.msg = "Senha precisa ter 8 ou mais dígitos";
+            return 0;
+          }
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/', 
             method: "POST",
@@ -129,6 +133,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
           error(function (data, status, headers, config) {
             console.log('Error LoginForm');
+            $scope.msg = "Usuário ou senha incorretor";
           });
         };
       }])
@@ -136,32 +141,59 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
       app.controller('CadastroForm', ['$scope', '$http', '$location',  function($scope, $http, $location) {
         $scope.submitcadastro = function() {
-          if($scope.password == $scope.password2){
-            $http({
-              url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
-              method: "POST",
-              params: {
-                name: $scope.user,
-                email: $scope.email,
-                password: $scope.password,
-                password_confirmation: $scope.password2
-              }
-            }).
 
-            success(function (data, status, headers, config) {
-              $location.path('home');  
-            }).
+          if($scope.user == undefined ){
+            $scope.msg = "O campo 'Nome' está vazio";
+            return 0;
+          }
 
-            error(function (data, status, headers, config) {
-              $scope.erro = "Erro ao cadastrar, tente novamente mais tarde.";
-              console.log('Error CadastroForm');
-            });
-          }
-          else{
-            $scope.erro = "Senhas diferentes";
-          }
+          if($scope.email == undefined ){
+            $scope.msg = "O campo 'Email' está vazio";
+            return 0;
+          } 
+
+          if($scope.password == undefined ){
+            $scope.msg = "O campo 'Senha' está vazio";
+            return 0;
+          } 
+
+          if($scope.password2 == undefined ){
+            $scope.msg = "O campo 'Confirmar Senha' está vazio";
+            return 0;
+          } 
           
-        };
+          if($scope.password.length < 8 ){
+            $scope.msg = "Senha precisa ter 8 ou mais dígitos";
+            return 0;
+          }
+
+          if($scope.password != $scope.password2){
+            $scope.msg = "Senhas diferentes";
+            return 0;
+          }
+
+          
+
+          $http({
+            url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
+            method: "POST",
+            params: {
+              name: $scope.user,
+              email: $scope.email,
+              password: $scope.password,
+              password_confirmation: $scope.password2
+            }
+          }).
+
+          success(function (data, status, headers, config) {
+            $location.path('home');  
+          }).
+
+          error(function (data, status, headers, config) {
+            $scope.msg = "Erro ao cadastrar, tente novamente mais tarde.";
+            console.log('Error CadastroForm');
+          });
+        }
       }]);
 
     app.controller('Home', ['$scope', '$http',  function($scope, $http) {
@@ -385,6 +417,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
   app.controller('addAmigo', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
       $scope.submitamigo = function() {
+        if($scope.nome == undefined){
+          $scope.msg = "O campo 'Nome' está vazio";
+          return 0;
+        }
+        if($scope.email == undefined){
+          $scope.msg = "O campo 'Email' está vazio";
+          return 0;
+        }
+        if($scope.phone == undefined){
+          $scope.msg = "O campo 'Telefone' está vazio";
+          return 0;
+        }
         $http({
           url: 'http://developer-papudinho.herokuapp.com/webservice/new_friendship', 
           method: "POST",
