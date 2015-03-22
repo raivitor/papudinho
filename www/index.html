@@ -43,7 +43,11 @@
                   </ion-list>
                   <div class="spacer" style="height: 40px;"></div>
                   <input type="submit" id="submit" value="Entrar" class="button button-stable button-block" />
-                  <a href="#/signup" class="button button-positive button-clear button-block">Criar Conta</a>
+                  <div align="center">
+                    <a href="#/signup" class="button button-positive button-clear">Criar Conta</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    <a href="#/senha" class="button button-positive button-clear">Esqueci a senha</a>
+                  </div>
               </form>
           </ion-content>
       </ion-view>
@@ -83,6 +87,34 @@
                     </label>
                 </ion-list>
                 <input type="submit" id="submit" value="Cadastrar" class="button button-stable button-block" />
+            </form>
+        </ion-content>
+
+    </ion-view>
+    </script>
+
+    <script id="senha" type="text/ng-template">
+    <ion-view title="Esqueci a senha">
+
+        <ion-nav-bar class="bar-positive">
+          <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
+            <i class="ion-ios7-arrow-back"></i>
+          </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header">
+
+            <form ng-submit="submitsenha()" ng-controller="NovaSenha">
+                <ion-list>
+                    <div align="center" class="msg" id="msgsenha">{{msg}}</div>
+                    <label class="item item-input">
+                        <span class="input-label">Email</span>
+                        <input type="email" placeholder="" ng-model="email">
+                    </label>
+                </ion-list>
+                <input type="submit" id="submit" value="Nova senha" class="button button-stable button-block" />
             </form>
         </ion-content>
 
@@ -235,7 +267,6 @@
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
             <div class=" card">
-              <div align="center" class="msg" id="msgpromocoes">{{msg}}</div>
               <div class="item item-text-wrap" ng-repeat="module in Promocoes">
                 <h2>{{module.bar_name}}</h2>
                 <h3>{{module.title}}</h3>
