@@ -146,6 +146,7 @@
               <a href="#/menu/bares" class="item" menu-close>Bares</a>
               <a href="#/menu/cartoes" class="item" menu-close>Cartões</a>
               <a href="#/menu/promocao" class="item" menu-close>Promoções</a>
+              <a href="#/menu/dados" class="item" menu-close>Meus Dados</a>
               <a href="#/login" class="item" menu-close ng-click="sair()">Sair</a>
             </ul>
           </ion-content>
@@ -272,6 +273,41 @@
                 <h3>{{module.title}}</h3>
                 <p>{{module.description}}<br>
                   Válido até {{module.date}}</p>
+              </div>
+            </div>
+          </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="dados" type="text/ng-template">
+      <ion-view title="Meus dados" ng-controller="dados">
+          <ion-content padding="true" class="has-header">
+            <div class=" card">
+              <div class="item item-text-wrap">
+                <form ng-submit="submitDados()" ng-controller="dados">
+                  <div align="center" class="msg" id="msgdados ">{{msg}}</div>
+                  <label class="item item-input">
+                      <span class="input-label">Nome</span>
+                      <input type="text" placeholder=""  ng-model="nome" readonly>
+                  </label>
+                  <label class="item item-input">
+                      <span class="input-label">Email</span>
+                      <input type="text" placeholder=""  ng-model="email" readonly>
+                  </label>
+                  <label class="item item-input">
+                      <span class="input-label">Senha Antiga</span>
+                      <input type="password" placeholder="" ng-model="passwordOld">
+                  </label>
+                  <label class="item item-input">
+                      <span class="input-label">Senha Nova</span>
+                      <input type="password" placeholder="" ng-model="password">
+                  </label>
+                  <label class="item item-input">
+                      <span class="input-label">Confirmar Senha Nova</span>
+                      <input type="password" placeholder="" ng-model="password2">
+                  </label>
+                  <input type="submit" id="submit" value="Alterar senha" class="button button-stable button-block" />
+                </form>
               </div>
             </div>
           </ion-content>
