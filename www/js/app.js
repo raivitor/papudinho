@@ -127,6 +127,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             $scope.msg = "Senha precisa ter 8 ou mais dígitos";
             return 0;
           }
+          $scope.msg = "";
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/', 
             method: "POST",
@@ -147,13 +148,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
           error(function (data, status, headers, config) {
             console.log('Error LoginForm');
-            $scope.msg = "Usuário ou senha incorretor";
+            $scope.msg = "Usuário ou senha incorretos";
           });
         };
       }])
 
 
-      app.controller('CadastroForm', ['$scope', '$http', '$location',  function($scope, $http, $location) {
+      app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  function($scope, $http, $location, $ionicPopup) {
         $scope.submitcadastro = function() {
 
           if($scope.user == undefined ){
@@ -200,6 +201,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
+            $ionicPopup.alert({
+               title: 'Notificação',
+               template: 'Cadastro realizado com sucesso!'
+             });
             $location.path('home');  
           }).
 
