@@ -119,6 +119,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/login');
 });
       
+    function alerta (alert, titulo, msg) {
+      alert.alert({
+       title: titulo,
+       template: msg
+     });
+    }
 
       app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
         window.localStorage['login'] = 0;
@@ -202,10 +208,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
-            $ionicPopup.alert({
-               title: 'Notificação',
-               template: 'Cadastro realizado com sucesso!'
-             });
+            $scope.msg = "";
+            alerta($ionicPopup, "Notificação", "Cadastro realizado com sucesso!");
             $location.path('home');  
           }).
 
