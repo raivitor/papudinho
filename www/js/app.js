@@ -227,7 +227,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             return 0;
           } 
           $scope.msg = "";
-          /*
+          
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/reset_password/', 
             method: "POST",
@@ -243,7 +243,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           error(function (data, status, headers, config) {
             $scope.msg = "Erro ao enviar a nova senha, tente novamente mais tarde.";
             console.log('Error NovaSenha');
-          });*/
+          });
         }
       }]);
 
