@@ -127,7 +127,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             $scope.msg = "Senha precisa ter 8 ou mais dígitos";
             return 0;
           }
-          $scope.msg = "";
+          $scope.msg = "Aguarde um momento";
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/', 
             method: "POST",
@@ -138,6 +138,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
+            $scope.msg = "";
             window.localStorage['atualizarHome'] = 1;
             window.localStorage['login'] = 1;
             window.localStorage['id'] = data.id;
@@ -187,7 +188,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             return 0;
           }
 
-          $scope.msg = "";
+          $scope.msg = "Aguarde um momento";
 
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
@@ -470,10 +471,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
   app.controller('addAmigo', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
       $scope.submitamigo = function() {
-        if($scope.nome == undefined){
-          $scope.msg = "O campo 'Nome' está vazio";
-          return 0;
-        }
         if($scope.email == undefined){
           $scope.msg = "O campo 'Email' está vazio";
           return 0;
