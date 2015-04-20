@@ -12,6 +12,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>    
     <script src="js/app.js"></script>
+    
 
   </head>
   <body ng-app="app" >
@@ -46,6 +47,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                     <a href="#/senha" class="button button-positive button-clear">Esqueci a senha</a>
                   </div>
+                  
               </form>
           </ion-content>
       </ion-view>
@@ -375,9 +377,10 @@
             </div>
             <br>
             <div class="row">
-              <div class="col" align="center"><i class="icon ion-image" style="font-size: 70px; color: rgb(136, 136, 136);"></i></div>
-              <div class="col" align="center"><i class="icon ion-image" style="font-size: 70px; color: rgb(136, 136, 136);"></i></div>
+              <img ng-src="{{imgURI}}">
             </div>
+            
+            <button id="foto" class="button" ng-click="capturePhoto()">Tirar Foto</button>
             <input type="submit" id="SalvarCartao" value="Salvar" class="button button-stable button-block" />
           </form>
         </ion-content>

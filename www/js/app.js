@@ -119,21 +119,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/login');
 });
       
-    function alerta (alert, titulo, msg) {
-      alert.alert({
-       title: titulo,
-       template: msg
-     });
-    }
+      function alerta (alert, titulo, msg) {
+        alert.alert({
+         title: titulo,
+         template: msg
+       });
+      }
 
       app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
+        $scope.msg = " ";
         window.localStorage['login'] = 0;
         $scope.submit = function() {
+          $scope.msg = " ";
+          //$scope.email = "teste2@teste.com";
+          //$scope.senha = "12345678";
           if($scope.senha.length < 8 ){
             $scope.msg = "Senha precisa ter 8 ou mais dígitos";
             return 0;
           }
           $scope.msg = "Aguarde um momento";
+
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/', 
             method: "POST",
@@ -507,6 +512,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $http, $location) {
       $scope.doses = 10;
+      $scope.capturePhoto = function() {
+        // Take picture using device camera and retrieve image as base64-encoded string
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
+      }
+
+      function onSuccess(imageData) {
+        $scope.imgURI = "";
+        $scope.imgURI = "data:image/jpeg;base64," + imageData;
+      }
+
+      function onFail(message) {
+      }
+
       function timedCount() {
         var time;
         if(window.localStorage['login'] == 1){
@@ -641,14 +659,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }]);
 
-    app.controller('sidebar', ['$scope', '$http', '$location', function($scope, $http, $location) {
+    app.controller('sidebar', ['$scope',  function($scope) {
       $scope.sair = function() {
         window.localStorage['login'] = 0;
       }
+
+
     }]);
 
-    app.controller('dados', ['$scope', '$http',  function($scope, $http) {
+    app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  function($scope, $http, $ionicPlatform, $ionicPopup) {
       $scope.msg = ""
+
+      
       $scope.submitDados = function() {
 
         if($scope.passwordOld == undefined ){
@@ -682,6 +704,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
 
         $scope.msg = '';
+
+
 
         $http({
           url: 'http://developer-papudinho.herokuapp.com/webservice/change_password', 
