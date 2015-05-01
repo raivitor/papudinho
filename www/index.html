@@ -326,7 +326,7 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
-          <form ng-submit="submitcartao()" ng-controller="NovoCartao">
+          <form ng-controller="NovoCartao">
             <div align="center">{{msg}}</div>
             <div class="row">
               <div class="col">
@@ -377,11 +377,12 @@
             </div>
             <br>
             <div class="row">
-              <img ng-src="{{imgURI}}">
+              <img src=" " id="imagem">
+              <input type="file" ng-model="myFile"/>
             </div>
             
             <button id="foto" class="button" ng-click="capturePhoto()">Tirar Foto</button>
-            <input type="submit" id="SalvarCartao" value="Salvar" class="button button-stable button-block" />
+            <input type="submit" id="SalvarCartao" value="Salvar" ng-click="submitcartao()" class="button button-stable button-block" enctype="multipart/form-data" />
           </form>
         </ion-content>
       </ion-view>

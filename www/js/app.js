@@ -131,8 +131,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
         window.localStorage['login'] = 0;
         $scope.submit = function() {
           $scope.msg = " ";
-          //$scope.email = "teste2@teste.com";
-          //$scope.senha = "12345678";
+          $scope.email = "teste2@teste.com";
+          $scope.senha = "12345678";
           if($scope.senha.length < 8 ){
             $scope.msg = "Senha precisa ter 8 ou mais dígitos";
             return 0;
@@ -512,17 +512,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $http, $location) {
       $scope.doses = 10;
+      image = 0;
+
       $scope.capturePhoto = function() {
-        // Take picture using device camera and retrieve image as base64-encoded string
-        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 20,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.FILE_URI  });
       }
 
       function onSuccess(imageData) {
-        $scope.imgURI = "";
-        $scope.imgURI = "data:image/jpeg;base64," + imageData;
+       // $scope.imgURI = "";
+        //document.getElementById('imagem').src = imageData;
+        //alert(document.getElementById('imgURI').src);
+        //$scope.imgURI = "data:image/jpeg;base64," + imageData;
+        $scope.myFile = imageData;
+        //$scope.$apply();
+        image = imageData;
       }
 
       function onFail(message) {
+        alert("erro");
+        image = 0;
       }
 
       function timedCount() {
@@ -566,6 +574,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
       timedCount();
 
       $scope.submitcartao = function() {
+        image = $scope.myFile;
+        alert($scope.myFile);
+        $scope.msg = "";
         var dataUsuario = (new Date($scope.vencimento)).toString().split(' ');
         dataUsuario[1] = new Date(Date.parse(dataUsuario[1] +" 1, "+dataUsuario[3])).getMonth()+1;
         data = [dataUsuario[2],dataUsuario[1],dataUsuario[3]].join('/');
@@ -634,27 +645,62 @@ app.config(function($stateProvider, $urlRouterProvider) {
             return id;
         }
 
+        if(image == 0){
+          $scope.msg = "Imagem inválida";
+          return 0;
+        }
+
+        $scope.msg = "Salvando...";
+
+        var myImg = image;
+        var options = new FileUploadOptions();
+        options.fileKey="post";
+        options.chunkedMode = false;
+        var params = {};
+        params.drink_id = id_bebida;
+        params.bar_id = id_bar;
+        params.user_id = window.localStorage['id'];
+        params.image = image;
+        params.due_date = data;
+        params.total_doses = $scope.doses;
+        options.params = params;
+        var ft = new FileTransfer();
+        ft.upload(image, encodeURI("http://developer-papudinho.herokuapp.com/webservice/new_card"), onUploadSuccess, onUploadFail, options);
+
+        function onUploadSuccess(erro){
+          alert("sucesso" + erro);
+        }
+        function onUploadFail(erro){
+          alert("deu ruim ");
+        }
+        
+        /*
         $http({
           url: 'http://developer-papudinho.herokuapp.com/webservice/new_card', 
           method: "POST",
+          headers: {'Content-Type': undefined},
+          transformRequest: angular.identity,
           params: {
             drink_id: id_bebida,
             bar_id: id_bar,
             user_id: window.localStorage['id'],
+            image: image,
             due_date: data,
             total_doses: $scope.doses
           }
         }).
 
         success(function (data, status, headers, config) {
+          $scope.msg = "Cartão criado";
           window.localStorage['atualizarCartao'] = 1;
           $location.path('/menu/cartoes'); 
         }).
 
         error(function (data, status, headers, config) {
+          $scope.msg = "Erro ao criar o cartão, tente novamente";
           console.log('Error add Cartao', data);
         });
-
+*/
         return 0; 
       }
     }]);
@@ -663,8 +709,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       $scope.sair = function() {
         window.localStorage['login'] = 0;
       }
-
-
     }]);
 
     app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  function($scope, $http, $ionicPlatform, $ionicPopup) {
