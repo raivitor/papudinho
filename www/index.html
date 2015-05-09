@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+   <!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>-->
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Papudinho</title>
@@ -11,10 +11,23 @@
     
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-    <script src="js/upload.js"></script> 
-
     <script src="js/app.js"></script>
-    
+    <script src="js/Ctrl_AddAmigo.js"></script>
+    <script src="js/Ctrl_Amigos.js"></script>
+    <script src="js/Ctrl_Back.js"></script>
+    <script src="js/Ctrl_Bares.js"></script>
+    <script src="js/Ctrl_CadastroForm.js"></script>
+    <script src="js/Ctrl_Cartoes.js"></script>
+    <script src="js/Ctrl_Dados.js"></script>
+    <script src="js/Ctrl_Home.js"></script>
+    <script src="js/Ctrl_LoginForm.js"></script>
+    <script src="js/Ctrl_NovaSenha.js"></script>
+    <script src="js/Ctrl_NovoCartao.js"></script>
+    <script src="js/Ctrl_Promocoes.js"></script>
+    <script src="js/Ctrl_Sidebar.js"></script>
+    <script src="js/Dir_fileModel.js"></script>
+    <script src="js/funcoes.js"></script>
+    <script src="js/upload.js"></script>
 
   </head>
   <body ng-app="app" >
@@ -136,7 +149,7 @@
           <ion-header-bar class="bar-positive">
              <h1 class="title">Papudinho</h1>
           </ion-header-bar>
-          <ion-content ng-controller="sidebar">
+          <ion-content ng-controller="Sidebar">
             <ul class="list">
               <a href="#/menu/home" class="item" menu-close>Home</a>
               <a href="#/menu/amigos" class="item" menu-close>Amigos</a>
@@ -190,7 +203,7 @@
             <a class="item item-icon-left item-icon-right" href="#" ng-repeat="amigo in Amigos">
               <i class="icon ion-person-stalker"></i>
                 ‎{{amigo.name}}<br>
-                <small>{{amigo.email}}</small>
+                <small>{{amigo.phone}}</small>
               <i class="icon ion-ios7-telephone"></i>
             </a>
 
@@ -278,11 +291,11 @@
     </script>
 
     <script id="dados" type="text/ng-template">
-      <ion-view title="Meus dados" ng-controller="dados">
+      <ion-view title="Meus dados">
           <ion-content padding="true" class="has-header">
             <div class=" card">
               <div class="item item-text-wrap">
-                <form ng-submit="submitDados()" ng-controller="dados">
+                <form ng-submit="submitDados()" ng-controller="Dados">
                   <div align="center" class="msg" id="msgdados ">{{msg}}</div>
                   <label class="item item-input">
                       <span class="input-label">Nome</span>
@@ -398,16 +411,12 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
-          <form ng-submit="submitamigo()" ng-controller="addAmigo">
+          <form ng-submit="submitamigo()" ng-controller="AddAmigo">
             <div align="center" class="msg" id="msgcadastro">{{msg}}</div>  
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Email</span>
                     <input type="email" placeholder="" ng-model="email" >
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Telefone</span>
-                    <input type="text" placeholder="" ng-model="phone" >
                 </label>
             </ion-list>
             <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-stable button-block" />
