@@ -837,6 +837,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }]);
 
 
+  app.controller('Back', ['$scope', '$ionicHistory',  function($scope, $ionicHistory) {
+       $scope.myGoBack = function() {
+        $ionicHistory.goBack();
+      };
+    }]);
+
+
   app.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',

@@ -20,6 +20,11 @@
   </head>
   <body ng-app="app" >
 
+    <ion-nav-bar class="bar-royal">
+      <ion-nav-back-button>Voltar
+      </ion-nav-back-button>
+    </ion-nav-bar>
+
     <ion-nav-view></ion-nav-view>
 
     <script id="login" type="text/ng-template" >
@@ -58,15 +63,6 @@
 
     <script id="signup" type="text/ng-template">
     <ion-view title="Cadastro">
-
-        <ion-nav-bar class="bar-positive">
-          <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
-            <i class="ion-chevron-left"></i> Voltar
-          </button>
-          </ion-nav-buttons>
-        </ion-nav-bar>
-
         <ion-content padding="true" class="has-header">
 
             <form ng-submit="submitcadastro()" ng-controller="CadastroForm">
@@ -98,15 +94,6 @@
 
     <script id="senha" type="text/ng-template">
     <ion-view title="Esqueci a senha">
-
-        <ion-nav-bar class="bar-positive">
-          <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
-            <i class="ion-chevron-left"></i> Voltar
-          </button>
-          </ion-nav-buttons>
-        </ion-nav-bar>
-
         <ion-content padding="true" class="has-header">
 
             <form ng-submit="submitsenha()" ng-controller="NovaSenha">
@@ -129,7 +116,6 @@
 
         <ion-side-menu-content>
           <ion-nav-bar class="bar-positive">
-            <ion-nav-back-button></ion-nav-back-button>
             <ion-nav-buttons side="left">
               <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
             </ion-nav-buttons>
@@ -271,6 +257,7 @@
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
             <div class=" card">
+            <div align="center" class="msg" id="msgpromocoes">{{msg}}</div>
               <div class="item item-text-wrap" ng-repeat="module in Promocoes">
                 <h2>{{module.bar_name}}</h2>
                 <h3>{{module.title}}</h3>
@@ -320,11 +307,11 @@
     <script id="addCartao" type="text/ng-template">
       <ion-view view-title="Novo Cartão">
 
-        <ion-nav-bar class="bar-positive">
+        <ion-nav-bar class="bar-positive" ng-controller="Back">
           <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
-            <i class="ion-chevron-left"></i> Voltar
-          </button>
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
           </ion-nav-buttons>
         </ion-nav-bar>
 
@@ -394,9 +381,9 @@
     <script id="addAmigo" type="text/ng-template">
       <ion-view view-title="Adicionar Amigo" >
 
-        <ion-nav-bar class="bar-positive">
+        <ion-nav-bar class="bar-positive" ng-controller="Back">
           <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
               <i class="ion-chevron-left"></i> Voltar
             </button>
           </ion-nav-buttons>
@@ -418,70 +405,6 @@
             <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-stable button-block" />
           </form>
         </ion-content>
-      </ion-view>
-    </script>
-
-    <script id="timeline" type="text/ng-template">
-      <ion-view view-title="Timeline">
-
-        <ion-nav-bar class="bar-positive">
-          <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="$ionicGoBack($event)">
-            <i class="ion-chevron-left"></i> Voltar
-          </button>
-          </ion-nav-buttons>
-        </ion-nav-bar>
-
-        <ion-content padding="true" class="has-header">
-          <div class="card">
-            <div class="item item-text-wrap">
-              <p>
-                Bebida: Ballantines<br>
-                Bar: Jobim <br>
-                Compra: 31/11/2014<br>
-                Vencimento: 31/01/2015<br>
-                Doses restantes: 17/20<br>
-              </p>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="item item-text-wrap">
-              <p>
-                Data de atualização: 31/12/2014 - 23h25<br>
-                Doses restantes: 17 <br>
-                <p align="center">
-                  <i class="icon ion-image" style="font-size: 80px; color: rgb(136, 136, 136);"></i>
-                </p>
-              </p>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="item item-text-wrap">
-              <p>
-                Data de atualização: 29/12/2014 - 23h50<br>
-                Doses restantes: 18 <br>
-                <p align="center">
-                  <i class="icon ion-image" style="font-size: 80px; color: rgb(136, 136, 136);"></i>
-                </p>
-              </p>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="item item-text-wrap">
-              <p>
-                Data de atualização: 30/12/2014 - 22h25<br>
-                Doses restantes: 19 <br>
-                <p align="center">
-                  <i class="icon ion-image" style="font-size: 80px; color: rgb(136, 136, 136);"></i>
-                </p>
-              </p>
-            </div>
-          </div>
-        </ion-content>
-
       </ion-view>
     </script>
 
