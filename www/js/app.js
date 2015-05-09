@@ -109,12 +109,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/addAmigo',
       templateUrl: 'addAmigo'
     })
-
-    .state('timeline', {
-      url: '/timeline',
-      templateUrl: 'timeline'
-    })
-
     ;
   
   $urlRouterProvider.otherwise('/login');
@@ -129,17 +123,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
       app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
         $scope.msg = " ";
+        $scope.checked = false;
         window.localStorage['login'] = 0;
         $scope.submit = function() {
           $scope.msg = " ";
           //$scope.email = "teste2@teste.com";
-         // $scope.senha = "12345678";
+          //$scope.senha = "12345678";
           if($scope.senha.length < 8 ){
             $scope.msg = "Senha precisa ter 8 ou mais dígitos";
             return 0;
           }
-          $scope.msg = "Aguarde um momento";
-
+          $scope.checked = true;
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/', 
             method: "POST",
@@ -150,17 +144,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
+            $scope.checked = false;
             $scope.msg = "";
             window.localStorage['atualizarHome'] = 1;
             window.localStorage['login'] = 1;
             window.localStorage['id'] = data.id;
             window.localStorage['email'] = data.email;
             window.localStorage['name'] = data.name;
+            window.localStorage['phone'] = data.phone;
             $location.path('/menu/home');  
           }).
 
           error(function (data, status, headers, config) {
             console.log('Error LoginForm');
+            $scope.checked = false;
             $scope.msg = "Usuário ou senha incorretos";
           });
         };
@@ -168,8 +165,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
       app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  function($scope, $http, $location, $ionicPopup) {
+        $scope.checked = false;
         $scope.submitcadastro = function() {
-
           if($scope.user == undefined ){
             $scope.msg = "O campo 'Nome' está vazio";
             return 0;
@@ -179,6 +176,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             $scope.msg = "O campo 'Email' está vazio";
             return 0;
           } 
+
+          if($scope.phone == undefined ){
+            $scope.msg = "O campo 'Celular' está vazio";
+            return 0;
+          }
 
           if($scope.password == undefined ){
             $scope.msg = "O campo 'Senha' está vazio";
@@ -195,38 +197,45 @@ app.config(function($stateProvider, $urlRouterProvider) {
             return 0;
           }
 
+          if($scope.phone.length < 10){
+            $scope.msg = "Insira o DDD junto ao seu número";
+            return 0;
+          }
+
           if($scope.password != $scope.password2){
             $scope.msg = "Senhas diferentes";
             return 0;
           }
 
-          $scope.msg = "Aguarde um momento";
-
+          $scope.checked = true;
           $http({
             url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
             method: "POST",
             params: {
               name: $scope.user,
               email: $scope.email,
+              phone: $scope.phone,
               password: $scope.password,
               password_confirmation: $scope.password2
             }
           }).
 
           success(function (data, status, headers, config) {
+            $scope.checked = false;
             $scope.msg = "";
             alerta($ionicPopup, "Notificação", "Cadastro realizado com sucesso!");
             $location.path('home');  
           }).
 
           error(function (data, status, headers, config) {
+            $scope.checked = false;
             $scope.msg = "Erro ao cadastrar, tente novamente mais tarde.";
             console.log('Error CadastroForm');
           });
         }
       }]);
 
-    app.controller('NovaSenha', ['$scope', '$http', '$location',  function($scope, $http, $location) {
+    app.controller('NovaSenha', ['$scope', '$http', '$location', '$ionicPopup',  function($scope, $http, $location, $ionicPopup) {
         $scope.submitsenha = function() {
           if($scope.email == undefined ){
             $scope.msg = "O campo 'Email' está vazio";
@@ -243,6 +252,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }).
 
           success(function (data, status, headers, config) {
+            alerta($ionicPopup, "Notificação", "Enviamos a nova senha para o seu email.");
             $location.path('home');  
           }).
 
