@@ -11,6 +11,7 @@ function alerta (alert, titulo, msg) {
 * E foi preciso atualizar a tela.
 * Ela fica se chamando sempre e testando a condição de atualização.
 */
+
 /*
 document.addEventListener('deviceready', function () {
   document.addEventListener('backbutton', function (event) {
@@ -23,12 +24,20 @@ document.addEventListener('deviceready', function () {
   }, false);
 }, false);
 */
+/*
+app.run(function($ionicPlatform, $ionicHistory){
 
-app.run(function($rootScope,$ionicPlatform,$ionicSideMenuDelegate, $ionicHistory){
   $ionicPlatform.registerBackButtonAction(function(e){
-    //do your stuff
-    $ionicHistory.goBack();
-    e.preventDefault();
+    str = window.location.href;
+    if(str.indexOf("login") > 0){
+      navigator.app.exitApp();
+    }
+    else{
+      $ionicHistory.goBack();
+      e.preventDefault();
+    }
+    
     return false;
-  },101);
-});
+  },102);
+
+});*/

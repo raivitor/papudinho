@@ -6,6 +6,17 @@ app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $h
     $scope.msg = " ";
     $scope.email = "teste2@teste.com";
     $scope.senha = "12345678";
+
+    if($scope.email == undefined ){
+      $scope.msg = "O campo 'Email' está vazio";
+      return 0;
+    } 
+
+    if($scope.senha == undefined ){
+      $scope.msg = "O campo 'Senha' está vazio";
+      return 0;
+    } 
+
     if($scope.senha.length < 8 ){
       $scope.msg = "Senha precisa ter 8 ou mais dígitos";
       return 0;
@@ -23,8 +34,9 @@ app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $h
     success(function (data, status, headers, config) {
       $scope.checked = false;
       $scope.msg = "";
-      window.localStorage['atualizarHome'] = 1;
-      
+      $scope.email = "";
+      $scope.senha = "";
+      //window.localStorage['atualizarHome'] = 1;
       window.localStorage['id'] = data.id;
       window.localStorage['email'] = data.email;
       window.localStorage['name'] = data.name;

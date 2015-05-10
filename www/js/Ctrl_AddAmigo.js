@@ -1,4 +1,4 @@
-app.controller('AddAmigo', ['$scope', '$http', '$location', function($scope, $http, $location) {
+app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', function($scope, $http, $location, $ionicPopup) {
 
   $scope.submitamigo = function() {
     if($scope.email == undefined){
@@ -15,6 +15,7 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', function($scope, $ht
     }).
 
     success(function (data, status, headers, config) {
+      alerta($ionicPopup, "Notificação", "Amizade criada com sucesso!");
       window.localStorage['atualizarAmigo'] = 1
       $location.path('/menu/amigos'); 
     }).

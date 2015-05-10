@@ -1,6 +1,7 @@
 app.controller('Dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  function($scope, $http, $ionicPlatform, $ionicPopup) {
-  $scope.msg = ""
-
+  $scope.msg = "";
+  $scope.email = window.localStorage['email'];
+  $scope.nome = window.localStorage['name'];
   $scope.submitDados = function() {
 
     if($scope.passwordOld == undefined ){
@@ -46,20 +47,20 @@ app.controller('Dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  fu
     }).
 
     success(function (data, status, headers, config) {
-      $scope.msg = "Senha alterada com sucesso";
+      alerta($ionicPopup, "Notificação", "Senha alterada com sucesso!");
       $scope.password = '';
       $scope.passwordOld = '';
       $scope.password2 = '';
     }).
 
     error(function (data, status, headers, config) {
-      $scope.msg = "Senha antiga está errada";
+      alerta($ionicPopup, "Notificação", "Senha antiga está errada");
       console.log('Error add Amigo');
     });
 
     return 0; 
   }
-
+/*
   function timedCount() {
     var time;
     if(window.localStorage['login'] == 1){
@@ -74,5 +75,5 @@ app.controller('Dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  fu
     }
   }
 
-  timedCount();
+  timedCount();*/
 }]);

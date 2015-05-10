@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('app', ['ionic', 'lr.upload']);
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, $ionicHistory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,6 +18,20 @@ app.run(function($ionicPlatform) {
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+
+    $ionicPlatform.registerBackButtonAction(function(e){
+      str = window.location.href;
+      if(str.indexOf("login") > 0){
+        navigator.app.exitApp();
+      }
+      else{
+        $ionicHistory.goBack();
+        e.preventDefault();
+      }
+      
+      return false;
+    },101);
+
   });
 });
 
