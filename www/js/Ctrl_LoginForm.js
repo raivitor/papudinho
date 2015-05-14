@@ -4,8 +4,8 @@ app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $h
   window.localStorage['login'] = 0;
   $scope.submit = function() {
     $scope.msg = " ";
-    $scope.email = "teste2@teste.com";
-    $scope.senha = "12345678";
+    //$scope.email = "teste2@teste.com";
+    //$scope.senha = "12345678";
 
     if($scope.email == undefined ){
       $scope.msg = "O campo 'Email' está vazio";

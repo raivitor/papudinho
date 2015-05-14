@@ -389,12 +389,13 @@
               </div>
             </div>
             <br>
+            <!--
             <div class="row">
               <img ng-src="{{imgURI}}" id="largeImage">
-              <input type="file" file-model="file"/>
-            </div>
+              <input  type="file" file-model="file"/>
+            </div>-->
             
-            <button id="foto" class="button" ng-click="capturePhoto()">Tirar Foto</button>
+            <button id="foto" class="button" ng-click="capturePhoto()" class="button button-stable">Tirar Foto</button>
             <input type="submit" id="SalvarCartao" value="Salvar" ng-click="submitcartao()" class="button button-stable button-block" enctype="multipart/form-data" />
           </form>
         </ion-content>

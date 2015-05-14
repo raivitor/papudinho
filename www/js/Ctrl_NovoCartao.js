@@ -42,7 +42,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', 'upload', function
       }
 
       function onFail(message) {
-        alert("erro");
+        //alert("erro");
         image = 0;
       }
 
