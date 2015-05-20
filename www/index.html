@@ -42,15 +42,15 @@
     <ion-nav-view></ion-nav-view>
 
     <script id="login" type="text/ng-template" >
-      <ion-view title="Papudinho">
+      <ion-view title="Papudinho" class="login">
           <ion-nav-bar class="bar-positive"></ion-nav-bar> 
-          <ion-content padding="true" class="has-header">
+          <ion-content padding="true" class="has-header login">
               <div style="border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
-                  <img src='img/Papudim.jpg' width="150px" style="vertical-align: middle;">
+                  <img src='img/Papudim.jpg' width="150px" style="vertical-align: middle;" class="login">
                 <!-- <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i> -->
               </div>
 
-              <form ng-submit="submit()" ng-controller="LoginForm">
+              <form ng-submit="submit()" ng-controller="LoginForm" class="login">
                   <div align="center" class="msg" id="msghome" ng-model="checked">
                     <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
                   </div>
@@ -121,7 +121,10 @@
 
             <form ng-submit="submitsenha()" ng-controller="NovaSenha">
                 <ion-list>
-                    <div align="center" class="msg" id="msgsenha">{{msg}}</div>
+                    <div align="center" class="msg" id="msgsenha" ng-model="checked">
+                      <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
+                    </div>
+
                     <label class="item item-input">
                         <span class="input-label">Email</span>
                         <input type="email" placeholder="" ng-model="email">
@@ -393,9 +396,10 @@
             <div class="row">
               <img ng-src="{{imgURI}}" id="largeImage">
               <input  type="file" file-model="file"/>
+              <button id="foto" class="button" ng-click="capturePhoto()" class="button button-stable">Tirar Foto</button>
             </div>-->
             
-            <button id="foto" class="button" ng-click="capturePhoto()" class="button button-stable">Tirar Foto</button>
+            
             <input type="submit" id="SalvarCartao" value="Salvar" ng-click="submitcartao()" class="button button-stable button-block" enctype="multipart/form-data" />
           </form>
         </ion-content>
