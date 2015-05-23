@@ -21,6 +21,7 @@
     <script src="js/Ctrl_Bares.js"></script>
     <script src="js/Ctrl_CadastroForm.js"></script>
     <script src="js/Ctrl_Cartoes.js"></script>
+    <script src="js/Ctrl_Config.js"></script>
     <script src="js/Ctrl_Dados.js"></script>
     <script src="js/Ctrl_Home.js"></script>
     <script src="js/Ctrl_LoginForm.js"></script>
@@ -53,7 +54,7 @@
 
               <form ng-submit="submit()" ng-controller="LoginForm" class="login">
                   <div align="center" class="msg" id="msghome" ng-model="checked">
-                    <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
+                    <ion-spinner icon="lines" class="spinner-stable" ng-show="checked"></ion-spinner>{{msg}}
                   </div>
 
                   <ion-list>
@@ -167,6 +168,7 @@
               <a href="#/menu/cartoes" class="item" menu-close>Cartões</a>
               <a href="#/menu/promocao" class="item" menu-close>Promoções</a>
               <a href="#/menu/dados" class="item" menu-close>Meus Dados</a>
+              <a href="#/menu/config" class="item" menu-close>Configurações</a>
               <a href="#/login" class="item" menu-close ng-click="sair()">Sair</a>
             </ul>
           </ion-content>
@@ -292,8 +294,11 @@
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
             <div class=" card">
+            <label class="item item-input">
+              <input type="text" ng-model="search.bar_name" placeholder = "Pesquisar">
+            </label>
             <div align="center" class="msg" id="msgpromocoes">{{msg}}</div>
-              <div class="item item-text-wrap" ng-repeat="module in Promocoes">
+              <div class="item item-text-wrap" ng-repeat="module in Promocoes | filter:search:strict">
                 <h2>{{module.bar_name}}</h2>
                 <h3>{{module.title}}</h3>
                 <p>{{module.description}}<br>
@@ -476,6 +481,49 @@
             <input type="submit" value="Sugerir" class="button button-stable button-block" />
           </form>
         </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="config" type="text/ng-template">
+      <ion-view title="Configurações">
+          <ion-content padding="true" class="has-header">
+            <div class="card">
+              <div class="item item-text-wrap">
+                <form ng-controller="Config">
+                  <div align="center" class="msg" id="msgconfig">{{msg}}</div>
+                  <ul class="list">
+                    <li class="item item-toggle">
+                      Promoções de outros bares
+                      <label class="toggle toggle-assertive">
+                        <input type="checkbox">
+                         <div class="track">
+                           <div class="handle"></div>
+                         </div>
+                       </label>
+                    </li>
+                    <li class="item item-toggle">
+                      GPS
+                      <label class="toggle toggle-assertive">
+                        <input type="checkbox">
+                         <div class="track">
+                           <div class="handle"></div>
+                         </div>
+                       </label>
+                    </li>
+                    <li class="item item-toggle">
+                      Visibilidade pública
+                      <label class="toggle toggle-assertive">
+                        <input type="checkbox">
+                         <div class="track">
+                           <div class="handle"></div>
+                         </div>
+                       </label>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </ion-content>
       </ion-view>
     </script>
 

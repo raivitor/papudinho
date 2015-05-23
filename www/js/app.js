@@ -32,6 +32,17 @@ app.run(function($ionicPlatform, $ionicHistory) {
       return false;
     },101);
 
+    var myVar = setInterval(GetLocation, 6000);
+
+    function GetLocation() {
+      //console.log('int');
+      navigator.geolocation.getCurrentPosition(function(position) {
+          window.localStorage['latitude'] = position.coords.latitude;
+          window.localStorage['longitude'] = position.coords.longitude;
+      }, function(error) {
+          alert('Erro ao pegar localização: ' + error.message);
+      });
+    }
   });
 });
 
@@ -109,6 +120,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'menuContent' :{
           templateUrl: "dados"
+        }
+      }
+    })
+
+    .state('eventmenu.config', {
+      url: "/config",
+      views: {
+        'menuContent' :{
+          templateUrl: "config"
         }
       }
     })
