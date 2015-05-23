@@ -122,6 +122,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/addAmigo',
       templateUrl: 'addAmigo'
     })
+
+    .state('addBar', {
+      url: '/addBar',
+      templateUrl: 'addBar'
+    })
     ;
   
   $urlRouterProvider.otherwise('/login');

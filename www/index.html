@@ -14,6 +14,7 @@
     <script src="cordova.js"></script>
     <script src="js/upload.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/Ctrl_AddBar.js"></script>
     <script src="js/Ctrl_AddAmigo.js"></script>
     <script src="js/Ctrl_Amigos.js"></script>
     <script src="js/Ctrl_Back.js"></script>
@@ -228,6 +229,11 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
+          <a href="#/addBar" class="clearLink"> 
+            <button class="button button-block button-stable">
+              Sugerir bar
+            </button>
+          </a>
           <div class="list">
             <div ng-repeat="module in Bares">
              <a class="item item-thumbnail-left" href="#">
@@ -241,7 +247,6 @@
         </ion-content>
       </ion-view>
     </script>
-
 
     <script id="cartoes" type="text/ng-template">
       <ion-view title="Cartões" ng-controller="Cartoes">
@@ -427,6 +432,44 @@
                 </label>
             </ion-list>
             <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-stable button-block" />
+          </form>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="addBar" type="text/ng-template">
+      <ion-view view-title="Sugerir Bar" >
+
+        <ion-nav-bar class="bar-positive" ng-controller="Back">
+          <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header">
+          <form ng-submit="submitbar()" ng-controller="AddBar">
+            <div align="center" class="msg" id="msgAddBar">{{msg}}</div>  
+              <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">Nome</span>
+                    <input type="text" placeholder="" ng-model="nome" >
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Telefone</span>
+                    <input type="text" placeholder="" ng-model="tel" >
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Endereço</span>
+                    <input type="text" placeholder="" ng-model="endr" >
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input type="email" placeholder="" ng-model="email" >
+                </label>
+              </ion-list>
+            <input type="submit" value="Sugerir" class="button button-stable button-block" />
           </form>
         </ion-content>
       </ion-view>
