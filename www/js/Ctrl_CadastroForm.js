@@ -1,6 +1,7 @@
 app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  function($scope, $http, $location, $ionicPopup) {
   $scope.checked = false;
   $scope.submitcadastro = function() {
+    $scope.msg = "";
     if($scope.user == undefined ){
       $scope.msg = "O campo 'Nome' está vazio";
       return 0;
@@ -13,6 +14,16 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
 
     if($scope.phone == undefined ){
       $scope.msg = "O campo 'Celular' está vazio";
+      return 0;
+    }
+
+    if($scope.cpf == undefined ){
+      $scope.msg = "O campo 'CPF' está vazio";
+      return 0;
+    }
+
+    if($scope.cpf.length != 11 ){
+      $scope.msg = "CPF inválido, utilize só números";
       return 0;
     }
 
@@ -41,6 +52,8 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
       return 0;
     }
 
+
+    $scope.msg = "";
     $scope.checked = true;
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
