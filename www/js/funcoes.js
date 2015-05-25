@@ -5,39 +5,37 @@ function alerta (alert, titulo, msg) {
  });
 }
 
+//Converte graus para radianos
+function conversor (angle) {
+  return (angle * 3.14)/180;
+}
+
+//Retorna a distancia entre dois pontos, em kilometros
+//Os dados de entrada tem que estar em radianos
+function Distancia (latA, lonA, latB, lonB) {
+  var x = 6371*Math.acos( Math.sin(latA)*Math.sin(latB) + Math.cos(latA)*Math.cos(latB) * Math.cos(lonA-lonB));
+  return x;
+}
+
+lat = conversor(-5.855706);
+lon = conversor(-35.2454187);
+
+function GetLocation() {
+  //console.log('int');
+  navigator.geolocation.getCurrentPosition(function(position) {
+    window.localStorage['latitude'] = conversor(position.coords.latitude);
+    window.localStorage['longitude'] = conversor(position.coords.longitude);
+    console.log(position.coords.latitude);
+    console.log(position.coords.longitude);
+    console.log(Distancia(lat, lon, window.localStorage['latitude'], window.localStorage['longitude']));
+  }, function(error) {
+      alert('Erro ao pegar localização: ' + error.message);
+  });
+}
+
 /* atualizar()
 * Em alguns controlers existe a função atualizar()
 * pq aconteceu alguma adição ou exclusão de informações
 * E foi preciso atualizar a tela.
 * Ela fica se chamando sempre e testando a condição de atualização.
 */
-
-/*
-document.addEventListener('deviceready', function () {
-  document.addEventListener('backbutton', function (event) {
-    //window.localStorage['atualizarHome'] = 1;
-    //location.href = "http://localhost:3000/#/menu/home";
-    //alert(location.href);
-    window.history.back();
-    event.preventDefault();
-    event.isDefaultPrevented();
-  }, false);
-}, false);
-*/
-/*
-app.run(function($ionicPlatform, $ionicHistory){
-
-  $ionicPlatform.registerBackButtonAction(function(e){
-    str = window.location.href;
-    if(str.indexOf("login") > 0){
-      navigator.app.exitApp();
-    }
-    else{
-      $ionicHistory.goBack();
-      e.preventDefault();
-    }
-    
-    return false;
-  },102);
-
-});*/

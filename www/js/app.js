@@ -28,21 +28,12 @@ app.run(function($ionicPlatform, $ionicHistory) {
         $ionicHistory.goBack();
         e.preventDefault();
       }
-      
       return false;
     },101);
 
-    var myVar = setInterval(GetLocation, 6000);
+    //GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js
+    var localizacao = setInterval(GetLocation, 10000);
 
-    function GetLocation() {
-      //console.log('int');
-      navigator.geolocation.getCurrentPosition(function(position) {
-          window.localStorage['latitude'] = position.coords.latitude;
-          window.localStorage['longitude'] = position.coords.longitude;
-      }, function(error) {
-          alert('Erro ao pegar localização: ' + error.message);
-      });
-    }
   });
 });
 
