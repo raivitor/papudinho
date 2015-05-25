@@ -243,7 +243,7 @@
           <div class="list">
             <div ng-repeat="module in Bares">
              <a class="item item-thumbnail-left" href="#">
-                <img src="#">
+                <img src="{{ module.logo.thumb.url }}">
                 <h2>{{ module.name }}</h2>
                 <p>{{ module.city }} - {{ module.street }}, {{ module.number }}<br>
                 {{ module.phone }}</p>
