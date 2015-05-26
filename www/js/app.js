@@ -134,6 +134,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'addAmigo'
     })
 
+    .state('chat', {
+      url: '/chat/:chatId',
+      templateUrl: 'chat'
+    })
+
     .state('addBar', {
       url: '/addBar',
       templateUrl: 'addBar'

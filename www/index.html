@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>-->
+    <!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>-->
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Papudinho</title>
@@ -21,6 +21,7 @@
     <script src="js/Ctrl_Bares.js"></script>
     <script src="js/Ctrl_CadastroForm.js"></script>
     <script src="js/Ctrl_Cartoes.js"></script>
+    <script src="js/Ctrl_Chat.js"></script>
     <script src="js/Ctrl_Config.js"></script>
     <script src="js/Ctrl_Dados.js"></script>
     <script src="js/Ctrl_Home.js"></script>
@@ -30,6 +31,7 @@
     <script src="js/Ctrl_Promocoes.js"></script>
     <script src="js/Ctrl_Sidebar.js"></script>
     <script src="js/Dir_fileModel.js"></script>
+    <script src="js/Service_Chat.js"></script>
     <script src="js/funcoes.js"></script>
     
   </head>
@@ -212,7 +214,7 @@
         <ion-content padding="true" class="has-header">
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
-            <a class="item item-icon-left item-icon-right" href="#" ng-repeat="amigo in Amigos">
+            <a class="item item-icon-left item-icon-right" href="#/chat/{{amigo.user_id}}" ng-repeat="amigo in Amigos">
               <i class="icon ion-person-stalker"></i>
                 ‎{{amigo.name}}<br>
                 <small>{{amigo.phone}}</small>
@@ -524,6 +526,26 @@
               </div>
             </div>
           </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="chat" type="text/ng-template" >
+      <ion-view view-title="{{msg}}" >
+
+        <ion-nav-bar class="bar-positive" ng-controller="Back">
+          <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header" ng-controller="Chat">
+          <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
+          <p>
+            {{chat.lastText}}
+          </p>
+        </ion-content>
       </ion-view>
     </script>
 
