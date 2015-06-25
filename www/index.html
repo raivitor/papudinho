@@ -50,31 +50,31 @@
           <ion-nav-bar class="bar-positive"></ion-nav-bar> 
           <ion-content padding="true" class="has-header login">
               <div style="border: 0px; text-align: center; background-color: rgb(159,195,231);">
-                  <img src='img/Papudim.jpg' width="150px" style="vertical-align: middle;" class="login">
-                <!-- <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i> -->
+                  <img src='img/Papudim.png' width="150px" style="vertical-align: middle;" class="login">
               </div>
 
               <form ng-submit="submit()" ng-controller="LoginForm" class="login">
                   <div align="center" class="msg" id="msghome" ng-model="checked">
                     <ion-spinner icon="lines" class="spinner-stable" ng-show="checked"></ion-spinner>{{msg}}
                   </div>
-
+                  <br>
                   <ion-list>
-                      <label class="item item-input">
+                      <label class="item item-input label-index">
                           <input id="usuario" name="usuario" type="email" placeholder="Usuário"  ng-model="email" >
                       </label>
-                      <label class="item item-input">
+                      <br>
+                      <label class="item item-input label-index">
                           <input id="senha" name="senha" type="password" placeholder="Senha" ng-model="senha" >
                       </label>
                   </ion-list>
                   <button class="button  button-energized button-block ">
-                    <i class="button button-icon icon ion-checkmark-round" ></i>Entrar
+                    <i class="button button-icon icon ion-ios-checkmark-empty" ></i>Entrar
                   </button>
                   
                   <div align="center">
-                    <a href="#/signup" class="button button-positive button-clear">Criar Conta</a>
+                    <a href="#/signup">Criar Conta</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-                    <a href="#/senha" class="button button-positive button-clear">Esqueci a senha</a>
+                    <a href="#/senha">Esqueci a senha</a>
                   </div>
                   
               </form>
