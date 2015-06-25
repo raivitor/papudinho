@@ -46,7 +46,7 @@
     <ion-nav-view></ion-nav-view>
 
     <script id="login" type="text/ng-template" >
-      <ion-view title="Papudinho" class="login">
+      <ion-view title="Papudinho" class="bg">
           <ion-nav-bar class="bar-positive"></ion-nav-bar> 
           <ion-content padding="true" class="has-header login">
               <div style="border: 0px; text-align: center; background-color: rgb(159,195,231);">
@@ -62,13 +62,12 @@
                       <label class="item item-input label-index">
                           <input id="usuario" name="usuario" type="email" placeholder="Usuário"  ng-model="email" >
                       </label>
-                      <br>
                       <label class="item item-input label-index">
                           <input id="senha" name="senha" type="password" placeholder="Senha" ng-model="senha" >
                       </label>
                   </ion-list>
-                  <button class="button  button-energized button-block ">
-                    <i class="button button-icon icon ion-ios-checkmark-empty" ></i>Entrar
+                  <button class="button button-energized button-block ">
+                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;"></i>Entrar
                   </button>
                   
                   <div align="center">
@@ -83,7 +82,7 @@
     </script>
 
     <script id="signup" type="text/ng-template">
-    <ion-view title="Cadastro">
+    <ion-view title="Cadastro" class="bg">
         <ion-content padding="true" class="has-header">
 
             <form ng-submit="submitcadastro()" ng-controller="CadastroForm">
@@ -91,32 +90,28 @@
                     <div align="center" class="msg" id="msgcadastro" ng-model="checked">
                       <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
                     </div>
-                    <label class="item item-input">
-                        <span class="input-label">Nome</span>
-                        <input type="text" placeholder="" ng-model="user">
+                    <label class="item item-input label-index" >
+                        <input type="text" placeholder="Nome" ng-model="user">
                     </label>
-                    <label class="item item-input">
-                        <span class="input-label">Email</span>
-                        <input type="email" placeholder="" ng-model="email">
+                    <label class="item item-input label-index">
+                        <input type="email" placeholder="Email" ng-model="email">
                     </label>
-                    <label class="item item-input">
-                        <span class="input-label">Celular</span>
-                        <input type="text" placeholder="" ng-model="phone">
+                    <label class="item item-input label-index">
+                        <input type="text" placeholder="Celular" ng-model="phone">
                     </label>
-                    <label class="item item-input">
-                        <span class="input-label">CPF</span>
-                        <input type="text" placeholder="" ng-model="cpf">
+                    <label class="item item-input label-index">
+                        <input type="text" placeholder="CPF" ng-model="cpf">
                     </label>
-                    <label class="item item-input">
-                        <span class="input-label">Senha</span>
-                        <input type="password" placeholder="" ng-model="password">
+                    <label class="item item-input label-index">
+                        <input type="password" placeholder="Senha" ng-model="password">
                     </label>
-                    <label class="item item-input">
-                        <span class="input-label">Confirmar Senha</span>
-                        <input type="password" placeholder="" ng-model="password2">
+                    <label class="item item-input label-index">
+                        <input type="password" placeholder="Confirmar Senha" ng-model="password2">
                     </label>
                 </ion-list>
-                <input type="submit" id="submit" value="Cadastrar" class="button button-stable button-block" />
+                <button class="button button-energized button-block ">
+                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;"></i>Cadastrar
+                  </button>
             </form>
         </ion-content>
 
@@ -124,7 +119,7 @@
     </script>
 
     <script id="senha" type="text/ng-template">
-    <ion-view title="Esqueci a senha">
+    <ion-view title="Esqueci a senha" class="bg">
         <ion-content padding="true" class="has-header">
 
             <form ng-submit="submitsenha()" ng-controller="NovaSenha">
@@ -133,12 +128,13 @@
                       <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
                     </div>
 
-                    <label class="item item-input">
-                        <span class="input-label">Email</span>
-                        <input type="email" placeholder="" ng-model="email">
+                    <label class="item item-input label-index">
+                        <input type="email" placeholder="Email" ng-model="email">
                     </label>
                 </ion-list>
-                <input type="submit" id="submit" value="Nova senha" class="button button-stable button-block" />
+                <button class="button button-energized button-block ">
+                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;"></i>Nova Senha
+                  </button>
             </form>
         </ion-content>
 
@@ -146,7 +142,7 @@
     </script>
 
     <script id="sideMenu" type="text/ng-template" >
-      <ion-side-menus enable-menu-with-back-views="false">
+      <ion-side-menus enable-menu-with-back-views="false" >
 
         <ion-side-menu-content>
           <ion-nav-bar class="bar-positive">
@@ -160,18 +156,18 @@
 
         <ion-side-menu side="left">
           <ion-header-bar class="bar-positive">
-             <h1 class="title">Papudinho</h1>
+             <h1 class="title">Menu</h1>
           </ion-header-bar>
           <ion-content ng-controller="Sidebar">
             <ul class="list">
-              <a href="#/menu/home" class="item" menu-close>Home</a>
-              <a href="#/menu/amigos" class="item" menu-close>Amigos</a>
-              <a href="#/menu/bares" class="item" menu-close>Bares</a>
-              <a href="#/menu/cartoes" class="item" menu-close>Cartões</a>
-              <a href="#/menu/promocao" class="item" menu-close>Promoções</a>
-              <a href="#/menu/dados" class="item" menu-close>Meus Dados</a>
-              <a href="#/menu/config" class="item" menu-close>Configurações</a>
-              <a href="#/login" class="item" menu-close ng-click="sair()">Sair</a>
+              <a href="#/menu/home" class="item" menu-close><i class="icon ion-android-home" ></i> Home</a>
+              <a href="#/menu/amigos" class="item" menu-close><i class="icon ion-person-stalker" ></i> Amigos</a>
+              <a href="#/menu/bares" class="item" menu-close><i class="icon ion-ios-location" ></i> Bares</a>
+              <a href="#/menu/cartoes" class="item" menu-close><i class="icon ion-card" ></i> Cartões</a>
+              <a href="#/menu/promocao" class="item" menu-close><i class="icon ion-bag" ></i> Promoções</a>
+              <a href="#/menu/dados" class="item" menu-close><i class="icon ion-android-home" ></i> Meus Dados</a>
+              <a href="#/menu/config" class="item" menu-close><i class="icon ion-ios-gear-outline" ></i> Configurações</a>
+              <a href="#/login" class="item" menu-close ng-click="sair()"><i class="icon ion-forward" ></i> Sair</a>
             </ul>
           </ion-content>
         </ion-side-menu>
