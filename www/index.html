@@ -38,8 +38,8 @@
   <body ng-app="app" >
 
     <ion-nav-bar class="bar-royal">
-      <ion-nav-back-button class="voltar">
-        <i class="ion-chevron-left"></i> Voltar
+      <ion-nav-back-button class="voltar bar-royal">
+        <i class="ion-chevron-left "></i> Voltar
       </ion-nav-back-button>
     </ion-nav-bar>
 
@@ -47,10 +47,10 @@
 
     <script id="login" type="text/ng-template" >
       <ion-view title="Papudinho" class="bg">
-          <ion-nav-bar class="bar-positive"></ion-nav-bar> 
+          <ion-nav-bar class="bar-positive" style="display:none;"></ion-nav-bar> 
           <ion-content padding="true" class="has-header login">
-              <div style="border: 0px; text-align: center; background-color: rgb(159,195,231);">
-                  <img src='img/Papudim.png' width="150px" style="vertical-align: middle;" class="login">
+              <div style="border: 0px; text-align: center; ">
+                  <img src='img/logo-papudinho.png' width="150px" style="vertical-align: middle;" class="login">
               </div>
 
               <form ng-submit="submit()" ng-controller="LoginForm" class="login">
@@ -66,8 +66,8 @@
                           <input id="senha" name="senha" type="password" placeholder="Senha" ng-model="senha" >
                       </label>
                   </ion-list>
-                  <button class="button button-energized button-block ">
-                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;"></i>Entrar
+                  <button class="button buttons button-block ">
+                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;">&nbsp;Entrar</i>
                   </button>
                   
                   <div align="center">
@@ -109,8 +109,8 @@
                         <input type="password" placeholder="Confirmar Senha" ng-model="password2">
                     </label>
                 </ion-list>
-                <button class="button button-energized button-block ">
-                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;"></i>Cadastrar
+                <button class="button buttons button-block ">
+                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;">&nbsp;Cadastrar</i>
                   </button>
             </form>
         </ion-content>
@@ -132,8 +132,8 @@
                         <input type="email" placeholder="Email" ng-model="email">
                     </label>
                 </ion-list>
-                <button class="button button-energized button-block ">
-                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;"></i>Nova Senha
+                <button class="button buttons button-block ">
+                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;">&nbsp;Nova Senha</i>
                   </button>
             </form>
         </ion-content>
