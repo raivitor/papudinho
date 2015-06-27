@@ -44,8 +44,10 @@
 	color: white;
 }
 
-.buttons{
+.button-event{
 	background-color: rgb(255, 191, 37);
+	color: white;
+	border: 0;
 }
 
 .bar-royal{
@@ -53,7 +55,16 @@
 	border: 0 !important;
 }
 
+ul a{
+	background-color: rgb(56 ,115 ,173)!important;
+	color: white!important;
+}
+
 a{
 	color: white;
 	text-decoration: none;
+}
+
+h2{
+	color: rgb(27,66,119);
 }
