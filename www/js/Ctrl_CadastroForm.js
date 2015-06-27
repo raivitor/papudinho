@@ -23,7 +23,7 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
     }
 
     if($scope.cpf.length != 11 ){
-      $scope.msg = "CPF inválido, utilize só números";
+      $scope.msg = "CPF inválido, utilize somente números";
       return 0;
     }
 
@@ -52,6 +52,17 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
       return 0;
     }
 
+    cpf = "";
+    for(i = 0; i<11; i++){
+      if(i==9){
+        cpf = cpf.concat("-");
+      }
+      else if(i%3==0 && i!=0){
+        cpf = cpf.concat(".");
+      }
+      cpf = cpf.concat($scope.cpf[i]);
+    }
+    alert(cpf);
 
     $scope.msg = "";
     $scope.checked = true;
@@ -62,6 +73,7 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
         name: $scope.user,
         email: $scope.email,
         phone: $scope.phone,
+        cpf: cpf,
         password: $scope.password,
         password_confirmation: $scope.password2
       }

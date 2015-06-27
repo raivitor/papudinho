@@ -210,13 +210,14 @@
         <ion-content padding="true" class="has-header">
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
-            <a class="item item-icon-left item-icon-right" href="#/chat/{{amigo.user_id}}" ng-repeat="amigo in Amigos">
-              <i class="icon ion-person-stalker"></i>
-                ‎{{amigo.name}}<br>
+            <ion-list>
+              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" href="#/chat/{{amigo.user_id}}">
+                <img ng-src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
+                ‎<span class="titulo">{{amigo.name}}</span><br>
                 <small>{{amigo.phone}}</small>
-              <i class="icon ion-ios7-telephone"></i>
-            </a>
-
+                <i class="icon ion-chevron-right icon-accessory"></i>
+              </ion-item>
+            </ion-list>
           </div>
         </ion-content>
       </ion-view>
@@ -238,9 +239,14 @@
               <b>Sugerir bar</b>
             </button>
           </a>
+
+          <label class="item item-input busca">
+            <input type="text" ng-model="search.name" placeholder = "Buscar">
+          </label>
           <div class="list">
+          
             <ion-list>
-              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="module in Bares" type="item-text-wrap" >
+              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="module in Bares | filter:search:strict" type="item-text-wrap" >
                 <img ng-src="{{ module.logo.thumb.url }}">
                 <h2>{{ module.name }}</h2>
                 <p>{{ module.city }}, {{ module.state }}</p>
@@ -291,10 +297,10 @@
     <script id="promocao" type="text/ng-template">
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
-            <div class=" card">
-            <label class="item item-input">
-              <input type="text" ng-model="search.bar_name" placeholder = "Pesquisar">
+            <label class="item item-input busca">
+              <input type="text" ng-model="search.bar_name" placeholder = "Buscar">
             </label>
+            <div class=" card">
             <div align="center" class="msg" id="msgpromocoes">{{msg}}</div>
               <div class="item item-text-wrap" ng-repeat="module in Promocoes | filter:search:strict">
                 <h2>{{module.bar_name}}</h2>

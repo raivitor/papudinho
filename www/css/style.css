@@ -65,6 +65,13 @@ a{
 	text-decoration: none;
 }
 
-h2{
+h2, .titulo{
 	color: rgb(27,66,119);
 }
+
+.busca {
+	border: 1px solid #AAAAAA;
+	border-radius: 30px;
+	margin-bottom: 10px;
+}
+
