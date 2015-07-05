@@ -17,19 +17,21 @@ function Distancia (latA, lonA, latB, lonB) {
   return x;
 }
 
+// variaveis para realizar testes de distancia
 lat = conversor(-5.855706);
 lon = conversor(-35.2454187);
 
 function GetLocation() {
-  //console.log('int');
   navigator.geolocation.getCurrentPosition(function(position) {
-    window.localStorage['latitude'] = conversor(position.coords.latitude);
-    window.localStorage['longitude'] = conversor(position.coords.longitude);
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
-    console.log(Distancia(lat, lon, window.localStorage['latitude'], window.localStorage['longitude']));
+    window.localStorage['latitude'] = position.coords.latitude;
+    window.localStorage['longitude'] = position.coords.longitude;
+    //window.localStorage['latitude'] = conversor(position.coords.latitude);
+    //window.localStorage['longitude'] = conversor(position.coords.longitude);
+    //console.log(position.coords.latitude);
+    //console.log(position.coords.longitude);
+    //console.log(Distancia(lat, lon, window.localStorage['latitude'], window.localStorage['longitude']));
   }, function(error) {
-      alert('Erro ao pegar localização: ' + error.message);
+      console.log('Erro ao pegar localização: ' + error.message);
   });
 }
 

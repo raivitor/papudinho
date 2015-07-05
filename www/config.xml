@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.papo241836" version="0.6.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.papo241836" version="0.7.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Papudinho</name>
   <description>
     Aplicativo sobre Whisky
@@ -9,12 +9,12 @@
   </author>
   <content src="index.html"/>
   <access origin="*"/>
-  <icon src="img/Papudim.png" />
+  <icon src="img/logo-papudinho.png" />
   <platform name="android">
-    <icon src="img/Papudim.png" density="ldpi" />
-    <icon src="img/Papudim.png" density="mdpi" />
-    <icon src="img/Papudim.png" density="hdpi" />
-    <icon src="img/Papudim.png" density="xhdpi" />
+    <icon src="img/logo-papudinho.png" density="ldpi" />
+    <icon src="img/logo-papudinho.png" density="mdpi" />
+    <icon src="img/logo-papudinho.png" density="hdpi" />
+    <icon src="img/logo-papudinho.png" density="xhdpi" />
   </platform>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>

@@ -1,17 +1,11 @@
-::-webkit-input-placeholder {
-   color: red;
+.placeholder::-webkit-input-placeholder {
+  color: white!important;
 }
-
-:-moz-placeholder { /* Firefox 18- */
-   color: red;  
+.placeholder:-moz-placeholder {
+  color: white!important;
 }
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: red;  
-}
-
-:-ms-input-placeholder {  
-   color: red;  
+.placeholder:-ms-input-placeholder { /* IE10+ */
+  color: white!important;
 }
 
 #imagem{
@@ -75,3 +69,6 @@ h2, .titulo{
 	margin-bottom: 10px;
 }
 
+.bot{
+	border-bottom: 1px solid white!important;
+}

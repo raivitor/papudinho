@@ -60,10 +60,10 @@
                   <br>
                   <ion-list>
                       <label class="item item-input label-index">
-                          <input id="usuario" name="usuario" type="email" placeholder="Usuário"  ng-model="email" >
+                          <input class="placeholder" id="usuario" name="usuario" type="email" placeholder="Usuário" ng-model="email" >
                       </label>
                       <label class="item item-input label-index">
-                          <input id="senha" name="senha" type="password" placeholder="Senha" ng-model="senha" >
+                          <input class="placeholder" id="senha" name="senha" type="password" placeholder="Senha" ng-model="senha" >
                       </label>
                   </ion-list>
                   <button class="button button-event button-block ">
@@ -91,22 +91,22 @@
                       <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
                     </div>
                     <label class="item item-input label-index" >
-                        <input type="text" placeholder="Nome" ng-model="user">
+                        <input class="placeholder" type="text" placeholder="Nome" ng-model="user">
                     </label>
                     <label class="item item-input label-index">
-                        <input type="email" placeholder="Email" ng-model="email">
+                        <input class="placeholder" type="email" placeholder="Email" ng-model="email">
                     </label>
                     <label class="item item-input label-index">
-                        <input type="text" placeholder="Celular" ng-model="phone">
+                        <input class="placeholder" type="text" placeholder="Celular" ng-model="phone">
                     </label>
                     <label class="item item-input label-index">
-                        <input type="text" placeholder="CPF" ng-model="cpf">
+                        <input class="placeholder" type="text" placeholder="CPF" ng-model="cpf">
                     </label>
                     <label class="item item-input label-index">
-                        <input type="password" placeholder="Senha" ng-model="password">
+                        <input class="placeholder" type="password" placeholder="Senha" ng-model="password">
                     </label>
                     <label class="item item-input label-index">
-                        <input type="password" placeholder="Confirmar Senha" ng-model="password2">
+                        <input class="placeholder" type="password" placeholder="Confirmar Senha" ng-model="password2">
                     </label>
                 </ion-list>
                 <button class="button button-event button-block ">
@@ -129,7 +129,7 @@
                     </div>
 
                     <label class="item item-input label-index">
-                        <input type="email" placeholder="Email" ng-model="email">
+                        <input class="placeholder" type="email" placeholder="Email" ng-model="email">
                     </label>
                 </ion-list>
                 <button class="button button-event button-block ">
@@ -145,7 +145,7 @@
       <ion-side-menus enable-menu-with-back-views="false" >
 
         <ion-side-menu-content>
-          <ion-nav-bar class="bar-royal">
+          <ion-nav-bar class="bar-royal" >
             <ion-nav-buttons side="left">
               <button class="button button-icon button-clear ion-navicon " menu-toggle="left"></button>
             </ion-nav-buttons>
@@ -155,10 +155,10 @@
         </ion-side-menu-content> 
 
         <ion-side-menu side="left">
-          <ion-header-bar class="bar-royal button">
+          <ion-header-bar class="bar-royal button bot">
              <h1 class="title">Menu</h1>
           </ion-header-bar>
-          <ion-content ng-controller="Sidebar">
+          <ion-content ng-controller="Sidebar" class="bar-royal">
             <ul class="list">
               <a href="#/menu/home" class="item" menu-close><i class="icon ion-android-home" ></i> Home</a>
               <a href="#/menu/amigos" class="item" menu-close><i class="icon ion-person-stalker" ></i> Amigos</a>
@@ -211,8 +211,7 @@
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
             <ion-list>
-              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" href="#/chat/{{amigo.user_id}}">
-                <img ng-src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
+              <ion-item class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" href="#/chat/{{amigo.user_id}}">
                 ‎<span class="titulo">{{amigo.name}}</span><br>
                 <small>{{amigo.phone}}</small>
                 <i class="icon ion-chevron-right icon-accessory"></i>
@@ -246,11 +245,10 @@
           <div class="list">
           
             <ion-list>
-              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="module in Bares | filter:search:strict" type="item-text-wrap" >
+              <ion-item class="item-remove-animate item-avatar" ng-repeat="module in Bares | filter:search:strict" type="item-text-wrap" >
                 <img ng-src="{{ module.logo.thumb.url }}">
                 <h2>{{ module.name }}</h2>
                 <p>{{ module.city }}, {{ module.state }}</p>
-                <i class="icon ion-chevron-right icon-accessory"></i>
               </ion-item>
             </ion-list>
           </div>
@@ -435,8 +433,7 @@
             <div align="center" class="msg" id="msgcadastro">{{msg}}</div>  
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">Email</span>
-                    <input type="email" placeholder="" ng-model="email" >
+                    <input type="email" placeholder="Email" ng-model="email" >
                 </label>
             </ion-list>
             <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-event button-block" />
@@ -461,19 +458,31 @@
             <div align="center" class="msg" id="msgAddBar">{{msg}}</div>  
               <ion-list>
                 <label class="item item-input">
-                    <input type="text" placeholder="Nome" ng-model="nome" >
+                    <input type="text" placeholder="Nome" ng-model="name" >
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Telefone" ng-model="tel" >
+                    <input type="text" placeholder="Telefone" ng-model="phone" >
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Endereço" ng-model="endr" >
+                    <input type="text" placeholder="Estado" ng-model="state" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Cidade" ng-model="city" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Bairro" ng-model="district" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Rua" ng-model="street" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Número" ng-model="number" >
                 </label>
                 <label class="item item-input">
                     <input type="email" placeholder="Email" ng-model="email" >
                 </label>
               </ion-list>
-            <input type="submit" value="Sugerir" class="button button-stable button-block" />
+            <input type="submit" value="Sugerir" class="button button-block button-event" />
           </form>
         </ion-content>
       </ion-view>
@@ -536,7 +545,7 @@
         <ion-content padding="true" class="has-header" ng-controller="Chat">
           <img ng-src="{{chat.face2}}" style="width: 64px; height: 64px">
           <p>
-            {{chat.lastText}}
+            CHAT - Falta implementar no WS
           </p>
         </ion-content>
       </ion-view>
