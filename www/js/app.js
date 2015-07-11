@@ -37,7 +37,10 @@ app.run(function($ionicPlatform, $ionicHistory) {
   });
 });
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.navBar.alignTitle("center");
+  //$ionicConfigProvider.scrolling.jsScrolling(false);
+  $ionicConfigProvider.views.transition("android");
   $stateProvider
     
     .state('login', {
