@@ -296,6 +296,9 @@
     <script id="promocao" type="text/ng-template">
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
+            <ion-refresher on-refresh="doRefresh()">
+                     
+            </ion-refresher>
             <label class="item item-input busca">
               <input type="text" ng-model="search.bar_name" placeholder = "Buscar">
             </label>

@@ -27,4 +27,8 @@ app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
   }
 
   timedCount();
+
+    $scope.doRefresh = function() {
+      timedCount();;      
+    }
 }]);
