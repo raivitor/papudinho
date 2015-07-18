@@ -56,7 +56,7 @@ app.controller('AddBar', ['$scope', '$http', '$location', '$ionicPopup', functio
 
     success(function (data, status, headers, config) {
       alerta($ionicPopup, "Notificação", "Bar sugerido com sucesso!");
-      //$location.path('/menu/amigos'); 
+      $location.path('/menu/bares'); 
     }).
 
     error(function (data, status, headers, config) {
