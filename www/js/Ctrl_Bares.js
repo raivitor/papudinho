@@ -9,6 +9,7 @@ app.controller('Bares', ['$scope', '$http',  function($scope, $http) {
       }).
 
       success(function (data, status, headers, config) {
+        bares = data;
         $scope.Bares = data;
       }).
 

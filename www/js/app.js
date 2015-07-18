@@ -127,6 +127,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       }
     })
 
+    .state('bar', {
+      url: '/bar/:id',
+      templateUrl: 'bar'
+    })
+
     .state('addCartao', {
       url: '/addCartao',
       templateUrl: 'addCartao'
@@ -150,3 +155,14 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   
   $urlRouterProvider.otherwise('/login');
 });
+
+Array.prototype.getId = function(id) {
+    var i;
+    for (i = 0; i < this.length; i++) {
+      if(this[i].id == id)
+        return this[i];
+    }
+    return 0;
+}
+
+var bares;

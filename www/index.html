@@ -18,6 +18,7 @@
     <script src="js/Ctrl_AddAmigo.js"></script>
     <script src="js/Ctrl_Amigos.js"></script>
     <script src="js/Ctrl_Back.js"></script>
+    <script src="js/Ctrl_Bar.js"></script>
     <script src="js/Ctrl_Bares.js"></script>
     <script src="js/Ctrl_CadastroForm.js"></script>
     <script src="js/Ctrl_Cartoes.js"></script>
@@ -243,15 +244,15 @@
             <input type="text" ng-model="search.name" placeholder = "Buscar">
           </label>
           <div class="list">
-          
-            <ion-list>
-              <ion-item class="item-remove-animate item-avatar" ng-repeat="module in Bares | filter:search:strict" type="item-text-wrap" >
+            <div>
+              <a class="item item-avatar" href="#/bar/{{module.id}}" ng-repeat="module in Bares | filter:search:strict" type="item-text-wrap">
                 <img ng-src="{{ module.logo.thumb.url }}">
                 <h2>{{ module.name }}</h2>
                 <p>{{ module.city }}, {{ module.state }}</p>
-              </ion-item>
-            </ion-list>
+              </a>
+            </div>
           </div>
+
         </ion-content>
       </ion-view>
     </script>
@@ -547,6 +548,39 @@
           <p>
             CHAT - Falta implementar no WS
           </p>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="bar" type="text/ng-template" >
+      <ion-view view-title="Papudinho" >
+
+        <ion-nav-bar class="bar-royal" ng-controller="Back">
+          <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header" ng-controller="Bar">
+          <div class="list card">
+
+            <div class="item item-avatar">
+              <img src="{{bar.logo.thumb.url}}">
+              <h2>{{bar.name}}</h2>
+              <p>{{bar.phone}}</p>
+            </div>
+
+            <div class="item item-body">
+               <img class="full-image" src="{{bar.logo.url}}">
+              <p>
+                {{bar.city}} - {{bar.state}}<br>
+                {{bar.district}} - {{bar.street}}, {{bar.number}}
+              </p>
+            </div>
+
+          </div>
         </ion-content>
       </ion-view>
     </script>
