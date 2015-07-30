@@ -212,10 +212,11 @@
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
             <ion-list>
-              <ion-item class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" href="#/chat/{{amigo.user_id}}">
+              <!-- href="#/chat/{{amigo.user_id}}" -->
+              <ion-item class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" >
                 ‎<span class="titulo">{{amigo.name}}</span><br>
                 <small>{{amigo.phone}}</small>
-                <i class="icon ion-chevron-right icon-accessory"></i>
+                <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
               </ion-item>
             </ion-list>
           </div>
