@@ -62,7 +62,7 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
       }
       cpf = cpf.concat($scope.cpf[i]);
     }
-    alert(cpf);
+    
 
     $scope.msg = "";
     $scope.checked = true;
