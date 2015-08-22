@@ -1,20 +1,27 @@
-app.controller('Config', ['$scope',  function($scope) {
-	/*
-	console.log(window.localStorage['gps']);
-	window.localStorage['gps'] = 1;
-	gps = window.localStorage['gps'];
-  	$scope.promocoes = { checked: window.localStorage['promotion'] == 0 };
-  	$scope.gps = { checked: gps.valueOf() };
-  	$scope.visibilidade = { checked: window.localStorage['visibility'] == true };
-	*/
-  	$scope.NotificationChange = function(id) {
-  		switch (id){
-  			case 1:
-  				break;
-  			case 2:
-  				break;
-  			case 3:
-  				break;
-  		}
-  	};
+app.controller('Config', ['$scope', '$http',  function($scope, $http) {
+
+	$scope.promocoes = G_usuario.promotion;
+	$scope.gps = G_usuario.gps;
+	$scope.visibilidade = G_usuario.visibility;
+
+	$scope.ConfigChange = function() {
+    $http({
+      url: 'http://developer-papudinho.herokuapp.com/webservice/update_config/', 
+      method: "POST",
+      params: {
+        id: G_usuario.id,
+        promotion: $scope.promocoes,
+        gps: $scope.gps,
+        visibility: $scope.visibilidade
+      }
+    }).
+    success(function (data, status, headers, config) {
+      //console.log("Deu certo");
+    }).
+
+    error(function (data, status, headers, config) {
+      console.log('Error Config');
+    });
+	};
+
 }]);

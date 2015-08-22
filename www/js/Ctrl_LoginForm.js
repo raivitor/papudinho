@@ -41,9 +41,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $h
       window.localStorage['email'] = data.email;
       window.localStorage['name'] = data.name;
       window.localStorage['phone'] = data.phone;
-      window.localStorage['promotion'] = data.promotion;
-      window.localStorage['gps'] = data.gps
-      window.localStorage['visibility'] = data.visibility;
+      G_usuario = data;
       $location.path('/menu/home');  
     }).
 

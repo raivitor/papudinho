@@ -185,7 +185,7 @@ Array.prototype.getId = function(id) {
 "gps": true,
 "visibility": true
 */
-var G_usuario = 0; 
+var G_usuario = []; 
 
 /**
 * Tempo de atualização da posição
