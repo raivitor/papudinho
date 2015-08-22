@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'lr.upload']);
+var app = angular.module('app', ['ionic', 'ngCordova']);
 
 app.run(function($ionicPlatform, $ionicHistory) {
   $ionicPlatform.ready(function() {
@@ -31,8 +31,14 @@ app.run(function($ionicPlatform, $ionicHistory) {
       return false;
     },101);
 
-    //GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js
-    var localizacao = setInterval(GetLocation, 10000);
+    
+    /*GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js
+    1m - 60,000ms
+    5m - 300,000ms
+    10m - 600,000ms
+    15m - 900,000ms
+    */
+    var localizacao = setInterval(GetLocation, G_tempo); //5min
 
   });
 });
@@ -156,6 +162,9 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $urlRouterProvider.otherwise('/login');
 });
 
+/**
+* Adicionando um novo método no objeto 'Array'
+*/
 Array.prototype.getId = function(id) {
     var i;
     for (i = 0; i < this.length; i++) {
@@ -165,4 +174,24 @@ Array.prototype.getId = function(id) {
     return 0;
 }
 
-var bares;
+
+/* Guarda as informações do usuário. Exemplo abaixo:
+"id": 11,
+"email": "raivitor@gmail.com",
+"created_at": "2015-03-02T00:55:46.865Z",
+"updated_at": "2015-03-02T00:55:46.865Z",
+"name": "teste3",
+"user_type": "Sub-usuário",
+"master_id": null,
+"bar_id": null,
+"phone": null,
+"cpf": null,
+"promotion": true,
+"gps": true,
+"visibility": true
+*/
+var G_usuario = 0; 
+
+var G_tempo = 300000;
+
+var G_bares;

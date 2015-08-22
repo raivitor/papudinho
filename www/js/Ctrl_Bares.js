@@ -1,4 +1,5 @@
 app.controller('Bares', ['$scope', '$http',  function($scope, $http) {
+
   function timedCount() {
     var time;
     if(window.localStorage['login'] == 1){
@@ -9,7 +10,7 @@ app.controller('Bares', ['$scope', '$http',  function($scope, $http) {
       }).
 
       success(function (data, status, headers, config) {
-        bares = data;
+        G_bares = data;
         $scope.Bares = data;
       }).
 

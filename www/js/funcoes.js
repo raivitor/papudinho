@@ -22,34 +22,58 @@ lat = conversor(-5.855706);
 lon = conversor(-35.2454187);
 
 function GetLocation() {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    window.localStorage['latitude'] = position.coords.latitude;
-    window.localStorage['longitude'] = position.coords.longitude;
-    //window.localStorage['latitude'] = conversor(position.coords.latitude);
-    //window.localStorage['longitude'] = conversor(position.coords.longitude);
-    //console.log(position.coords.latitude);
-    //console.log(position.coords.longitude);
-    //console.log(Distancia(lat, lon, window.localStorage['latitude'], window.localStorage['longitude']));
-  }, function(error) {
-      console.log('Erro ao pegar localização: ' + error.message);
-  });
+  if(window.localStorage['login'] == 1){
+    navigator.geolocation.getCurrentPosition(function(position) {
+      window.localStorage['latitude'] = position.coords.latitude;
+      window.localStorage['longitude'] = position.coords.longitude;
+      Comparar();
+      //lat2 = conversor(-5.862593);
+      //lon2 = conversor(-35.235236);
+      //console.log(conversor(-5.85460));
+      //console.log(position.coords.longitude);
+      //console.log(Distancia(conversor(-5.85460) , conversor(-35.24346), conversor(-5.83505), conversor(-35.18952)));
+    }, function(error) {
+        console.log('Erro ao pegar localização: ' + error.message);
+    });
+  }
 }
 
-/* atualizar()
+/**
+* Envia uma notifição para o usuario
+* @param texto - Texto a ser mostrado na noficiação
+*/
+function Notificar (texto) {
+  cordova.plugins.notification.local.schedule({
+      id: 1,
+      text: text,
+      icon: 'http://www.optimizeordie.de/wp-content/plugins/social-media-widget/images/default/64/googleplus.png',
+      sound: null,
+      data: { test: "..." }
+    });
+}
+
+/**
+* Compara a posição atual com a posição dos bares.
+* Se a distancia for menor que 1km ele envia uma notificação para o usuário.
+*/
+function Comparar(){
+  for(i = 0; i < G_bares.length; i++){
+    if(i == 0){
+      Notificar("O bar "+G_bares[i].name+" está perto de você!");
+    }
+    lat = conversor(G_bares[i].latitude);
+    lon = conversor(G_bares[i].longitude);
+    distancia = Distancia(lat, lon, conversor(window.localStorage['latitude']), conversor(window.localStorage['longitude']));
+    console.log(distancia);
+    if(distancia <= 1.0){
+      Notificar("O bar "+G_bares[i].name+" está perto de você!");
+    }
+  }
+}
+
+/*
 * Em alguns controlers existe a função atualizar()
 * pq aconteceu alguma adição ou exclusão de informações
 * E foi preciso atualizar a tela.
 * Ela fica se chamando sempre e testando a condição de atualização.
 */
-
-schedule = function () {
-    cordova.plugins.notification.local.schedule({
-        id: 1,
-        text: 'Test Message 1',
-        icon: 'http://www.optimizeordie.de/wp-content/plugins/social-media-widget/images/default/64/googleplus.png',
-        sound: null,
-        data: { test: id }
-    });
-};
-
-schedule();
