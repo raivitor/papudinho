@@ -17,6 +17,16 @@ function Distancia (latA, lonA, latB, lonB) {
   return x;
 }
 
+/**
+* Envia uma notifição para o usuario
+* @param texto - Texto a ser mostrado na noficiação
+*/
+function Notificar (texto) {
+  window.plugin.notification.local.add({ message: texto });
+}
+
+Notificar("Um bar está perto de você!");
+
 // variaveis para realizar testes de distancia
 lat = conversor(-5.855706);
 lon = conversor(-35.2454187);
@@ -36,20 +46,6 @@ function GetLocation() {
         console.log('Erro ao pegar localização: ' + error.message);
     });
   }
-}
-
-/**
-* Envia uma notifição para o usuario
-* @param texto - Texto a ser mostrado na noficiação
-*/
-function Notificar (texto) {
-  cordova.plugins.notification.local.schedule({
-      id: 1,
-      text: text,
-      icon: 'http://www.optimizeordie.de/wp-content/plugins/social-media-widget/images/default/64/googleplus.png',
-      sound: null,
-      data: { test: "..." }
-    });
 }
 
 /**

@@ -30,15 +30,11 @@ app.run(function($ionicPlatform, $ionicHistory) {
       }
       return false;
     },101);
-
     
-    /*GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js
-    1m - 60,000ms
-    5m - 300,000ms
-    10m - 600,000ms
-    15m - 900,000ms
+    /**
+    * GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js
     */
-    var localizacao = setInterval(GetLocation, G_tempo); //5min
+    var localizacao = setInterval(GetLocation, G_tempo); 
 
   });
 });
@@ -174,7 +170,6 @@ Array.prototype.getId = function(id) {
     return 0;
 }
 
-
 /* Guarda as informações do usuário. Exemplo abaixo:
 "id": 11,
 "email": "raivitor@gmail.com",
@@ -192,6 +187,48 @@ Array.prototype.getId = function(id) {
 */
 var G_usuario = 0; 
 
+/**
+* Tempo de atualização da posição
+    1m - 60,000ms
+    5m - 300,000ms
+    10m - 600,000ms
+    15m - 900,000ms
+*/
 var G_tempo = 300000;
 
-var G_bares;
+/* Guarda os bares. Exemplo:
+"id": 1,
+"name": "Casimiro",
+"city": "Angicos",
+"street": "Centro",
+"number": "23",
+"phone": "(84) 9654-489",
+"created_at": "2015-01-20T13:58:30.540Z",
+"updated_at": "2015-07-31T15:41:04.425Z",
+"avatar": {
+"url": "http://res.cloudinary.com/durxmldew/image/upload/v1438357264/wtfzq4qfcvvtqmwwbbbw.jpg",
+"thumb": {
+"url": "http://res.cloudinary.com/durxmldew/image/upload/c_fill,h_50,w_50/v1438357264/wtfzq4qfcvvtqmwwbbbw.jpg"
+}
+},
+"district": "Alto da Esperança",
+"state": "RN",
+"CNPJ": "12.321.321/3123-21",
+"social_reason": "Bar e somente bar.",
+"responsible": "Marcos Oliveira",
+"logo": {
+"url": "http://res.cloudinary.com/durxmldew/image/upload/v1438357265/gadv9kxjxuw9kyvl6f5c.jpg",
+"thumb": {
+"url": "http://res.cloudinary.com/durxmldew/image/upload/c_fill,h_50,w_50/v1438357265/gadv9kxjxuw9kyvl6f5c.jpg"
+}
+},
+"cep": "32132-132",
+"latitude": "-5.668664499999999",
+"longitude": "-36.6062205",
+"site": "casimiro.com",
+"email": "casimiro@email.com",
+"twitter": "@casimiro",
+"ad_package": "básico",
+"note": ""
+*/
+var G_bares = [];
