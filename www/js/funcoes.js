@@ -25,8 +25,6 @@ function Notificar (texto) {
   window.plugin.notification.local.add({ message: texto });
 }
 
-Notificar("Um bar está perto de você!");
-
 // variaveis para realizar testes de distancia
 lat = conversor(-5.855706);
 lon = conversor(-35.2454187);
@@ -54,9 +52,6 @@ function GetLocation() {
 */
 function Comparar(){
   for(i = 0; i < G_bares.length; i++){
-    if(i == 0){
-      Notificar("O bar "+G_bares[i].name+" está perto de você!");
-    }
     lat = conversor(G_bares[i].latitude);
     lon = conversor(G_bares[i].longitude);
     distancia = Distancia(lat, lon, conversor(window.localStorage['latitude']), conversor(window.localStorage['longitude']));
