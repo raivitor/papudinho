@@ -115,7 +115,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       url: "/dados",
       views: {
         'menuContent' :{
-          templateUrl: "dados"
+          templateUrl: "dados",
+          controller: 'Dados'
         }
       }
     })

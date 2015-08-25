@@ -324,9 +324,9 @@
       <ion-view title="Meus dados">
           <ion-content padding="true" class="has-header">
             <div class=" card">
+              <div align="center" class="msg" id="msgdados ">{{msg}}</div>
               <div class="item item-text-wrap">
-                <form ng-submit="submitDados()" ng-controller="Dados">
-                  <div align="center" class="msg" id="msgdados ">{{msg}}</div>
+                <form ng-submit="submitDados()">
                   <label class="item item-input">
                       <span>{{nome}}</span>
                   </label>
