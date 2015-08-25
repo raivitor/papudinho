@@ -1,4 +1,4 @@
-app.controller('NovoCartao', ['$scope', '$http', '$location', 'upload', function($scope, $http, $location, upload) {
+app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $http, $location) {
       $scope.doses = 10;
       var image = 0;
       var arquivo;
