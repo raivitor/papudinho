@@ -8,7 +8,7 @@ app.controller('Home', ['$scope', '$http',  function($scope, $http) {
         url: 'http://developer-papudinho.herokuapp.com/webservice/cards/due_date', 
         method: "GET",
         params: {
-          user: window.localStorage['id']
+          user: G_usuario.id
         }
       }).
 

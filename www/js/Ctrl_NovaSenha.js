@@ -25,7 +25,7 @@ app.controller('NovaSenha', ['$scope', '$http', '$location', '$ionicPopup',  fun
     error(function (data, status, headers, config) {
       $scope.checked = false;
       $scope.msg = "Erro ao enviar a nova senha, tente novamente mais tarde.";
-      console.log('Error NovaSenha');
+      console.log('Error NovaSenha: '+data);
     });
   }
 }]);

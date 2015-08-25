@@ -21,7 +21,7 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
     }).
 
     error(function (data, status, headers, config) {
-      console.log('Error add Amigo');
+      console.log('Error add Amigo: '+data);
     });
 
     return 0; 

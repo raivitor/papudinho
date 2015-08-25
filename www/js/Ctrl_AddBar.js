@@ -60,7 +60,7 @@ app.controller('AddBar', ['$scope', '$http', '$location', '$ionicPopup', functio
     }).
 
     error(function (data, status, headers, config) {
-      console.log('Error add Bar');
+      console.log('Error add Bar: '+data);
     });
 
     return 0; 
