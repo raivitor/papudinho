@@ -125,6 +125,8 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $
           $scope.msg = "Bar inválido";
           return 0;
         }
+        console.log("Bares: "+$scope.bar+" Id: "+id_bar);
+        console.log("Bebida: "+$scope.bebida+" Id: "+id_bebida);
 
         function validar(lista, nome){
           if(nome == undefined){
