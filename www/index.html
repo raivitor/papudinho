@@ -370,9 +370,8 @@
                   <div class="input-label">
                     Bebida
                   </div>
-                  <select ng-model="bebida" required>
-                    <option selected > -- Escolha -- </option>
-                    <option align="center"  ng-repeat="module in Bebidas" >{{module.name}} </option>
+                  <select ng-model="bebida" ng-options="bebida.id as bebida.name for bebida in Bebidas">
+                    <option value="">Escolha a bebida</option>
                   </select>
                 </label>
               </div>
@@ -384,9 +383,8 @@
                   <div class="input-label">
                     Bar
                   </div>
-                  <select ng-model="bar" required>
-                    <option selected> -- Escolha -- </option>
-                    <option align="center" ng-repeat="module in Bares" >{{module.name}} </option>
+                  <select ng-model="bar" ng-options="bar.id as bar.name for bar in Bares">
+                    <option value="">Escolha o bar</option>
                   </select>
                 </label>
               </div>

@@ -113,51 +113,22 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $
             }
           }
         }
-          
-        id_bebida = validar($scope.Bebidas, $scope.bebida);
+
+        id_bebida = $scope.bebida;
         if(id_bebida <= 0){
           $scope.msg = "Bebida inválida";
           return 0;
         }
 
-        id_bar = validar($scope.Bares, $scope.bar);
+        id_bar = $scope.bar;
         if(id_bar <= 0){
           $scope.msg = "Bar inválido";
           return 0;
         }
+
         console.log("Bares: "+$scope.bar+" Id: "+id_bar);
         console.log("Bebida: "+$scope.bebida+" Id: "+id_bebida);
 
-        function validar(lista, nome){
-          if(nome == undefined){
-            return -1;
-          }
-          arrayOfObjects = lista;
-          id = 0; flag = 0;
-          for (var i = 0; i < arrayOfObjects.length; i++) {
-            var object = arrayOfObjects[i];
-            for (var property in object) {
-                //alert('item ' + i + ': ' + property + '=' + object[property]);
-                if(property == "id"){
-                  id = object[property];
-                }
-                if(property == "name"){
-                  var aux = nome;
-                  var aux2 = object[property];
-                  if(aux2.trim() == aux.trim()){
-                    flag = 1;
-                    break;
-                  }
-                }
-            }
-            if(flag == 1)
-              break;
-          }
-          if(flag==0)
-            return 0;
-          else
-            return id;
-        }
 /*
         if(image == 0){
           $scope.msg = "Imagem inválida";
@@ -165,7 +136,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $
         }*/
 
         $scope.msg = "Salvando...";
-
+        return 0;
       //  window.resolveLocalFileSystemURL(image, onResolveSuccess, fail);
 
      //   function onResolveSuccess(fileEntry) {
