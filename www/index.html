@@ -17,6 +17,7 @@
     <script src="js/upload.js"></script>
     <script src="js/app.js"></script>
     <script src="js/mask.min.js"></script>
+    <script src='js/ngMask.min.js'></script>
     <script src="js/Ctrl_AddBar.js"></script>
     <script src="js/Ctrl_AddAmigo.js"></script>
     <script src="js/Ctrl_Amigos.js"></script>
@@ -102,10 +103,10 @@
                         <input class="placeholder" type="email" placeholder="Email" ng-model="email">
                     </label>
                     <label class="item item-input label-index">
-                        <input class="placeholder" type="text" placeholder="Celular" ng-model="phone">
+                        <input class="placeholder" type="text" placeholder="Celular" mask="(99) 9 9999-9999" clean="false" ng-model="phone">
                     </label>
                     <label class="item item-input label-index">
-                        <input class="placeholder" type="text" placeholder="CPF" ng-model="cpf">
+                        <input class="placeholder" type="text" placeholder="CPF" mask="999.999.999-99" clean="false" ng-model="cpf">
                     </label>
                     <label class="item item-input label-index">
                         <input class="placeholder" type="password" placeholder="Senha" ng-model="password">
@@ -468,7 +469,7 @@
                     <input type="text" placeholder="Nome" ng-model="name" >
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Telefone" ng-model="phone" >
+                    <input type="text" placeholder="Telefone" mask="(99) 9 9999-9999" clean="false" ng-model="phone" >
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Estado" ng-model="state" >
