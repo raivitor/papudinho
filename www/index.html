@@ -560,15 +560,15 @@
             <div class="item item-avatar">
               <img src="{{bar.logo.thumb.url}}">
               <h2>{{bar.name}}</h2>
-              <p><a href="tel:+558432181881">{{bar.phone}}</a></p>
+              <a href="tel:{{bar.phone}}" class="button button-clear button-positive icon-left ion-android-call">{{bar.phone}}</a>
             </div>
 
             <div class="item item-body">
                <img class="full-image" src="{{bar.logo.url}}">
               <p>
                 {{bar.city}} - {{bar.state}}<br>
-                {{bar.district}} - {{bar.street}}, {{bar.number}}
-                <a href = "{{bar.site}}">{{bar.site}}</a>
+                {{bar.district}} - {{bar.street}}, {{bar.number}}<br>
+                <a href = "{{bar.site}}" class="button button-clear button-positive">{{bar.site}}</a>
               </p>
             </div>
 
