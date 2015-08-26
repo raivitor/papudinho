@@ -1,4 +1,5 @@
 app.controller('Amigos', ['$scope', '$http',  function($scope, $http) {
+
   function timedCount() {
     var time;
     if(window.localStorage['login'] == 1){
@@ -48,6 +49,7 @@ app.controller('Amigos', ['$scope', '$http',  function($scope, $http) {
       }).
 
       success(function (data, status, headers, config) {
+        $scope.msg = " ";
         $scope.Amigos = data;
       }).
 
