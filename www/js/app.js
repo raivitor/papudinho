@@ -43,6 +43,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.navBar.alignTitle("center");
   //$ionicConfigProvider.scrolling.jsScrolling(false);
   $ionicConfigProvider.views.transition("android");
+  $ionicConfigProvider.views.maxCache(0);
   $stateProvider
     
     .state('login', {
