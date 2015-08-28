@@ -311,8 +311,9 @@
             <div class=" card">
             <div align="center" class="msg" id="msgpromocoes">{{msg}}</div>
               <div class="item item-text-wrap" ng-repeat="module in Promocoes | filter:search:strict">
-                <h2>{{module.bar_name}}</h2>
+                <h2 align="center">{{module.bar_name}}</h2>
                 <h3>{{module.title}}</h3>
+                <img class="full-image" src="{{module.avatar.avatar.url}}">
                 <p>{{module.description}}<br>
                   Válido até {{module.date.replace("-", "/").replace("-", "/")}}</p>
               </div>
