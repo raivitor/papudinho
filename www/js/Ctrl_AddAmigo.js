@@ -1,5 +1,4 @@
 app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', function($scope, $http, $location, $ionicPopup) {
-
   $scope.submitamigo = function() {
     if($scope.email == undefined){
       $scope.msg = "O campo 'Email' está vazio";
@@ -9,7 +8,7 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
       url: 'http://developer-papudinho.herokuapp.com/webservice/new_friendship', 
       method: "POST",
       params: {
-        id: window.localStorage['id'],
+        id: G_usuario.id,
         email: $scope.email
       }
     }).

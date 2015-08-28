@@ -71,14 +71,11 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
       $scope.checked = false;
       $scope.msg = "";
       alerta($ionicPopup, "Notificação", "Cadastro realizado com sucesso!");
-      console.log(data);
-      window.localStorage['id'] = data.id;
-      window.localStorage['email'] = data.email;
-      window.localStorage['name'] = data.name;
-      window.localStorage['phone'] = data.phone;
+      window.localStorage['atualizarAmigo'] = 1;
+      window.localStorage['atualizarBar'] = 1;
+      window.localStorage['atualizarCartao'] = 1;
       G_usuario = data;
-      $location.path('/menu/home'); 
-      //$location.path('home');  
+      $location.path('/menu/home');  
     }).
 
     error(function (data, status, headers, config) {

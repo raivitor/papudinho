@@ -1,38 +1,26 @@
 app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
-  function timedCount() {
-    var time;
-    if(window.localStorage['login'] == 1){
+  function Atualizar (argument) {
+    $http({
+      url: 'http://developer-papudinho.herokuapp.com/webservice/promotions/', 
+      method: "GET"
+    }).
 
-      clearTimeout(time);
-      $http({
-        url: 'http://developer-papudinho.herokuapp.com/webservice/promotions/', 
-        method: "GET"
-      }).
+    success(function (data, status, headers, config) {
+      if(data == 0){
+        $scope.msg = "Nenhuma promoção disponível no momento."
+      } else {
+        $scope.$broadcast('scroll.refreshComplete');
+        $scope.msg = "";
+        $scope.Promocoes = data;
+      }
+    }).
 
-      success(function (data, status, headers, config) {
-        if(data == 0){
-          $scope.msg = "Nenhuma promoção disponível no momento."
-        } else {
-          $scope.$broadcast('scroll.refreshComplete');
-          $scope.msg = "";
-          $scope.Promocoes = data;
-        }
-      }).
-
-      error(function (data, status, headers, config) {
-        console.log('Error promocoes');
-      });
-
-      return 0;
-    }
-    else{
-      time = setTimeout(function(){ timedCount() }, 500);
-    }
+    error(function (data, status, headers, config) {
+      console.log('Error promocoes');
+    });
   }
-
-  timedCount();
-
+  Atualizar();
   $scope.doRefresh = function() {
-    timedCount();     
+    Atualizar();
   }
 }]);

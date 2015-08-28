@@ -1,6 +1,7 @@
-app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  function($scope, $http, $ionicPlatform, $ionicPopup) {
-  $scope.email = window.localStorage['email'];
-  $scope.nome = window.localStorage['name'];
+app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup', function($scope, $http, $ionicPlatform, $ionicPopup) {
+
+  $scope.email = G_usuario.email; 
+  $scope.nome = G_usuario.name;
 
   $scope.submitDados = function() {
     if($scope.passwordOld == undefined ){
@@ -37,7 +38,7 @@ app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  fu
       url: 'http://developer-papudinho.herokuapp.com/webservice/change_password', 
       method: "POST",
       params: {
-        id: window.localStorage['id'],
+        id: G_usuario.id,
         old_password: $scope.passwordOld,
         new_password: $scope.password1
       }

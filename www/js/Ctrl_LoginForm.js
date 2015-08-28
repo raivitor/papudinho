@@ -1,11 +1,9 @@
-app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
+app.controller('LoginForm', ['$scope', '$http', '$location',function($scope, $http, $location) {
   $scope.msg = " ";
   $scope.checked = false;
   window.localStorage['login'] = 0;
   $scope.submit = function() {
     $scope.msg = " ";
-    //$scope.email = "teste2@teste.com";
-    //$scope.senha = "12345678";
 
     if($scope.email == undefined ){
       $scope.msg = "O campo 'Email' está vazio";
@@ -36,15 +34,9 @@ app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $h
       $scope.msg = "";
       $scope.email = "";
       $scope.senha = "";
-      //window.localStorage['atualizarHome'] = 1;
-      window.localStorage['id'] = data.id;
-      window.localStorage['email'] = data.email;
-      window.localStorage['name'] = data.name;
-      window.localStorage['phone'] = data.phone;
-      
-      //TESTE
-      console.log(window.localStorage['id'],window.localStorage['email'],window.localStorage['name'],window.localStorage['id'],window.localStorage['phone']);
-      
+      window.localStorage['atualizarAmigo'] = 1;
+      window.localStorage['atualizarBar'] = 1;
+      window.localStorage['atualizarCartao'] = 1;
       G_usuario = data;
       $location.path('/menu/home');  
     }).
