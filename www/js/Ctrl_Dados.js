@@ -1,40 +1,37 @@
-app.controller('Dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  function($scope, $http, $ionicPlatform, $ionicPopup) {
-  $scope.msg = "";
+app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  function($scope, $http, $ionicPlatform, $ionicPopup) {
   $scope.email = window.localStorage['email'];
   $scope.nome = window.localStorage['name'];
+
   $scope.submitDados = function() {
-
     if($scope.passwordOld == undefined ){
-      $scope.msg = "O campo 'Senha Antiga' está vazio";
+      alerta($ionicPopup, "Notificação", "O campo 'Senha Antiga' está vazio");
       return 0;
     } 
 
-    if($scope.passwordOld == undefined ){
-      $scope.msg = "'Senha Antiga' precisa ter 8 ou mais dígitos";
+    if($scope.passwordOld.length < 8 ){
+      alerta($ionicPopup, "Notificação", "'Senha Antiga' precisa ter 8 ou mais dígitos");
       return 0;
     } 
 
-    if($scope.password == undefined ){
-      $scope.msg = "O campo 'Senha Nova' está vazio";
+    if($scope.password1 == undefined ){
+      alerta($ionicPopup, "Notificação", "O campo 'Senha Nova' está vazio");
       return 0;
     } 
 
     if($scope.password2 == undefined ){
-      $scope.msg = "O campo 'Confirmar Senha Nova' está vazio";
+      alerta($ionicPopup, "Notificação", "O campo 'Confirmar Senha Nova' está vazio");
       return 0;
     } 
     
-    if($scope.password.length < 8 ){
-      $scope.msg = "'Senha Nova' precisa ter 8 ou mais dígitos";
+    if($scope.password1.length < 8 ){
+      alerta($ionicPopup, "Notificação", "'Senha Nova' precisa ter 8 ou mais dígitos");
       return 0;
     }
 
-    if($scope.password != $scope.password2){
-      $scope.msg = "Senhas diferentes";
+    if($scope.password1 != $scope.password2){
+      alerta($ionicPopup, "Notificação", "Senhas diferentes");
       return 0;
     }
-
-    $scope.msg = '';
 
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/change_password', 
@@ -42,13 +39,13 @@ app.controller('Dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  fu
       params: {
         id: window.localStorage['id'],
         old_password: $scope.passwordOld,
-        new_password: $scope.password
+        new_password: $scope.password1
       }
     }).
 
     success(function (data, status, headers, config) {
       alerta($ionicPopup, "Notificação", "Senha alterada com sucesso!");
-      $scope.password = '';
+      $scope.password1 = '';
       $scope.passwordOld = '';
       $scope.password2 = '';
     }).
@@ -60,20 +57,4 @@ app.controller('Dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup',  fu
 
     return 0; 
   }
-/*
-  function timedCount() {
-    var time;
-    if(window.localStorage['login'] == 1){
-      clearTimeout(time);
-      $scope.email = window.localStorage['email'];
-      $scope.nome = window.localStorage['name'];
-
-      return 0;
-    }
-    else{
-      time = setTimeout(function(){ timedCount() }, 500);
-    }
-  }
-
-  timedCount();*/
 }]);

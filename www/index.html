@@ -325,9 +325,8 @@
       <ion-view title="Meus dados">
           <ion-content padding="true" class="has-header">
             <div class=" card">
-              <div align="center" class="msg" id="msgdados ">{{msg}}</div>
               <div class="item item-text-wrap">
-                <form ng-submit="submitDados()">
+                <form ng-submit="submitDados()" ng-controller="dados">
                   <label class="item item-input">
                       <span>{{nome}}</span>
                   </label>
@@ -335,13 +334,13 @@
                       <span>{{email}}</span>
                   </label>
                   <label class="item item-input">
-                      <input type="password" placeholder="Senha Antiga" ng-model="passwordOld">
+                      <input id="passwordOld" name="passwordOld" type="password" placeholder="Senha Antiga" ng-model="passwordOld">
                   </label>
                   <label class="item item-input">
-                      <input type="password" placeholder="Senha Nova" ng-model="password">
+                      <input id="password1" name="password1" type="password" placeholder="Senha Nova" ng-model="password1">
                   </label>
                   <label class="item item-input">
-                      <input type="password" placeholder="Confirmar Senha Nova" ng-model="password2">
+                      <input id="password2" name="password2" type="password" placeholder="Confirmar Senha Nova" ng-model="password2">
                   </label>
                   <input type="submit" id="submit" value="Alterar senha" class="button button-event button-block" />
                 </form>

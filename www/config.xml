@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.papo241836" version="0.7.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.ionicframework.papo241836" version="0.7.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
   <name>Papudinho</name>
   <description>
     Aplicativo sobre Whisky
@@ -30,11 +30,6 @@
   <feature name="http://api.phonegap.com/1.0/file" />
   
   <gap:plugin name="de.appplant.cordova.plugin.local-notification"/>
-
   <gap:plugin name="org.apache.cordova.geolocation"/>
-
-  <feature name="Geolocation">
-    <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
-  </feature>
 
 </widget>
