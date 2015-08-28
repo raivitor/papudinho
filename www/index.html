@@ -129,21 +129,22 @@
         <ion-content padding="true" class="has-header">
 
             <form ng-submit="submitsenha()" ng-controller="NovaSenha">
-                <ion-list>
-                    <div align="center" class="msg" id="msgsenha" ng-model="checked">
-                      <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
-                    </div>
+              <ion-list>
+                <div align="center" class="msg" id="msgsenha" ng-model="checked">
+                  <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>
+                </div>
 
-                    <label class="item item-input label-index">
-                        <input class="placeholder" type="email" placeholder="Email" ng-model="email">
-                    </label>
-                </ion-list>
-                <button class="button button-event button-block ">
-                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;">&nbsp;Nova Senha</i>
-                  </button>
+                <label class="item item-input label-index">
+                  <input class="placeholder" type="email" placeholder="Email" ng-model="email">
+                </label>
+              </ion-list>
+
+              <button class="button button-event button-block ">
+                <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;">&nbsp;Nova Senha</i>
+              </button>
             </form>
-        </ion-content>
 
+        </ion-content>
     </ion-view>
     </script>
 
