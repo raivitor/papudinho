@@ -2,7 +2,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $
       $scope.doses = 10;
       var image = 0;
       var arquivo;
-
+      $scope.msg = "Não use!";
       $scope.capturePhoto = function() {
         navigator.camera.getPicture(onSuccess, onFail, { quality: 20,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.FILE_URI  });
       }
@@ -88,7 +88,8 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', function($scope, $
 
       $scope.submitcartao = function() {
        // alert($scope.file);
-        $scope.msg = "";
+        $scope.msg = "É serio, não use isso ainda";
+        return 0;
         var dataUsuario = (new Date($scope.vencimento)).toString().split(' ');
         dataUsuario[1] = new Date(Date.parse(dataUsuario[1] +" 1, "+dataUsuario[3])).getMonth()+1;
         data = [dataUsuario[2],dataUsuario[1],dataUsuario[3]].join('/');
