@@ -42,7 +42,7 @@ function GetLocation() {
       //console.log(Distancia(conversor(-5.85460) , conversor(-35.24346), conversor(-5.83505), conversor(-35.18952)));
     }, function(error) {
         console.log('Erro ao pegar localização: ' + error.message);
-    });
+    }, {enableHighAccuracy: true });
   }
 }
 

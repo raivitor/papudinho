@@ -37,6 +37,16 @@ app.controller('AddBar', ['$scope', '$http', '$location', '$ionicPopup', functio
     console.log("latitude: "+window.localStorage['latitude']);
     console.log("longitude: "+window.localStorage['longitude']);
 
+    if(window.localStorage['latitude'] == undefined){
+      $scope.msg = "Ligue o GPS para termos uma localização precisa" ;  
+      return 0;
+    }
+
+    if(window.localStorage['longitude'] == undefined){
+      $scope.msg = "Ligue o GPS para termos uma localização precisa" ;  
+      return 0;
+    }
+
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/create_suggestion', 
       method: "POST",
