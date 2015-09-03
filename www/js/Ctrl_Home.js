@@ -29,7 +29,7 @@ app.controller('Home', ['$scope', '$http',  function($scope, $http) {
       return 0;
     }
     else{
-      time = setTimeout(function(){ timedCount() }, 500);
+      time = setTimeout(function(){ timedCount() }, 1000);
     }
   }
 
@@ -43,7 +43,7 @@ app.controller('Home', ['$scope', '$http',  function($scope, $http) {
       location.reload();
     }
     else{
-      time = setTimeout(function(){ atualizar() }, 500);
+      time = setTimeout(function(){ atualizar() }, 1000);
     }
   }
   

@@ -19,7 +19,5 @@ app.controller('Cartoes', ['$scope', '$http',  function($scope, $http) {
     error(function (data, status, headers, config) {
       console.log('Error cartoes');
     });
-
-    return 0;
   }
 }]);
