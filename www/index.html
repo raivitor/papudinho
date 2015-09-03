@@ -291,6 +291,9 @@
                       <p>{{ module.remaining_doses }} Doses restantes<br>
                       Venc: {{ module.due_date }}</p>
                     </div>
+                    <!-- <div class="col">
+                      <img src="data:image/jpg;base64,{{module.card_picture}}"/>
+                    </div> -->
                   </div>
                 </a>
 
@@ -414,13 +417,11 @@
             <br>
             
             <div class="row">
-              <img ng-src="{{imgURI}}" id="largeImage">
-              <input  type="file" file-model="file"/>
-              <button id="foto" class="button" ng-click="capturePhoto()" class="button button-stable">Tirar Foto</button>
+              <img ng-src="{{imgBase64}}" height="300" width="300">
+              <button ng-click="capturePhoto()" class="button button-positive">Tirar Foto</button>
             </div>
             
-            
-            <input type="submit" id="SalvarCartao" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
+            <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
           </form>
         </ion-content>
       </ion-view>
