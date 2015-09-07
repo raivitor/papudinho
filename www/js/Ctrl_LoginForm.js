@@ -1,7 +1,7 @@
 app.controller('LoginForm', ['$scope', '$http', '$location',function($scope, $http, $location) {
   $scope.msg = " ";
   $scope.checked = false;
-  window.localStorage['login'] = 0;
+  
   $scope.submit = function() {
     $scope.msg = " ";
 
@@ -30,7 +30,8 @@ app.controller('LoginForm', ['$scope', '$http', '$location',function($scope, $ht
     }).
 
     success(function (data, status, headers, config) {
-      $scope.checked = false;
+      window.localStorage['email'] = $scope.email;
+      window.localStorage['senha'] = $scope.senha;
       $scope.msg = "";
       $scope.email = "";
       $scope.senha = "";
@@ -38,6 +39,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location',function($scope, $ht
       window.localStorage['atualizarBar'] = 1;
       window.localStorage['atualizarCartao'] = 1;
       G_usuario = data;
+      $scope.checked = false;
       $location.path('/menu/home');  
     }).
 
@@ -47,4 +49,21 @@ app.controller('LoginForm', ['$scope', '$http', '$location',function($scope, $ht
       $scope.msg = "Usuário ou senha incorretos";
     });
   };
+
+  /**
+  * Verificação se o usuario encerrou o app sem deslogar
+  * se tiver feito isto então ele realiza o login automatico
+  */
+  if(window.localStorage['login'] == undefined){
+    window.localStorage['login'] = 0;
+    console.log("zerei");
+  } else if(window.localStorage['login'] == 1) {
+    $scope.email = window.localStorage['email'];
+    $scope.senha = window.localStorage['senha'];
+    $scope.submit();
+    console.log("passei");
+  } else{
+    window.localStorage['login'] = 0;
+    console.log("fiquei");
+  }
 }])
