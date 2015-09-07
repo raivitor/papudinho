@@ -1,3 +1,9 @@
+/**
+* Função para gerar uma tela de alerta no app
+* @param alert - Variável '$ionicPopup' do Ionic
+* @param titulo - Título do alert
+* @param msg - Mensagem do corpo do alert
+*/
 function alerta (alert, titulo, msg) {
   alert.alert({
    title: titulo,
@@ -5,13 +11,18 @@ function alerta (alert, titulo, msg) {
  });
 }
 
-//Converte graus para radianos
+/**
+* Converte latitude e longitude para radianos
+* Função utilizada em GetLocation()
+*/
 function conversor (angle) {
   return (angle * 3.14)/180;
 }
 
-//Retorna a distancia entre dois pontos, em kilometros
-//Os dados de entrada tem que estar em radianos
+/**
+* Retorna a distancia entre dois pontos, em kilometros
+* Os dados de entrada tem que estar em radianos
+*/
 function Distancia (latA, lonA, latB, lonB) {
   var x = 6371*Math.acos( Math.sin(latA)*Math.sin(latB) + Math.cos(latA)*Math.cos(latB) * Math.cos(lonA-lonB));
   return x;
@@ -35,11 +46,6 @@ function GetLocation() {
       window.localStorage['latitude'] = position.coords.latitude;
       window.localStorage['longitude'] = position.coords.longitude;
       Comparar();
-      //lat2 = conversor(-5.862593);
-      //lon2 = conversor(-35.235236);
-      //console.log(conversor(-5.85460));
-      //console.log(position.coords.longitude);
-      //console.log(Distancia(conversor(-5.85460) , conversor(-35.24346), conversor(-5.83505), conversor(-35.18952)));
     }, function(error) {
         console.log('Erro ao pegar localização: ' + error.message);
     }, {enableHighAccuracy: true });
@@ -61,10 +67,3 @@ function Comparar(){
     }
   }
 }
-
-/*
-* Em alguns controlers existe a função atualizar()
-* pq aconteceu alguma adição ou exclusão de informações
-* E foi preciso atualizar a tela.
-* Ela fica se chamando sempre e testando a condição de atualização.
-*/
