@@ -498,7 +498,7 @@
           <ion-content padding="true" class="has-header">
             <div class="card">
               <div class="item item-text-wrap">
-                <form ng-controller="Config">
+                <form ng-submit="submitConfig()" ng-controller="Config">
                   <div align="center" class="msg" id="msgconfig">{{msg}}</div>
                   <ul class="list">
                     <ion-toggle ng-model="promocoes" ng-change="ConfigChange()">
@@ -513,6 +513,7 @@
                       Visibilidade pública
                     </ion-toggle>
                   </ul>
+                  <input type="submit" id="submit" value="Salvar" class="button button-event button-block" />
                 </form>
               </div>
             </div>
