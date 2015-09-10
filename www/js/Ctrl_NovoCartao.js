@@ -109,10 +109,12 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
         user_id: G_usuario.id,
         due_date: vencimento,
         total_doses: $scope.doses,
-        image: fotoCel 
+        image: fotoCel,
+        card_secret: $scope.secreto 
       }
     }
 
+    return 0;
     $http(req).then(function(data){
       window.localStorage['atualizarCartao'] = 1;
       alerta($ionicPopup, "Notificação", "Cartão criado com sucesso!");
