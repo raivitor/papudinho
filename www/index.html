@@ -514,15 +514,19 @@
                   <div align="center" class="msg" id="msgconfig">{{msg}}</div>
                   <ul class="list">
                     <ion-toggle ng-model="promocoes" ng-change="ConfigChange()">
-                      Promoções de outros bares
+                      Receber promoções
                     </ion-toggle>
                     
                     <ion-toggle ng-model="gps" ng-change="ConfigChange()">
-                      GPS
+                      Ativar GPS
                     </ion-toggle>
 
                     <ion-toggle ng-model="visibilidade" ng-change="ConfigChange()">
-                      Visibilidade pública
+                      Visibilidade para outros papudinhos
+                    </ion-toggle>
+
+                    <ion-toggle ng-model="privacidade" ng-change="ConfigChange()">
+                      Mostrar cartões privados
                     </ion-toggle>
                   </ul>
                   <input type="submit" id="submit" value="Salvar" class="button button-event button-block" />
