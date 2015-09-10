@@ -233,3 +233,44 @@ var G_tempo = 300000;
 "note": ""
 */
 var G_bares = [];
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    // Now safe to use device APIs
+    initPushwoosh();
+}
+
+function initPushwoosh()
+{
+    var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+ 
+    //set push notifications handler
+    document.addEventListener('push-notification', function(event) {
+        var title = event.notification.title;
+        var userData = event.notification.userdata;
+                                 
+        if(typeof(userData) != "undefined") {
+            alert('user data: ' + JSON.stringify(userData));
+        }
+                                     
+        alert(title);
+    });
+ 
+    //initialize Pushwoosh with projectid: "78196470103", pw_appid : "60C72-3A9F2". 
+    pushNotification.onDeviceReady({ projectid: "78196470103", pw_appid : "60C72-3A9F2" });
+    
+ 
+    //register for pushes
+    pushNotification.registerDevice(
+        function(status) {
+            var pushToken = status;
+            console.warn('push token: ' + pushToken);
+            //alert(status)
+        },
+        function(status) {
+            console.warn(JSON.stringify(['failed to register ', status]));
+            alert(JSON.stringify(['failed to register ', status]))
+        }
+    );
+}
