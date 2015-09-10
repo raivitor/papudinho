@@ -8,6 +8,8 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
     
     <!-- cordova script (this will be a 404 during development) -->
     <script src="js/ng-cordova.min.js"></script>
@@ -213,11 +215,10 @@
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
             <ion-list>
-              <!-- href="#/chat/{{amigo.user_id}}" -->
-              <ion-item class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" >
+              <ion-item href="#/chat/{{amigo.user_id}}" class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" >
                 ‎<span class="titulo">{{amigo.name}}</span><br>
                 <small>{{amigo.phone}}</small>
-                <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+                <i class="icon ion-chevron-right icon-accessory"></i>
               </ion-item>
             </ion-list>
           </div>
@@ -533,11 +534,17 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header" ng-controller="Chat">
-          <img ng-src="{{chat.face2}}" style="width: 64px; height: 64px">
-          <p>
-            CHAT - Falta implementar no WS
-          </p>
+          <ul class="list">
+            <li class="item" ng-repeat="message in messages">
+              <span class="chat-eu" ng-if="message.name == meuName">{{ message.text }}</span>
+              <span class="chat-amigo" ng-if="message.name == nameAmigo">{{ message.text }}</span>
+            </li>
+          </ul>
         </ion-content>
+        <div class="bar bar-footer bar-royal" ng-controller="Chat">
+          <input type="text" ng-model="message">
+          <button class="button button-event" ng-click="addMessage()">Enviar</button>
+        </div>
       </ion-view>
     </script>
 

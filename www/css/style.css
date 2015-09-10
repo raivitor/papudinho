@@ -72,3 +72,13 @@ h2, .titulo{
 .bot{
 	border-bottom: 1px solid white!important;
 }
+
+.chat-eu{
+	float: right;
+	color: blue;
+}
+
+.chat-amigo{
+	float: left;
+	color: green;
+}
