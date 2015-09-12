@@ -39,7 +39,7 @@
 }
 
 .button-event{
-	background-color: rgb(255, 191, 37);
+	background-color: rgb(255, 191, 37)!important;
 	color: white;
 	border: 0;
 }
@@ -74,11 +74,17 @@ h2, .titulo{
 }
 
 .chat-eu{
-	float: right;
+	text-align: right;
 	color: blue;
+	white-space: normal!important;
 }
 
 .chat-amigo{
-	float: left;
+	text-align: left;
 	color: green;
+	white-space: normal!important;
+}
+
+.chat-input{
+	width: inherit;
 }

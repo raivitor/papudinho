@@ -551,14 +551,15 @@
         <ion-content padding="true" class="has-header" ng-controller="Chat">
           <ul class="list">
             <li class="item" ng-repeat="message in messages">
-              <span class="chat-eu" ng-if="message.name == meuName">{{ message.text }}</span>
-              <span class="chat-amigo" ng-if="message.name == nameAmigo">{{ message.text }}</span>
+              <div class="chat-eu" ng-if="message.name == meuName">{{message.text}}</div>
+              <div class="chat-amigo" ng-if="message.name == nameAmigo">{{message.text}}</div>
             </li>
           </ul>
+          <p>&nbsp;</p>
         </ion-content>
-        <div class="bar bar-footer bar-royal" ng-controller="Chat">
-          <input type="text" ng-model="message">
-          <button class="button button-event" ng-click="addMessage()">Enviar</button>
+        <div class="bar bar-footer bar-royal" ng-controller="Chat"  >
+          <input class="chat-input" type="text" ng-model="message">
+          <button class="button button-event " ng-click="addMessage()">Enviar</button>
         </div>
       </ion-view>
     </script>
