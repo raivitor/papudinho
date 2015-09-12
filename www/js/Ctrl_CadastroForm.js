@@ -69,13 +69,14 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
     }).
 
     success(function (data, status, headers, config) {
-      $scope.checked = false;
+      window.localStorage['email'] = $scope.email;
+      window.localStorage['senha'] = $scope.senha;
       $scope.msg = "";
-      alerta($ionicPopup, "Notificação", "Cadastro realizado com sucesso!");
       window.localStorage['atualizarAmigo'] = 1;
-      window.localStorage['atualizarBar'] = 1;
-      window.localStorage['atualizarCartao'] = 1;
+      window.localStorage['atualizarDados'] = 1;
+      window.localStorage['login'] = 1;
       G_usuario = data;
+      $scope.checked = false;
       $location.path('/menu/home');  
     }).
 

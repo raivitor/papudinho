@@ -37,8 +37,8 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$window' ,function
       $scope.email = "";
       $scope.senha = "";
       window.localStorage['atualizarAmigo'] = 1;
-      window.localStorage['atualizarBar'] = 1;
-      window.localStorage['atualizarCartao'] = 1;
+      window.localStorage['atualizarDados'] = 1;
+      window.localStorage['login'] = 1;
       G_usuario = data;
       $scope.checked = false;
       $location.path('/menu/home');  
@@ -58,7 +58,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$window' ,function
   if(window.localStorage['login'] == undefined){
     window.localStorage['login'] = 0;
     console.log("zerei");
-    $window.location.reload(true);
+    //$window.location.reload(true);
   } else if(window.localStorage['login'] == 1) {
     $scope.email = window.localStorage['email'];
     $scope.senha = window.localStorage['senha'];
@@ -66,7 +66,6 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$window' ,function
     console.log("passei");
   } else{
     window.localStorage['login'] = 0;
-
     console.log("fiquei");
   }
 }])
