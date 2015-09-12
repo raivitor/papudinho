@@ -1,5 +1,5 @@
 app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
-  function Atualizar (argument) {
+  function Atualizar () {
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/promotions/', 
       method: "GET"
@@ -16,6 +16,7 @@ app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
     }).
 
     error(function (data, status, headers, config) {
+      $scope.$broadcast('scroll.refreshComplete');
       console.log('Error promocoes');
     });
   }
