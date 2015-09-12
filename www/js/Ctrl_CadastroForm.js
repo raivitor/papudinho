@@ -17,7 +17,8 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
       return 0;
     }
 
-    if($scope.phone.length != 16){
+    if($scope.phone.length != 15){
+      console.log($scope.phone.length);
       $scope.msg = "Insira o DDD junto ao seu número.";
       return 0;
     }
