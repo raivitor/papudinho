@@ -78,7 +78,6 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('eventmenu.cartoes', {
-      cache: false,
       url: "/cartoes",
       views: {
         'menuContent' :{
@@ -97,7 +96,6 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('eventmenu.amigos', {
-      cache: false,
       url: "/amigos",
       views: {
         'menuContent' :{

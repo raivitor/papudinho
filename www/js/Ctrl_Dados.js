@@ -1,7 +1,17 @@
-app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup', function($scope, $http, $ionicPlatform, $ionicPopup) {
-
+app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup', '$interval', function($scope, $http, $ionicPlatform, $ionicPopup, $interval) {
   $scope.email = G_usuario.email; 
   $scope.nome = G_usuario.name;
+  //Força a atualização por causa do cache
+  $interval(atualizar, 1000, false);
+
+  function atualizar(){
+    if(window.localStorage['atualizarDados'] == 1 ){
+      console.log("dados atualizados");
+      window.localStorage['atualizarDados'] = 0;
+      $scope.email = G_usuario.email; 
+      $scope.nome = G_usuario.name;
+    }
+  }
 
   $scope.submitDados = function() {
     if($scope.passwordOld == undefined ){
