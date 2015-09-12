@@ -1,6 +1,6 @@
 app.controller('Amigos', ['$scope', '$http',  function($scope, $http) {
-  if(window.localStorage['atualizarAmigo'] == 1){
-    window.localStorage['atualizarAmigo'] = 0;
+  //if(window.localStorage['atualizarAmigo'] == 1){
+    //window.localStorage['atualizarAmigo'] = 0;
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/friends', 
       method: "GET",
@@ -22,5 +22,5 @@ app.controller('Amigos', ['$scope', '$http',  function($scope, $http) {
     });
 
     return 0;
-  }
+  //}
 }]);

@@ -1,6 +1,6 @@
 app.controller('Bares', ['$scope', '$http',  function($scope, $http) {
-  if(window.localStorage['atualizarBar'] == 1){
-    window.localStorage['atualizarBar'] = 0;
+  //if(window.localStorage['atualizarBar'] == 1){
+    //window.localStorage['atualizarBar'] = 0;
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
       method: "GET"
@@ -17,5 +17,5 @@ app.controller('Bares', ['$scope', '$http',  function($scope, $http) {
     });
 
     return 0;
-  }
+  //}
 }]);

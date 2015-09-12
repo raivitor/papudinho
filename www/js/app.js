@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
+var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase', 'autoFocus']);
 
 app.run(function($ionicPlatform, $ionicHistory) {
   $ionicPlatform.ready(function() {
@@ -43,10 +43,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.navBar.alignTitle("center");
   //$ionicConfigProvider.scrolling.jsScrolling(false);
   $ionicConfigProvider.views.transition("android");
-  $ionicConfigProvider.views.maxCache(0);
+  //$ionicConfigProvider.views.maxCache(0);
   $stateProvider
     
     .state('login', {
+      cache: false,
       url: '/login',
       templateUrl: 'login'
     })
@@ -77,6 +78,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('eventmenu.cartoes', {
+      cache: false,
       url: "/cartoes",
       views: {
         'menuContent' :{
@@ -95,6 +97,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('eventmenu.amigos', {
+      cache: false,
       url: "/amigos",
       views: {
         'menuContent' :{

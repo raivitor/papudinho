@@ -1,7 +1,8 @@
-app.controller('LoginForm', ['$scope', '$http', '$location',function($scope, $http, $location) {
+app.controller('LoginForm', ['$scope', '$http', '$location', '$window' ,function($scope, $http, $location, $window) {
   $scope.msg = " ";
   $scope.checked = false;
-  
+  //$window.location.reload(true);
+
   $scope.submit = function() {
     $scope.msg = " ";
 
@@ -57,6 +58,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location',function($scope, $ht
   if(window.localStorage['login'] == undefined){
     window.localStorage['login'] = 0;
     console.log("zerei");
+    $window.location.reload(true);
   } else if(window.localStorage['login'] == 1) {
     $scope.email = window.localStorage['email'];
     $scope.senha = window.localStorage['senha'];
@@ -64,6 +66,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location',function($scope, $ht
     console.log("passei");
   } else{
     window.localStorage['login'] = 0;
+
     console.log("fiquei");
   }
 }])

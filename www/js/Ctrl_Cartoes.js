@@ -1,6 +1,6 @@
 app.controller('Cartoes', ['$scope', '$http',  function($scope, $http) {
-  if(window.localStorage['atualizarCartao'] == 1){
-    window.localStorage['atualizarCartao'] = 0;
+  //if(window.localStorage['atualizarCartao'] == 1){
+   // window.localStorage['atualizarCartao'] = 0;
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
       method: "GET",
@@ -19,5 +19,5 @@ app.controller('Cartoes', ['$scope', '$http',  function($scope, $http) {
     error(function (data, status, headers, config) {
       console.log('Error cartoes');
     });
-  }
+  //}
 }]);
