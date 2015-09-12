@@ -114,7 +114,6 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
       }
     }
 
-    return 0;
     $http(req).then(function(data){
       window.localStorage['atualizarCartao'] = 1;
       alerta($ionicPopup, "Notificação", "Cartão criado com sucesso!");
