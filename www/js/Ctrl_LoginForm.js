@@ -38,6 +38,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$window' ,function
       $scope.senha = "";
       window.localStorage['atualizarAmigo'] = 1;
       window.localStorage['atualizarDados'] = 1;
+      window.localStorage['atualizarCartao'] = 1;
       window.localStorage['login'] = 1;
       G_usuario = data;
       $scope.checked = false;

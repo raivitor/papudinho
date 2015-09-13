@@ -273,6 +273,7 @@
             </ion-nav-buttons>
           </ion-nav-bar>
           <ion-content padding="true" class="has-header">
+            <ion-refresher on-refresh="doRefresh()"></ion-refresher>
             <div class="list">
               <div align="center" class="msg" id="msgcartoes">{{msg}}</div>
               <div ng-repeat="module in Cartoes">
@@ -303,9 +304,7 @@
     <script id="promocao" type="text/ng-template">
       <ion-view title="Promoções" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
-            <ion-refresher on-refresh="doRefresh()">
-                     
-            </ion-refresher>
+            <ion-refresher on-refresh="doRefresh()"></ion-refresher>
             <label class="item item-input busca">
               <input type="text" ng-model="search.bar_name" placeholder = "Buscar">
             </label>
