@@ -14,45 +14,31 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
     fotoCel = 0;
   }
 
-  function timedCount() {
-    var time;
-    if(window.localStorage['login'] == 1){
-      clearTimeout(time);
-      $http({
-        url: 'http://developer-papudinho.herokuapp.com/webservice/drinks/', 
-        method: "GET"            
-      }).
+  $http({
+    url: 'http://developer-papudinho.herokuapp.com/webservice/drinks/', 
+    method: "GET"            
+  }).
 
-      success(function (data, status, headers, config) {
-        $scope.Bebidas = data;
-      }).
+  success(function (data, status, headers, config) {
+    $scope.Bebidas = data;
+  }).
 
-      error(function (data, status, headers, config) {
-        console.log('Error drink');
-      });
+  error(function (data, status, headers, config) {
+    console.log('Error drink');
+  });
 
+  $http({
+    url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
+    method: "GET"
+  }).
 
-      $http({
-        url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
-        method: "GET"
-      }).
+  success(function (data, status, headers, config) {
+    $scope.Bares = data;
+  }).
 
-      success(function (data, status, headers, config) {
-        $scope.Bares = data;
-      }).
-
-      error(function (data, status, headers, config) {
-        console.log('Error bar');
-      });
-
-      return 0;
-    }
-    else{
-      time = setTimeout(function(){ timedCount() }, 1000);
-    }
-  }
-
-  timedCount();
+  error(function (data, status, headers, config) {
+    console.log('Error bar');
+  });
 
   $scope.submitcartao = function() {
     var dataUsuario = (new Date($scope.vencimento)).toString().split(' ');
@@ -79,8 +65,6 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
         }
       }
     }
-
-    return 0;
     
     if($scope.bebida <= 0){
       $scope.msg = "Bebida inválida";
