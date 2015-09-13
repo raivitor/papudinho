@@ -1,5 +1,5 @@
 app.controller('Cartoes', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
-  //$interval(atualizar, 1000, false);
+  $interval(atualizar, 1000, false);
   
   function atualizar(){
     if(window.localStorage['atualizarCartao'] == 1){
@@ -13,21 +13,22 @@ app.controller('Cartoes', ['$scope', '$http', '$interval', function($scope, $htt
       }).
 
       success(function (data, status, headers, config) {
-        //$scope.$broadcast('scroll.refreshComplete');
+        $scope.$broadcast('scroll.refreshComplete');
         $scope.Cartoes = data;
+        $scope.msg = " ";
         if(data == 0){
           $scope.msg = "Sem cartões, para cadastrar um novo cartão clique no +";
         }
       }).
 
       error(function (data, status, headers, config) {
-        //$scope.$broadcast('scroll.refreshComplete');
+        $scope.$broadcast('scroll.refreshComplete');
         console.log('Error cartoes');
       });
     }
   }
 
-  atualizar();
+  //atualizar();
   $scope.doRefresh = function() {
     atualizar();
   }
