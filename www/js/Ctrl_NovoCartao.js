@@ -8,6 +8,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
   function onSuccess(imageData) {
    fotoCel = imageData;
    $scope.imgBase64 = "data:image/jpeg;base64," + fotoCel;
+   $scope.$digest();
   }
 
   function onFail(message) {
