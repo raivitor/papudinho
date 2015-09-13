@@ -19,6 +19,11 @@ app.run(function($ionicPlatform, $ionicHistory) {
       StatusBar.styleLightContent();
     }
 
+    
+    getAppVersion(function(version) {
+        window.localStorage['version'] = version;
+    });
+
     $ionicPlatform.registerBackButtonAction(function(e){
       str = window.location.href;
       if(str.indexOf("login") > 0){
@@ -242,8 +247,7 @@ function onDeviceReady() {
     initPushwoosh();
 }
 
-function initPushwoosh()
-{
+function initPushwoosh(){
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
  
     //set push notifications handler
@@ -260,7 +264,6 @@ function initPushwoosh()
  
     //initialize Pushwoosh with projectid: "78196470103", pw_appid : "60C72-3A9F2". 
     pushNotification.onDeviceReady({ projectid: "78196470103", pw_appid : "60C72-3A9F2" });
-    
  
     //register for pushes
     pushNotification.registerDevice(

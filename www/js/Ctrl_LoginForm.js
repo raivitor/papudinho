@@ -1,8 +1,7 @@
-app.controller('LoginForm', ['$scope', '$http', '$location', '$window' ,function($scope, $http, $location, $window) {
+app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
   $scope.msg = " ";
   $scope.checked = false;
-  //$window.location.reload(true);
-
+  $scope.version = window.localStorage['version'];
   $scope.submit = function() {
     $scope.msg = " ";
 
