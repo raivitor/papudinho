@@ -216,7 +216,7 @@
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
             <ion-list>
-              <ion-item href="#/chat/{{amigo.user_id}}" class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" >
+              <ion-item href="#/chat/{{amigo.user_id}}/{{amigo.name}}" class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" >
                 ‎<span class="titulo">{{amigo.name}}</span><br>
                 <small>{{amigo.phone}}</small>
                 <i class="icon ion-chevron-right icon-accessory"></i>
@@ -539,7 +539,7 @@
     </script>
 
     <script id="chat" type="text/ng-template" >
-      <ion-view view-title="{{msg}}" >
+      <ion-view>
 
         <ion-nav-bar class="bar-royal" ng-controller="Back">
           <ion-nav-buttons side="left">

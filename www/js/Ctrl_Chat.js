@@ -1,7 +1,12 @@
-app.controller('Chat', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrollDelegate', '$interval' ,function($scope, $stateParams, $firebaseArray, $ionicScrollDelegate, $interval) {
+app.controller('Chat', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrollDelegate', '$interval', '$ionicNavBarDelegate', function($scope, $stateParams, $firebaseArray, $ionicScrollDelegate, $interval, $ionicNavBarDelegate) {
   $scope.meuName = G_usuario.id;
   $scope.nameAmigo = $stateParams.chatId;
+  $ionicNavBarDelegate.title($stateParams.nome);
   var ref;
+
+  /**
+  * Garantir que o 'id' menor seja escrito primeiro.
+  */
   if(G_usuario.id < $stateParams.chatId){
     ref = new Firebase("https://chat-prot.firebaseio.com/"+G_usuario.id+""+$stateParams.chatId);
   } else{
@@ -16,6 +21,7 @@ app.controller('Chat', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrol
       text: $scope.message
     });
      $scope.message = "";
+     $ionicScrollDelegate.scrollBottom();
   };
 
   stopTime = $interval(atualizar, 1000, false);
