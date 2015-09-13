@@ -1,6 +1,7 @@
 app.controller('Cartoes', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
-  $interval(atualizar, 1000, false);
-  
+  atualizar();
+  $interval(atualizar, 2000, false);
+  //$scope.configUser = true;
   function atualizar(){
     if(window.localStorage['atualizarCartao'] == 1){
       window.localStorage['atualizarCartao'] = 0;
@@ -25,11 +26,8 @@ app.controller('Cartoes', ['$scope', '$http', '$interval', function($scope, $htt
         $scope.$broadcast('scroll.refreshComplete');
         console.log('Error cartoes');
       });
+    } else{
+      $scope.$broadcast('scroll.refreshComplete');
     }
-  }
-
-  //atualizar();
-  $scope.doRefresh = function() {
-    atualizar();
   }
 }]);

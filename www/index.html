@@ -186,7 +186,7 @@
         <ion-content padding="true" class="has-header">
           <div align="center">{{msg}}</div>
           <div ng-repeat="cartao in CartoesVencimento">
-            <div class="card">
+            <div class="card" ng-hide="cartao.card_secret">
               <div class="item item-text-wrap" >
                 <p>
                   Bebida: {{ cartao.drink_name }} <br>
@@ -279,7 +279,7 @@
               <div align="center" class="msg" id="msgcartoes">{{msg}}</div>
               <div ng-repeat="module in Cartoes">
 
-                <a class="item " >
+                <a class="item " ng-hide="module.card_secret">
                   <div class="row">
                     <div class="col">
                       <p><b>{{ module.bar_name }}</b><br>

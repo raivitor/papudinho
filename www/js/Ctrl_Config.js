@@ -5,6 +5,7 @@ app.controller('Config', ['$scope', '$http', '$ionicPopup', function($scope, $ht
 	$scope.visibilidade = G_usuario.visibility;
 
 	$scope.submitConfig = function() {
+    G_usuario.secret_card = privacidade;
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/update_config/', 
       method: "POST",
@@ -17,7 +18,6 @@ app.controller('Config', ['$scope', '$http', '$ionicPopup', function($scope, $ht
     }).
     success(function (data, status, headers, config) {
       alerta($ionicPopup, "Notificação", "Configurações salvas!");
-      //console.log("Deu certo");
     }).
 
     error(function (data, status, headers, config) {
