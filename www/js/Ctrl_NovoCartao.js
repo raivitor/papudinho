@@ -101,6 +101,14 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
 
     $http(req).then(function(data){
       window.localStorage['atualizarCartao'] = 1;
+      $scope.bebida = 0;
+      $scope.bar = 0;
+      $scope.vencimento = null;
+      $scope.doses = 10;
+      fotoCel = null;
+      $scope.secreto = false;
+      $scope.imgBase64 = null;
+      $scope.msg = " ";
       alerta($ionicPopup, "Notificação", "Cartão criado com sucesso!");
       $location.path('/menu/cartoes'); 
       //console.log(data); 
