@@ -1,45 +1,33 @@
 app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', function($scope, $http, $location, $ionicPopup) {
   $scope.doses = 10;
-  var fotoCel = 0;
-  $scope.capturePhoto = function() {
-    navigator.camera.getPicture(onSuccess, onFail, { quality: 30,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
+  var fotoCard = 0;
+  var fotoDrink = 0;
+  $scope.capturePhoto = function(id) {
+    if(id == 1)
+      navigator.camera.getPicture(onSuccess, onFail, { quality: 30,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
+    else if(id == 2)
+      navigator.camera.getPicture(onSuccess2, onFail2, { quality: 30,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
   }
 
   function onSuccess(imageData) {
-   fotoCel = imageData;
-   $scope.imgBase64 = "data:image/jpeg;base64," + fotoCel;
-   $scope.$digest();
+    fotoCard = imageData;
+    $scope.imgCard = "data:image/jpeg;base64," + fotoCard;
+    $scope.$digest();
   }
 
   function onFail(message) {
-    fotoCel = 0;
+    fotoCard = 0;
   }
 
-  $http({
-    url: 'http://developer-papudinho.herokuapp.com/webservice/drinks/', 
-    method: "GET"            
-  }).
+  function onSuccess2(imageData) {
+    fotoDrink = imageData;
+    $scope.imgDrink = "data:image/jpeg;base64," + fotoCard;
+    $scope.$digest();
+  }
 
-  success(function (data, status, headers, config) {
-    $scope.Bebidas = data;
-  }).
-
-  error(function (data, status, headers, config) {
-    console.log('Error drink');
-  });
-
-  $http({
-    url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
-    method: "GET"
-  }).
-
-  success(function (data, status, headers, config) {
-    $scope.Bares = data;
-  }).
-
-  error(function (data, status, headers, config) {
-    console.log('Error bar');
-  });
+  function onFail2(message) {
+    fotoDrink = 0;
+  }
 
   $scope.submitcartao = function() {
     var dataUsuario = (new Date($scope.vencimento)).toString().split(' ');
@@ -77,25 +65,32 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
       return 0;
     }
 
-    if(fotoCel == 0){
-      $scope.msg = "Imagem inválida";
+    if(fotoCard == 0){
+      $scope.msg = "Foto do cartão inválida";
       return 0;
     }
 
+    if(fotoDrink == 0){
+      $scope.msg = "Foto da bebida inválida";
+    }
+
     $scope.msg = "Salvando...";
-    //console.log("drink_id: "+$scope.bebida+"\nbar_id: "+$scope.bar+ "\nuser_id: "+G_usuario.id+ "\ndue_date: "+vencimento+ "\ntotal_doses: "+$scope.doses+"\nimage: "+fotoCel);
+    //console.log("drink_id: "+$scope.bebida+"\nbar_id: "+$scope.bar+ "\nuser_id: "+G_usuario.id+ "\ndue_date: "+vencimento+ "\ntotal_doses: "+$scope.doses+"\nimage: "+fotoCard);
     
     var req = {
       method: 'POST',
       url: 'http://developer-papudinho.herokuapp.com/webservice/new_card',
       data: { 
-        drink_id: $scope.bebida,
-        bar_id: $scope.bar,
+        drink: $scope.bebida,
+        particular: true,
+        bar: $scope.bar,
         user_id: G_usuario.id,
         due_date: vencimento,
         total_doses: $scope.doses,
-        image: fotoCel,
-        card_secret: $scope.secreto 
+        remaining_doses: $scope.doses,
+        card_secret: $scope.secreto,
+        image_card: fotoCard,
+        image_drink: fotoDrink
       }
     }
 
@@ -105,12 +100,14 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
       $scope.bar = 0;
       $scope.vencimento = null;
       $scope.doses = 10;
-      fotoCel = null;
+      fotoCard = 0;
+      fotoDrink = 0;
       $scope.secreto = false;
-      $scope.imgBase64 = null;
+      $scope.imgCard = null;
+      $scope.imgDrink = null;
       $scope.msg = " ";
       alerta($ionicPopup, "Notificação", "Cartão criado com sucesso!");
-      $location.path('/menu/cartoes'); 
+      $location.path('/menu/meuscartoes'); 
       //console.log(data); 
     }, function(data){
       $scope.msg = "Erro ao criar o cartão, tente novamente";

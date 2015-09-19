@@ -82,6 +82,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       }
     })
 
+    .state('eventmenu.meuscartoes', {
+      url: "/meuscartoes",
+      views: {
+        'menuContent' :{
+          templateUrl: "meuscartoes"
+        }
+      }
+    })
+
     .state('eventmenu.cartoes', {
       url: "/cartoes",
       views: {

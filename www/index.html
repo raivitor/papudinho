@@ -30,6 +30,7 @@
     <script src="js/Ctrl_Dados.js"></script>
     <script src="js/Ctrl_Home.js"></script>
     <script src="js/Ctrl_LoginForm.js"></script>
+    <script src="js/Ctrl_MeusCartoes.js"></script>
     <script src="js/Ctrl_NovaSenha.js"></script>
     <script src="js/Ctrl_NovoCartao.js"></script>
     <script src="js/Ctrl_Promocoes.js"></script>
@@ -167,6 +168,7 @@
           <ion-content ng-controller="Sidebar" class="bar-royal">
             <ul class="list">
               <a href="#/menu/home" class="item" menu-close><i class="icon ion-android-home" ></i> Home</a>
+              <a href="#/menu/meuscartoes" class="item" menu-close><i class="icon ion-card" ></i> Cartões Pessoais</a>
               <a href="#/menu/amigos" class="item" menu-close><i class="icon ion-person-stalker" ></i> Amigos</a>
               <a href="#/menu/bares" class="item" menu-close><i class="icon ion-ios-location" ></i> Bares</a>
               <a href="#/menu/cartoes" class="item" menu-close><i class="icon ion-card" ></i> Cartões</a>
@@ -182,10 +184,33 @@
     </script>
 
     <script id="home" type="text/ng-template">
-      <ion-view view-title="Papudinho" ng-controller="Home" >
+      <ion-view view-title="Papudinho" ng-controller="Home">
         <ion-content padding="true" class="has-header">
           <div align="center">{{msg}}</div>
           <div ng-repeat="cartao in CartoesVencimento">
+            <div class="card" ng-hide="cartao.card_secret">
+              <div class="item item-text-wrap" >
+                <p>
+                  Bebida: {{ cartao.drink_name }} <br>
+                  Bar:  {{ cartao.bar_name }}<br>
+                  Doses restantes: {{ cartao.doses_restantes }} <br>
+                  Vencimento: {{ cartao.due_date }} <br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="meuscartoes" type="text/ng-template">
+      <ion-view view-title="Papudinho" ng-controller="MeusCartoes">
+      <ion-nav-buttons side="right">
+        <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
+      </ion-nav-buttons>
+        <ion-content padding="true" class="has-header">
+          <div align="center">{{msg}}</div>
+          <div ng-repeat="cartao in Cartoes">
             <div class="card" ng-hide="cartao.card_secret">
               <div class="item item-text-wrap" >
                 <p>
@@ -228,6 +253,30 @@
       </ion-view>
     </script>
 
+    <script id="addAmigo" type="text/ng-template">
+      <ion-view view-title="Adicionar Amigo" >
+
+        <ion-nav-bar class="bar-royal" ng-controller="Back">
+          <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header">
+          <form ng-submit="submitamigo()" ng-controller="AddAmigo">
+            <div align="center" class="msg" id="msgcadastro">{{msg}}</div>  
+            <ion-list>
+                <label class="item item-input">
+                    <input type="email" placeholder="Email" ng-model="email" >
+                </label>
+            </ion-list>
+            <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-event button-block" />
+          </form>
+        </ion-content>
+      </ion-view>
+    </script>
 
     <script id="bares" type="text/ng-template">
       <ion-view view-title="Bares" ng-controller="Bares">
@@ -262,17 +311,88 @@
       </ion-view>
     </script>
 
+    <script id="bar" type="text/ng-template" >
+      <ion-view view-title="Papudinho" >
+
+        <ion-nav-bar class="bar-royal" ng-controller="Back">
+          <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header" ng-controller="Bar">
+          <div class="list card">
+
+            <div class="item item-avatar">
+              <img src="{{bar.logo.thumb.url}}">
+              <h2>{{bar.name}}</h2>
+              <a href="tel:{{bar.phone}}" class="button button-clear button-positive icon-left ion-android-call">{{bar.phone}}</a>
+            </div>
+
+            <div class="item item-body">
+               <img class="full-image" src="{{bar.logo.url}}">
+              <p>
+                {{bar.city}} - {{bar.state}}<br>
+                {{bar.district}} - {{bar.street}}, {{bar.number}}<br>
+                <a href = "{{bar.site}}" class="button button-clear button-positive">{{bar.site}}</a>
+              </p>
+            </div>
+
+          </div>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="addBar" type="text/ng-template">
+      <ion-view view-title="Sugerir Bar" >
+
+        <ion-nav-bar class="bar-royal" ng-controller="Back">
+          <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header">
+          <form ng-submit="submitbar()" ng-controller="AddBar">
+            <div align="center" class="msg" id="msgAddBar">{{msg}}</div>  
+              <ion-list>
+                <label class="item item-input">
+                    <input type="text" placeholder="Nome" ng-model="name" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Telefone" mask="(99) 99999-9999" clean="false" ng-model="phone" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Estado" ng-model="state" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Cidade" ng-model="city" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Bairro" ng-model="district" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Rua" ng-model="street" >
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Número" ng-model="number" >
+                </label>
+                <label class="item item-input">
+                    <input type="email" placeholder="Email" ng-model="email" >
+                </label>
+              </ion-list>
+            <input type="submit" value="Sugerir" class="button button-block button-event" />
+          </form>
+        </ion-content>
+      </ion-view>
+    </script>
+
     <script id="cartoes" type="text/ng-template">
       <ion-view title="Cartões" ng-controller="Cartoes">
-
-          <ion-nav-bar class="bar-royal">
-            <ion-nav-buttons side="left">
-              <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-            </ion-nav-buttons>
-            <ion-nav-buttons side="right">
-              <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
-            </ion-nav-buttons>
-          </ion-nav-bar>
           <ion-content padding="true" class="has-header">
             <ion-refresher on-refresh="doRefresh()"></ion-refresher>
             <div class="list">
@@ -352,6 +472,38 @@
       </ion-view>
     </script>
 
+    <script id="config" type="text/ng-template">
+      <ion-view title="Configurações">
+          <ion-content padding="true" class="has-header">
+            <div class="card">
+              <div class="item item-text-wrap">
+                <form ng-submit="submitConfig()" ng-controller="Config">
+                  <div align="center" class="msg" id="msgconfig">{{msg}}</div>
+                  <ul class="list">
+                    <ion-toggle ng-model="promocoes" ng-change="ConfigChange()">
+                      Receber promoções
+                    </ion-toggle>
+                    
+                    <ion-toggle ng-model="gps" ng-change="ConfigChange()">
+                      Ativar GPS
+                    </ion-toggle>
+
+                    <ion-toggle ng-model="visibilidade" ng-change="ConfigChange()">
+                      Visibilidade para outros papudinhos
+                    </ion-toggle>
+
+                    <ion-toggle ng-model="privacidade" ng-change="ConfigChange()">
+                      Mostrar cartões privados
+                    </ion-toggle>
+                  </ul>
+                  <input type="submit" id="submit" value="Salvar" class="button button-event button-block" />
+                </form>
+              </div>
+            </div>
+          </ion-content>
+      </ion-view>
+    </script>
+
     <script id="addCartao" type="text/ng-template">
       <ion-view view-title="Novo Cartão">
 
@@ -366,28 +518,19 @@
         <ion-content padding="true" class="has-header">
           <form ng-controller="NovoCartao">
             <div align="center">{{msg}}</div>
+
             <div class="row">
               <div class="col">
-                <label class="item item-input item-select">
-                  <div class="input-label">
-                    Bebida
-                  </div>
-                  <select ng-model="bebida" ng-options="bebida.id as bebida.name for bebida in Bebidas">
-                    <option value="">Escolha a bebida</option>
-                  </select>
+                <label class="item item-input">
+                  <input type="text" placeholder="Bebida" ng-model="drink" >
                 </label>
               </div>
             </div>
 
             <div class="row">
               <div class="col"> 
-                <label class="item item-input item-select">
-                  <div class="input-label">
-                    Bar
-                  </div>
-                  <select ng-model="bar" ng-options="bar.id as bar.name for bar in Bares">
-                    <option value="">Escolha o bar</option>
-                  </select>
+                <label class="item item-input">
+                  <input type="text" placeholder="Bar" ng-model="bar" >
                 </label>
               </div>
             </div>
@@ -422,119 +565,24 @@
                 <p>Doses : {{doses}}</p>
               </div>
             </div>
-            <br>
             
             <div class="row">
-              <img ng-src="{{imgBase64}}" height="300" width="300">
-              <button ng-click="capturePhoto()" class="button button-positive">Tirar Foto</button>
+              <div class='col'>
+                <img ng-src="{{imgDrink}}" height="300" width="100%">
+                <button ng-click="capturePhoto(1)" class="button button-positive">Tirar Foto da Bebida</button>
+              </div>
+            </div> 
+
+            <div class="row">
+              <div class="col">
+                <img ng-src="{{imgCard}}" height="300" width="100%">
+                <button ng-click="capturePhoto(2)" class="button button-positive">Tirar Foto do Cartão</button>
+              </div>
             </div>
-            
+            <br>
             <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
           </form>
         </ion-content>
-      </ion-view>
-    </script>
-
-    <script id="addAmigo" type="text/ng-template">
-      <ion-view view-title="Adicionar Amigo" >
-
-        <ion-nav-bar class="bar-royal" ng-controller="Back">
-          <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
-              <i class="ion-chevron-left"></i> Voltar
-            </button>
-          </ion-nav-buttons>
-        </ion-nav-bar>
-
-        <ion-content padding="true" class="has-header">
-          <form ng-submit="submitamigo()" ng-controller="AddAmigo">
-            <div align="center" class="msg" id="msgcadastro">{{msg}}</div>  
-            <ion-list>
-                <label class="item item-input">
-                    <input type="email" placeholder="Email" ng-model="email" >
-                </label>
-            </ion-list>
-            <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-event button-block" />
-          </form>
-        </ion-content>
-      </ion-view>
-    </script>
-
-    <script id="addBar" type="text/ng-template">
-      <ion-view view-title="Sugerir Bar" >
-
-        <ion-nav-bar class="bar-royal" ng-controller="Back">
-          <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
-              <i class="ion-chevron-left"></i> Voltar
-            </button>
-          </ion-nav-buttons>
-        </ion-nav-bar>
-
-        <ion-content padding="true" class="has-header">
-          <form ng-submit="submitbar()" ng-controller="AddBar">
-            <div align="center" class="msg" id="msgAddBar">{{msg}}</div>  
-              <ion-list>
-                <label class="item item-input">
-                    <input type="text" placeholder="Nome" ng-model="name" >
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Telefone" mask="(99) 99999-9999" clean="false" ng-model="phone" >
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Estado" ng-model="state" >
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Cidade" ng-model="city" >
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Bairro" ng-model="district" >
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Rua" ng-model="street" >
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Número" ng-model="number" >
-                </label>
-                <label class="item item-input">
-                    <input type="email" placeholder="Email" ng-model="email" >
-                </label>
-              </ion-list>
-            <input type="submit" value="Sugerir" class="button button-block button-event" />
-          </form>
-        </ion-content>
-      </ion-view>
-    </script>
-
-    <script id="config" type="text/ng-template">
-      <ion-view title="Configurações">
-          <ion-content padding="true" class="has-header">
-            <div class="card">
-              <div class="item item-text-wrap">
-                <form ng-submit="submitConfig()" ng-controller="Config">
-                  <div align="center" class="msg" id="msgconfig">{{msg}}</div>
-                  <ul class="list">
-                    <ion-toggle ng-model="promocoes" ng-change="ConfigChange()">
-                      Receber promoções
-                    </ion-toggle>
-                    
-                    <ion-toggle ng-model="gps" ng-change="ConfigChange()">
-                      Ativar GPS
-                    </ion-toggle>
-
-                    <ion-toggle ng-model="visibilidade" ng-change="ConfigChange()">
-                      Visibilidade para outros papudinhos
-                    </ion-toggle>
-
-                    <ion-toggle ng-model="privacidade" ng-change="ConfigChange()">
-                      Mostrar cartões privados
-                    </ion-toggle>
-                  </ul>
-                  <input type="submit" id="submit" value="Salvar" class="button button-event button-block" />
-                </form>
-              </div>
-            </div>
-          </ion-content>
       </ion-view>
     </script>
 
@@ -562,40 +610,6 @@
           <input class="chat-input" type="text" ng-model="message">
           <button class="button button-event " ng-click="addMessage()">Enviar</button>
         </div>
-      </ion-view>
-    </script>
-
-    <script id="bar" type="text/ng-template" >
-      <ion-view view-title="Papudinho" >
-
-        <ion-nav-bar class="bar-royal" ng-controller="Back">
-          <ion-nav-buttons side="left">
-            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
-              <i class="ion-chevron-left"></i> Voltar
-            </button>
-          </ion-nav-buttons>
-        </ion-nav-bar>
-
-        <ion-content padding="true" class="has-header" ng-controller="Bar">
-          <div class="list card">
-
-            <div class="item item-avatar">
-              <img src="{{bar.logo.thumb.url}}">
-              <h2>{{bar.name}}</h2>
-              <a href="tel:{{bar.phone}}" class="button button-clear button-positive icon-left ion-android-call">{{bar.phone}}</a>
-            </div>
-
-            <div class="item item-body">
-               <img class="full-image" src="{{bar.logo.url}}">
-              <p>
-                {{bar.city}} - {{bar.state}}<br>
-                {{bar.district}} - {{bar.street}}, {{bar.number}}<br>
-                <a href = "{{bar.site}}" class="button button-clear button-positive">{{bar.site}}</a>
-              </p>
-            </div>
-
-          </div>
-        </ion-content>
       </ion-view>
     </script>
 

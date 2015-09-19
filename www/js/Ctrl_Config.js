@@ -3,9 +3,8 @@ app.controller('Config', ['$scope', '$http', '$ionicPopup', function($scope, $ht
 	$scope.promocoes = G_usuario.promotion;
 	$scope.gps = G_usuario.gps;
 	$scope.visibilidade = G_usuario.visibility;
-
+  $scope.privacidade = false;
 	$scope.submitConfig = function() {
-    G_usuario.secret_card = privacidade;
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/update_config/', 
       method: "POST",
@@ -13,10 +12,15 @@ app.controller('Config', ['$scope', '$http', '$ionicPopup', function($scope, $ht
         id: G_usuario.id,
         promotion: $scope.promocoes,
         gps: $scope.gps,
-        visibility: $scope.visibilidade
+        visibility: $scope.visibilidade,
+        card_secret: $scope.privacidade
       }
     }).
     success(function (data, status, headers, config) {
+      G_usuario.promotion = $scope.promocoes;
+      G_usuario.gps = $scope.gps;
+      G_usuario.visibility = $scope.visibilidade;
+      G_usuario.card_secret = $scope.privacidade;
       alerta($ionicPopup, "Notificação", "Configurações salvas!");
     }).
 

@@ -1,3 +1,56 @@
+app.factory('CartoesPessoais', ['$http', function($http){
+  var cartoes = [];
+/**
+* -1: Erro de servidor
+*/
+  function getCartoes(id){
+    if(!cartoes){
+      var req = {
+        method: 'GET',
+        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular/',
+        data: { 
+          user: id
+        }
+      }
+      $http.get(req).
+        then(function (sucesso) {
+          cartoes = sucesso;
+        },
+        function(fail){
+          return -1;
+        });
+    } else {
+      console.log("Não precisou");
+    }
+    return cartoes;
+  }
+
+  function atualizar(id){
+    var req = {
+      method: 'GET',
+      url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular/',
+      data: { 
+        user: id
+      }
+    }
+
+    $http.get(req).
+      then(function (sucesso) {
+        cartoes = sucesso;
+        return true;
+      },
+      function(fail){
+        return false;
+      });
+  }
+
+  return {
+    getCartoes: getCartoes,
+    atualizar: atualizar
+  }
+}]);
+
+/*
 angular.module('app.services', [])
 
 .factory('Chats', function() {
@@ -49,3 +102,4 @@ angular.module('app.services', [])
   };
   
 });
+*/
