@@ -1,4 +1,4 @@
-app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $http, $location) {
+app.controller('LoginForm', ['$scope', '$http', '$location', '$state', function($scope, $http, $location, $state) {
   $scope.msg = " ";
   $scope.checked = false;
   $scope.version = window.localStorage['version'];
@@ -58,6 +58,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $h
   if(window.localStorage['login'] == undefined){
     window.localStorage['login'] = 0;
     console.log("zerei");
+    $state.reload();
     //$window.location.reload(true);
   } else if(window.localStorage['login'] == 1) {
     $scope.email = window.localStorage['email'];
@@ -68,4 +69,4 @@ app.controller('LoginForm', ['$scope', '$http', '$location', function($scope, $h
     window.localStorage['login'] = 0;
     console.log("fiquei");
   }
-}])
+}]);

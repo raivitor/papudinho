@@ -1,4 +1,4 @@
-app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', function($scope, $http, $location, $ionicPopup) {
+app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', function($scope, $http, $location, $ionicPopup, CartoesPessoais) {
   $scope.doses = 10;
   var fotoCard = 0;
   var fotoDrink = 0;
@@ -69,13 +69,13 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
       $scope.msg = "Foto do cartão inválida";
       return 0;
     }
-
+    
     if(fotoDrink == 0){
       $scope.msg = "Foto da bebida inválida";
     }
 
     $scope.msg = "Salvando...";
-    //console.log("drink_id: "+$scope.bebida+"\nbar_id: "+$scope.bar+ "\nuser_id: "+G_usuario.id+ "\ndue_date: "+vencimento+ "\ntotal_doses: "+$scope.doses+"\nimage: "+fotoCard);
+    //console.log("drink: "+$scope.bebida+"\nparticular: "+true+"\nbar: "+$scope.bar+ "\nuser_id: "+G_usuario.id+ "\ndue_date: "+vencimento+ "\ntotal_doses: "+$scope.doses+"\ncard_secret: "+$scope.secreto);
     
     var req = {
       method: 'POST',
@@ -96,8 +96,9 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', fun
 
     $http(req).then(function(data){
       window.localStorage['atualizarCartao'] = 1;
-      $scope.bebida = 0;
-      $scope.bar = 0;
+      CartoesPessoais.atualizar(G_usuario.id);
+      $scope.bebida = null;
+      $scope.bar = null;
       $scope.vencimento = null;
       $scope.doses = 10;
       fotoCard = 0;

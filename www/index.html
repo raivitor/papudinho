@@ -24,6 +24,8 @@
     <script src="js/Ctrl_Bar.js"></script>
     <script src="js/Ctrl_Bares.js"></script>
     <script src="js/Ctrl_CadastroForm.js"></script>
+    <script src="js/Ctrl_Cartao.js"></script>
+    <script src="js/Ctrl_CartaoDetalhe.js"></script>
     <script src="js/Ctrl_Cartoes.js"></script>
     <script src="js/Ctrl_Chat.js"></script>
     <script src="js/Ctrl_Config.js"></script>
@@ -35,7 +37,8 @@
     <script src="js/Ctrl_NovoCartao.js"></script>
     <script src="js/Ctrl_Promocoes.js"></script>
     <script src="js/Ctrl_Sidebar.js"></script>
-    <script src="js/Service_Chat.js"></script>
+    <script src="js/Ctrl_UpdateCartao.js"></script>
+    <script src="js/Service_Cartao.js"></script>
     <script src="js/diretivas.js"></script>
     <script src="js/funcoes.js"></script>
     
@@ -75,13 +78,13 @@
                   <button class="button button-event button-block ">
                     <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;">&nbsp;Entrar</i>
                   </button>
-                  
+                  <br>
                   <div align="center">
                     <a href="#/signup">Criar Conta</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                     <a href="#/senha">Esqueci a senha</a>
                   </div>
-                  
+                  <br>
               </form>
           </ion-content>
       </ion-view>
@@ -175,7 +178,7 @@
               <a href="#/menu/promocao" class="item" menu-close><i class="icon ion-bag" ></i> Promoções</a>
               <a href="#/menu/dados" class="item" menu-close><i class="icon ion-android-home" ></i> Meus Dados</a>
               <a href="#/menu/config" class="item" menu-close><i class="icon ion-ios-gear-outline" ></i> Configurações</a>
-              <a href="#/login" class="item" menu-close ng-click="sair()"><i class="icon ion-forward" ></i> Sair</a>
+              <a href="#" class="item" menu-close ng-click="sair()"><i class="icon ion-forward" ></i> Sair</a>
             </ul>
           </ion-content>
         </ion-side-menu>
@@ -191,9 +194,9 @@
             <div class="card" ng-hide="cartao.card_secret">
               <div class="item item-text-wrap" >
                 <p>
-                  Bebida: {{ cartao.drink_name }} <br>
-                  Bar:  {{ cartao.bar_name }}<br>
-                  Doses restantes: {{ cartao.doses_restantes }} <br>
+                  Bebida: {{ cartao.drink }} <br>
+                  Bar:  {{ cartao.bar }}<br>
+                  Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }} <br>
                   Vencimento: {{ cartao.due_date }} <br>
                 </p>
               </div>
@@ -205,24 +208,93 @@
 
     <script id="meuscartoes" type="text/ng-template">
       <ion-view view-title="Papudinho" ng-controller="MeusCartoes">
-      <ion-nav-buttons side="right">
-        <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
-      </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+          <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
+        </ion-nav-buttons>
         <ion-content padding="true" class="has-header">
           <div align="center">{{msg}}</div>
-          <div ng-repeat="cartao in Cartoes">
-            <div class="card" ng-hide="cartao.card_secret">
-              <div class="item item-text-wrap" >
+          <div ng-repeat="cartao in cartoes">
+            <div class="card">
+              <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
                 <p>
-                  Bebida: {{ cartao.drink_name }} <br>
-                  Bar:  {{ cartao.bar_name }}<br>
-                  Doses restantes: {{ cartao.doses_restantes }} <br>
-                  Vencimento: {{ cartao.due_date }} <br>
+                  Bebida: {{ cartao.drink }}<br>
+                  Bar: {{ cartao.bar }}<br>
+                  Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
+                  Vencimento: {{ cartao.due_date }}<br>
                 </p>
-              </div>
+              </a>
             </div>
           </div>
         </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="cartao" type="text/ng-template">
+      <ion-view view-title="Papudinho" ng-controller="Cartao">
+
+      <ion-nav-bar class="bar-royal" ng-controller="Back">
+        <ion-nav-buttons side="left">
+          <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+            <i class="ion-chevron-left"></i> Voltar
+          </button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+          <a href="#/updatecartao/{{id}}" class="button button-icon icon ion-compose"></a>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header">
+          <div align="center">{{msg}}</div>
+          <div ng-repeat="cartao in historico">
+            <div class="card">
+              <a href="#/cartaodetalhe/{{cartao.card_id}}/{{cartao.id}}" class="item item-text-wrap" >
+                <p>
+                  Bebida: {{ drink }} <br>
+                  Bar:  {{ bar }}<br>
+                  Doses restantes: {{ cartao.remaining_doses}}/{{total_doses }} <br>
+                  Vencimento: {{ vencimento }} <br>
+                  Criado: {{cartao.created_at | date:'dd/MM/yyyy HH:mm:ss'}}
+                </p>
+              </a>
+            </div>
+          </div>
+          <br>
+        </ion-content>
+
+        <div class="bar bar-footer bar-assertive" ng-click="deletar()">
+          <div class="title">Deletar Cartão</div>
+        </div>
+      </ion-view>
+    </script>
+
+    <script id="cartaodetalhe" type="text/ng-template">
+      <ion-view view-title="Papudinho" ng-controller="CartaoDetalhe">
+
+      <ion-nav-bar class="bar-royal" ng-controller="Back">
+        <ion-nav-buttons side="left">
+          <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+            <i class="ion-chevron-left"></i> Voltar
+          </button>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header">
+          <div align="center">{{msg}}</div>
+          <div class="card">
+            <div class="item item-text-wrap" >
+              <p>
+                Bebida: {{ drink }} <br>
+                Bar:  {{ bar }}<br>
+                Doses restantes: {{ detalhe.remaining_doses}}/{{total_doses }} <br>
+                Vencimento: {{ vencimento }} <br>
+                Criado: {{detalhe.created_at | date:'dd/MM/yyyy HH:mm:ss'}}
+                <img ng-src="data:image/jpeg;base64,{{detalhe.image_card}}" width="100%"><br>
+                <img ng-src="data:image/jpeg;base64,{{detalhe.image_drink}}" width="100%"><br>
+              </p>
+            </div>
+          </div>
+        </ion-content>
+
       </ion-view>
     </script>
 
@@ -522,7 +594,7 @@
             <div class="row">
               <div class="col">
                 <label class="item item-input">
-                  <input type="text" placeholder="Bebida" ng-model="drink" >
+                  <input type="text" placeholder="Bebida" ng-model="bebida" >
                 </label>
               </div>
             </div>
@@ -563,6 +635,66 @@
               </div>
               <div class="col col-center" align="center">
                 <p>Doses : {{doses}}</p>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class='col'>
+                <img ng-src="{{imgDrink}}" height="300" width="100%">
+                <button ng-click="capturePhoto(1)" class="button button-positive">Tirar Foto da Bebida</button>
+              </div>
+            </div> 
+
+            <div class="row">
+              <div class="col">
+                <img ng-src="{{imgCard}}" height="300" width="100%">
+                <button ng-click="capturePhoto(2)" class="button button-positive">Tirar Foto do Cartão</button>
+              </div>
+            </div>
+            <br>
+            <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
+          </form>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="updatecartao" type="text/ng-template">
+      <ion-view view-title="Atualizar Cartão">
+
+        <ion-nav-bar class="bar-royal" ng-controller="Back">
+          <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-content padding="true" class="has-header">
+          <form ng-controller="UpdateCartao">
+            <div align="center">{{msg}}</div>
+
+            <div class="row">
+              <div class="col">
+                <label class="item item-input">
+                  <input type="text" placeholder="Bebida" ng-model="drink" disabled>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col"> 
+                <label class="item item-input">
+                  <input type="text" placeholder="Bar" ng-model="bar" disabled>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col ">
+                <div class="item range range-positive">
+                  <input type="range" name="doses" min="0" max="20" value="1" ng-model="doses">
+                  <p>Doses restantes: {{doses}}</p>
+                </div>
               </div>
             </div>
             

@@ -1,5 +1,6 @@
 app.controller('Home', ['$scope', '$http',  function($scope, $http) {
   window.localStorage['login'] = 1;
+  console.warn("home");
   function timedCount() {
     var time;
     if(window.localStorage['login'] == 1){

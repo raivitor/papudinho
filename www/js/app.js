@@ -165,6 +165,21 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       templateUrl: 'chat'
     })
 
+    .state('cartao', {
+      url: '/cartao/:cartaoId',
+      templateUrl: 'cartao'
+    })
+
+    .state('updatecartao', {
+      url: '/updatecartao/:cartaoId',
+      templateUrl: 'updatecartao'
+    })
+
+    .state('cartaodetalhe', {
+      url: '/cartaodetalhe/:cartaoId/:histId',
+      templateUrl: 'cartaodetalhe'
+    })
+
     .state('addBar', {
       url: '/addBar',
       templateUrl: 'addBar'
