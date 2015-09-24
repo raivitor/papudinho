@@ -18,7 +18,7 @@ app.controller('Cartoes', ['$scope', '$http', '$interval', function($scope, $htt
         $scope.Cartoes = data;
         $scope.msg = " ";
         if(data == 0){
-          $scope.msg = "Sem cartões, para cadastrar um novo cartão clique no +";
+          $scope.msg = "Ainda não tem cartão em nenhum bar!";
         }
       }).
 
