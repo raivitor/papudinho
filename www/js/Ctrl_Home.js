@@ -1,6 +1,6 @@
-app.controller('Home', ['$scope', '$http',  function($scope, $http) {
+app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup', function($scope, $http, $ionicModal, $ionicPopup) {
   window.localStorage['login'] = 1;
-  console.warn("home");
+
   function timedCount() {
     var time;
     if(window.localStorage['login'] == 1){
@@ -35,4 +35,71 @@ app.controller('Home', ['$scope', '$http',  function($scope, $http) {
   }
 
   timedCount();
+
+  $http({
+    url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
+    method: "GET",
+    params: {
+      user: G_usuario.id
+    }
+  }).
+
+  success(function (data, status, headers, config) {
+    $scope.Bares = data;
+  }).
+
+  error(function (data, status, headers, config) {
+    console.log('Error bares');
+  });
+
+  $ionicModal.fromTemplateUrl('my-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up',
+    backdropClickToClose: true,
+    hardwareBackButtonClose: true,
+    focusFirstInput: true
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.checkin = function(bar){
+    $http({
+    url: 'http://developer-papudinho.herokuapp.com/webservice/check_in', 
+    method: "POST",
+    params: {
+      bar_id: bar,
+      user_id: G_usuario.id
+    }
+  }).
+
+  success(function (data, status, headers, config) {
+    $scope.closeModal();
+    alerta($ionicPopup, "Check-in", "Check-in realizado com sucesso!");
+  }).
+
+  error(function (data, status, headers, config) {
+    $scope.closeModal();
+    alerta($ionicPopup, "Check-in", "Erro ao realizar Check-in, tente novamente.");
+    console.error('Checkin');
+  });
+  }
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 }]);
