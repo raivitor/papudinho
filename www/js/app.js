@@ -263,7 +263,7 @@ var G_tempo = 300000;
 "note": ""
 */
 var G_bares = [];
-
+/*
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
@@ -301,4 +301,4 @@ function initPushwoosh(){
             alert(JSON.stringify(['failed to register ', status]))
         }
     );
-}
+}*/
