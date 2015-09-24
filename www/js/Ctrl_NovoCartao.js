@@ -11,7 +11,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
 
   function onSuccess(imageData) {
     fotoCard = imageData;
-    $scope.imgCard = "data:image/jpeg;base64," + fotoCard;
+    $scope.imgDrink = "data:image/jpeg;base64," + fotoCard;
     $scope.$digest();
   }
 
