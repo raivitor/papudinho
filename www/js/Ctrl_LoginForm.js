@@ -1,4 +1,4 @@
-app.controller('LoginForm', ['$scope', '$http', '$location', '$state', function($scope, $http, $location, $state) {
+app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario', function($scope, $http, $location, $state, Usuario) {
   $scope.msg = " ";
   $scope.checked = false;
   $scope.version = window.localStorage['version'];
@@ -41,6 +41,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', function(
       window.localStorage['login'] = 1;
       G_usuario = data;
       $scope.checked = false;
+      Usuario.UpdateToken(G_usuario.id, window.localStorage['token']);
       $location.path('/menu/home');  
     }).
 

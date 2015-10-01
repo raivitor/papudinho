@@ -263,7 +263,7 @@ var G_tempo = 300000;
 "note": ""
 */
 var G_bares = [];
-/*
+
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
@@ -271,7 +271,7 @@ function onDeviceReady() {
     initPushwoosh();
 }
 
-function initPushwoosh(){
+  function initPushwoosh(idUser){
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
  
     //set push notifications handler
@@ -292,13 +292,22 @@ function initPushwoosh(){
     //register for pushes
     pushNotification.registerDevice(
         function(status) {
-            var pushToken = status;
-            console.warn('push token: ' + pushToken);
-            //alert(status)
+          var pushToken = status;
+          console.warn('push token: ' + pushToken);
+          //Usuario.UpdateToken(idUser, pushToken);
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
             alert(JSON.stringify(['failed to register ', status]))
         }
     );
-}*/
+
+    pushNotification.getPushToken(
+      function(token)
+      {
+          //alert(token);
+          console.warn('push token: ' + token);
+          window.localStorage['token'] = token;
+      }
+);
+}

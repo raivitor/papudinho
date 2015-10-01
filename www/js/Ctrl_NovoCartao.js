@@ -10,8 +10,8 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
   }
 
   function onSuccess(imageData) {
-    fotoCard = imageData;
-    $scope.imgDrink = "data:image/jpeg;base64," + fotoCard;
+    fotoDrink = imageData;
+    $scope.imgDrink = "data:image/jpeg;base64," + fotoDrink;
     $scope.$digest();
   }
 
@@ -20,8 +20,8 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
   }
 
   function onSuccess2(imageData) {
-    fotoDrink = imageData;
-    $scope.imgDrink = "data:image/jpeg;base64," + fotoCard;
+    fotoCard = imageData;
+    $scope.imgCard = "data:image/jpeg;base64," + fotoCard;
     $scope.$digest();
   }
 
