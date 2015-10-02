@@ -4,9 +4,9 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
   var fotoDrink = 0;
   $scope.capturePhoto = function(id) {
     if(id == 1)
-      navigator.camera.getPicture(onSuccess, onFail, { quality: 30,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
+      navigator.camera.getPicture(onSuccess, onFail, { quality: 30, destinationType: Camera.DestinationType.DATA_URL });
     else if(id == 2)
-      navigator.camera.getPicture(onSuccess2, onFail2, { quality: 30,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
+      navigator.camera.getPicture(onSuccess2, onFail2, { quality: 30, destinationType: Camera.DestinationType.DATA_URL });
   }
 
   function onSuccess(imageData) {
@@ -75,6 +75,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
     }
 
     $scope.msg = "Salvando...";
+    $scope.msg.focus();
     //console.log("drink: "+$scope.bebida+"\nparticular: "+true+"\nbar: "+$scope.bar+ "\nuser_id: "+G_usuario.id+ "\ndue_date: "+vencimento+ "\ntotal_doses: "+$scope.doses+"\ncard_secret: "+$scope.secreto);
     
     var req = {

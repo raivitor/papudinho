@@ -301,7 +301,6 @@ function onDeviceReady() {
             alert(JSON.stringify(['failed to register ', status]))
         }
     );
-
     pushNotification.getPushToken(
       function(token)
       {
