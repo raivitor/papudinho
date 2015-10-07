@@ -1,5 +1,5 @@
 app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', function($scope, $http, $location, $ionicPopup, CartoesPessoais) {
-  $scope.doses = 10;
+  $scope.doses = 20;
   var fotoCard = 0;
   var fotoDrink = 0;
   $scope.capturePhoto = function(id) {
