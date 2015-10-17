@@ -367,14 +367,18 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
-          <form ng-submit="submitamigo()" ng-controller="AddAmigo">
+          <form ng-controller="AddAmigo">
             <div align="center" class="msg" id="msgcadastro">{{msg}}</div>  
             <ion-list>
-                <label class="item item-input">
-                    <input type="email" placeholder="Email" ng-model="email" >
-                </label>
+              <label class="item item-input">
+                <input type="text" placeholder="nome" ng-model="nome" >
+              </label>
+              <ion-item ng-click="Adicionar(user.email, user.name)" class="item-remove-animate item-icon-right" ng-repeat="user in users | filter:nome" type="item-text-wrap" ng-show="nome.length > 2">
+                ‎<span class="titulo">{{user.name}}</span><br>
+                <small>{{user.email}}</small>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+              </ion-item>
             </ion-list>
-            <input type="submit" id="SalvarAmigo" value="Salvar" class="button button-event button-block" />
           </form>
         </ion-content>
       </ion-view>
