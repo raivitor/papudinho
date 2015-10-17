@@ -58,16 +58,16 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
   */
   if(window.localStorage['login'] == undefined){
     window.localStorage['login'] = 0;
-    console.log("zerei");
+    //console.log("zerei");
     $state.reload();
     //$window.location.reload(true);
   } else if(window.localStorage['login'] == 1) {
     $scope.email = window.localStorage['email'];
     $scope.senha = window.localStorage['senha'];
     $scope.submit();
-    console.log("passei");
+    //console.log("passei");
   } else{
     window.localStorage['login'] = 0;
-    console.log("fiquei");
+    //console.log("fiquei");
   }
 }]);
