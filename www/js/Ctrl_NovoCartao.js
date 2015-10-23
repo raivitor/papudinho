@@ -48,7 +48,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
         return 0;
       }
       else{ //mes atual
-        if(dataUsuario[2]<dataAtual[2]){ // dia anterior
+        if(dataUsuario[1] == dataAtual[1] && dataUsuario[2]<dataAtual[2]){ // dia anterior
           $scope.msg = "Data inválida";
           return 0;
         }
