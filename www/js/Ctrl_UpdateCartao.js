@@ -4,36 +4,36 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   $scope.cartao = CartoesPessoais.getId($scope.id);
   $scope.bar = $scope.cartao.bar;
   $scope.drink = $scope.cartao.drink;
-  console.log($scope.cartao);
   $scope.doses = $scope.cartao.remaining_doses;
-
+  $scope.imgDrinkOld = "data:image/jpeg;base64," + window.localStorage['LastImgDrink'];
+  $scope.imgCardOld = "data:image/jpeg;base64," +window.localStorage['LastImgCard'];
   var fotoCard = 0;
   var fotoDrink = 0;
   $scope.capturePhoto = function(id) {
     if(id == 1)
-      navigator.camera.getPicture(onSuccess, onFail, { quality: 30,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
+      navigator.camera.getPicture(onSuccess, onFail, { quality: 30, destinationType: Camera.DestinationType.DATA_URL });
     else if(id == 2)
-      navigator.camera.getPicture(onSuccess2, onFail2, { quality: 30,  targetWidth: 300, targetHeight: 300,  destinationType: Camera.DestinationType.DATA_URL });
+      navigator.camera.getPicture(onSuccess2, onFail2, { quality: 30, destinationType: Camera.DestinationType.DATA_URL });
   }
 
   function onSuccess(imageData) {
+    fotoDrink = imageData;
+    $scope.imgDrink = "data:image/jpeg;base64," + fotoDrink;
+    $scope.$digest();
+  }
+
+  function onFail(message) {
+    fotoDrink = 0;
+  }
+
+  function onSuccess2(imageData) {
     fotoCard = imageData;
     $scope.imgCard = "data:image/jpeg;base64," + fotoCard;
     $scope.$digest();
   }
 
-  function onFail(message) {
-    fotoCard = 0;
-  }
-
-  function onSuccess2(imageData) {
-    fotoDrink = imageData;
-    $scope.imgDrink = "data:image/jpeg;base64," + fotoCard;
-    $scope.$digest();
-  }
-
   function onFail2(message) {
-    fotoDrink = 0;
+    fotoCard = 0;
   }
 
   $scope.submitcartao = function() {

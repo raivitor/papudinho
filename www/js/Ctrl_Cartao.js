@@ -9,6 +9,8 @@ app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$statePar
     $scope.vencimento = $scope.cartao.due_date;
     $scope.total_doses = $scope.cartao.total_doses;
     $scope.historico = $scope.cartao.historics;
+    window.localStorage['LastImgCard'] = $scope.historico[$scope.historico.length-1].image_card;
+    window.localStorage['LastImgDrink'] = $scope.historico[$scope.historico.length-1].image_drink;
   }
   atualizar();
 

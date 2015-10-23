@@ -16,7 +16,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
   }
 
   function onFail(message) {
-    fotoCard = 0;
+    fotoDrink = 0;
   }
 
   function onSuccess2(imageData) {
@@ -26,7 +26,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
   }
 
   function onFail2(message) {
-    fotoDrink = 0;
+    fotoCard = 0;
   }
 
   $scope.submitcartao = function() {
