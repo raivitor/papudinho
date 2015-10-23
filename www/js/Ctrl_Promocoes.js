@@ -1,14 +1,14 @@
 app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
-  $scope.busca = "";
+  $scope.data = {};
+  $scope.data.busca = "";
   $scope.FiltroTags = function(item) {
-    var trecho = document.getElementById('busca').value;
+    var trecho = $scope.data.busca;
     var palavra = trecho.split(" ");
     cont = 0;
     for (var i = 0; i < palavra.length; i++) {
       if(item.description.toUpperCase().indexOf(palavra[i].toUpperCase()) != -1)
         cont++;
     };
-
     if(cont == palavra.length)
       return true;
     else 
