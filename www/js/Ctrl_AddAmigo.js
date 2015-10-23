@@ -13,7 +13,6 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
       console.log('Error add Amigo: '+data);
   });
 
-
   $scope.Adicionar = function(email, nome) {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Adicionar Amigo',
@@ -31,10 +30,6 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
  };
 
   $scope.submitamigo = function(email) {
-    if($scope.email == undefined){
-      $scope.msg = "O campo 'Email' está vazio";
-      return 0;
-    }
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/new_friendship', 
       method: "POST",
@@ -53,8 +48,5 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
     error(function (data, status, headers, config) {
       console.log('Error add Amigo: '+data);
     });
-
-
-    
   }
 }]);
