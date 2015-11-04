@@ -40,12 +40,19 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
     }).
 
     success(function (data, status, headers, config) {
-      alerta($ionicPopup, "Notificação", "Amizade criada com sucesso!");
-      window.localStorage['atualizarAmigo'] = 1;
-      $location.path('/menu/amigos'); 
+      if(data.msg == "Amizade já existe."){
+        alerta($ionicPopup, "Notificação", "Amizade já existe!");
+      } else{
+        alerta($ionicPopup, "Notificação", "Amizade criada com sucesso!");
+        $scope.nome = "";
+        window.localStorage['atualizarAmigo'] = 1;
+        $location.path('/menu/amigos'); 
+      }
+      
     }).
 
     error(function (data, status, headers, config) {
+      alerta($ionicPopup, "Notificação", "Problema no servidor, tente novamente!");
       console.log('Error add Amigo: '+data);
     });
   }
