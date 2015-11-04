@@ -75,7 +75,6 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
     }
 
     $scope.msg = "Salvando...";
-    $scope.msg.focus();
     //console.log("drink: "+$scope.bebida+"\nparticular: "+true+"\nbar: "+$scope.bar+ "\nuser_id: "+G_usuario.id+ "\ndue_date: "+vencimento+ "\ntotal_doses: "+$scope.doses+"\ncard_secret: "+$scope.secreto);
     
     var req = {
