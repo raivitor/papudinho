@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase', 'autoFocus']);
+var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 
 app.run(function($ionicPlatform, $ionicHistory) {
   $ionicPlatform.ready(function() {
@@ -18,7 +18,6 @@ app.run(function($ionicPlatform, $ionicHistory) {
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
-
     
     getAppVersion(function(version) {
         window.localStorage['version'] = version;
@@ -151,6 +150,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('addCartao', {
+      cache: false,
       url: '/addCartao',
       templateUrl: 'addCartao'
     })
