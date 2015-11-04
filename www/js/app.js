@@ -171,6 +171,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('updatecartao', {
+      cache: false,
       url: '/updatecartao/:cartaoId',
       templateUrl: 'updatecartao'
     })
@@ -181,6 +182,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('addBar', {
+      cache: false,
       url: '/addBar',
       templateUrl: 'addBar'
     })
