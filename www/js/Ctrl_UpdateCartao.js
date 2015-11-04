@@ -5,8 +5,8 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   $scope.bar = $scope.cartao.bar;
   $scope.drink = $scope.cartao.drink;
   $scope.doses = $scope.cartao.remaining_doses;
-  $scope.imgDrinkOld = "data:image/jpeg;base64," + window.localStorage['LastImgDrink'];
-  $scope.imgCardOld = "data:image/jpeg;base64," +window.localStorage['LastImgCard'];
+  $scope.imgDrink = "data:image/jpeg;base64," + window.localStorage['LastImgDrink'];
+  $scope.imgCard = "data:image/jpeg;base64," +window.localStorage['LastImgCard'];
   var fotoCard = 0;
   var fotoDrink = 0;
   $scope.capturePhoto = function(id) {
@@ -44,6 +44,7 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
 
     if(fotoDrink == 0){
       $scope.msg = "Foto da bebida inválida";
+      return 0;
     }
 
     $scope.msg = "Salvando...";
