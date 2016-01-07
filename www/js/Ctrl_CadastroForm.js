@@ -83,8 +83,8 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
 
     error(function (data, status, headers, config) {
       $scope.checked = false;
-      $scope.msg = "Erro ao cadastrar, tente novamente mais tarde.";
-      console.log('Error CadastroForm');
+      if(status == 409)
+        alerta($ionicPopup, "Notificação", "Este email já foi cadastrado. Tente outro.");
     });
   }
 }]);
