@@ -1,7 +1,8 @@
-app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', function($scope, $http, $location, $ionicPopup, CartoesPessoais) {
+app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$ionicScrollDelegate', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $ionicScrollDelegate) {
   $scope.doses = 20;
   var fotoCard = 0;
   var fotoDrink = 0;
+  $scope.checked = false;
   $scope.capturePhoto = function(id) {
     if(id == 1)
       navigator.camera.getPicture(onSuccess, onFail, { quality: 30, destinationType: Camera.DestinationType.DATA_URL });
@@ -30,52 +31,37 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
   }
 
   $scope.submitcartao = function() {
-    var dataUsuario = (new Date($scope.vencimento)).toString().split(' ');
-    dataUsuario[1] = new Date(Date.parse(dataUsuario[1] +" 1, "+dataUsuario[3])).getMonth()+1;
-    vencimento = [dataUsuario[2],dataUsuario[1],dataUsuario[3]].join('/');
+    $scope.msg = "";
 
-    var dataAtual = (new Date()).toString().split(' ');
-    dataAtual[1] = new Date(Date.parse(dataAtual[1] +" 1, "+dataAtual[3])).getMonth()+1;
-    data1 = [dataAtual[2],dataAtual[1],dataAtual[3]].join('/');
-
-    if (dataUsuario[3]<dataAtual[3]) { //ano anterior
-      $scope.msg = "Data inválida";
-      return 0;
-    }
-    else{ //ano atual
-      if (dataUsuario[1]<dataAtual[1]) { //mes anterior
-        $scope.msg = "Data inválida";
-        return 0;
-      }
-      else{ //mes atual
-        if(dataUsuario[1] == dataAtual[1] && dataUsuario[2]<dataAtual[2]){ // dia anterior
-          $scope.msg = "Data inválida";
-          return 0;
-        }
-      }
-    }
-    
-    if($scope.bebida <= 0){
-      $scope.msg = "Bebida inválida";
+    if($scope.vencimento == undefined){
+      alerta($ionicPopup, "Notificação", "Data inválida");
       return 0;
     }
 
-    if($scope.bar <= 0){
-      $scope.msg = "Bar inválido";
+    var dataSplit = (new Date($scope.vencimento)).toString().split(' ');
+    dataSplit[1] = new Date(Date.parse(dataSplit[1] +" 1, "+dataSplit[3])).getMonth()+1;
+    vencimento = [dataSplit[2],dataSplit[1],dataSplit[3]].join('/');
+
+    var dataUsuario = new Date($scope.vencimento);
+    var dataAtual = new Date();
+
+    if(dataAtual > dataUsuario){
+      alerta($ionicPopup, "Notificação", "Data inválida");
+      return 0;
+    } 
+
+    if($scope.bebida == null){
+      alerta($ionicPopup, "Notificação", "Bebida inválida");
       return 0;
     }
 
-    if(fotoCard == 0){
-      $scope.msg = "Foto do cartão inválida";
+    if($scope.bar == null){
+      alerta($ionicPopup, "Notificação", "Bar inválido");
       return 0;
     }
-    
-    if(fotoDrink == 0){
-      $scope.msg = "Foto da bebida inválida";
-    }
 
-    $scope.msg = "Salvando...";
-    //console.log("drink: "+$scope.bebida+"\nparticular: "+true+"\nbar: "+$scope.bar+ "\nuser_id: "+G_usuario.id+ "\ndue_date: "+vencimento+ "\ntotal_doses: "+$scope.doses+"\ncard_secret: "+$scope.secreto);
+    $scope.checked = true;
+    $ionicScrollDelegate.scrollTop();
     
     var req = {
       method: 'POST',
@@ -95,6 +81,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
     }
 
     $http(req).then(function(data){
+      $scope.checked = false;
       window.localStorage['atualizarCartao'] = 1;
       CartoesPessoais.atualizar(G_usuario.id);
       $scope.bebida = null;
@@ -109,8 +96,8 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
       $scope.msg = " ";
       alerta($ionicPopup, "Notificação", "Cartão criado com sucesso!");
       $location.path('/menu/meuscartoes'); 
-      //console.log(data); 
     }, function(data){
+      $scope.checked = false;
       $scope.msg = "Erro ao criar o cartão, tente novamente";
       console.error(data); 
     });

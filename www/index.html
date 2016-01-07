@@ -210,29 +210,6 @@
       </ion-view>
     </script>
 
-    <script id="meuscartoes" type="text/ng-template">
-      <ion-view view-title="Papudinho" ng-controller="MeusCartoes">
-        <ion-nav-buttons side="right">
-          <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
-        </ion-nav-buttons>
-        <ion-content padding="true" class="has-header">
-          <div align="center">{{msg}}</div>
-          <div ng-repeat="cartao in cartoes">
-            <div class="card">
-              <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
-                <p>
-                  Bebida: {{ cartao.drink }}<br>
-                  Bar: {{ cartao.bar }}<br>
-                  Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
-                  Vencimento: {{ cartao.due_date }}<br>
-                </p>
-              </a>
-            </div>
-          </div>
-        </ion-content>
-      </ion-view>
-    </script>
-
     <script id="my-modal.html" type="text/ng-template">
       <ion-modal-view>
         <ion-header-bar>
@@ -257,6 +234,29 @@
           </button>
         </ion-content>
       </ion-modal-view>
+    </script>
+
+    <script id="meuscartoes" type="text/ng-template">
+      <ion-view view-title="Papudinho" ng-controller="MeusCartoes">
+        <ion-nav-buttons side="right">
+          <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
+        </ion-nav-buttons>
+        <ion-content padding="true" class="has-header">
+          <div align="center">{{msg}}</div>
+          <div ng-repeat="cartao in cartoes">
+            <div class="card">
+              <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
+                <p>
+                  Bebida: {{ cartao.drink }}<br>
+                  Bar: {{ cartao.bar }}<br>
+                  Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
+                  Vencimento: {{ cartao.due_date }}<br>
+                </p>
+              </a>
+            </div>
+          </div>
+        </ion-content>
+      </ion-view>
     </script>
 
     <script id="cartao" type="text/ng-template">
@@ -623,7 +623,9 @@
 
         <ion-content padding="true" class="has-header">
           <form ng-controller="NovoCartao">
-            <div align="center">{{msg}}</div>
+          <div align="center">
+            <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
+          </div>
 
             <div class="row">
               <div class="col">
@@ -705,8 +707,9 @@
 
         <ion-content padding="true" class="has-header">
           <form ng-controller="UpdateCartao">
-            <div align="center">{{msg}}</div>
-
+            <div align="center">
+              <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
+            </div>
             <div class="row">
               <div class="col">
                 <label class="item item-input">
@@ -734,14 +737,14 @@
             
             <div class="row">
               <div class='col'>
-                <img ng-src="{{imgDrink}}" height="300" width="100%">
+                <img ng-src="{{imgDrink}}" width="100%">
                 <button ng-click="capturePhoto(1)" class="button button-positive">Tirar Foto da Bebida</button>
               </div>
             </div> 
 
             <div class="row">
               <div class="col">
-                <img ng-src="{{imgCard}}" height="300" width="100%">
+                <img ng-src="{{imgCard}}" width="100%">
                 <button ng-click="capturePhoto(2)" class="button button-positive">Tirar Foto do Cartão</button>
               </div>
             </div>

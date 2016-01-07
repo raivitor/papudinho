@@ -1,41 +1,18 @@
 app.controller('AddBar', ['$scope', '$http', '$location', '$ionicPopup', function($scope, $http, $location, $ionicPopup) {
+  $scope.name = "";
+  $scope.phone = "";
+  $scope.state = "";
+  $scope.city = "";
+  $scope.district = "";
+  $scope.street = "";
+  $scope.number = "";
+  $scope.email = "";
   $scope.submitbar = function() {
-    if($scope.name == undefined){
-      $scope.msg = "O campo 'Nome' está vazio";
-      return 0;
-    }
-    if($scope.phone == undefined){
-      $scope.msg = "O campo 'Telefone' está vazio";
-      return 0;
-    }
-    if($scope.state == undefined){
-      $scope.msg = "O campo 'Estado' está vazio";
-      return 0;
-    }
-    if($scope.city == undefined){
-      $scope.msg = "O campo 'Cidade' está vazio";
-      return 0;
-    }
-    if($scope.district == undefined){
-      $scope.msg = "O campo 'Bairro' está vazio";
-      return 0;
-    }
-    if($scope.street == undefined){
-      $scope.msg = "O campo 'Rua' está vazio";
-      return 0;
-    }
-    if($scope.number == undefined){
-      $scope.msg = "O campo 'Número' está vazio";
-      return 0;
-    }
-    if($scope.email == undefined){
-      $scope.email = "";
-    }
     $scope.msg = "";
     
     GetLocation();
-    console.log("latitude: "+window.localStorage['latitude']);
-    console.log("longitude: "+window.localStorage['longitude']);
+    // console.log("latitude: "+window.localStorage['latitude']);
+    // console.log("longitude: "+window.localStorage['longitude']);
 
     if(window.localStorage['latitude'] == undefined){
       $scope.msg = "Ligue o GPS para termos uma localização precisa" ;  

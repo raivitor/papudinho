@@ -1,4 +1,4 @@
-app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup', '$interval', function($scope, $http, $ionicPlatform, $ionicPopup, $interval) {
+app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup', '$interval', '$location', function($scope, $http, $ionicPlatform, $ionicPopup, $interval, $location) {
   $scope.email = G_usuario.email; 
   $scope.nome = G_usuario.name;
   //Força a atualização por causa do cache
@@ -14,6 +14,8 @@ app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup', '$i
   }
 
   $scope.submitDados = function() {
+    $location.path('/menu/home');
+    return 0;
     if($scope.passwordOld == undefined ){
       alerta($ionicPopup, "Notificação", "O campo 'Senha Antiga' está vazio");
       return 0;

@@ -35,12 +35,14 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup', functio
   }
 
   timedCount();
+  GetLocation();
 
   $http({
-    url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
+    url: 'http://developer-papudinho.herokuapp.com/webservice/get_near_bars', 
     method: "GET",
     params: {
-      user: G_usuario.id
+      latitude: window.localStorage['latitude'],
+      longitude: window.localStorage['longitude']
     }
   }).
 

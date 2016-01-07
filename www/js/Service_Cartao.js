@@ -15,6 +15,7 @@ app.factory('CartoesPessoais', ['$http', function($http){
       }
       $http(req).
         then(function (sucesso) {
+          console.log(sucesso);
           cartoes = sucesso;
           return cartoes;
         },

@@ -1,5 +1,5 @@
-app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$stateParams', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $stateParams) {
-  
+app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$stateParams', '$ionicScrollDelegate', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $stateParams, $ionicScrollDelegate) {
+  $scope.checked = false;
   $scope.id = $stateParams.cartaoId;
   $scope.cartao = CartoesPessoais.getId($scope.id);
   $scope.bar = $scope.cartao.bar;
@@ -37,30 +37,21 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   }
 
   $scope.submitcartao = function() {
-    if(fotoCard == 0){
-      $scope.msg = "Foto do cartão inválida";
-      return 0;
-    }
-
-    if(fotoDrink == 0){
-      $scope.msg = "Foto da bebida inválida";
-      return 0;
-    }
-
-    $scope.msg = "Salvando...";
-    
+    $scope.checked = true;
+    $ionicScrollDelegate.scrollTop();
     var req = {
       method: 'POST',
       url: 'http://developer-papudinho.herokuapp.com/webservice/update_card',
       data: { 
         card_id: $scope.id,
-        remaining_doses : true,
+        remaining_doses : $scope.doses,
         image_card: fotoCard,
         image_drink: fotoDrink
       }
     }
 
     $http(req).then(function(data){
+      $scope.checked = false;
       CartoesPessoais.atualizar(G_usuario.id);
       $scope.bebida = null;
       $scope.bar = null;
@@ -71,9 +62,9 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
       $scope.msg = " ";
       alerta($ionicPopup, "Notificação", "Cartão atualizado com sucesso!");
       $location.path('/menu/meuscartoes'); 
-      //console.log(data); 
     }, function(data){
-      $scope.msg = "Erro ao atualizar o cartão, tente novamente";
+      $scope.checked = false;
+      alerta($ionicPopup, "Notificação", "Erro ao atualizar o cartão, tente novamente.");
       console.error(data); 
     });
     return 0; 

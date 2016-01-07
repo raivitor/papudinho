@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 
-app.run(function($ionicPlatform, $ionicHistory) {
+app.run(function($ionicPlatform, $ionicHistory, $location) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -27,7 +27,10 @@ app.run(function($ionicPlatform, $ionicHistory) {
       str = window.location.href;
       if(str.indexOf("login") > 0){
         navigator.app.exitApp();
-      }
+      } 
+      //else if(str.indexOf("meuscartoes") >= 0 || str.indexOf("amigos") >= 0 || str.indexOf("bares") >= 0 || str.indexOf("cartoes") >= 0 || str.indexOf("promocao") >= 0 || str.indexOf("dados") >= 0 || str.indexOf("config") >= 0){
+        //$location.path('/menu/home'); 
+      //} 
       else{
         $ionicHistory.goBack();
         e.preventDefault();
@@ -73,6 +76,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('eventmenu.home', {
+      cache: false,
       url: "/home",
       views: {
         'menuContent' :{
