@@ -325,9 +325,15 @@
                 Bar:  {{ bar }}<br>
                 Doses restantes: {{ detalhe.remaining_doses}}/{{total_doses }} <br>
                 Vencimento: {{ vencimento }} <br>
-                Criado: {{detalhe.created_at | date:'dd/MM/yyyy HH:mm:ss'}}
-                <img ng-src="data:image/jpeg;base64,{{detalhe.image_card}}" width="100%"><br>
-                <img ng-src="data:image/jpeg;base64,{{detalhe.image_drink}}" width="100%"><br>
+                Criado: {{detalhe.created_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
+                <div class="row">
+                  <div class="col">
+                    <img ng-src="data:image/jpeg;base64,{{detalhe.image_drink}}" width="100%" ng-click="openModal(1)">
+                  </div>
+                  <div class='col'>
+                    <img ng-src="data:image/jpeg;base64,{{detalhe.image_card}}" width="100%" ng-click="openModal(2)">
+                  </div>
+                </div> 
               </p>
             </div>
           </div>

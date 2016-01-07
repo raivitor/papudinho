@@ -1,4 +1,4 @@
-app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$stateParams', '$ionicScrollDelegate', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $stateParams, $ionicScrollDelegate) {
+app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$stateParams', '$ionicScrollDelegate', '$ionicModal', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $stateParams, $ionicScrollDelegate, $ionicModal) {
   $scope.checked = false;
   $scope.id = $stateParams.cartaoId;
   $scope.cartao = CartoesPessoais.getId($scope.id);
@@ -42,7 +42,7 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   $scope.$on('modal.removed', function() {
     // Execute action
   });
-  
+
   $scope.capturePhoto = function(id) {
     if(id == 1)
       navigator.camera.getPicture(onSuccess, onFail, { quality: 30, destinationType: Camera.DestinationType.DATA_URL });
