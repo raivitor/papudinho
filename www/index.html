@@ -676,22 +676,34 @@
             
             <div class="row">
               <div class='col'>
-                <img ng-src="{{imgDrink}}" width="100%">
-                <button ng-click="capturePhoto(1)" class="button button-positive">Tirar Foto da Bebida</button>
+                <img ng-src="{{imgDrink}}" width="100%" ng-click="openModal(1)">
+                <button ng-click="capturePhoto(1)" class="button button-block button-positive">Tirar Foto da Bebida</button>
               </div>
-            </div> 
-
-            <div class="row">
               <div class="col">
-                <img ng-src="{{imgCard}}" width="100%">
-                <button ng-click="capturePhoto(2)" class="button button-positive">Tirar Foto do Cartão</button>
+                <img ng-src="{{imgCard}}" width="100%" ng-click="openModal(2)">
+                <button ng-click="capturePhoto(2)" class="button button-block button-positive">Tirar Foto do Cartão</button>
               </div>
             </div>
+
             <br>
             <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
           </form>
         </ion-content>
       </ion-view>
+    </script>
+
+    <script id="modal-ft.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">{{titulo}}</h1>
+          <div class="buttons">
+            <button class="button button-clear ion-close-circled" ng-click="closeModal()"></button>
+          </div>
+        </ion-header-bar>
+        <ion-content>
+          <img ng-src = "{{img}}" width="100%">
+        </ion-content>
+      </ion-modal-view>
     </script>
 
     <script id="updatecartao" type="text/ng-template">
@@ -737,17 +749,14 @@
             
             <div class="row">
               <div class='col'>
-                <img ng-src="{{imgDrink}}" width="100%">
-                <button ng-click="capturePhoto(1)" class="button button-positive">Tirar Foto da Bebida</button>
+                <img ng-src="{{imgDrink}}" width="100%" ng-click="openModal(1)">
+                <button ng-click="capturePhoto(1)" class="button button-block button-positive">Tirar Foto da Bebida</button>
+              </div>
+              <div class="col">
+                <img ng-src="{{imgCard}}" width="100%" ng-click="openModal(2)">
+                <button ng-click="capturePhoto(2)" class="button button-block button-positive">Tirar Foto do Cartão</button>
               </div>
             </div> 
-
-            <div class="row">
-              <div class="col">
-                <img ng-src="{{imgCard}}" width="100%">
-                <button ng-click="capturePhoto(2)" class="button button-positive">Tirar Foto do Cartão</button>
-              </div>
-            </div>
 
             <br>
             <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />

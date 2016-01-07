@@ -9,6 +9,40 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   $scope.imgCard = "data:image/jpeg;base64," +window.localStorage['LastImgCard'];
   var fotoCard = 0;
   var fotoDrink = 0;
+
+  $ionicModal.fromTemplateUrl('modal-ft.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function(id) {
+    if(id == 1){
+      $scope.titulo = "Bebida";
+      $scope.img = $scope.imgDrink;
+    }
+    else if (id == 2){
+      $scope.titulo = "Cartão";
+      $scope.img = $scope.imgCard;
+    }
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+  
   $scope.capturePhoto = function(id) {
     if(id == 1)
       navigator.camera.getPicture(onSuccess, onFail, { quality: 30, destinationType: Camera.DestinationType.DATA_URL });
