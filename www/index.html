@@ -194,12 +194,15 @@
           <div ng-repeat="cartao in CartoesVencimento">
             <div class="card" ng-hide="cartao.card_secret">
               <div class="item item-text-wrap" >
-                <p>
-                  Bebida: {{ cartao.drink }} <br>
-                  Bar:  {{ cartao.bar }}<br>
-                  Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }} <br>
-                  Vencimento: {{ cartao.due_date }} <br>
-                </p>
+                <div class="row">
+                  <div class="col"><img ng-src = "data:image/jpeg;base64,{{cartao.historics[cartao.historics.length-1].image_drink}}" width="100%"></div>
+                  <div class="col col-75">
+                    Bebida: {{ cartao.drink }}<br>
+                    Bar: {{ cartao.bar }}<br>
+                    Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
+                    Vencimento: {{ cartao.due_date }}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -246,12 +249,15 @@
           <div ng-repeat="cartao in cartoes">
             <div class="card">
               <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
-                <p>
-                  Bebida: {{ cartao.drink }}<br>
-                  Bar: {{ cartao.bar }}<br>
-                  Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
-                  Vencimento: {{ cartao.due_date }}<br>
-                </p>
+                <div class="row">
+                  <div class="col"><img ng-src = "data:image/jpeg;base64,{{cartao.historics[cartao.historics.length-1].image_drink}}" width="100%"></div>
+                  <div class="col col-75">
+                    Bebida: {{ cartao.drink }}<br>
+                    Bar: {{ cartao.bar }}<br>
+                    Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
+                    Vencimento: {{ cartao.due_date }}
+                  </div>
+                </div>
               </a>
             </div>
           </div>
@@ -278,13 +284,15 @@
           <div ng-repeat="cartao in historico">
             <div class="card">
               <a href="#/cartaodetalhe/{{cartao.card_id}}/{{cartao.id}}" class="item item-text-wrap" >
-                <p>
-                  Bebida: {{ drink }} <br>
-                  Bar:  {{ bar }}<br>
-                  Doses restantes: {{ cartao.remaining_doses}}/{{total_doses }} <br>
-                  Vencimento: {{ vencimento }} <br>
-                  Criado: {{cartao.created_at | date:'dd/MM/yyyy HH:mm:ss'}}
-                </p>
+              <div class="row">
+                  <div class="col"><img ng-src = "data:image/jpeg;base64,{{cartao.image_drink}}" width="100%"></div>
+                  <div class="col col-75">
+                    Bebida: {{ drink }} <br>
+                    Bar:  {{ bar }}<br>
+                    Doses restantes: {{ cartao.remaining_doses}}/{{total_doses }} <br>
+                    Vencimento: {{ vencimento }} <br>
+                  </div>
+                </div>
               </a>
             </div>
           </div>
