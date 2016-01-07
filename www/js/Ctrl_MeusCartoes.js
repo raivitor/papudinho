@@ -1,6 +1,6 @@
 app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais', function($scope, $http, $interval, CartoesPessoais) {
 
-  $interval(atualizar, 2000, false);
+  $interval(atualizar, 800, false);
   function atualizar(){
     $scope.cartoes = CartoesPessoais.getCartoes(G_usuario.id);
     $scope.cartoes = $scope.cartoes.data;
