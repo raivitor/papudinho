@@ -245,7 +245,9 @@
           <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
         </ion-nav-buttons>
         <ion-content padding="true" class="has-header">
-          <div align="center">{{msg}}</div>
+          <div align="center">
+            <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
+          </div>
           <div ng-repeat="cartao in cartoes">
             <div class="card">
               <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
