@@ -13,6 +13,8 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
     else if($scope.cartoes == -1){
       $scope.msg = "Erro no servidor";
       $scope.checked = false;
+    } else if($scope.cartoes){
+      $scope.checked = false;
     }
   }
   atualizar();
