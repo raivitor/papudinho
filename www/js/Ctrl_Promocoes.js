@@ -25,16 +25,16 @@ app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
       if(data == 0){
         $scope.msg = "Nenhuma promoção disponível no momento."
       } else {
-        $scope.$broadcast('scroll.refreshComplete');
         $scope.msg = "";
         $scope.Promocoes = data;
       }
     }).
 
     error(function (data, status, headers, config) {
-      $scope.$broadcast('scroll.refreshComplete');
       console.log('Error promocoes');
     });
+
+    $scope.$broadcast('scroll.refreshComplete');
   }
 
   Atualizar();
