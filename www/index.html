@@ -286,7 +286,7 @@
           <div ng-repeat="cartao in historico">
             <div class="card">
               <a href="#/cartaodetalhe/{{cartao.card_id}}/{{cartao.id}}" class="item item-text-wrap" >
-              <div class="row">
+                <div class="row">
                   <div class="col"><img ng-src = "data:image/jpeg;base64,{{cartao.image_drink}}" width="100%"></div>
                   <div class="col col-75">
                     Bebida: {{ drink }} <br>
@@ -520,24 +520,17 @@
             <div class="list">
               <div align="center" class="msg" id="msgcartoes">{{msg}}</div>
               <div ng-repeat="module in Cartoes">
-
                 <a class="item " ng-hide="module.card_secret">
                   <div class="row">
-                    <div class="col">
-                      <p><b>{{ module.bar_name }}</b><br>
-                      {{ module.drink_name }}<br>
-                      {{ module.total_doses }} doses totais</p>
+                    <div class="col"><img ng-src = "{{module.image_drink}}" width="100%"></div>
+                    <div class="col col-75">
+                      Bar:  {{ module.bar }}<br>
+                      Bebida: {{ module.drink }} <br>
+                      Doses restantes: {{ module.remaining_doses}}/{{module.total_doses }} <br>
+                      Vencimento: {{ module.due_date }} <br>
                     </div>
-                    <div class="col">
-                      <p>{{ module.remaining_doses }} Doses restantes<br>
-                      Venc: {{ module.due_date }}</p>
-                    </div>
-                    <!-- <div class="col">
-                      <img src="data:image/jpg;base64,{{module.card_picture}}"/>
-                    </div> -->
                   </div>
                 </a>
-
               </div>
             </div>
           </ion-content>
