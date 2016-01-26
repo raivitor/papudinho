@@ -1,9 +1,11 @@
 app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais', function($scope, $http, $interval, CartoesPessoais) {
   $scope.checked = true;
-  $interval(atualizar, 2000, false);
+  atualizar();
+  $interval(atualizar, 1000, false);
   function atualizar(){
     $scope.cartoes = CartoesPessoais.getCartoes(G_usuario.id);
     $scope.cartoes = $scope.cartoes.data;
+    //console.log($scope.cartoes);
     $scope.msg = "";
     
     if($scope.cartoes == false){
@@ -17,5 +19,4 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
       $scope.checked = false;
     }
   }
-  atualizar();
 }]);
