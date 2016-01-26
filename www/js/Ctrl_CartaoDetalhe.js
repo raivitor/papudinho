@@ -16,11 +16,11 @@ app.controller('CartaoDetalhe', ['$scope', 'CartoesPessoais', '$stateParams', '$
   $scope.openModal = function(id) {
     if(id == 1){
       $scope.titulo = "Bebida";
-      $scope.img = "data:image/jpeg;base64," + $scope.detalhe.image_drink;
+      $scope.img = $scope.detalhe.image_drink.url;
     }
     else if (id == 2){
       $scope.titulo = "Cartão";
-      $scope.img = "data:image/jpeg;base64," + $scope.detalhe.image_card;
+      $scope.img = $scope.detalhe.image_card.url;
     }
     $scope.modal.show();
   };

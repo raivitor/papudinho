@@ -5,8 +5,8 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   $scope.bar = $scope.cartao.bar;
   $scope.drink = $scope.cartao.drink;
   $scope.doses = $scope.cartao.remaining_doses;
-  $scope.imgDrink = "data:image/jpeg;base64," + window.localStorage['LastImgDrink'];
-  $scope.imgCard = "data:image/jpeg;base64," +window.localStorage['LastImgCard'];
+  $scope.imgDrink = window.localStorage['LastImgDrink'];
+  $scope.imgCard = window.localStorage['LastImgCard'];
   var fotoCard = 0;
   var fotoDrink = 0;
 
@@ -79,8 +79,8 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
       data: { 
         card_id: $scope.id,
         remaining_doses : $scope.doses,
-        image_card: fotoCard,
-        image_drink: fotoDrink
+        image_card: $scope.imgCard,
+        image_drink: $scope.imgDrink
       }
     }
 

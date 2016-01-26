@@ -195,7 +195,7 @@
             <div class="card" ng-hide="cartao.card_secret">
               <div class="item item-text-wrap" >
                 <div class="row">
-                  <div class="col"><img ng-src = "data:image/jpeg;base64,{{cartao.historics[cartao.historics.length-1].image_drink}}" width="100%"></div>
+                  <div class="col"><img ng-src = "{{cartao.historics[cartao.historics.length-1].image_drink.url}}" width="100%"></div>
                   <div class="col col-75">
                     Bebida: {{ cartao.drink }}<br>
                     Bar: {{ cartao.bar }}<br>
@@ -252,7 +252,7 @@
             <div class="card">
               <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
                 <div class="row">
-                  <div class="col"><img ng-src = "data:image/jpeg;base64,{{cartao.historics[cartao.historics.length-1].image_drink}}" width="100%"></div>
+                  <div class="col"><img ng-src = "{{cartao.historics[cartao.historics.length-1].image_drink.url}}" width="100%"></div>
                   <div class="col col-75">
                     Bebida: {{ cartao.drink }}<br>
                     Bar: {{ cartao.bar }}<br>
@@ -287,7 +287,7 @@
             <div class="card">
               <a href="#/cartaodetalhe/{{cartao.card_id}}/{{cartao.id}}" class="item item-text-wrap" >
                 <div class="row">
-                  <div class="col"><img ng-src = "data:image/jpeg;base64,{{cartao.image_drink}}" width="100%"></div>
+                  <div class="col"><img ng-src = "{{cartao.image_drink.url}}" width="100%"></div>
                   <div class="col col-75">
                     Bebida: {{ drink }} <br>
                     Bar:  {{ bar }}<br>
@@ -330,10 +330,10 @@
                 Criado: {{detalhe.created_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
                 <div class="row">
                   <div class="col">
-                    <img ng-src="data:image/jpeg;base64,{{detalhe.image_drink}}" width="100%" ng-click="openModal(1)">
+                    <img ng-src="{{detalhe.image_drink.url}}" width="100%" ng-click="openModal(1)">
                   </div>
                   <div class='col'>
-                    <img ng-src="data:image/jpeg;base64,{{detalhe.image_card}}" width="100%" ng-click="openModal(2)">
+                    <img ng-src="{{detalhe.image_card.url}}" width="100%" ng-click="openModal(2)">
                   </div>
                 </div> 
               </p>

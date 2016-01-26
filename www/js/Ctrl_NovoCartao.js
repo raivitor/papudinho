@@ -109,8 +109,8 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
         total_doses: $scope.doses,
         remaining_doses: $scope.doses,
         card_secret: $scope.secreto,
-        image_card: fotoCard,
-        image_drink: fotoDrink
+        image_card: $scope.imgCard,
+        image_drink: $scope.imgDrink
       }
     }
 
