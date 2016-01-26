@@ -17,12 +17,12 @@ app.factory('Usuario', ['$http', function($http){
       }
       $http(req).
         then(function (sucesso) {
-          console.warn("Sucesso token");
-          console.log(sucesso);
+          /*console.warn("Sucesso token");
+          console.log(sucesso);*/
         },
         function(fail){
           console.error("Fail token");
-          console.log(fail);
+          //console.log(fail);
         });
     }
   }
