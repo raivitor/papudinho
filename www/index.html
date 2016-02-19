@@ -520,9 +520,9 @@
             <div class="list">
               <div align="center" class="msg" id="msgcartoes">{{msg}}</div>
               <div ng-repeat="module in Cartoes">
-                <a class="item " ng-hide="module.card_secret">
+                <div class="item " ng-hide="module.card_secret">
                   <div class="row">
-                    <div class="col"><img ng-src = "{{module.image_drink}}" width="100%"></div>
+                    <div class="col"><img ng-src = "{{module.historics[module.historics.length-1].image_drink.url}}" width="100%"></div>
                     <div class="col col-75">
                       Bar:  {{ module.bar }}<br>
                       Bebida: {{ module.drink }} <br>
@@ -530,7 +530,7 @@
                       Vencimento: {{ module.due_date }} <br>
                     </div>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </ion-content>
@@ -675,7 +675,10 @@
             <div class="row">
               <div class="col col-80">
                 <div class="item range range-positive">
+                  <a class="button button-icon icon  ion-minus-round" ng-click="ChangeRange(-1)"></a>
+                  &nbsp;&nbsp;&nbsp;
                   <input type="range" name="doses" min="0" max="20" value="1" ng-model="doses">
+                  <a class="button button-icon icon  ion-plus-round" ng-click="ChangeRange(1)"></a>
                 </div>
               </div>
               <div class="col col-center" align="center">
@@ -748,11 +751,16 @@
             </div>
 
             <div class="row">
-              <div class="col ">
+              <div class="col col-80">
                 <div class="item range range-positive">
+                  <a class="button button-icon icon  ion-minus-round" ng-click="ChangeRange(-1)"></a>
+                  &nbsp;&nbsp;&nbsp;
                   <input type="range" name="doses" min="0" max="20" value="1" ng-model="doses">
-                  <p>Doses restantes: {{doses}}</p>
+                  <a class="button button-icon icon  ion-plus-round" ng-click="ChangeRange(1)"></a>
                 </div>
+              </div>
+              <div class="col col-center" align="center">
+                <p>Doses : {{doses}}</p>
               </div>
             </div>
             

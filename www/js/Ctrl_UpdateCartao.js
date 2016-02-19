@@ -5,8 +5,11 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   $scope.bar = $scope.cartao.bar;
   $scope.drink = $scope.cartao.drink;
   $scope.doses = $scope.cartao.remaining_doses;
-  $scope.imgDrink = window.localStorage['LastImgDrink'];
-  $scope.imgCard = window.localStorage['LastImgCard'];
+  $scope.historico = $scope.cartao.historics;
+  $scope.imgDrink = $scope.historico[$scope.historico.length-1].image_drink.url;
+  //window.localStorage['LastImgDrink'];
+  $scope.imgCard = $scope.historico[$scope.historico.length-1].image_card.url; 
+  //window.localStorage['LastImgCard'];
   var fotoCard = 0;
   var fotoDrink = 0;
 
@@ -16,6 +19,15 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   }).then(function(modal) {
     $scope.modal = modal;
   });
+
+  $scope.ChangeRange = function(val){
+    $scope.doses = $scope.doses + parseInt(val);
+    if($scope.doses<0)
+      $scope.doses = 0;
+    if($scope.doses > 20)
+      $scope.doses=20;
+  }
+  
   $scope.openModal = function(id) {
     if(id == 1){
       $scope.titulo = "Bebida";

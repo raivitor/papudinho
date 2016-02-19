@@ -181,6 +181,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('cartaodetalhe', {
+      cache: false,
       url: '/cartaodetalhe/:cartaoId/:histId',
       templateUrl: 'cartaodetalhe'
     })
