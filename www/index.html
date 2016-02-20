@@ -696,11 +696,14 @@
                 <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Tirar Foto do Cartão</button>
               </div>
             </div>
-
-            <br>
-            <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
+            <br/><br/>
           </form>
         </ion-content>
+          <div class="bar bar-footer" ng-click="openModal()">
+            <div class="title">
+            <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
+            </div>
+          </div>
       </ion-view>
     </script>
 
@@ -773,12 +776,15 @@
                 <img ng-src="{{imgCard}}" width="100%" ng-click="openModal(2)">
                 <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Tirar Foto do Cartão</button>
               </div>
-            </div> 
-
-            <br>
-            <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
+            </div>
+            <br/><br/>
           </form>
         </ion-content>
+        <div class="bar bar-footer" ng-click="openModal()">
+          <div class="title">
+            <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block" enctype="multipart/form-data" />
+          </div>
+        </div>
       </ion-view>
     </script>
 
