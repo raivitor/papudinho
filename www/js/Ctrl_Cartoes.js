@@ -1,6 +1,6 @@
-app.controller('Cartoes', ['$scope', '$http', function($scope, $http) {
+app.controller('Cartoes', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
   atualizar();
-  //$interval(atualizar, 2000, false);
+  $interval(atualizar, 3000, false);
   function atualizar(){
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
@@ -14,7 +14,7 @@ app.controller('Cartoes', ['$scope', '$http', function($scope, $http) {
       $scope.$broadcast('scroll.refreshComplete');
       $scope.Cartoes = data;
       $scope.msg = " ";
-      console.log(data);
+      //console.log(data);
       if(data == 0){
         $scope.msg = "Ainda não tem cartão em nenhum bar!";
       }
