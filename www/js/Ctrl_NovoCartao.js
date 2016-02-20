@@ -109,6 +109,16 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
       return 0;
     }
 
+    if(fotoDrink == 0){
+      alerta($ionicPopup, "Notificação", "Tire uma foto da bebida para continuar.");
+      return 0;
+    }
+
+    if(fotoCard == 0){
+      alerta($ionicPopup, "Notificação", "Tire uma foto do cartão para continuar.");
+      return 0;
+    }
+
     $scope.checked = true;
     $ionicScrollDelegate.scrollTop();
     

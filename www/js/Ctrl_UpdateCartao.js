@@ -83,6 +83,15 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   }
 
   $scope.submitcartao = function() {
+    if(fotoDrink == 0){
+      alerta($ionicPopup, "Notificação", "Tire uma foto da bebida para continuar.");
+      return 0;
+    }
+
+    if(fotoCard == 0){
+      alerta($ionicPopup, "Notificação", "Tire uma foto do cartão para continuar.");
+      return 0;
+    }
     $scope.checked = true;
     $ionicScrollDelegate.scrollTop();
     var req = {
