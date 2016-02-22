@@ -7,6 +7,27 @@ app.controller('AddBar', ['$scope', '$http', '$location', '$ionicPopup', functio
   $scope.street = "";
   $scope.number = "";
   $scope.email = "";
+
+  $scope.Gps = function(){
+    GetLocation();
+
+    $http({
+      url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+window.localStorage['latitude']+','+window.localStorage['longitude']+'&sensor=true', 
+      method: "GET"
+    }).
+
+    success(function (data, status, headers, config) {
+      $scope.street = data.results[0].address_components[1].short_name;
+      $scope.district = data.results[0].address_components[2].short_name;
+      $scope.city = data.results[0].address_components[3].short_name;
+      $scope.state = data.results[0].address_components[5].short_name;
+    }).
+
+    error(function (data, status, headers, config) {
+      console.log(data);
+    });
+  }
+
   $scope.submitbar = function() {
     $scope.msg = "";
     

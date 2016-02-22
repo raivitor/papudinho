@@ -479,7 +479,7 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
-          <form ng-submit="submitbar()" ng-controller="AddBar">
+          <form ng-controller="AddBar">
             <div align="center" class="msg" id="msgAddBar">{{msg}}</div>  
               <ion-list>
                 <label class="item item-input">
@@ -507,7 +507,11 @@
                     <input type="email" placeholder="Email" ng-model="email" >
                 </label>
               </ion-list>
-            <input type="submit" value="Sugerir" class="button button-block button-event" />
+              <br>
+              <button class="button button-small button-positive" ng-click="Gps()">
+                Pegar valores pelo GPS
+              </button>
+            <input type="submit" value="Sugerir" class="button button-block button-event" ng-click="submitbar()" />
           </form>
         </ion-content>
       </ion-view>

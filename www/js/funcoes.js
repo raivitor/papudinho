@@ -61,7 +61,7 @@ function Comparar(){
     lat = conversor(G_bares[i].latitude);
     lon = conversor(G_bares[i].longitude);
     distancia = Distancia(lat, lon, conversor(window.localStorage['latitude']), conversor(window.localStorage['longitude']));
-    console.log(distancia);
+    //console.log(distancia);
     if(distancia <= 1.0){
       Notificar("O bar "+G_bares[i].name+" está perto de você!");
     }
