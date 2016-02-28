@@ -1,4 +1,4 @@
-app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  function($scope, $http, $location, $ionicPopup) {
+app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup', '$ionicModal', function($scope, $http, $location, $ionicPopup, $ionicModal) {
   $scope.checked = false;
   $scope.submitcadastro = function() {
     $scope.msg = "";
@@ -87,4 +87,30 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup',  
         alerta($ionicPopup, "Notificação", "Este email já foi cadastrado. Tente outro.");
     });
   }
+
+  $ionicModal.fromTemplateUrl('my-contrato.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openModal = function(id) {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 }]);

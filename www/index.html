@@ -97,35 +97,58 @@
 
             <form ng-submit="submitcadastro()" ng-controller="CadastroForm">
                 <ion-list>
-                    <div align="center" class="msg" id="msgcadastro" ng-model="checked">
-                      <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
-                    </div>
-                    <label class="item item-input label-index" >
-                        <input class="placeholder" type="text" placeholder="Nome" ng-model="user">
-                    </label>
-                    <label class="item item-input label-index">
-                        <input class="placeholder" type="email" placeholder="Email" ng-model="email">
-                    </label>
-                    <label class="item item-input label-index">
-                        <input class="placeholder" type="text" placeholder="Celular" mask="(99) 99999-9999" clean="false" ng-model="phone">
-                    </label>
-                    <label class="item item-input label-index">
-                        <input class="placeholder" type="text" placeholder="CPF" mask="999.999.999-99" clean="false" ng-model="cpf">
-                    </label>
-                    <label class="item item-input label-index">
-                        <input class="placeholder" type="password" placeholder="Senha" ng-model="password">
-                    </label>
-                    <label class="item item-input label-index">
-                        <input class="placeholder" type="password" placeholder="Confirmar Senha" ng-model="password2">
-                    </label>
+                  <div align="center" class="msg" id="msgcadastro" ng-model="checked">
+                    <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
+                  </div>
+                  <label class="item item-input label-index" >
+                      <input class="placeholder" type="text" placeholder="Nome" ng-model="user">
+                  </label>
+                  <label class="item item-input label-index">
+                      <input class="placeholder" type="email" placeholder="Email" ng-model="email">
+                  </label>
+                  <label class="item item-input label-index">
+                      <input class="placeholder" type="text" placeholder="Celular" mask="(99) 99999-9999" clean="false" ng-model="phone">
+                  </label>
+                  <label class="item item-input label-index">
+                      <input class="placeholder" type="text" placeholder="CPF" mask="999.999.999-99" clean="false" ng-model="cpf">
+                  </label>
+                  <label class="item item-input label-index">
+                      <input class="placeholder" type="password" placeholder="Senha" ng-model="password">
+                  </label>
+                  <label class="item item-input label-index">
+                      <input class="placeholder" type="password" placeholder="Confirmar Senha" ng-model="password2">
+                  </label>
+                  <span style="color: blue;" ng-click="openModal()">Ler os termos do contrato</span><br><br>
+                  <ion-list  class="item item-input label-index">
+                    <ion-checkbox ng-model="termo" class="item item-input label-index" style="border-bottom: 0px;!important ">
+                      <span style="color: white;">Aceito os termos do contrato</span>
+                    </ion-checkbox> 
+                  </ion-list>
                 </ion-list>
-                <button class="button button-event button-block ">
-                    <i class="button button-icon icon ion-ios-checkmark-empty" style="color: white;">&nbsp;Cadastrar</i>
-                  </button>
+                <button class="button button-event button-block" ng-show="termo">
+                  <i class= "button button-icon icon ion-ios-checkmark-empty" style="color: white;">&nbsp;Cadastrar</i>
+                </button>
             </form>
         </ion-content>
-
     </ion-view>
+    </script>
+
+    <script id="my-contrato.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">Contrato</h1>
+          <div class="buttons">
+            <button class="button button-clear ion-close-circled" ng-click="closeModal()"></button>
+          </div>
+        </ion-header-bar>
+        <ion-content style="margin-left: 10px; margin-right: 10px;">
+          <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel arcu nisl. Praesent nec nisl at tortor vehicula condimentum quis in magna. Donec luctus lorem eget arcu blandit rutrum. Sed eu ultrices mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ut accumsan quam, vel congue enim. Fusce varius, arcu sit amet rutrum dictum, est nisi finibus felis, non convallis sem quam quis eros. Aenean id euismod eros. Praesent consequat nibh ut nulla porta tempus. Vivamus ac nibh ac magna elementum pulvinar. Sed porta dolor ac quam fringilla, id maximus libero venenatis. Sed ac tincidunt elit, eu ornare quam.</p>
+
+          <p  align="justify">Proin laoreet ex eget volutpat rutrum. Vivamus lacinia congue velit, quis pretium lacus tempor vel. Morbi congue egestas nisl sed finibus. Maecenas ut pulvinar tellus. Mauris lobortis mauris sit amet libero suscipit malesuada. Donec diam nisl, blandit ac posuere ac, volutpat et eros. Vivamus sit amet egestas tellus, et vestibulum nunc. Ut ullamcorper posuere nisi, et cursus nulla semper non. Aenean non dictum nulla. Proin felis ipsum, dignissim nec purus id, vestibulum euismod ex. Cras gravida nisl tortor, id mollis ex tincidunt sed. Sed pellentesque ipsum vel porta porta. Nullam sit amet sem id nisl dapibus finibus.</p>
+
+          <p  align="justify">Quisque id placerat dui. Duis vitae condimentum orci, quis finibus nibh. In scelerisque justo neque, a commodo risus lacinia non. Maecenas ultrices massa commodo elit varius consequat. Nam urna risus, pulvinar eu interdum vel, imperdiet at leo. Integer hendrerit suscipit dapibus. Sed efficitur ullamcorper neque eget sollicitudin. Curabitur mi neque, lobortis at accumsan a, euismod ac diam.</p>
+        </ion-content>
+      </ion-modal-view>
     </script>
 
     <script id="senha" type="text/ng-template">
