@@ -21,11 +21,11 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   });
 
   $scope.ChangeRange = function(val){
-    $scope.doses = $scope.doses + parseInt(val);
-    if($scope.doses<0)
+    $scope.doses = parseInt($scope.doses) + parseInt(val);
+    if($scope.doses <= 0)
       $scope.doses = 0;
-    if($scope.doses > 20)
-      $scope.doses=20;
+    if($scope.doses >= 20)
+      $scope.doses = 20;
   }
   
   $scope.openModal = function(id) {
