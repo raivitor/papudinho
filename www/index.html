@@ -701,9 +701,11 @@
               </div>
             </div>
             <br/><br/>
-            <input type="submit" value="Salvar" class="button button-event button-block" />
           </form>
         </ion-content>
+        <div class="bar bar-footer button-event" ng-controller="FooterNovoCartao">
+          <div class="title" ng-click="click1()">Salvar</div>
+        </div>
       </ion-view>
     </script>
 
@@ -777,10 +779,11 @@
                 <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Tirar Foto do Cartão</button>
               </div>
             </div>
-            <br/><br/>
-            <input type="submit" value="Salvar" ng-click="submitcartao()" class="button button-event button-block"/>
           </form>
         </ion-content>
+        <div class="bar bar-footer button-event" ng-controller="FooterUpdateCartao">
+          <div class="title" ng-click="click1()">Salvar</div>
+        </div>
       </ion-view>
     </script>
 

@@ -1,4 +1,4 @@
-app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$ionicScrollDelegate', '$ionicModal', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $ionicScrollDelegate, $ionicModal) {
+app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$ionicScrollDelegate', '$ionicModal', '$rootScope', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $ionicScrollDelegate, $ionicModal, $rootScope) {
   $scope.doses = 20;
   var fotoCard = 0;
   var fotoDrink = 0;
@@ -161,5 +161,16 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
       console.error(data); 
     });
     return 0; 
+  }
+
+  $scope.$on('novoCartao', function() {
+    $scope.submitcartao();
+  })
+}]);
+
+
+app.controller('FooterNovoCartao', ['$scope', '$rootScope',  function($scope, $rootScope) {
+  $scope.click1 = function () {
+      $rootScope.$broadcast('novoCartao');
   }
 }]);

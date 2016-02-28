@@ -124,4 +124,14 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
     });
     return 0; 
   }
+
+  $scope.$on('updatecartao', function() {
+    $scope.submitcartao();
+  })
+}]);
+
+app.controller('FooterUpdateCartao', ['$scope', '$rootScope',  function($scope, $rootScope) {
+  $scope.click1 = function () {
+      $rootScope.$broadcast('updatecartao');
+  }
 }]);
