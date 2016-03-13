@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="br.com.saite.papudinho" version="0.17.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+  <name>Papudinho</name>
+  <description>
+    Aplicativo sobre Whisky
+  </description>
+  <author email="raivitor@gmail.com">
+      Rai Vitor Morais da Silva
+  </author>
+  <preference name="phonegap-version" value="3.7.0" />
+
+  <content src="index.html"/>
+  <access origin="*"/>
+  <icon src="img/logo-papudinho.png" />
+  <platform name="android">
+    <icon src="img/logo-papudinho.png" density="ldpi" />
+    <icon src="img/logo-papudinho.png" density="mdpi" />
+    <icon src="img/logo-papudinho.png" density="hdpi" />
+    <icon src="img/logo-papudinho.png" density="xhdpi" />
+  </platform>
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="BackupWebStorage" value="none"/>
+
+
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+  
+  <feature name="http://api.phonegap.com/1.0/camera" />
+  <feature name="http://api.phonegap.com/1.0/file" />
+  
+  <!-- <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" /> -->
+  <gap:plugin name="org.apache.cordova.geolocation"/>
+  <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.4.2" />
+  <gap:plugin name="net.bgta.phonegap.plugin.appversion" version="1.1.1" />
+  <gap:plugin name="org.apache.cordova.camera" version="0.3.6" />
+  <!-- <gap:plugin name="com.performanceactive.plugins.camera" version="1.4" /> -->
+  <gap:plugin name="org.li8.inappbrowser" version="0.1" />
+
+  <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
+
+  <!-- The above is equivalent to these three declarations -->
+  <allow-navigation href="http://*/*" />
+  <allow-navigation href="https://*/*" />
+  <allow-navigation href="data:*" />
+
+</widget>
