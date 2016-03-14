@@ -391,7 +391,40 @@
             </ion-list>
           </div>
         </ion-content>
+        <div class="bar bar-footer button-event" ng-click="openModal()">
+          <div class="title">Solicitações pentendentes: {{num}}</div>
+        </div>
       </ion-view>
+    </script>
+
+    <script id="modal-amigos.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">Solicitações pentendentes</h1>
+          <div class="buttons">
+            <button class="button button-clear ion-close-circled" ng-click="closeModal()"></button>
+          </div>
+        </ion-header-bar>
+        <ion-content>
+          <div class="list list-inset">
+              <div class="item" ng-hide="p1 == true">
+                <div class="row">
+                  <div class="col col-60 col-center">José Antonio da Silva</div>
+                  <div class="col"><a class="button button-icon icon ion-checkmark-round" ng-click="aceitar(1)"></a></div>
+                  <div class="col"><a class="button button-icon icon ion-close-round" ng-click="deletar(1)"></a></div>
+                </div>
+              </div>
+
+               <div class="item" ng-hide="p2 == true">
+                <div class="row">
+                  <div class="col col-60 col-center">Carlos dos Santos Paiva</div>
+                  <div class="col"><a class="button button-icon icon ion-checkmark-round" ng-click="aceitar(2)"></a></div>
+                  <div class="col"><a class="button button-icon icon ion-close-round" ng-click="deletar(2)"></a></div>
+                </div>
+              </div>
+          </div>
+        </ion-content>
+      </ion-modal-view>
     </script>
 
     <script id="addAmigo" type="text/ng-template">

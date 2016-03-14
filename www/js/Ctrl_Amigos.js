@@ -1,4 +1,4 @@
-app.controller('Amigos', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
+app.controller('Amigos', ['$scope', '$http', '$interval', '$ionicModal', '$ionicPopup', function($scope, $http, $interval, $ionicModal, $ionicPopup) {
   
   $interval(atualizar, 1000, false);
   
@@ -26,5 +26,64 @@ app.controller('Amigos', ['$scope', '$http', '$interval', function($scope, $http
       });
     } 
   }
+
+  $scope.aceitar = function(id){
+    if(id==1)
+      $scope.p1 = true;
+    else
+      $scope.p2=true;
+    $scope.num--;
+  }
+
+  $scope.num = 2;
+  $scope.deletar = function(id) {
+    if(id == 1)
+      nome = "José Antonio da Silva";
+    else
+      nome = "Carlos dos Santos Paiva";
+
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Cancelar solicitação',
+      template: 'Deseja excluir a solicitação de amizade de '+nome+' ?',
+      cancelText: 'Manter',
+      cancelType: 'button-positive',
+      okText: 'Excluir',
+      okType: 'button-assertive'
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        if(id == 1)
+          $scope.p1 = true;
+        else
+          $scope.p2 = true;
+        $scope.num--;
+      }
+    });
+   };
+
+  $ionicModal.fromTemplateUrl('modal-amigos.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function(id) {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 
 }]);
