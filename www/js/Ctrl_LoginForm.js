@@ -35,7 +35,6 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
       $scope.msg = "";
       $scope.email = "";
       $scope.senha = "";
-      window.localStorage['atualizarAmigo'] = 1;
       window.localStorage['atualizarDados'] = 1;
       window.localStorage['atualizarCartao'] = 1;
       window.localStorage['login'] = 1;

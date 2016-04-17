@@ -40,6 +40,7 @@
     <script src="js/Ctrl_UpdateCartao.js"></script>
     <script src="js/Service_Cartao.js"></script>
     <script src="js/Service_Usuario.js"></script>
+    <script src="js/Service_Amizade.js"></script>
     <script src="js/diretivas.js"></script>
     <script src="js/funcoes.js"></script>
     
@@ -383,7 +384,7 @@
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
             <ion-list>
-              <ion-item href="#/chat/{{amigo.user_id}}/{{amigo.name}}" class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" >
+              <ion-item href="#/chat/{{amigo.user_id}}/{{amigo.name}}" class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" on-hold="deletar({{amigo.friendship_id}}, '{{amigo.name}}')">
                 ‎<span class="titulo">{{amigo.name}}</span><br>
                 <small>{{amigo.phone}}</small>
                 <i class="icon ion-chevron-right icon-accessory"></i>
@@ -392,7 +393,7 @@
           </div>
         </ion-content>
         <div class="bar bar-footer button-event" ng-click="openModal()">
-          <div class="title">Solicitações pentendentes: {{num}}</div>
+          <div class="title">Solicitações pentendentes: {{solPen}}</div>
         </div>
       </ion-view>
     </script>
@@ -407,21 +408,13 @@
         </ion-header-bar>
         <ion-content>
           <div class="list list-inset">
-              <div class="item" ng-hide="p1 == true">
-                <div class="row">
-                  <div class="col col-60 col-center">José Antonio da Silva</div>
-                  <div class="col"><a class="button button-icon icon ion-checkmark-round" ng-click="aceitar(1)"></a></div>
-                  <div class="col"><a class="button button-icon icon ion-close-round" ng-click="deletar(1)"></a></div>
-                </div>
+            <div class="item" ng-hide="p1 == true" ng-repeat="solicitacao in solicitacoes">
+              <div class="row">
+                <div class="col col-60 col-center">{{solicitacao.friendship_id}}-{{solicitacao.name}}</div>
+                <div class="col"><a class="button button-icon icon ion-checkmark-round" ng-click="aceitar({{solicitacao.friendship_id}})"></a></div>
+                <div class="col"><a class="button button-icon icon ion-close-round" ng-click="deletar({{solicitacao.friendship_id}}, '{{solicitacao.name}}')"></a></div>
               </div>
-
-               <div class="item" ng-hide="p2 == true">
-                <div class="row">
-                  <div class="col col-60 col-center">Carlos dos Santos Paiva</div>
-                  <div class="col"><a class="button button-icon icon ion-checkmark-round" ng-click="aceitar(2)"></a></div>
-                  <div class="col"><a class="button button-icon icon ion-close-round" ng-click="deletar(2)"></a></div>
-                </div>
-              </div>
+            </div>
           </div>
         </ion-content>
       </ion-modal-view>

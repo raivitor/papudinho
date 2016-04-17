@@ -1,50 +1,47 @@
-app.controller('Amigos', ['$scope', '$http', '$interval', '$ionicModal', '$ionicPopup', function($scope, $http, $interval, $ionicModal, $ionicPopup) {
-  
-  $interval(atualizar, 1000, false);
-  
-  function atualizar() {
-    if(window.localStorage['atualizarAmigo'] == 1){
-      window.localStorage['atualizarAmigo'] = 0;
-      $http({
-        url: 'http://developer-papudinho.herokuapp.com/webservice/friends', 
-        method: "GET",
-        params: {
-          id: G_usuario.id
-        }
-      }).
+app.controller('Amigos', ['$scope', '$ionicModal', '$ionicPopup', 'Amizade', function($scope, $ionicModal, $ionicPopup, Amizade) {
+  var amigos;
+  $scope.solicitacoes;
+  $scope.solPen = 0; //Quantidade de solicitacoes pendentes
 
-      success(function (data, status, headers, config) {
-        if( data == 0){
+  //console.log(G_usuario.id);
+  //G_usuario.id = 7; //msn
+  G_usuario.id = 13; //gmail
+  ListarAmigos();
+  ListarSolicitacoes();
+
+  function ListarAmigos(){
+    Amizade.getAllAmigos(G_usuario.id).then(function(_amigos){
+      $scope.Amigos = _amigos;
+      if($scope.Amigos != -1){
+        if($scope.Amigos.length == 0){
           $scope.msg = "Você ainda não tem amigos, clique no + para adicionar novos amigos";
-        } else{
-          $scope.Amigos = data;  
         }
-      }).
-
-      error(function (data, status, headers, config) {
-        console.log('Error Amigos');
-      });
-    } 
+      }
+      //console.log($scope.Amigos);
+    });
+    
   }
 
-  $scope.aceitar = function(id){
-    if(id==1)
-      $scope.p1 = true;
-    else
-      $scope.p2=true;
-    $scope.num--;
+  function ListarSolicitacoes(){
+    Amizade.getAllSolicitacoes(G_usuario.id).then(function(_solicitacoes){
+      $scope.solicitacoes = _solicitacoes;
+      $scope.solPen = $scope.solicitacoes.length;
+      //console.log($scope.solicitacoes);
+    });
   }
 
-  $scope.num = 2;
-  $scope.deletar = function(id) {
-    if(id == 1)
-      nome = "José Antonio da Silva";
-    else
-      nome = "Carlos dos Santos Paiva";
+  $scope.aceitar = function(idSolicitacao){
+    console.log(idSolicitacao);
+    Amizade.AceitarAmizade(idSolicitacao);
+    ListarAmigos();
+    ListarSolicitacoes();
+    $scope.$digest();
+  }
 
+  $scope.deletar = function(idSolicitacao, nome) {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Cancelar solicitação',
-      template: 'Deseja excluir a solicitação de amizade de '+nome+' ?',
+      template: 'Deseja excluir a amizade de '+nome+' ?',
       cancelText: 'Manter',
       cancelType: 'button-positive',
       okText: 'Excluir',
@@ -52,11 +49,9 @@ app.controller('Amigos', ['$scope', '$http', '$interval', '$ionicModal', '$ionic
     });
     confirmPopup.then(function(res) {
       if(res) {
-        if(id == 1)
-          $scope.p1 = true;
-        else
-          $scope.p2 = true;
-        $scope.num--;
+        Amizade.RecusarAmizade(idSolicitacao);
+        ListarAmigos();
+        ListarSolicitacoes();
       }
     });
    };
