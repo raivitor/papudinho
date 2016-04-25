@@ -43,6 +43,7 @@
     <script src="js/Service_Amizade.js"></script>
     <script src="js/diretivas.js"></script>
     <script src="js/funcoes.js"></script>
+
     
   </head>
   <body ng-app="app" >
@@ -231,8 +232,9 @@
             </div>
           </div>
         </ion-content>
-        <div class="bar bar-footer button-event" ng-click="openModal()">
-          <div class="title">Check-in</div>
+        <div class="bar bar-footer button-event">
+          <button class="button button-icon icon ion-android-checkmark-circle" ng-click="openModal(1)">Check-in</button>
+          <button class="button button-clear button-positive icon ion-android-share-alt" ng-click="openModal(2)">Compartilhe</button>
         </div>
       </ion-view>
     </script>
@@ -242,7 +244,7 @@
         <ion-header-bar>
           <h1 class="title">Check-in</h1>
           <div class="buttons">
-            <button class="button button-clear ion-close-circled" ng-click="closeModal()"></button>
+            <button class="button button-clear ion-close-circled" ng-click="closeModal(1)"></button>
           </div>
         </ion-header-bar>
         <ion-content>
@@ -258,6 +260,26 @@
           </label>
           <button class="button button-block button-event" ng-click="checkin(bar)">
             Check-in
+          </button>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+    <script id="shared-modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">Compartilhe</h1>
+          <div class="buttons">
+            <button class="button button-clear ion-close-circled" ng-click="closeModal(2)"></button>
+          </div>
+        </ion-header-bar>
+        <ion-content>
+          <br><br>
+          <button class="button button-block button-event" ng-click="convideAmigo()">
+            Convide um amigo para tomar uma!
+          </button>
+          <button class="button button-block button-event" ng-click="convideApp()">
+            Convide um amigo para baixar nosso app!
           </button>
         </ion-content>
       </ion-modal-view>
