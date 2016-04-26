@@ -1,0 +1,35 @@
+<ion-view view-title="Histórico" ng-controller="CartaoBarHistorico">
+  <ion-nav-bar class="bar-royal" ng-controller="Back">
+    <ion-nav-buttons side="left">
+      <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+        <i class="ion-chevron-left"></i> Voltar
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content padding="true" class="has-header">
+    <div align="center">{{msg}}</div>
+    <div class="card">
+      <div class="item item-text-wrap" ng-repeat="cartao in historico">
+        <p>
+          Bebida: {{ drink }} <br>
+          Bar:  {{ bar }}<br>
+          Doses restantes: {{ detalhe.remaining_doses}}/{{total_doses }} <br>
+          Vencimento: {{ vencimento | date:'dd/MM/yyyy' }} <br>
+          Atualizado em: {{detalhe.updated_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
+          Criado: {{detalhe.created_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
+          <div class="row">
+            <div class="col">
+              <img ng-src="{{detalhe.image_drink.url}}" width="100%" ng-click="openModal(1)">
+            </div>
+            <div class='col'>
+              <img ng-src="{{detalhe.image_card.url}}" width="100%" ng-click="openModal(2)">
+            </div>
+          </div> 
+        </p>
+      </div>
+    </div>
+  </ion-content>
+
+
+</ion-view>

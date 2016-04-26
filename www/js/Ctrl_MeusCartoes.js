@@ -12,7 +12,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
   function atualizar(){
     $scope.cartoes = CartoesPessoais.getCartoes(G_usuario.id);
     $scope.cartoes = $scope.cartoes.data;
-    console.log($scope.cartoes);
+    //console.log($scope.cartoes);
     $scope.msg = "";
     
     if($scope.cartoes == false){

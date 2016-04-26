@@ -1,25 +1,30 @@
-app.controller('Cartoes', ['$scope', '$http', '$interval','$window', function($scope, $http, $interval, $window) {
-  atualizar();
-
+app.controller('CartaoBarHistorico', ['$scope', '$http', '$interval','$location','$state', function($scope, $http, $interval, $location,$state) {
+  
   $scope.viewCartao = function(id){
     console.log(id);
-    $window.location = '#/cartaoHistorico/' + id;
+    $location.path("/cartao/"+id)
   }
 
 
-  $interval(atualizar, 30000, false);
-  function atualizar(){
+  //$scope.atualizar = function(){
+    console.log($state.params.cartaoId);
+
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
+      url: 'http://developer-papudinho.herokuapp.com/webservice/cards/'+$state.params.cartaoId, 
       method: "GET",
-      params: {
-        user: G_usuario.id
-      }
     }).
 
     success(function (data, status, headers, config) {
       $scope.$broadcast('scroll.refreshComplete');
-      $scope.Cartoes = data;
+
+      var dados = [];
+
+
+
+      $scope.historico =  data[0].historics;
+      $scope.total_doses = data[0].total_doses;
+      $scope.drink = data[0].drink;
+      $scope.bar = data[0].bar;
       $scope.msg = " ";
       console.log(data);
       if(data == 0){
@@ -32,9 +37,7 @@ app.controller('Cartoes', ['$scope', '$http', '$interval','$window', function($s
       console.log('Error cartoes');
     });
     $scope.$broadcast('scroll.refreshComplete');
-  }
+ // });
 
-  $scope.doRefresh = function() {
-    atualizar();
-  }
+ 
 }]);

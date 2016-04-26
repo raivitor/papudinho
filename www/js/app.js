@@ -187,6 +187,13 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       templateUrl: 'cartaodetalhe'
     })
 
+
+    .state('cartaoBarHistorico', {
+      cache: false,
+      url: '/cartaoBarHistorico/:cartaoId',
+      templateUrl: 'views/cartao_historico.html'
+    })
+
     .state('addBar', {
       cache: false,
       url: '/addBar',

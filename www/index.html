@@ -27,6 +27,7 @@
     <script src="js/Ctrl_Cartao.js"></script>
     <script src="js/Ctrl_CartaoDetalhe.js"></script>
     <script src="js/Ctrl_Cartoes.js"></script>
+    <script src="js/Ctrl_CartaoHistorico.js"></script>
     <script src="js/Ctrl_Chat.js"></script>
     <script src="js/Ctrl_Config.js"></script>
     <script src="js/Ctrl_Dados.js"></script>
@@ -597,8 +598,11 @@
             <div class="list">
               <div align="center" class="msg" id="msgcartoes">{{msg}}</div>
               <div ng-repeat="module in Cartoes">
-                <div class="item " ng-hide="module.card_secret" ng-click='viewCartao(module.id)'>
+                <a href="#/cartaoBarHistorico/{{module.id}}">
+                <div class="item " ng-hide="module.card_secret">
+                
                   <div class="row">
+                    
                     <div class="col"><img ng-src = "{{module.historics[module.historics.length-1].image_drink.url}}" width="100%"></div>
                     <div class="col col-75">
                       Bar:  {{ module.bar }}<br>
@@ -606,9 +610,11 @@
                       Doses restantes: {{ module.remaining_doses}}/{{module.total_doses }} <br>
                       Vencimento: {{ module.due_date | date:'dd/MM/yyyy'}} <br>
                     </div>
+                    
                   </div>
-
+                
                 </div>
+                </a>
               </div>
             </div>
           </ion-content>
