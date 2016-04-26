@@ -3,7 +3,9 @@ app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$statePar
   
   $interval(atualizar, 2000, false);
 
+
   function atualizar(){
+
     $scope.id = $stateParams.cartaoId;
     $scope.cartao = CartoesPessoais.getId($scope.id);
     $scope.bar = $scope.cartao.bar;

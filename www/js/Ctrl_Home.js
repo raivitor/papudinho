@@ -14,6 +14,7 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup', functio
       }).
 
       success(function (data, status, headers, config) {
+        console.log(data)
         $scope.CartoesVencimento = data;
         if(data == 0){
           $scope.msg = "Nenhum cartão perto do vencimento";
