@@ -24,6 +24,7 @@ app.controller('CartaoBarHistorico', ['$scope', '$http', '$interval','$location'
       $scope.historico =  data[0].historics;
       $scope.total_doses = data[0].total_doses;
       $scope.drink = data[0].drink;
+
       $scope.bar = data[0].bar;
       $scope.msg = " ";
       console.log(data);

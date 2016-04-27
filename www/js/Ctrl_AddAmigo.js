@@ -30,6 +30,10 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
  };
 
   $scope.submitamigo = function(email) {
+    console.log(email,G_usuario.id)
+/*
+    return false;
+    */
     $http({
       url: 'http://developer-papudinho.herokuapp.com/webservice/new_friendship', 
       method: "POST",
