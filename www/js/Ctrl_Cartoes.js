@@ -21,7 +21,7 @@ app.controller('Cartoes', ['$scope', '$http', '$interval','$window', function($s
       $scope.$broadcast('scroll.refreshComplete');
       $scope.Cartoes = data;
       $scope.msg = " ";
-      console.log(data);
+      //console.log(data);
       if(data == 0){
         $scope.msg = "Ainda não tem cartão em nenhum bar!";
       }
