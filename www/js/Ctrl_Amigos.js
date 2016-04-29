@@ -3,15 +3,11 @@ app.controller('Amigos', ['$scope', '$ionicModal', '$ionicPopup', 'Amizade', fun
   $scope.solicitacoes;
   $scope.solPen = 0; //Quantidade de solicitacoes pendentes
 
-<<<<<<< HEAD
   //console.log(G_usuario.id);
   //G_usuario.id = 7; //msn
   //G_usuario.id = 13; //gmail
   ListarAmigos();
-=======
 
-ListarAmigos()  ;
->>>>>>> 940ada65362991d80be36afd2a7c1df26e45f068
   ListarSolicitacoes();
 
   function ListarAmigos(){
