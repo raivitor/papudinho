@@ -40,6 +40,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
       window.localStorage['login'] = 1;
       G_usuario = data;
       $scope.checked = false;
+      console.log(G_usuario.id)
       Usuario.UpdateToken(G_usuario.id, window.localStorage['token']);
       $location.path('/menu/home');  
     }).

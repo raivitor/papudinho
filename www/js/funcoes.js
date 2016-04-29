@@ -42,6 +42,7 @@ lon = conversor(-35.2454187);
 
 function GetLocation() {
   if(window.localStorage['login'] == 1){
+    
     navigator.geolocation.getCurrentPosition(function(position) {
       window.localStorage['latitude'] = position.coords.latitude;
       window.localStorage['longitude'] = position.coords.longitude;

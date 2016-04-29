@@ -5,7 +5,7 @@ app.controller('Amigos', ['$scope', '$ionicModal', '$ionicPopup', 'Amizade', fun
 
   //console.log(G_usuario.id);
   //G_usuario.id = 7; //msn
-  G_usuario.id = 13; //gmail
+  //G_usuario.id = 13; //gmail
   ListarAmigos();
   ListarSolicitacoes();
 

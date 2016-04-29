@@ -43,6 +43,15 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
     */
     var localizacao = setInterval(GetLocation, G_tempo); 
 
+    //Localizacao do GPS
+    navigator.geolocation.watchPosition(function(position) {
+      window.localStorage['latitude'] = position.coords.latitude;
+      window.localStorage['longitude'] = position.coords.longitude;
+      console.log(position.coords.latitude, position.coords.longitude)
+    }, function(error) {
+        console.log('Erro ao pegar localização: ' + error.message);
+    }, { timeout: 1000 });
+
   });
 });
 
