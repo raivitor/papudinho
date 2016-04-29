@@ -29,6 +29,7 @@ app.controller('Chat', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrol
   function atualizar(){
     if(flag == 0){
       if($scope.messages.length > 0){
+        console.log($scope.messages);
         flag = 1;
         $interval.cancel(stopTime);
       }
