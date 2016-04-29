@@ -50,7 +50,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
       console.log(position.coords.latitude, position.coords.longitude)
     }, function(error) {
         console.log('Erro ao pegar localização: ' + error.message);
-    }, { timeout: 1000 });
+    }, { timeout: 30000 });
 
   });
 });
