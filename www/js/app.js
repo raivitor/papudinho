@@ -50,7 +50,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
       console.log(position.coords.latitude, position.coords.longitude)
     }, function(error) {
         console.log('Erro ao pegar localização: ' + error.message);
-    }, { timeout: 30000 });
+    }, { timeout: 60000 });
 
   });
 });
@@ -156,6 +156,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
           templateUrl: "config"
         }
       }
+    })
+
+    .state('promocaoId', {
+      url: '/promocao/:id',
+      templateUrl: 'promocao'
     })
 
     .state('bar', {
@@ -304,10 +309,13 @@ function onDeviceReady() {
         var userData = event.notification.userdata;
                                  
         if(typeof(userData) != "undefined") {
-            alert('user data: ' + JSON.stringify(userData));
+            //alert('user data: ' + JSON.stringify(userData));
         }
                                      
-        alert(title);
+        console.log(userData.custom_data.promotion_id);
+
+        window.open('http://developer-papudinho.herokuapp.com/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+
     });
  
     //initialize Pushwoosh with projectid: "78196470103", pw_appid : "60C72-3A9F2". 
