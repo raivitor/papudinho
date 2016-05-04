@@ -9,6 +9,10 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 
 app.run(function($ionicPlatform, $ionicHistory, $location) {
   $ionicPlatform.ready(function() {
+
+    
+
+    
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -23,6 +27,10 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
         window.localStorage['version'] = version;
     });
 
+    ionic.Platform.fullScreen();
+    if (window.StatusBar) {
+      return StatusBar.hide();
+    }
     $ionicPlatform.registerBackButtonAction(function(e){
       str = window.location.href;
       if(str.indexOf("login") > 0){
@@ -158,6 +166,17 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       }
     })
 
+
+    .state('eventmenu.sobre', {
+      url: "/sobre",
+      views: {
+        'menuContent' :{
+          templateUrl: "sobre"
+        }
+      }
+    })
+
+
     .state('promocaoId', {
       url: '/promocao/:id',
       templateUrl: 'promocao'
@@ -207,6 +226,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       url: '/cartaoBarHistorico/:cartaoId',
       templateUrl: 'views/cartao_historico.html'
     })
+
 
     .state('addBar', {
       cache: false,

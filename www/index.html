@@ -67,7 +67,7 @@
 
               <form ng-submit="submit()" ng-controller="LoginForm" class="login">
                   <div align="center" class="msg" id="msghome" ng-model="checked">
-                    {{version}}</br>
+                   
                     <ion-spinner icon="lines" class="spinner-stable" ng-show="checked"></ion-spinner>{{msg}}
                   </div>
                   <br>
@@ -205,6 +205,7 @@
               <a href="#/menu/promocao" class="item" menu-close><i class="icon ion-bag" ></i> Promoções</a>
               <a href="#/menu/dados" class="item" menu-close><i class="icon ion-android-home" ></i> Meus Dados</a>
               <a href="#/menu/config" class="item" menu-close><i class="icon ion-ios-gear-outline" ></i> Configurações</a>
+              <a href="#/menu/sobre" class="item" menu-close><i class="icon ion-ios-information" ></i> Sobre</a>
               <a href="#" class="item" menu-close ng-click="sair()"><i class="icon ion-forward" ></i> Sair</a>
             </ul>
           </ion-content>
@@ -644,6 +645,19 @@
           </ion-content>
       </ion-view>
     </script>
+
+    <script id="sobre" type="text/ng-template">
+      <ion-view title="Sobre" >
+          <ion-content padding="true" class="has-header">
+            
+            <h2>Papudinho - Clube do Whisky</h2>
+            <h3>Versão: 1.40.0</h3>
+            <h3>Todos os direitos reservados para Global Gapps</h3>
+            <h3>2016</h3>
+
+          </ion-content>
+      </ion-view>
+    </script>    
 
     <script id="dados" type="text/ng-template">
       <ion-view title="Meus dados">

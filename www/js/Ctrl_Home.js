@@ -1,4 +1,4 @@
-app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup', function($scope, $http, $ionicModal, $ionicPopup) {
+app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootScope', function($scope, $http, $ionicModal, $ionicPopup, $rootScope) {
   window.localStorage['login'] = 1;
 
   function timedCount() {
@@ -36,6 +36,8 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup', functio
   }
 
   timedCount();
+
+  console.log(window.localStorage['latitude'],window.localStorage['longitude'])
 
   $http({
     url: 'http://developer-papudinho.herokuapp.com/webservice/get_near_bars', 
