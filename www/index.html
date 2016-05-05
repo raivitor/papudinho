@@ -303,7 +303,7 @@
                   <div class="col"><img ng-src = "{{cartao.historics[cartao.historics.length-1].image_drink.url}}" width="100%"></div>
                   <div class="col col-75">
                     Bebida: {{ cartao.drink }}<br>
-                    Bar: {{ cartao.bar }}<br>
+                    Bar: <b>{{ cartao.bar }}</b><br>
                     Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
                     Vencimento: {{ cartao.due_date | date:'dd/MM/yyyy'}}
                   </div>
@@ -606,7 +606,7 @@
                     
                     <div class="col"><img ng-src = "{{module.historics[module.historics.length-1].image_drink.url}}" width="100%"></div>
                     <div class="col col-75">
-                      Bar:  {{ module.bar }}<br>
+                      Bar:  <b>{{ module.bar }}</b><br>
                       Bebida: {{ module.drink }} <br>
                       Doses restantes: {{ module.remaining_doses}}/{{module.total_doses }} <br>
                       Vencimento: {{ module.due_date | date:'dd/MM/yyyy'}} <br>
