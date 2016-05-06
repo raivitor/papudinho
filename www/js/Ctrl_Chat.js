@@ -1,4 +1,4 @@
-app.controller('Chat', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrollDelegate', '$interval', '$ionicNavBarDelegate', function($scope, $stateParams, $firebaseArray, $ionicScrollDelegate, $interval, $ionicNavBarDelegate) {
+app.controller('Chat', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrollDelegate', '$interval', '$ionicNavBarDelegate','$http', function($scope, $stateParams, $firebaseArray, $ionicScrollDelegate, $interval, $ionicNavBarDelegate, $http) {
   $scope.meuName = G_usuario.id;
   $scope.nameAmigo = $stateParams.chatId;
   $ionicNavBarDelegate.title($stateParams.nome);
