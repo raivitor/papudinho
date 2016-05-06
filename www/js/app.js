@@ -9,9 +9,6 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 
 app.run(function($ionicPlatform, $ionicHistory, $location) {
   $ionicPlatform.ready(function() {
-
-    
-
     
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -26,12 +23,14 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
     getAppVersion(function(version) {
         window.localStorage['version'] = version;
     });
-
+  
     ionic.Platform.fullScreen();
     if (window.StatusBar) {
       return StatusBar.hide();
     }
-    $ionicPlatform.registerBackButtonAction(function(e){
+
+
+     $ionicPlatform.registerBackButtonAction(function(e){
       str = window.location.href;
       if(str.indexOf("login") > 0){
         navigator.app.exitApp();
@@ -44,7 +43,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
         e.preventDefault();
       }
       return false;
-    },101);
+    },501);
     
     /**
     * GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js

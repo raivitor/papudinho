@@ -16,10 +16,32 @@ app.controller('Chat', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrol
   $scope.messages = $firebaseArray(ref);
 
   $scope.addMessage = function() {
-    $scope.messages.$add({
+
+    var dados = {
       name: G_usuario.id,
       text: $scope.message
-    });
+    }
+
+    $scope.messages.$add(dados);
+
+    var req = {
+      method: 'POST',
+      url: 'http://developer-papudinho.herokuapp.com/webservice/chat',
+      params:{
+        name: G_usuario.id,
+        text: $scope.message
+      }
+    }
+
+    $http(req).
+      then(
+        function (sucesso) {
+          console.log(sucesso);          
+        },
+        function(fail){}
+      );
+
+
      $scope.message = "";
      $ionicScrollDelegate.scrollBottom();
   };
