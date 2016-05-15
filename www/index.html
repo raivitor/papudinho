@@ -66,9 +66,12 @@
               </div>
 
               <form ng-submit="submit()" ng-controller="LoginForm" class="login">
+                  
+                  <div align="center" id="msghome" ng-model="checked">
+                    <ion-spinner icon="lines" class="spinner-stable" ng-show="checked"></ion-spinner>
+                  </div>
                   <div align="center" class="msg" id="msghome" ng-model="checked">
-                   
-                    <ion-spinner icon="lines" class="spinner-stable" ng-show="checked"></ion-spinner>{{msg}}
+                    {{msg}}
                   </div>
                   <br>
                   <ion-list>

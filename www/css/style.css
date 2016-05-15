@@ -88,3 +88,9 @@ h2, .titulo{
 .chat-input{
 	width: inherit;
 }
+
+.msg {
+	 color: #FFF;
+    font-weight: bold;
+    background: red;
+}
