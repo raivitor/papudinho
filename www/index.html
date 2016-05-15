@@ -228,8 +228,8 @@
                   <div class="col"><img ng-src = "{{cartao.historics[cartao.historics.length-1].image_drink.url}}" width="100%"></div>
                   <div class="col col-75">
                     Bebida: {{ cartao.drink }}<br>
-                    Bar: {{ cartao.bar }}<br>
-                    Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
+                    Bar: <b>{{ cartao.bar }}</b><br>
+                    Doses restantes: <b>{{ cartao.remaining_doses}}/{{cartao.total_doses }}</b><br>
                     Vencimento: {{ cartao.due_date }}
                   </div>
                 </div>
@@ -307,7 +307,7 @@
                   <div class="col col-75">
                     Bebida: {{ cartao.drink }}<br>
                     Bar: <b>{{ cartao.bar }}</b><br>
-                    Doses restantes: {{ cartao.remaining_doses}}/{{cartao.total_doses }}<br>
+                    Doses restantes: <b>{{ cartao.remaining_doses}}/{{cartao.total_doses }}</b><br>
                     Vencimento: {{ cartao.due_date | date:'dd/MM/yyyy'}}
                   </div>
                 </div>
@@ -341,8 +341,8 @@
                   <div class="col"><img ng-src = "{{cartao.image_drink.url}}" width="100%"></div>
                   <div class="col col-75">
                     Bebida: {{ drink }} <br>
-                    Bar:  {{ bar }}<br>
-                    Doses restantes: {{ cartao.remaining_doses}}/{{total_doses }} <br>
+                    Bar:  <b>{{ bar }}</b><br>
+                    Doses restantes: <b>{{ cartao.remaining_doses}}/{{total_doses }}</b> <br>
                     Vencimento: {{ vencimento | date:'dd/MM/yyyy' }} <br>
 
                   </div>
@@ -376,8 +376,8 @@
             <div class="item item-text-wrap" >
               <p>
                 Bebida: {{ drink }} <br>
-                Bar:  {{ bar }}<br>
-                Doses restantes: {{ detalhe.remaining_doses}}/{{total_doses }} <br>
+                Bar:  <b>{{ bar }}</b><br>
+                Doses restantes: <b>{{ detalhe.remaining_doses}}/{{total_doses }}</b> <br>
                 Vencimento: {{ vencimento | date:'dd/MM/yyyy' }} <br>
                 Atualizado em: {{detalhe.updated_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
                 Criado: {{detalhe.created_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
@@ -611,7 +611,7 @@
                     <div class="col col-75">
                       Bar:  <b>{{ module.bar }}</b><br>
                       Bebida: {{ module.drink }} <br>
-                      Doses restantes: {{ module.remaining_doses}}/{{module.total_doses }} <br>
+                      Doses restantes: <b>{{ module.remaining_doses}}/{{module.total_doses }} </b><br>
                       Vencimento: {{ module.due_date | date:'dd/MM/yyyy'}} <br>
                     </div>
                     
