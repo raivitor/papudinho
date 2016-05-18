@@ -17,7 +17,8 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleLightContent();
+      StatusBar.hide();
+      //StatusBar.styleLightContent();
     }
     
     getAppVersion(function(version) {

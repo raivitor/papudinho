@@ -29,6 +29,10 @@
     {
       "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
       "id": "cordova-plugin-app-version"
+    },
+    {
+      "locator": "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
+      "id": "cordova-plugin-x-socialsharing"
     }
   ],
   "cordovaPlatforms": [
