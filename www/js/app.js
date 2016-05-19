@@ -176,6 +176,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       }
     })
 
+    .state('eventmenu.bar', {
+      url: "/barmsg",
+      views: {
+        'menuContent' :{
+          templateUrl: "barmsg"
+        }
+      }
+    })
+
 
     .state('promocaoId', {
       url: '/promocao/:id',
@@ -225,6 +234,12 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       cache: false,
       url: '/cartaoBarHistorico/:cartaoId',
       templateUrl: 'views/cartao_historico.html'
+    })
+
+    .state('barmsg', {
+      cache: false,
+      url: '/barmsg',
+      templateUrl: 'views/bar_msg.html'
     })
 
 
