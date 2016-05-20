@@ -10,11 +10,13 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
-    
+
     <!-- cordova script (this will be a 404 during development) -->
     <script src="js/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
-    
+    <script src="js/papuchat.js"></script>
+
+
     <script src="js/app.js"></script>
     <script src='js/ngMask.min.js'></script>
     <script src="js/Ctrl_AddBar.js"></script>
@@ -44,9 +46,9 @@
     <script src="js/Service_Amizade.js"></script>
     <script src="js/diretivas.js"></script>
     <script src="js/funcoes.js"></script>
-    <script src="js/papuchat.js"></script>
 
-    
+
+
   </head>
   <body ng-app="app" >
 
@@ -60,14 +62,14 @@
 
     <script id="login" type="text/ng-template" >
       <ion-view title="Papudinho" class="bg">
-          <ion-nav-bar class="bar-royal" style="display:none;"></ion-nav-bar> 
+          <ion-nav-bar class="bar-royal" style="display:none;"></ion-nav-bar>
           <ion-content padding="true" class="has-header login" >
               <div style="border: 0px; text-align: center; " >
                   <img src='img/logo-papudinho.png' width="150px" style="vertical-align: middle;" class="login">
               </div>
 
               <form ng-submit="submit()" ng-controller="LoginForm" class="login">
-                  
+
                   <div align="center" id="msghome" ng-model="checked">
                     <ion-spinner icon="lines" class="spinner-stable" ng-show="checked"></ion-spinner>
                   </div>
@@ -89,7 +91,7 @@
                   <br>
                   <div align="center">
                     <a href="#/signup">Criar Conta</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#/senha">Esqueci a senha</a>
                   </div>
                   <br>
@@ -129,7 +131,7 @@
                   <ion-list  class="item item-input label-index">
                     <ion-checkbox ng-model="termo" class="item item-input label-index" style="border-bottom: 0px;!important ">
                       <span style="color: white;">Aceito os termos do contrato</span>
-                    </ion-checkbox> 
+                    </ion-checkbox>
                   </ion-list>
                 </ion-list>
                 <button class="button button-event button-block" ng-show="termo">
@@ -193,7 +195,7 @@
           </ion-nav-bar>
 
           <ion-nav-view name="menuContent"></ion-nav-view>
-        </ion-side-menu-content> 
+        </ion-side-menu-content>
 
         <ion-side-menu side="left">
           <ion-header-bar class="bar-royal button bot">
@@ -308,7 +310,7 @@
                   <div class="col"><img ng-src = "{{cartao.historics[cartao.historics.length-1].image_drink.url}}" width="100%"></div>
                   <div class="col col-75">
                     Bar: <b>{{ cartao.bar }}</b><br>
-                    Bebida: {{ cartao.drink }}<br>                    
+                    Bebida: {{ cartao.drink }}<br>
                     Doses restantes: <b>{{ cartao.remaining_doses}}/{{cartao.total_doses }}</b><br>
                     Vencimento: {{ cartao.due_date | date:'dd/MM/yyyy'}}
                   </div>
@@ -390,7 +392,7 @@
                   <div class='col'>
                     <img ng-src="{{detalhe.image_card.url}}" width="100%" ng-click="openModal(2)">
                   </div>
-                </div> 
+                </div>
               </p>
             </div>
           </div>
@@ -464,7 +466,7 @@
 
         <ion-content padding="true" class="has-header">
           <form ng-controller="AddAmigo">
-            <div align="center" class="msg" id="msgcadastro">{{msg}}</div>  
+            <div align="center" class="msg" id="msgcadastro">{{msg}}</div>
             <ion-list>
               <label class="item item-input">
                 <input type="text" placeholder="nome" ng-model="nome" >
@@ -490,7 +492,7 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
-          <a href="#/addBar" class="clearLink"> 
+          <a href="#/addBar" class="clearLink">
             <button class="button button-event button-block">
               <b>Sugerir bar</b>
             </button>
@@ -560,7 +562,7 @@
 
         <ion-content padding="true" class="has-header">
           <form ng-controller="AddBar">
-            <div align="center" class="msg" id="msgAddBar">{{msg}}</div>  
+            <div align="center" class="msg" id="msgAddBar">{{msg}}</div>
               <ion-list>
                 <label class="item item-input">
                     <input type="text" placeholder="Nome" ng-model="name" >
@@ -606,9 +608,9 @@
               <div ng-repeat="module in Cartoes">
                 <a href="#/cartaoBarHistorico/{{module.id}}">
                 <div class="item " ng-hide="module.card_secret">
-                
+
                   <div class="row">
-                    
+
                     <div class="col"><img ng-src = "{{module.historics[module.historics.length-1].image_drink.url}}" width="100%"></div>
                     <div class="col col-75">
                       Bar:  <b>{{ module.bar }}</b><br>
@@ -616,9 +618,9 @@
                       Doses restantes: <b>{{ module.remaining_doses}}/{{module.total_doses }} </b><br>
                       Vencimento: {{ module.due_date | date:'dd/MM/yyyy'}} <br>
                     </div>
-                    
+
                   </div>
-                
+
                 </div>
                 </a>
               </div>
@@ -637,7 +639,7 @@
             <div class=" card">
             <div align="center" class="msg" id="msgpromocoes">{{msg}}</div>
               <div class="item item-text-wrap" ng-repeat="module in Promocoes | filter:FiltroTags">
-                
+
                 <div id="{{module.id}}"></div>
 
                 <h2 align="center">{{module.bar_name}}</h2>
@@ -654,7 +656,7 @@
     <script id="sobre" type="text/ng-template">
       <ion-view title="Sobre" >
           <ion-content padding="true" class="has-header">
-            
+
             <h2>Papudinho - Clube do Whisky</h2>
             <h3>Versão: 1.41.0</h3>
             <h3>Todos os direitos reservados para Global Gapps</h3>
@@ -662,7 +664,7 @@
 
           </ion-content>
       </ion-view>
-    </script>    
+    </script>
 
     <script id="dados" type="text/ng-template">
       <ion-view title="Meus dados">
@@ -704,7 +706,7 @@
                     <ion-toggle ng-model="promocoes" ng-change="ConfigChange()">
                       Receber promoções
                     </ion-toggle>
-                    
+
                     <ion-toggle ng-model="gps" ng-change="ConfigChange()">
                       Ativar GPS
                     </ion-toggle>
@@ -751,7 +753,7 @@
             </div>
 
             <div class="row">
-              <div class="col"> 
+              <div class="col">
                 <label class="item item-input">
                   <input type="text" placeholder="Bar" ng-model="bar" >
                 </label>
@@ -791,7 +793,7 @@
                 <p>Doses : {{doses}}</p>
               </div>
             </div>
-            
+
             <div class="row">
               <div class='col'>
                 <img ng-src="{{imgDrink}}" width="100%" ng-click="openModal(1)">
@@ -850,7 +852,7 @@
             </div>
 
             <div class="row">
-              <div class="col"> 
+              <div class="col">
                 <label class="item item-input">
                   <input type="text" placeholder="Bar" ng-model="bar" disabled>
                 </label>
@@ -870,7 +872,7 @@
                 <p>Doses : {{doses}}</p>
               </div>
             </div>
-            
+
             <div class="row">
               <div class='col'>
                 <img ng-src="{{imgDrink}}" width="100%" ng-click="openModal(1)">

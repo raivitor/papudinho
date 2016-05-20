@@ -8,12 +8,12 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
     if($scope.email == undefined ){
       $scope.msg = "O campo 'Email' está vazio";
       return 0;
-    } 
+    }
 
     if($scope.senha == undefined ){
       $scope.msg = "O campo 'Senha' está vazio";
       return 0;
-    } 
+    }
 
     if($scope.senha.length < 8 ){
       $scope.msg = "Senha precisa ter 8 ou mais dígitos";
@@ -21,7 +21,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
     }
     $scope.checked = true;
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/', 
+      url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/',
       method: "POST",
       params: {
         email: $scope.email,
@@ -40,9 +40,10 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
       window.localStorage['login'] = 1;
       G_usuario = data;
       $scope.checked = false;
-      console.log(G_usuario.id)
+      console.log(G_usuario.id);
+      window.localStorage['user_id'] = G_usuario.id;
       Usuario.UpdateToken(G_usuario.id, window.localStorage['token']);
-      $location.path('/menu/home');  
+      $location.path('/menu/home');
     }).
 
     error(function (data, status, headers, config) {

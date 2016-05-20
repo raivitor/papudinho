@@ -94,3 +94,71 @@ h2, .titulo{
     font-weight: bold;
     background: red;
 }
+
+.messages-chat {
+  bottom: 70px;
+}
+
+.messages-chat  li {
+  padding: 10px;
+}
+
+.messages-chat p {
+  margin: 0px;
+}
+
+.messages-chat .self {
+  background-color: rgba(0,0,0,0.03);
+}
+
+.messages-bottom {
+  position: absolute;
+  bottom: 0px;
+  height: 70px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.messages-bottom .textarea {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: auto;
+  bottom: 10px;
+  right: 50px;
+}
+
+
+.messages-bottom .icon {
+    position: absolute;
+    top: 15px;
+    width: 40px;
+    text-align: center;
+    height: 40px;
+    border-radius: 20px;
+    padding-top: 7px;
+    padding-right: 3px;
+    font-size: 25px;
+    background-color: rgba(0,0,0,0.1);
+    color:  rgba(0,0,0,0.6);
+    right: 5px;
+}
+
+.textarea textarea {
+  border-radius: 10px;
+   resize: none;
+   padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.messages-chat label {
+  font-weight: bold;
+  color: #3873AD;
+}
+
+.messages-chat p {
+  color: #333;
+}

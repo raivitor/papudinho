@@ -9,7 +9,7 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 
 app.run(function($ionicPlatform, $ionicHistory, $location) {
   $ionicPlatform.ready(function() {
-    
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -20,11 +20,11 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
       StatusBar.hide();
       //StatusBar.styleLightContent();
     }
-    
+
     getAppVersion(function(version) {
         window.localStorage['version'] = version;
     });
-  
+
     ionic.Platform.fullScreen();
     if (window.StatusBar) {
       return StatusBar.hide();
@@ -35,21 +35,21 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
       str = window.location.href;
       if(str.indexOf("login") > 0){
         navigator.app.exitApp();
-      } 
+      }
       //else if(str.indexOf("meuscartoes") >= 0 || str.indexOf("amigos") >= 0 || str.indexOf("bares") >= 0 || str.indexOf("cartoes") >= 0 || str.indexOf("promocao") >= 0 || str.indexOf("dados") >= 0 || str.indexOf("config") >= 0){
-        //$location.path('/menu/home'); 
-      //} 
+        //$location.path('/menu/home');
+      //}
       else{
         $ionicHistory.goBack();
         e.preventDefault();
       }
       return false;
     },501);
-    
+
     /**
     * GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js
     */
-    var localizacao = setInterval(GetLocation, G_tempo); 
+    var localizacao = setInterval(GetLocation, G_tempo);
 
     //Localizacao do GPS
     navigator.geolocation.watchPosition(function(position) {
@@ -69,13 +69,13 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.views.transition("android");
   //$ionicConfigProvider.views.maxCache(0);
   $stateProvider
-    
+
     .state('login', {
       cache: false,
       url: '/login',
       templateUrl: 'login'
     })
-    
+
     .state('signup', {
       url: '/signup',
       templateUrl: 'signup'
@@ -242,6 +242,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       templateUrl: 'views/bar_msg.html'
     })
 
+    .state('barmsgmessages', {
+      cache: false,
+      url: '/messages/:id',
+      templateUrl: 'views/messages.html'
+    })
 
     .state('addBar', {
       cache: false,
@@ -249,7 +254,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       templateUrl: 'addBar'
     })
     ;
-  
+
   $urlRouterProvider.otherwise('/login');
 });
 
@@ -280,7 +285,7 @@ Array.prototype.getId = function(id) {
 "gps": true,
 "visibility": true
 */
-var G_usuario = []; 
+var G_usuario = [];
 
 /**
 * Tempo de atualização da posição
@@ -337,25 +342,25 @@ function onDeviceReady() {
 
   function initPushwoosh(idUser){
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
- 
+
     //set push notifications handler
     document.addEventListener('push-notification', function(event) {
         var title = event.notification.title;
         var userData = event.notification.userdata;
-                                 
+
         if(typeof(userData) != "undefined") {
             //alert('user data: ' + JSON.stringify(userData));
         }
-                                     
+
         console.log(userData.custom_data.promotion_id);
 
         window.open('http://developer-papudinho.herokuapp.com/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
 
     });
- 
-    //initialize Pushwoosh with projectid: "78196470103", pw_appid : "60C72-3A9F2". 
+
+    //initialize Pushwoosh with projectid: "78196470103", pw_appid : "60C72-3A9F2".
     pushNotification.onDeviceReady({ projectid: "78196470103", pw_appid : "60C72-3A9F2" });
- 
+
     //register for pushes
     pushNotification.registerDevice(
         function(status) {

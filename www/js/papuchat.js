@@ -49,8 +49,6 @@ Papuchat.startChat = function(message){
   var messagesRef = this.ref.child( "messages/" +chatUUID);
   messagesRef.push(message);
 
-  console.log(chatUUID);
-
   sendPush(message.from, message.text, message.to_id);
 };
 
@@ -61,7 +59,7 @@ function sendPush(name, message, to_id){
     to_id: to_id
   }
 
-  $.post('/webservice/chat/notification', data, function(){});
+  //$.post('/webservice/chat/notification', data, function(){});
 }
 
 Papuchat.deleteChat = function(chatUUID, from_id, to_id){
@@ -96,16 +94,17 @@ Papuchat.getChats = function(userID, done){
 Papuchat.getMessages = function(chatUUID, done){
   var userRef = this.ref.child( "messages/" +chatUUID);
 
-  userRef.endAt().limit(100).on("value", function(snapshot){
-    var results = [];
-    snapshot.forEach(function(snap) {
-      var data = snap.val();
-      data.id = snap.key();
-      results.push(data);
+    userRef.endAt().limit(100).on("value", function(snapshot){
+      var results = [];
+      snapshot.forEach(function(snap) {
+        var data = snap.val();
+        data.id = snap.key();
+        results.push(data);
+      });
+
+      done(results);
     });
 
-    done(results);
-  });
 };
 
 Papuchat.send = function(chatUUID, message){

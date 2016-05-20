@@ -1,4 +1,4 @@
-<ion-view view-title="Mensagens" ng-controller="CartaoBarHistorico">
+<ion-view view-title="Mensagens" ng-controller="Chat">
   <ion-nav-bar class="bar-royal" ng-controller="Back">
     <ion-nav-buttons side="left">
       <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
@@ -10,10 +10,10 @@
   <ion-content padding="true" class="has-header">
     <p>Lista das mensagens dos bares</p>
     <div class="list">
-        <a class="item item-avatar" href="#">
-          <img src="venkman.jpg">
-          <h2>Venkman</h2>
-          <p>Back off, man. I'm a scientist.</p>
+        <a class="item item-avatar" href="#/messages/{{ chat.id }}" ng-repeat="chat in chats">
+          <img src="{{ chat.thumb }}">
+          <h2>{{ chat.from }}</h2>
+          <p>{{ chat.text }}</p>
         </a>
     </div>
   </ion-content>
