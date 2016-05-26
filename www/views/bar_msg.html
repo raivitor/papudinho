@@ -11,8 +11,8 @@
     <p>Lista das mensagens dos bares</p>
     <div class="list">
         <a class="item item-avatar" href="#/messages/{{ chat.id }}" ng-repeat="chat in chats">
-          <img src="{{ chat.thumb }}">
-          <h2>{{ chat.from }}</h2>
+          <img src="{{ chat.logo }}">
+          <h2>{{ chat.barname }}</h2>
           <p>{{ chat.text }}</p>
         </a>
     </div>

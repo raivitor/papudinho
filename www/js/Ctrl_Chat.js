@@ -10,18 +10,6 @@ app.controller('Chat', function($scope, $http){
 
   Papuchat.getChats(user_id, function(data){
      console.log(data);
-     for (var i = 0; i < data.length; i++) {
-       if (data[i].from_id != user_id)
-       (function(i){
-         $http.get('http://developer-papudinho.herokuapp.com/webservice/get_bar?id=' + data[i].from_id)
-         .then(function(res){
-           safeApply($scope, function(){
-             $scope.chats[i].thumb = res.data.avatar.thumb.url;
-             console.log(res.data.avatar.thumb.url);
-           });
-         });
-       })(i);
-     }
 
      safeApply($scope, function(){
        $scope.chats = data;

@@ -112,16 +112,21 @@ Papuchat.send = function(chatUUID, message){
 
   message.created_at =  new Date().toString();
 
-  var fromUserRef = this.ref.child( message.from_id + "/" + chatUUID);
-  fromUserRef.update(message);
+
 
   var toUserRef = this.ref.child(message.to_id + "/" +chatUUID);
   toUserRef.update(message);
 
+
+
+  var fromUserRef = this.ref.child( message.from_id + "/" + chatUUID);
+  fromUserRef.update(message);
+
   var messagesRef = this.ref.child( "messages/" +chatUUID);
+
   messagesRef.push(message);
 
-  sendPush(message.from, message.text, message.to_id);
+  //sendPush(message.from, message.text, message.to_id);
 
   // Atualizando mensagens novas
   var newMessages = this.ref.child(message.to_id + "/" + chatUUID + "/news");
