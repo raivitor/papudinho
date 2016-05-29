@@ -7,7 +7,27 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 
-app.run(function($ionicPlatform, $ionicHistory, $location) {
+
+window.addEventListener('getiduser', function(event) {
+  directpush.on(event.detail, function(data){
+    var event = new CustomEvent('directpush', { detail: data });
+    window.dispatchEvent(event);
+  })
+});
+
+
+app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
+
+  window.addEventListener('directpush', function (e) {
+
+    $ionicPopup.alert({
+     title: e.detail.bar_name,
+     template: e.detail.message
+    });
+
+    directpush.clean(localStorage.getItem('user_id'));
+   }, false);
+
   $ionicPlatform.ready(function() {
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -61,6 +81,8 @@ app.run(function($ionicPlatform, $ionicHistory, $location) {
     }, { timeout: 60000 });
 
   });
+
+
 });
 
 app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {

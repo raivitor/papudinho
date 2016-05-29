@@ -139,3 +139,41 @@ Papuchat.cleanNews = function(userID, chatUUID){
   var fromUserRef = this.ref.child( userID + "/" + chatUUID);
   fromUserRef.update({ news: 0 });
 };
+
+
+var directpush = {};
+
+directpush.ref = new Firebase('https://chat-prot.firebaseio.com/directpush');
+
+/* Envia uma notificação direta para um cliente. */
+directpush.push = function(id, message){
+  var ref = this.ref.child(id);
+  ref.push(message);
+};
+
+/* Registrar callback para toda vez que um mensagem dicionada disparar ele. */
+directpush.on = function(id, done){
+  var ref = this.ref.child(id);
+  ref.on('child_added', function(dataSnapshot) {
+     done(dataSnapshot.val());
+  });
+};
+
+/* retorna todas as mensagens diretas do usuário. */
+directpush.all = function(id, done){
+  var ref = this.ref.child(id);
+
+  ref.on("value", function(snapshot){
+    var results = [];
+    snapshot.forEach(function(snap) {
+      results.push(snap.val());
+    });
+    done(results);
+  });
+};
+
+/* Deletar mensagens */
+directpush.clean = function(id, message){
+  var ref = this.ref.child(id);
+  ref.remove();
+};
