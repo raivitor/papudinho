@@ -43,6 +43,10 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
       console.log(G_usuario.id);
       window.localStorage['user_id'] = G_usuario.id;
       Usuario.UpdateToken(G_usuario.id, window.localStorage['token']);
+
+      var event = new CustomEvent('getiduser', { detail: G_usuario.id });
+      window.dispatchEvent(event);
+
       $location.path('/menu/home');
     }).
 
