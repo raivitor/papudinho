@@ -20,8 +20,8 @@ app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$statePar
 
   $scope.deletar = function() {
     var confirmPopup = $ionicPopup.confirm({
-      title: 'Apagar cartão',
-      template: 'Deseja apagar todos os dados deste cartão?',
+      title: 'Apagar clube',
+      template: 'Deseja apagar todos os dados deste clube?',
       cancelText: 'Cancelar',
       cancelType: 'button-positive',
       okText: 'Apagar',

@@ -115,7 +115,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
     }
 
     if(fotoCard == 0){
-      alerta($ionicPopup, "Notificação", "Tire uma foto do cartão para continuar.");
+      alerta($ionicPopup, "Notificação", "Tire uma foto do clube para continuar.");
       return 0;
     }
 
@@ -153,11 +153,11 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
       $scope.imgCard = null;
       $scope.imgDrink = null;
       $scope.msg = " ";
-      alerta($ionicPopup, "Notificação", "Cartão criado com sucesso!");
+      alerta($ionicPopup, "Notificação", "Clube criado com sucesso!");
       $location.path('/menu/meuscartoes'); 
     }, function(data){
       $scope.checked = false;
-      $scope.msg = "Erro ao criar o cartão, tente novamente";
+      $scope.msg = "Erro ao criar o clube, tente novamente";
       console.error(data); 
     });
     return 0; 

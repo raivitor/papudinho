@@ -23,7 +23,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
           console.log(sucesso);
           $scope.cartoes = sucesso.data.vencidos;
           $scope.checked = false;
-          $scope.msg = "CARTÕES VENCIDOS";
+          $scope.msg = "CLUBE VENCIDOS";
           return cartoes;
         },
         function(fail){
@@ -47,7 +47,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
           console.log(sucesso);
           $scope.cartoes = sucesso.data.aberto;
           $scope.checked = false;
-          $scope.msg = "CARTÕES ABERTOS";
+          $scope.msg = "CLUBES ABERTOS";
           return cartoes;
         },
         function(fail){
@@ -86,7 +86,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
    $scope.checked = false;
    
     if($scope.cartoes == false){
-      $scope.msg = "Nenhum cartão cadastrado no momento";
+      $scope.msg = "Nenhum clube cadastrado no momento";
       $scope.checked = false;
     }
 
