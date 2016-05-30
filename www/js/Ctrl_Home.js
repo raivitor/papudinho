@@ -1,4 +1,4 @@
-app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootScope', function($scope, $http, $ionicModal, $ionicPopup, $rootScope) {
+app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootScope','$window', function($scope, $http, $ionicModal, $ionicPopup, $rootScope,$window) {
   window.localStorage['login'] = 1;
 
   function timedCount() {
@@ -90,6 +90,14 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootSc
     console.log('app')
      window.plugins.socialsharing.share('Baixe o app na GOOGLE PLAY (http://urele.com/Papudinho-Android) ou na APP STORE (http://urele.com/PAPUDINHO-IOS) e entre para o maior clube de apreciadores de Whisky do mundo =D');
      $scope.closeModal(2);
+ };
+
+
+  $scope.sugerir = function() {
+    console.log('sugeir')
+    $scope.closeModal(2)
+    $scope.closeModal(1)
+     $window.location.href = '/#/addBar';
  };
 
 
