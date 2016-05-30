@@ -2,23 +2,95 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
   
   $scope.checked = true;
 
+  $scope.controle = false;
+
   $scope.loadAtualizar = function(){
     atualizar();
   }
   
-  //atualizar();
-
-  $interval(atualizar, 1000, false);
-  function atualizar(){
-    $scope.cartoes = CartoesPessoais.getCartoes(G_usuario.id);
-    $scope.cartoes = $scope.cartoes.data;
-    //console.log($scope.cartoes);
-    $scope.msg = "";
+  $scope.mudarVencido = function(){
     
+      $scope.checked = true;
+      var req = {
+        method: 'GET',
+        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular',
+        params:{
+          user: G_usuario.id
+        }
+      }
+      $http(req).
+        then(function (sucesso) {
+          console.log(sucesso);
+          $scope.cartoes = sucesso.data.vencidos;
+          $scope.checked = false;
+          $scope.msg = "CARTÕES VENCIDOS";
+          return cartoes;
+        },
+        function(fail){
+          console.error("fail getCartoes - id"+id);
+          return -1;
+        });
+  }
+
+  $scope.mudarAberto = function(){
+
+      $scope.checked = true;
+      var req = {
+        method: 'GET',
+        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular',
+        params:{
+          user: G_usuario.id
+        }
+      }
+      $http(req).
+        then(function (sucesso) {
+          console.log(sucesso);
+          $scope.cartoes = sucesso.data.aberto;
+          $scope.checked = false;
+          $scope.msg = "CARTÕES ABERTOS";
+          return cartoes;
+        },
+        function(fail){
+          console.error("fail getCartoes - id"+id);
+          return -1;
+        });
+  }
+
+  atualizar();
+
+//  $interval(atualizar, 1000, false);
+  function atualizar(){
+
+
+      var req = {
+        method: 'GET',
+        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular',
+        params:{
+          user: G_usuario.id
+        }
+      }
+      $http(req).
+        then(function (sucesso) {
+          console.log(sucesso);
+          $scope.cartoes = sucesso.data.aberto;
+          $scope.cartoesAbertos = cards.data.aberto;
+          $scope.cartoesVencidos = cards.data.vencidos;
+          $scope.checked = false;
+          return cartoes;
+        },
+        function(fail){
+          console.error("fail getCartoes - id"+id);
+          return -1;
+        });
+
+   $scope.checked = false;
+   
     if($scope.cartoes == false){
       $scope.msg = "Nenhum cartão cadastrado no momento";
       $scope.checked = false;
     }
+
+
     else if($scope.cartoes == -1){
       $scope.msg = "Erro no servidor";
       $scope.checked = false;
@@ -26,4 +98,9 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
       $scope.checked = false;
     }
   }
+
+
+
+
+
 }]);
