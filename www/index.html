@@ -301,7 +301,10 @@
         </ion-nav-buttons>
         <ion-content padding="true" class="has-header">
           <div align="center">
-            <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>{{msg}}
+            <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner><br/>{{msg}}
+          </div>
+          <div>
+            {{label}}
           </div>
           <div ng-repeat="cartao in cartoes">
             <div class="card">
@@ -319,6 +322,10 @@
             </div>
           </div>
         </ion-content>
+        <div class="bar bar-footer button-event" style="text-align:center">
+          <button class="button button-icon icon "  ng-click="mudarVencido()">Cartões Vencidos</button>
+          <button class="button button-icon icon "  ng-click="mudarAberto()">Cartões Abertos</button>
+        </div>
       </ion-view>
     </script>
 
@@ -626,6 +633,9 @@
               </div>
             </div>
           </ion-content>
+        <div class="bar bar-footer button-event" style="text-align:center">
+          <button class="button button-icon icon ion-alert-circled" ng-click="mudar()">{{labelCartao}}</button>
+        </div>
       </ion-view>
     </script>
 
