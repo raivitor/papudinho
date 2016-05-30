@@ -5,7 +5,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
   $scope.controle = false;
 
   $scope.loadAtualizar = function(){
-    atualizar();
+   
   }
   
   $scope.mudarVencido = function(){
@@ -58,7 +58,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
 
   atualizar();
 
-//  $interval(atualizar, 1000, false);
+  $interval(atualizar, 1000, false);
   function atualizar(){
 
 
@@ -73,8 +73,6 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
         then(function (sucesso) {
           console.log(sucesso);
           $scope.cartoes = sucesso.data.aberto;
-          $scope.cartoesAbertos = cards.data.aberto;
-          $scope.cartoesVencidos = cards.data.vencidos;
           $scope.checked = false;
           return cartoes;
         },

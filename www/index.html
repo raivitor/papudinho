@@ -302,6 +302,7 @@
         <ion-nav-buttons side="right">
           <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
         </ion-nav-buttons>
+
         <ion-content padding="true" class="has-header">
           <div align="center">
             <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner><br/>{{msg}}
@@ -389,7 +390,7 @@
           <div class="card">
             <div class="item item-text-wrap" >
               <p>
-                Bar:  <b>{{ bar }}</b><br>
+                Bar:  <strong>{{ bar }}</strong><br>
                 Bebida: {{ drink }} <br>
                 Doses restantes: <b>{{ detalhe.remaining_doses}}/{{total_doses }}</b> <br>
                 Vencimento: {{ vencimento | date:'dd/MM/yyyy' }} <br>
@@ -909,6 +910,11 @@
 
         <ion-nav-bar class="bar-royal" ng-controller="Back">
           <ion-nav-buttons side="left">
+            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
+              <i class="ion-chevron-left"></i> Voltar
+            </button>
+          </ion-nav-buttons>
+          <ion-nav-buttons side="right">
             <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
               <i class="ion-chevron-left"></i> Voltar
             </button>

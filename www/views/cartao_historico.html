@@ -12,9 +12,9 @@
     <div class="card">
       <div class="item item-text-wrap" ng-repeat="cartao in historico">
         <p>
+          Bar:  <strong>{{ bar }}</strong><br>
           Bebida: {{ drink }} <br>
-          Bar:  {{ bar }}<br>
-          Doses restantes: {{ cartao.remaining_doses}}/{{total_doses }} <br>
+          Doses restantes: <strong>{{ cartao.remaining_doses}}/{{total_doses }}</strong> <br>
           Atualizado em: {{cartao.updated_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
           Criado: {{cartao.created_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
           <div class="row">
