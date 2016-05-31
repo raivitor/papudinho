@@ -428,7 +428,7 @@
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
             <ion-list>
-              <ion-item href="#/chat/{{amigo.user_id}}/{{amigo.name}}" class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" on-hold="deletar({{amigo.friendship_id}}, '{{amigo.name}}')">
+              <ion-item href="#/chat/{{amigo.user_id}}/{{amigo.name}}/{{amigo.friendship_id}}" class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" on-hold="deletar({{amigo.friendship_id}}, '{{amigo.name}}')">
                 ‎<span class="titulo">{{amigo.name}}</span><br>
                 <small>{{amigo.phone}}</small>
                 <i class="icon ion-chevron-right icon-accessory"></i>
@@ -915,8 +915,8 @@
             </button>
           </ion-nav-buttons>
           <ion-nav-buttons side="right">
-            <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
-              <i class="ion-chevron-left"></i> Voltar
+            <button class="button back-button buttons button-clear header-item" ng-click="excluirAmizade()">
+              Excluir Amizade
             </button>
           </ion-nav-buttons>
         </ion-nav-bar>

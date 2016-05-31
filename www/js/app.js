@@ -230,7 +230,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('chat', {
-      url: '/chat/:chatId/:nome',
+      url: '/chat/:chatId/:nome/:relacionamento',
       templateUrl: 'chat'
     })
 

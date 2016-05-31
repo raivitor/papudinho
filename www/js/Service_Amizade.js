@@ -84,7 +84,7 @@ app.factory('Amizade', ['$http', function($http){
   }
 
   function RemoverAmigo(idAmizade){
-
+    console.log(idAmizade)
   }
 
   return {

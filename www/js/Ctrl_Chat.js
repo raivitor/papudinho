@@ -3,18 +3,34 @@ function safeApply(scope, fn) {
     (scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
 }
 
-app.controller('Chat', function($scope, $http){
+app.controller('Chat', function($scope, $http, $rootScope, Amizade){
 
   var user_id = window.localStorage['user_id'];
+  
+
+
   $scope.chats = [];
 
   Papuchat.getChats(user_id, function(data){
      console.log(data);
-
      safeApply($scope, function(){
        $scope.chats = data;
      })
    });
+
+
+ $rootScope.excluirAmizade = function(){
+    console.log("asd")
+    var partes = location.href.split('/');
+    var tamanho = partes.length
+    console.log(partes[tamanho-1]);
+
+    var r = confirm("Deseja excluir a amizade?");
+    if (r == true) {
+        Amizade.RecusarAmizade(partes[tamanho-1])
+        window.history.back();
+    }
+ }
 
 });
 
@@ -26,6 +42,8 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
   var to_id = "";
   var from = "";
   var to = "";
+
+  console.log(chat_uuid)
 
   $scope.messages = [];
 
