@@ -1,5 +1,6 @@
 app.controller('CartaoDetalhe', ['$scope', 'CartoesPessoais', '$stateParams', '$ionicModal', function($scope, CartoesPessoais, $stateParams, $ionicModal) {
-  $scope.cartao = CartoesPessoais.getId($stateParams.cartaoId);
+  console.log('aqui??')
+  $scope.cartao = CartoesPessoais.getCartoes($stateParams.cartaoId);
   $scope.bar = $scope.cartao.bar;
   $scope.drink = $scope.cartao.drink;
   $scope.vencimento = $scope.cartao.due_date;

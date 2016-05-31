@@ -27,6 +27,29 @@ app.factory('CartoesPessoais', ['$http', function($http){
     return cartoes;
   }
 
+
+   function getCartaoPorId(id){
+    if(cartoes == 0){
+      var req = {
+        method: 'GET',
+        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/',
+        params:{
+          id: id
+        }
+      }
+      $http(req).
+        then(function (sucesso) {
+          console.log(sucesso);
+          return sucesso;
+        },
+        function(fail){
+          console.error("fail getCartoes - id"+id);
+          return -1;
+        });
+    }
+    return id;
+  }
+
   function atualizar(id){
     var req = {
       method: 'GET',
@@ -70,6 +93,7 @@ app.factory('CartoesPessoais', ['$http', function($http){
   function getId(id){
     var i;
     x = cartoes.data;
+    console.log(x)
     for (i = 0; i < x.length; i++) {
       if(x[i].id == id)
         return x[i];

@@ -44,7 +44,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
       }
       $http(req).
         then(function (sucesso) {
-          console.log(sucesso);
+          //console.log(sucesso);
           $scope.cartoes = sucesso.data.aberto;
           $scope.checked = false;
           $scope.msg = "CLUBES ABERTOS";
@@ -71,7 +71,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
       }
       $http(req).
         then(function (sucesso) {
-          console.log(sucesso);
+          //console.log(sucesso);
           $scope.cartoes = sucesso.data.aberto;
           $scope.checked = false;
           return cartoes;

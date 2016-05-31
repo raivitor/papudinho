@@ -353,19 +353,28 @@
             <div class="card">
               <a href="#/cartaodetalhe/{{cartao.card_id}}/{{cartao.id}}" class="item item-text-wrap" >
                 <div class="row">
-                  <div class="col"><img ng-src = "{{cartao.image_drink.url}}" width="100%"></div>
                   <div class="col col-75">
                     Bar:  <b>{{ bar }}</b><br>
                     Bebida: {{ drink }} <br>
                     Doses restantes: <b>{{ cartao.remaining_doses}}/{{total_doses }}</b> <br>
                     Vencimento: {{ vencimento | date:'dd/MM/yyyy' }} <br>
-
+                    Atualizado em: {{cartao.updated_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
+                    Criado: {{cartao.created_at | date:'dd/MM/yyyy HH:mm:ss'}}<br>
+                    <div class="row">
+                      <div class="col">
+                        <img ng-src="{{cartao.image_drink.url}}" width="100%" ng-click="openModal(1)">
+                      </div>
+                      <div class='col'>
+                        <img ng-src="{{cartao.image_card.url}}" width="100%" ng-click="openModal(2)">
+                      </div>
+                    </div>
                   </div>
                 </div>
               </a>
             </div>
           </div>
           <br>
+          
         </ion-content>
 
         <div class="bar bar-footer bar-assertive" ng-click="deletar()">
