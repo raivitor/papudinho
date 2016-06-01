@@ -6,7 +6,7 @@ function safeApply(scope, fn) {
 app.controller('Chat', function($scope, $http, $rootScope, Amizade,$location){
 
   $scope.myGoBack = function() {
-    $location.path("/menu")
+    $location.path("/menu/home")
   };
 
   var user_id = window.localStorage['user_id'];
