@@ -5,55 +5,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
   $scope.controle = false;
 
   $scope.loadAtualizar = function(){
-   
-  }
-  
-  $scope.mudarVencido = function(){
-    
-      $scope.checked = true;
-      var req = {
-        method: 'GET',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular',
-        params:{
-          user: G_usuario.id
-        }
-      }
-      $http(req).
-        then(function (sucesso) {
-          console.log(sucesso);
-          $scope.cartoes = sucesso.data.vencidos;
-          $scope.checked = false;
-          $scope.msg = "CLUBE VENCIDOS";
-          return cartoes;
-        },
-        function(fail){
-          console.error("fail getCartoes - id"+id);
-          return -1;
-        });
-  }
-
-  $scope.mudarAberto = function(){
-
-      $scope.checked = true;
-      var req = {
-        method: 'GET',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular',
-        params:{
-          user: G_usuario.id
-        }
-      }
-      $http(req).
-        then(function (sucesso) {
-          //console.log(sucesso);
-          $scope.cartoes = sucesso.data.aberto;
-          $scope.checked = false;
-          $scope.msg = "CLUBES ABERTOS";
-          return cartoes;
-        },
-        function(fail){
-          console.error("fail getCartoes - id"+id);
-          return -1;
-        });
+    atualizar();
   }
 
   atualizar();
@@ -73,6 +25,9 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
         then(function (sucesso) {
           //console.log(sucesso);
           $scope.cartoes = sucesso.data.aberto;
+          $scope.cartoesVencidos = sucesso.data.vencidos;
+
+          //console.log(sucesso.data.vencidos);
           $scope.checked = false;
           return cartoes;
         },
