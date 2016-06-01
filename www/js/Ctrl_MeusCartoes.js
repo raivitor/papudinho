@@ -52,7 +52,10 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
     }
   }
 
-
+  $scope.myGoBack = function() {
+  //window.history.back();
+  $ionicHistory.goBack();
+  };
 
 
 

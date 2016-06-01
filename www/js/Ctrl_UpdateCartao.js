@@ -3,6 +3,38 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
 
  console.log($stateParams.cartaoId);
  
+  var req = {
+    method: 'GET',
+    url: 'http://developer-papudinho.herokuapp.com/webservice/cards/'+$stateParams.cartaoId,
+  }
+  $http(req).
+    then(function (sucesso) {
+      console.log(sucesso);
+      $scope.cartao = sucesso.data[0];
+
+      $scope.bar = sucesso.data[0].bar;
+      $scope.drink = sucesso.data[0].drink;
+      $scope.doses = sucesso.data[0].remaining_doses;
+      $scope.historico = sucesso.data[0].historics;
+      $scope.imgDrink = $scope.historico[$scope.historico.length-1].image_drink.url;
+      $scope.imgCard = $scope.historico[$scope.historico.length-1].image_card.url; 
+      var fotoCard = 0;
+      var fotoDrink = 0;
+
+
+
+      return sucesso;
+    },
+    function(fail){
+      console.error("fail getCartoes - id"+id);
+      return -1;
+    });
+
+
+
+
+/*
+
   $scope.checked = false;
   $scope.id = $stateParams.cartaoId;
   $scope.cartao = CartoesPessoais.getCartaoPorId($stateParams.cartaoId);
@@ -16,7 +48,7 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
   //window.localStorage['LastImgCard'];
   var fotoCard = 0;
   var fotoDrink = 0;
-
+*/
   $ionicModal.fromTemplateUrl('modal-ft.html', {
     scope: $scope,
     animation: 'slide-in-up'
