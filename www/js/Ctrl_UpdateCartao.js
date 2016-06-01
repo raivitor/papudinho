@@ -1,7 +1,11 @@
 app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$stateParams', '$ionicScrollDelegate', '$ionicModal', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $stateParams, $ionicScrollDelegate, $ionicModal) {
+  
+
+ console.log($stateParams.cartaoId);
+ 
   $scope.checked = false;
   $scope.id = $stateParams.cartaoId;
-  $scope.cartao = CartoesPessoais.getId($scope.id);
+  $scope.cartao = CartoesPessoais.getCartaoPorId($stateParams.cartaoId);
   $scope.bar = $scope.cartao.bar;
   $scope.drink = $scope.cartao.drink;
   $scope.doses = $scope.cartao.remaining_doses;

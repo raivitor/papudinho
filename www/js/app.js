@@ -16,6 +16,15 @@ window.addEventListener('getiduser', function(event) {
 });
 
 
+document.addEventListener("backbutton", onBackKeyDown, false);
+
+function onBackKeyDown() {
+    //alert("faz nada")
+    //window.location.href = "/#/menu/home";
+    window.history.back();
+}
+
+
 app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
 
   window.addEventListener('directpush', function (e) {

@@ -1,4 +1,4 @@
-app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootScope','$window', function($scope, $http, $ionicModal, $ionicPopup, $rootScope,$window) {
+app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootScope','$window','$location', function($scope, $http, $ionicModal, $ionicPopup, $rootScope,$window,$location) {
   window.localStorage['login'] = 1;
 
   function timedCount() {
@@ -97,7 +97,8 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootSc
     console.log('sugeir')
     $scope.closeModal(2)
     $scope.closeModal(1)
-     $window.location.href = '/#/addBar';
+    $location.path("/addBar");
+     //$window.location.href = '/#/addBar';
  };
 
 
