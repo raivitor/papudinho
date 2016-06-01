@@ -3,7 +3,11 @@ function safeApply(scope, fn) {
     (scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
 }
 
-app.controller('Chat', function($scope, $http, $rootScope, Amizade){
+app.controller('Chat', function($scope, $http, $rootScope, Amizade,$location){
+
+  $scope.myGoBack = function() {
+    $location.path("/menu")
+  };
 
   var user_id = window.localStorage['user_id'];
   
