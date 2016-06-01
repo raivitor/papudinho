@@ -16,16 +16,25 @@ window.addEventListener('getiduser', function(event) {
 });
 
 
-document.addEventListener("backbutton", onBackKeyDown, false);
-
-function onBackKeyDown() {
-    //alert("faz nada")
-    //window.location.href = "/#/menu/home";
-    window.history.back();
-}
-
 
 app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
+
+
+  document.addEventListener("backbutton", onBackKeyDown, false);
+
+  function onBackKeyDown() {
+
+      str = window.location.href;
+      if(str.indexOf("login") > 0){
+        navigator.app.exitApp();
+      }else{
+        $ionicHistory.goBack();
+        //window.location.href = "#/menu/home"; 
+        e.preventDefault();
+      }
+      return false;
+  }
+
 
   window.addEventListener('directpush', function (e) {
 
@@ -58,22 +67,6 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
     if (window.StatusBar) {
       return StatusBar.hide();
     }
-
-
-     $ionicPlatform.registerBackButtonAction(function(e){
-      str = window.location.href;
-      if(str.indexOf("login") > 0){
-        navigator.app.exitApp();
-      }
-      //else if(str.indexOf("meuscartoes") >= 0 || str.indexOf("amigos") >= 0 || str.indexOf("bares") >= 0 || str.indexOf("cartoes") >= 0 || str.indexOf("promocao") >= 0 || str.indexOf("dados") >= 0 || str.indexOf("config") >= 0){
-        //$location.path('/menu/home');
-      //}
-      else{
-        $ionicHistory.goBack();
-        e.preventDefault();
-      }
-      return false;
-    },501);
 
     /**
     * GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js
