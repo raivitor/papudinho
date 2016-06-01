@@ -23,7 +23,6 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "com.pushwoosh.plugins.pushwoosh",
     "cordova-plugin-inappbrowser",
     "pushwoosh-cordova-plugin",
     {
