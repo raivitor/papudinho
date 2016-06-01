@@ -62,7 +62,7 @@ app.controller('Cartoes', ['$scope', '$http', '$interval','$window', function($s
           }
         };
 
-        $scope.Cartoes = $scope.atuais;
+        //$scope.Cartoes = $scope.atuais;
 
 
       }
