@@ -14,7 +14,7 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
     then(function (sucesso) {
       console.log(sucesso);
       $scope.cartao = sucesso.data[0];
-
+      $scope.id = $stateParams.cartaoId;
       $scope.bar = sucesso.data[0].bar;
       $scope.drink = sucesso.data[0].drink;
       $scope.doses = sucesso.data[0].remaining_doses;
@@ -122,7 +122,7 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
         image_drink: $scope.imgDrink
       }
     }
-
+console.log(req);
     $http(req).then(function(data){
       $scope.checked = false;
       CartoesPessoais.atualizar(G_usuario.id);
