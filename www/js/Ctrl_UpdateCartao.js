@@ -1,8 +1,11 @@
 app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', 'CartoesPessoais', '$stateParams', '$ionicScrollDelegate', '$ionicModal', function($scope, $http, $location, $ionicPopup, CartoesPessoais, $stateParams, $ionicScrollDelegate, $ionicModal) {
   
 
- console.log($stateParams.cartaoId);
- 
+  console.log($stateParams.cartaoId);
+  
+  var fotoCard = 0;
+  var fotoDrink = 0;
+
   var req = {
     method: 'GET',
     url: 'http://developer-papudinho.herokuapp.com/webservice/cards/'+$stateParams.cartaoId,
@@ -16,12 +19,9 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
       $scope.drink = sucesso.data[0].drink;
       $scope.doses = sucesso.data[0].remaining_doses;
       $scope.historico = sucesso.data[0].historics;
+
       $scope.imgDrink = $scope.historico[$scope.historico.length-1].image_drink.url;
       $scope.imgCard = $scope.historico[$scope.historico.length-1].image_card.url; 
-      var fotoCard = 0;
-      var fotoDrink = 0;
-
-
 
       return sucesso;
     },
@@ -31,24 +31,6 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
     });
 
 
-
-
-/*
-
-  $scope.checked = false;
-  $scope.id = $stateParams.cartaoId;
-  $scope.cartao = CartoesPessoais.getCartaoPorId($stateParams.cartaoId);
-  $scope.bar = $scope.cartao.bar;
-  $scope.drink = $scope.cartao.drink;
-  $scope.doses = $scope.cartao.remaining_doses;
-  $scope.historico = $scope.cartao.historics;
-  $scope.imgDrink = $scope.historico[$scope.historico.length-1].image_drink.url;
-  //window.localStorage['LastImgDrink'];
-  $scope.imgCard = $scope.historico[$scope.historico.length-1].image_card.url; 
-  //window.localStorage['LastImgCard'];
-  var fotoCard = 0;
-  var fotoDrink = 0;
-*/
   $ionicModal.fromTemplateUrl('modal-ft.html', {
     scope: $scope,
     animation: 'slide-in-up'
