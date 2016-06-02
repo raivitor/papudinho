@@ -371,7 +371,7 @@ function onDeviceReady() {
 }
 
   function initPushwoosh(idUser){
-    var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+    var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
     //set push notifications handler
     document.addEventListener('push-notification', function(event) {
