@@ -6,7 +6,21 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
     }).
 
     success(function (data, status, headers, config) {
-      $scope.users = data;
+
+      var lista = [];
+      console.log(data.length);
+
+      for (var i = 0; i < data.length; i++) {
+        
+        if(data[i].id != G_usuario.id){
+
+          lista.push(data[i]);
+        }
+
+      };
+
+      console.log(lista.length);
+      $scope.users = lista;
     }).
 
     error(function (data, status, headers, config) {
