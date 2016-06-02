@@ -567,7 +567,7 @@
           </label>
           <div class="list">
             <div>
-              <a class="item item-avatar" href="#/bar/{{module.id}}" ng-repeat="module in Bares | filter:search:strict" type="item-text-wrap">
+              <a class="item item-avatar" ng-click="modal(module)" ng-repeat="module in Bares | filter:search:strict" type="item-text-wrap">
                 <img ng-src="{{ module.logo.thumb.url }}">
                 <h2>{{ module.name }}</h2>
                 <p>{{ module.city }}, {{ module.state }}</p>
@@ -578,6 +578,24 @@
         </ion-content>
       </ion-view>
     </script>
+
+    <script id="bar-modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">{{bar.name}}</h1>
+          <div class="buttons">
+            <button class="button button-clear ion-close-circled" ng-click="closeModal(1)"></button>
+          </div>
+        </ion-header-bar>
+        <ion-content>
+          <br><br>
+          <p align="center">Endereço: {{bar.street}}, {{bar.state}} - {{bar.cep}}</p>
+          <p align="center">Telefone: {{bar.phone}}</p>
+          
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
 
     <script id="addBar" type="text/ng-template">
       <ion-view view-title="Sugerir Bar" >
