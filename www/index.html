@@ -586,7 +586,7 @@
     </script>
 
     <script id="bar-modal.html" type="text/ng-template">
-      <ion-modal-view>
+      <ion-modal-view >
         <ion-header-bar>
           <h1 class="title">{{bar.name}}</h1>
           <div class="buttons">
@@ -602,7 +602,7 @@
           <p align="center">Telefone: {{bar.phone}}</p>
           <p align="center"></p>
          <p align="center"> 
-         <a class="button icon-left ion-ios-location" href="geo:{{bar.latitude}},{{bar.longitude}}" style="color:black">View on Google Maps</a><p align="center">
+         <a class="button icon-left ion-ios-location" ng-click="geolocalizar(bar)" style="color:black">View on Google Maps</a><p align="center">
           
         </ion-content>
       </ion-modal-view>

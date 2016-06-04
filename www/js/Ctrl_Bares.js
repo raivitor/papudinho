@@ -21,6 +21,16 @@ $scope.modal = function(bar){
   $scope.oModal1.show();
 }
 
+
+
+$scope.geolocalizar = function(bar){
+
+
+  var mapa = "http://maps.google.com/maps?q="+bar.latitude+","+bar.longitude
+  console.log(mapa)
+  cordova.InAppBrowser.open(mapa, '_blank', 'location=yes');
+}
+
 $scope.closeModal = function(bar){
 
   $scope.oModal1.hide();
