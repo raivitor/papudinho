@@ -7,7 +7,8 @@
   <author email="contato@saites.com.br">
       S@ites
   </author>
-  <preference name="phonegap-version" value="3.7.0"/>
+  <!--<preference name="phonegap-version" value="3.7.0"/>-->
+  <preference name="Fullscreen" value="true" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
