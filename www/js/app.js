@@ -275,7 +275,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     .state('barmsgmessages', {
       cache: false,
       url: '/messages/:id',
-      templateUrl: 'views/messages.html'
+      templateUrl: 'messages'
     })
 
     .state('addBar', {
