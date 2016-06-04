@@ -1,7 +1,11 @@
 app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootScope','$window','$location', function($scope, $http, $ionicModal, $ionicPopup, $rootScope,$window,$location) {
   window.localStorage['login'] = 1;
 
+
+
+
   function timedCount() {
+    document.getElementsByClassName("title").innerHTML = "teste";
     var time;
     if(window.localStorage['login'] == 1){
       //clearTimeout(time);
