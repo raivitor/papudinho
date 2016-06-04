@@ -1,8 +1,12 @@
 //Historico
 app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$stateParams', '$location', '$interval','$http', function($scope, $ionicPopup, CartoesPessoais, $stateParams, $location, $interval,$http) {
   
-  $interval(atualizar, 3000000, false);
+  //$interval(atualizar, 3000000, false);
 
+
+  $scope.doRefresh = function() {
+      atualizar();
+  };
 
   function atualizar(){
 
@@ -33,6 +37,8 @@ app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$statePar
           console.error("fail getCartoes - id"+id);
           return -1;
         });
+
+        $scope.$broadcast('scroll.refreshComplete');
     
     //window.localStorage['LastImgCard'] = $scope.historico[$scope.historico.length-1].image_card.url;
     //window.localStorage['LastImgDrink'] = $scope.historico[$scope.historico.length-1].image_drink.url;

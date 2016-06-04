@@ -370,6 +370,9 @@
       </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
+          
+          <ion-refresher on-refresh="doRefresh()" disable-pulling-rotation="false"></ion-refresher>
+
           <div align="center">{{msg}}</div>
           <div ng-repeat="cartao in historico">
             <div class="card">
