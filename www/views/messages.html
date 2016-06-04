@@ -9,20 +9,18 @@
 
   <ion-content class="messages-chat" class="has-header">
     <ul>
-      <li ng-class=" message.from_id == user_id ? 'self':''" ng-repeat="message in messages">
+      <li ng-repeat="message in messages">
         <label>{{ message.from }}</label>
         <p>{{ message.text }}</p>
       </li>
     </ul>
-    <hr/>
-      <div class="messages-bottom">
+  </ion-content>
+
+  <div class="messages-bottom">
       <div class="textarea">
         <textarea ng-model="text"></textarea>
       </div>
       <i class="icon ion-paper-airplane" ng-click="send()"></i>
   </div>
-  </ion-content>
-
-
 
 </ion-view>

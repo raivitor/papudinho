@@ -608,36 +608,6 @@
       </ion-modal-view>
     </script>
 
-
-    <script id="messages" type="text/ng-template">
-        <ion-view view-title="Mensagens" ng-controller="Messages">
-          <ion-nav-bar class="bar-royal" ng-controller="Back">
-            <ion-nav-buttons side="left">
-              <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
-                <i class="ion-chevron-left"></i> Voltar
-              </button>
-            </ion-nav-buttons>
-          </ion-nav-bar>
-
-          <ion-content class="messages-chat" class="has-header">
-            <ul>
-              <li ng-class=" message.from_id == user_id ? 'self':''" ng-repeat="message in messages">
-                <label>{{ message.from }}</label>
-                <p>{{ message.text }}</p>
-              </li>
-            </ul>
-          </ion-content>
-
-          <div class="messages-bottom">
-              <div class="textarea">
-                <textarea ng-model="text"></textarea>
-              </div>
-              <i class="icon ion-paper-airplane" ng-click="send()"></i>
-          </div>
-
-        </ion-view>
-    </script>
-
     <script id="addBar" type="text/ng-template">
       <ion-view view-title="Sugerir Bar" >
 
