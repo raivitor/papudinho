@@ -13,7 +13,7 @@ app.controller('Cartoes', ['$scope', '$http', '$interval','$window', function($s
   }
 
 
-  $interval(atualizar, 100000, false);
+  //$interval(atualizar, 100000, false);
   function atualizar(){
 
 

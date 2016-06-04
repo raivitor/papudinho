@@ -10,31 +10,23 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
 
   atualizar();
 
-  $interval(atualizar, 1000, false);
+  //$interval(atualizar, 1000, false);
   function atualizar(){
 
 
-      var req = {
-        method: 'GET',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular',
-        params:{
-          user: G_usuario.id
-        }
-      }
-      $http(req).
-        then(function (sucesso) {
-          console.log(sucesso);
-          $scope.cartoes = sucesso.data.aberto;
-          $scope.cartoesVencidos = sucesso.data.vencidos;
+    
+    $http.get("http://developer-papudinho.herokuapp.com/webservice/cards/particular", { params: { user: G_usuario.id } })
+    .success(function(data) {
+        console.log(data);
+          $scope.cartoes = data.aberto;
+          $scope.cartoesVencidos = data.vencidos;
 
           //console.log(sucesso.data.vencidos);
           $scope.checked = false;
-          return cartoes;
-        },
-        function(fail){
-          console.error("fail getCartoes - id"+id);
-          return -1;
-        });
+    })
+    .error(function(data) {
+        console.error("fail getCartoes - id"+id);
+    });
 
    $scope.checked = false;
    
@@ -50,11 +42,18 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
     } else if($scope.cartoes){
       $scope.checked = false;
     }
+    
+    $scope.$broadcast('scroll.refreshComplete');
   }
 
   $scope.myGoBack = function() {
   //window.history.back();
   $ionicHistory.goBack();
+  };
+
+
+  $scope.doRefresh = function() {
+      atualizar();
   };
 
 

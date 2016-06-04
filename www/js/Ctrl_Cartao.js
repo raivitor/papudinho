@@ -1,7 +1,7 @@
 //Historico
 app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$stateParams', '$location', '$interval','$http', function($scope, $ionicPopup, CartoesPessoais, $stateParams, $location, $interval,$http) {
   
-  $interval(atualizar, 100000, false);
+  $interval(atualizar, 3000000, false);
 
 
   function atualizar(){
@@ -55,5 +55,10 @@ app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$statePar
       }
     });
    };
+
+  $scope.myGoBack = function() {
+    $location.path('/menu/meuscartoes'); 
+  }
+
 
 }]);
