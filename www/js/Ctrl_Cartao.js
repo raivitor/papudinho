@@ -1,7 +1,7 @@
 //Historico
 app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$stateParams', '$location', '$interval','$http', function($scope, $ionicPopup, CartoesPessoais, $stateParams, $location, $interval,$http) {
   
- // $interval(atualizar, 2000, false);
+  $interval(atualizar, 2000, false);
 
 
   function atualizar(){
