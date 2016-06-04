@@ -21,6 +21,11 @@ $scope.modal = function(bar){
   $scope.oModal1.show();
 }
 
+$scope.closeModal = function(bar){
+
+  $scope.oModal1.hide();
+}
+
   $ionicModal.fromTemplateUrl('bar-modal.html', {
       id: '1', 
       scope: $scope,
