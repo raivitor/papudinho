@@ -46,7 +46,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.hide();
+      //StatusBar.hide();
       //StatusBar.styleLightContent();
     }
 
@@ -54,10 +54,12 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
         window.localStorage['version'] = version;
     });
 
+/*
     ionic.Platform.fullScreen();
     if (window.StatusBar) {
       return StatusBar.hide();
     }
+    */
 
     $ionicPlatform.registerBackButtonAction(function(e){
       str = window.location.href;

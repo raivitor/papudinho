@@ -7,8 +7,8 @@
   <author email="contato@saites.com.br">
       S@ites
   </author>
-  <!--<preference name="phonegap-version" value="3.7.0"/>-->
-  <preference name="Fullscreen" value="true" />
+  <preference name="phonegap-version" value="3.7.0"/>
+  <preference name="fullscreen" value="false" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -74,12 +74,6 @@
   <feature name="http://api.phonegap.com/1.0/camera"/>
   <feature name="http://api.phonegap.com/1.0/file"/>
   <gap:plugin name="org.apache.cordova.geolocation"/>
-  <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.4.2"/>
-  <gap:plugin name="net.bgta.phonegap.plugin.appversion" version="1.1.1"/>
-  <gap:plugin name="org.apache.cordova.camera" version="0.3.6"/>
-  <gap:plugin name="org.li8.inappbrowser" version="0.1"/>
-  <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1"/>
-  <plugin name="nl.x-services.plugins.socialsharing" spec="4.3.8" source="pgb"/>
   <allow-navigation href="http://*/*"/>
   <allow-navigation href="https://*/*"/>
   <allow-navigation href="data:*"/>
