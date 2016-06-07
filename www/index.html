@@ -529,7 +529,7 @@
     </script>
 
 <script id="baresMensagem" type="text/ng-template">
-<ion-view view-title="Mensagens" ng-controller="ChatUsuarios">
+<ion-view view-title="Mensagens" ng-controller="Chat">
   <ion-nav-bar class="bar-royal" ng-controller="Back">
     <ion-nav-buttons side="left">
       <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
@@ -991,7 +991,7 @@
           </ion-nav-buttons>
         </ion-nav-bar>
 
-        <ion-content padding="true" class="has-header" ng-controller="Chat">
+        <ion-content padding="true" class="has-header" ng-controller="ChatUsuarios">
           <ul class="list">
             <li class="item" ng-repeat="message in messages">
               <div class="chat-eu" ng-if="message.name == meuName">{{message.text}}</div>
