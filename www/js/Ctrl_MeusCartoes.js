@@ -10,6 +10,12 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
 
   atualizar();
 
+  $scope.$on("$ionicView.enter", function(event, data){
+   atualizar();
+   console.log("State Params: ", data.stateParams);
+});
+
+
   //$interval(atualizar, 1000, false);
   function atualizar(){
 

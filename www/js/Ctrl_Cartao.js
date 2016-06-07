@@ -8,6 +8,11 @@ app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$statePar
       atualizar();
   };
 
+  $scope.$on("$ionicView.enter", function(event, data){
+   atualizar();
+  
+  });
+
   function atualizar(){
 
     var partes = location.href.split('/');
