@@ -321,7 +321,7 @@
                   <div class="col col-75">
                     Bar: <b>{{ cartao.bar }}</b><br>
                     Bebida: {{ cartao.drink }}<br>
-                    Doses restantes: <b>{{ cartao.remaining_doses}}/{{cartao.total_doses }}</b><br>
+                    Doses restantes: <b>{{ cartao.historics[0].remaining_doses }}/{{cartao.total_doses }}</b><br>
                     Vencimento: {{ cartao.due_date | date:'dd/MM/yyyy'}}
                   </div>
                 </div>

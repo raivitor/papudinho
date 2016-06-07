@@ -17,9 +17,10 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
       $scope.id = $stateParams.cartaoId;
       $scope.bar = sucesso.data[0].bar;
       $scope.drink = sucesso.data[0].drink;
-      $scope.doses = sucesso.data[0].remaining_doses;
+      
       $scope.historico = sucesso.data[0].historics;
 
+      $scope.doses = $scope.historico[0].remaining_doses;
       $scope.imgDrink = $scope.historico[0].image_drink.url;
       $scope.imgCard = $scope.historico[0].image_card.url; 
 

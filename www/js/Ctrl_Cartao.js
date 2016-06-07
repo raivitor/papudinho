@@ -36,6 +36,7 @@ app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$statePar
           $scope.vencimento = sucesso.data[0].due_date;
           $scope.total_doses = sucesso.data[0].total_doses;
           $scope.historico = sucesso.data[0].historics;
+    
           
         },
         function(fail){
