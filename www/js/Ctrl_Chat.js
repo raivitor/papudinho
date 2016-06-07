@@ -87,10 +87,11 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
 
 
 app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrollDelegate', '$interval', '$ionicNavBarDelegate','$http', function($scope, $stateParams, $firebaseArray, $ionicScrollDelegate, $interval, $ionicNavBarDelegate, $http) {
-  $scope.meuName = G_usuario.id;
+  $scope.meuName = localStorage.getItem('user_id');
   $scope.nameAmigo = $stateParams.chatId;
   $ionicNavBarDelegate.title($stateParams.nome);
   var ref;
+  $scope.ju = "hello";
 
   /**
   * Garantir que o 'id' menor seja escrito primeiro.
@@ -104,12 +105,11 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
   $scope.messages = $firebaseArray(ref);
 
   $scope.addMessage = function() {
-
     var dados = {
-      name: G_usuario.id,
-      text: $scope.message
+      name: localStorage.getItem('user_id'),
+      text: document.getElementById('message').value
     }
-
+    console.log(dados);
     $scope.messages.$add(dados);
 
     var req = {
@@ -130,7 +130,7 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
       );
 
 
-     $scope.message = "";
+    document.getElementById('message').value = "";
      $ionicScrollDelegate.scrollBottom();
   };
 
