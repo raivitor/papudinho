@@ -47,6 +47,8 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
   var from = "";
   var to = "";
 
+
+
   console.log(chat_uuid)
 
   $scope.messages = [];
@@ -54,7 +56,6 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
 
   Papuchat.getMessages(chat_uuid, function(data){
     console.log(data);
-
 
     if(data.length > 0){
       to_id = data[0].from_id;
@@ -92,6 +93,16 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
   $ionicNavBarDelegate.title($stateParams.nome);
   var ref;
   $scope.ju = "hello";
+
+  $scope.my_name = null;
+  $http.get('http://developer-papudinho.herokuapp.com/webservice/users/'+$scope.meuName).then(function(res){
+    $scope.my_name  = res.data[0].name ;
+  });
+
+  $scope.other_name = null;
+  $http.get('http://developer-papudinho.herokuapp.com/webservice/users/'+$scope.nameAmigo).then(function(res){
+    $scope.other_name  = res.data[0].name ;
+  });
 
   /**
   * Garantir que o 'id' menor seja escrito primeiro.

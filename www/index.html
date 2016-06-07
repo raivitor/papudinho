@@ -995,6 +995,8 @@
         <ion-content padding="true" class="has-header">
           <ul class="list">
             <li class="item" ng-repeat="message in messages">
+              <label ng-if="message.name == meuName">  {{ my_name }}</label>
+              <label ng-if="message.name == nameAmigo"> {{ other_name }}</label>
               <div class="chat-eu" ng-if="message.name == meuName">{{message.text}}</div>
               <div class="chat-amigo" ng-if="message.name == nameAmigo">{{message.text}}</div>
             </li>
