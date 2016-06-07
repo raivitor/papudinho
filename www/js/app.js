@@ -244,6 +244,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       templateUrl: 'chat'
     })
 
+    .state('chatUsuarios', {
+      url: '/chat/:chatId/:nome',
+      templateUrl: 'chat'
+    })
+
     .state('cartao', {
       url: '/cartao/:cartaoId',
       templateUrl: 'cartao'

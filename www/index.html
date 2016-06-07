@@ -299,7 +299,7 @@
 
     <script id="meuscartoes" type="text/ng-template">
       <ion-view view-title="Meus Clubes" ng-controller="MeusCartoes" data-ng-init="init()">
-      
+
         <ion-nav-buttons side="right">
           <a href="#/addCartao" class="button button-icon icon ion-plus"></a>
         </ion-nav-buttons>
@@ -329,7 +329,7 @@
             </div>
           </div>
 
-          
+
 
            <div align="center" ng-show="cartoesVencidos.length">
              <hr/>
@@ -370,7 +370,7 @@
       </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
-          
+
           <ion-refresher on-refresh="doRefresh()" disable-pulling-rotation="false"></ion-refresher>
 
           <div align="center">{{msg}}</div>
@@ -399,7 +399,7 @@
             </div>
           </div>
           <br>
-          
+
         </ion-content>
 
         <div class="bar bar-footer bar-assertive" ng-click="deletar()">
@@ -529,7 +529,7 @@
     </script>
 
 <script id="baresMensagem" type="text/ng-template">
-<ion-view view-title="Mensagens" ng-controller="Chat">
+<ion-view view-title="Mensagens" ng-controller="ChatUsuarios">
   <ion-nav-bar class="bar-royal" ng-controller="Back">
     <ion-nav-buttons side="left">
       <button class="button back-button buttons button-clear header-item" ng-click="myGoBack()">
@@ -595,16 +595,16 @@
           </div>
         </ion-header-bar>
         <ion-content>
-          <div style="text-align:center;margin-top:10px"> 
+          <div style="text-align:center;margin-top:10px">
             <img src="{{bar.logo.url}}" align="center" />
           </div>
           <br><br>
           <p align="center">Endereço: {{bar.street}}, {{bar.state}} - {{bar.cep}}</p>
           <p align="center">Telefone: {{bar.phone}}</p>
           <p align="center"></p>
-         <p align="center"> 
+         <p align="center">
          <a class="button icon-left ion-ios-location" ng-click="geolocalizar(bar)" style="color:black">View on Google Maps</a><p align="center">
-          
+
         </ion-content>
       </ion-modal-view>
     </script>
