@@ -388,7 +388,7 @@
                     <div class="row">
                       <div class="col">
                         <img ng-src="{{cartao.image_drink.thumb.url}}" width="100%" ng-click="openModal(1)">
-                      </div>
+                      </div>l
                       <div class='col'>
                         <img ng-src="{{cartao.image_card.thumb.url}}" width="100%" ng-click="openModal(2)">
                       </div>
@@ -1003,9 +1003,11 @@
           </ul>
           <p>&nbsp;</p>
         </ion-content>
-        <div class="bar bar-footer bar-royal" ng-controller="Chat"  >
-          <input class="chat-input" type="text" id="message">
-          <button class="button button-event " ng-click="addMessage()">Enviar</button>
+        <div class="messages-bottom" ng-controller="Chat"  >
+          <div class="textarea">
+            <textarea id="message"></textarea>
+          </div>
+          <i class="icon ion-paper-airplane" ng-click="addMessage()"></i>
         </div>
       </div>
       </ion-view>
