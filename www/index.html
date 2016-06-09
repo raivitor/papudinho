@@ -209,7 +209,7 @@
               <a href="#/menu/bares" class="item" menu-close><i class="icon ion-ios-location" ></i> Bares</a>
               <a href="#/menu/cartoes" class="item" menu-close><i class="icon ion-card" ></i> Clubes (bar/restaurante)</a>
               <a href="#/menu/promocao" class="item" menu-close><i class="icon ion-bag" ></i> Promoções</a>
-              <a href="#/barmsg" class="item" menu-close><i class="icon ion-email" ></i> Mensagens do Bar</a>
+              <a href="#/menu/barMensagem" class="item" menu-close><i class="icon ion-email" ></i> Mensagens do Bar</a>
               <a href="#/menu/dados" class="item" menu-close><i class="icon ion-android-home" ></i> Meus Dados</a>
               <a href="#/menu/config" class="item" menu-close><i class="icon ion-ios-gear-outline" ></i> Configurações</a>
               <a href="#/menu/sobre" class="item" menu-close><i class="icon ion-ios-information" ></i> Sobre</a>
@@ -998,6 +998,23 @@
             <ion-spinner icon="lines" class="spinner-calm" ng-show="checked"></ion-spinner>
          </div>
         </ion-content>
+      </ion-view>
+    </script>
+
+
+    <script id="barMensagem" type="text/ng-template" >
+      <ion-view>
+
+        <ion-content padding="true" class="has-header" view-title="Mensagens" ng-controller="Chat">
+        <p>Lista das mensagens dos bares</p>
+        <div class="list">
+            <a class="item item-avatar" href="#/messages/{{ chat.id }}" ng-repeat="chat in chats">
+              <img src="{{ chat.logo }}">
+              <h2>{{ chat.barname }}</h2>
+              <p>{{ chat.text }}</p>
+            </a>
+        </div>
+      </ion-content>
       </ion-view>
     </script>
 

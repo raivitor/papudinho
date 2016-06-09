@@ -149,6 +149,16 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       }
     })
 
+    .state('eventmenu.barMensagem', {
+      cache: false,
+      url: "/barMensagem",
+      views: {
+        'menuContent' :{
+          templateUrl: "barMensagem"
+        }
+      }
+    })
+
     .state('eventmenu.meuscartoes', {
       url: "/meuscartoes",
       views: {
