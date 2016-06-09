@@ -17,7 +17,7 @@ window.addEventListener('getiduser', function(event) {
 
 
 
-app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
+app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
 
 
   document.addEventListener("backbutton", onBackKeyDown, false);
@@ -28,7 +28,6 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
 
 
   window.addEventListener('directpush', function (e) {
-
     $ionicPopup.alert({
      title: e.detail.bar_name,
      template: e.detail.message
@@ -80,6 +79,22 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup) {
     * GetLocation() fica pegando a posição atual do usuario, a função está em funcoes.js
     */
     var localizacao = setInterval(GetLocation, G_tempo);
+
+    /**
+     * Popular notificacao dos bares
+     */
+    $http({
+      url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
+      method: "GET"
+    }).success(function (data, status, headers, config) {
+      alert(data)
+      //pupularGeofencer(data);
+    }).
+
+  error(function (data, status, headers, config) {
+    console.log('Error bares',data);
+  });
+
 
     //Localizacao do GPS
     navigator.geolocation.watchPosition(function(position) {
@@ -204,6 +219,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       views: {
         'menuContent' :{
           templateUrl: "sobre"
+        }
+      }
+    })
+
+    .state('eventmenu.logoff', {
+      url: "/logoff",
+      views: {
+        'menuContent' :{
+          templateUrl: "logoff"
         }
       }
     })
@@ -375,7 +399,52 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     // Now safe to use device APIs
     initPushwoosh();
+
+    window.geofence.initialize().then(function () {
+        console.log("Successful initialization geofence");
+    }, function (error) {
+        console.log("Error", error);
+    });
 }
+
+
+
+  function pupularGeofencer(lista){
+
+    var params = [1, -5,83244, -35,2177, 100];
+    DGGeofencing.startMonitoringRegion(params, function(result) { alert('proximo')}, function(error) {
+        alert("failed to add region");
+    });
+
+    console.log(lista)
+
+    /*
+    window.geofence.addOrUpdate({
+      id:             String, //A unique identifier of geofence 
+      latitude:       Number, //Geo latitude of geofence 
+      longitude:      Number, //Geo longitude of geofence 
+      radius:         Number, //Radius of geofence in meters 
+      transitionType: Number, //Type of transition 1 - Enter, 2 - Exit, 3 - Both 
+      notification: {         //Notification object 
+          id:             Number, //optional should be integer, id of notification 
+          title:          String, //Title of notification 
+          text:           String, //Text of notification 
+          smallIcon:      String, //Small icon showed in notification area, only res URI 
+          icon:           String, //icon showed in notification drawer 
+          openAppOnClick: Boolean,//is main app activity should be opened after clicking on notification 
+          vibration:      [Integer], //Optional vibration pattern - see description 
+          data:           Object  //Custom object associated with notification 
+      }
+    }).then(function () {
+      console.log('Geofence successfully added');
+    }, function (reason) {
+      console.log('Adding geofence failed', reason);
+    });
+    */
+
+
+
+  }
 
   function initPushwoosh(idUser){
     var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
@@ -388,8 +457,16 @@ function onDeviceReady() {
         if(typeof(userData) != "undefined") {
             //alert('user data: ' + JSON.stringify(userData));
         }
+        
+        if(typeof(userData) == "undefined") {
+            alert(JSON.stringify(title));
+            return false;
+        }
+        
 
+        console.log(userData);
         console.log(userData.custom_data.promotion_id);
+
 
         window.open('http://developer-papudinho.herokuapp.com/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
 
@@ -407,7 +484,7 @@ function onDeviceReady() {
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
-            alert(JSON.stringify(['failed to register ', status]))
+            //alert(JSON.stringify(['failed to register ', status]))
         }
     );
     pushNotification.getPushToken(
