@@ -120,31 +120,33 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
   $scope.messages = $firebaseArray(ref);
 
   $scope.addMessage = function() {
-    var dados = {
-      name: localStorage.getItem('user_id'),
-      text: document.getElementById('message').value
+    if(document.getElementById('message').value != ""){
+
+        var dados = {
+          name: localStorage.getItem('user_id'),
+          text: document.getElementById('message').value
+        }
+        console.log(dados);
+        $scope.messages.$add(dados);
+
+        var req = {
+          method: 'POST',
+          url: 'http://developer-papudinho.herokuapp.com/webservice/chat',
+          params:{
+            name: G_usuario.id,
+            text: $scope.message
+          }
+        }
+
+        $http(req).
+          then(
+            function (sucesso) {
+              console.log(sucesso);
+            },
+            function(fail){}
+          );
+
     }
-    console.log(dados);
-    $scope.messages.$add(dados);
-
-    var req = {
-      method: 'POST',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/chat',
-      params:{
-        name: G_usuario.id,
-        text: $scope.message
-      }
-    }
-
-    $http(req).
-      then(
-        function (sucesso) {
-          console.log(sucesso);
-        },
-        function(fail){}
-      );
-
-
     document.getElementById('message').value = "";
      $ionicScrollDelegate.scrollBottom();
   };
