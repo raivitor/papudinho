@@ -73,15 +73,19 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
   $scope.text = "";
 
   $scope.send = function(){
-    Papuchat.send(chat_uuid, {
-      to_id: to_id,
-      from_id: from_id,
-      from: from,
-      to: to,
-      text: $scope.text
-    });
 
-    $scope.text = "";
+    if($scope.text != ""){ 
+     
+      Papuchat.send(chat_uuid, {
+        to_id: to_id,
+        from_id: from_id,
+        from: from,
+        to: to,
+        text: $scope.text
+      });
+
+      $scope.text = "";
+    }
   };
 
 });
