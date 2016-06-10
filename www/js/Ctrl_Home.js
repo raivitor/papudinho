@@ -21,10 +21,10 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootSc
         console.log(data)
         $scope.CartoesVencimento = data;
         if(data == 0){
-          $scope.msg = "Nenhum cartão perto do vencimento";
+          $scope.msg = "Nenhum clube a expirar";
         }
         else{
-          $scope.msg = "Cartões perto do vencimento";
+          $scope.msg = "Clubes perto do vencimento";
         }
       }).
 
