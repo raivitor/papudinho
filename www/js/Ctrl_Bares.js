@@ -1,7 +1,11 @@
 app.controller('Bares', ['$scope', '$http','$ionicModal' , function($scope, $http,$ionicModal) {
   $http({
     url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
-    method: "GET"
+    method: "GET",
+    params:{
+          latitude: window.localStorage['latitude'],
+          longitude: window.localStorage['longitude']
+        }
   }).
 
   success(function (data, status, headers, config) {
