@@ -41,14 +41,14 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootSc
 
   timedCount();
 
-  console.log(window.localStorage['latitude'],window.localStorage['longitude'])
-
+  //console.log(window.localStorage['latitude'],window.localStorage['longitude'])
+//ver aqui pq n funciona
   $http({
     url: 'http://developer-papudinho.herokuapp.com/webservice/get_near_bars', 
     method: "GET",
     params: {
-      latitude: window.localStorage['latitude'],
-      longitude: window.localStorage['longitude']
+      latitude: -5.878035499999999,
+      longitude: -35.2100314
     }
   }).
 

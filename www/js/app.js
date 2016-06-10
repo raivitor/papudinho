@@ -42,6 +42,8 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+      cordova.plugins.Keyboard.hideAccessoryBar(false);
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
