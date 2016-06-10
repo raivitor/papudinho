@@ -85,6 +85,7 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
       });
 
       $scope.text = "";
+      document.getElementById("message").focus();
     }
   };
 
@@ -148,6 +149,7 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
 
     }
     document.getElementById('message').value = "";
+    document.getElementById("message").focus();
      $ionicScrollDelegate.scrollBottom();
   };
 

@@ -80,6 +80,11 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
     */
     var localizacao = setInterval(GetLocation, G_tempo);
 
+    var params = [fid, latitude, longitude, radius];
+      DGGeofencing.startMonitoringRegion(params, function(result) {}, function(error) {
+          alert("failed to add region");
+      });
+
     /**
      * Popular notificacao dos bares
      */
@@ -89,11 +94,10 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
     }).success(function (data, status, headers, config) {
       alert(data)
       //pupularGeofencer(data);
-    }).
+    }).error(function (data, status, headers, config) {
+      console.log('Error bares',data);
+    });
 
-  error(function (data, status, headers, config) {
-    console.log('Error bares',data);
-  });
 
 
     //Localizacao do GPS
@@ -410,22 +414,14 @@ function onDeviceReady() {
     // Now safe to use device APIs
     initPushwoosh();
 
-    window.geofence.initialize().then(function () {
-        console.log("Successful initialization geofence");
-    }, function (error) {
-        console.log("Error", error);
-    });
+    
 }
 
 
 
   function pupularGeofencer(lista){
 
-    var params = [1, -5,83244, -35,2177, 100];
-    DGGeofencing.startMonitoringRegion(params, function(result) { alert('proximo')}, function(error) {
-        alert("failed to add region");
-    });
-
+   
     console.log(lista)
 
     /*
