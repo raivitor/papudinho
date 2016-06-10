@@ -87,21 +87,6 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
           alert("failed to add region");
       });
 
-    /**
-     * Popular notificacao dos bares
-     */
-    $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
-      method: "GET"
-    }).success(function (data, status, headers, config) {
-      alert(data)
-      //pupularGeofencer(data);
-    }).error(function (data, status, headers, config) {
-      console.log('Error bares',data);
-    });
-
-
-
     //Localizacao do GPS
     navigator.geolocation.watchPosition(function(position) {
       window.localStorage['latitude'] = position.coords.latitude;
@@ -109,7 +94,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
       console.log(position.coords.latitude, position.coords.longitude)
     }, function(error) {
         console.log('Erro ao pegar localização: ' + error.message);
-    }, { timeout: 60000 });
+    }, { timeout: 60000 });//{ timeout: 60000 });
 
   });
 

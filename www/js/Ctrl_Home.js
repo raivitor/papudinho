@@ -2,9 +2,21 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootSc
   window.localStorage['login'] = 1;
 
 
+function getGpS(){
+  //Localizacao do GPS
+    navigator.geolocation.getCurrentPosition(function(position) {
+      window.localStorage['latitude'] = position.coords.latitude;
+      window.localStorage['longitude'] = position.coords.longitude;
+      console.log(position.coords.latitude, position.coords.longitude)
+       pegaGeoLoc(); 
+    }, function(error) {
+        console.log('Erro ao pegar localização: ' + error.message);
+    });//{ timeout: 60000 });
 
+}
 
   function timedCount() {
+    getGpS()
     document.getElementsByClassName("title").innerHTML = "teste";
     var time;
     if(window.localStorage['login'] == 1){
@@ -41,24 +53,6 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootSc
 
   timedCount();
 
-  //console.log(window.localStorage['latitude'],window.localStorage['longitude'])
-//ver aqui pq n funciona
-  $http({
-    url: 'http://developer-papudinho.herokuapp.com/webservice/get_near_bars', 
-    method: "GET",
-    params: {
-      latitude: -5.878035499999999,
-      longitude: -35.2100314
-    }
-  }).
-
-  success(function (data, status, headers, config) {
-    $scope.Bares = data;
-  }).
-
-  error(function (data, status, headers, config) {
-    console.log('Error bares');
-  });
 
 
   $scope.checkin = function(bar){
@@ -140,7 +134,27 @@ app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootSc
     /* Listen for broadcasted messages */
 
     $scope.$on('modal.shown', function(event, modal) {
-      console.log('Modal ' + modal.id + ' is shown!');
+        console.log('Modal ' + modal.id + ' is shown!');
+
+
+        console.log(window.localStorage['latitude'],window.localStorage['longitude'])
+        $http({
+          url: 'http://developer-papudinho.herokuapp.com/webservice/get_near_bars', 
+          method: "GET",
+          params: {
+            latitude: window.localStorage['latitude'],
+            longitude: window.localStorage['longitude']
+          }
+        }).
+
+        success(function (data, status, headers, config) {
+          $scope.Bares = data;
+        }).
+
+        error(function (data, status, headers, config) {
+          console.log('Error bares');
+        });
+
     });
 
     $scope.$on('modal.hidden', function(event, modal) {
