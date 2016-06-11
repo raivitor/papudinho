@@ -29,7 +29,7 @@
 
 .label-index{
 	/*background-color: rgb(73,122,171);*/
-  background-color: rgb(250,250,250);
+  background-color: rgba(0, 0, 0, 0.5);
 	border: 0px;
 	border-bottom: 1px solid white;
 	margin-bottom: 10px;
@@ -56,10 +56,17 @@
   border: 0;
 }
 
+.button {
+  color:#FFF;
+}
+
+.solicitacao{
+  ;
+}
 ul a{
 	/*background-color: rgb(56 ,115 ,173)!important;*/
-  background-color: rgb(5255 ,191 ,37)!important;
-	color: black !important;
+  background-color: rgb(255 ,191 ,37)!important;
+	color: #FFF !important;
 }
 
 a{

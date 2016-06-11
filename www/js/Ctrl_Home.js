@@ -8,7 +8,6 @@ function getGpS(){
       window.localStorage['latitude'] = position.coords.latitude;
       window.localStorage['longitude'] = position.coords.longitude;
       console.log(position.coords.latitude, position.coords.longitude)
-       pegaGeoLoc(); 
     }, function(error) {
         console.log('Erro ao pegar localização: ' + error.message);
     });//{ timeout: 60000 });

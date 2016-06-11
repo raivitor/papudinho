@@ -242,8 +242,8 @@
           </div>
         </ion-content>
         <div class="bar bar-footer button-event">
-          <button class="button button-energized icon ion-android-checkmark-circle" style="color:black" ng-click="openModal(1)">Check-in</button>
-          <button class="button button-energized icon ion-android-share-alt" style="color:black"ng-click="openModal(2)">Compartilhe</button>
+          <button class="button icon ion-android-checkmark-circle" style="color:#FFF;background-color: rgb(56 ,115 ,173)" ng-click="openModal(1)">Check-in</button>
+          <button class="button icon ion-android-share-alt" style="color:#FFF;background-color: rgb(56 ,115 ,173)"ng-click="openModal(2)">Compartilhe</button>
         </div>
       </ion-view>
     </script>
@@ -472,7 +472,7 @@
           </div>
         </ion-content>
         <div class="bar bar-footer button-event" ng-click="openModal()">
-          <div class="title">Solicitações pentendentes: {{solPen}}</div>
+          <div class="title" style="color:#FFF" >Solicitações pentendentes: {{solPen}}</div>
         </div>
       </ion-view>
     </script>
@@ -843,10 +843,10 @@
             <div class="row">
               <div class="col col-80">
                 <div class="item range range-positive">
-                  <a class="button button-icon icon  ion-minus-round" ng-click="ChangeRange(-1)"></a>
+                  <a class="button button-icon icon  ion-minus-round" style="color:black" ng-click="ChangeRange(-1)"></a>
                   &nbsp;&nbsp;&nbsp;
-                  <input type="range" name="doses" min="0" max="20" value="1" ng-model="doses">
-                  <a class="button button-icon icon  ion-plus-round" ng-click="ChangeRange(1)"></a>
+                  <input type="range" name="doses" min="0" max="20" value="1"  ng-model="doses">
+                  <a class="button button-icon icon  ion-plus-round"  style="color:black" ng-click="ChangeRange(1)"></a>
                 </div>
               </div>
               <div class="col col-center" align="center">
@@ -868,7 +868,7 @@
           </form>
         </ion-content>
         <div class="bar bar-footer button-event" ng-controller="FooterNovoCartao">
-          <div class="title" ng-click="click1()">Salvar</div>
+          <div class="title" ng-click="click1()" style="color:#FFF">Salvar</div>
         </div>
       </ion-view>
     </script>
@@ -922,10 +922,10 @@
             <div class="row">
               <div class="col col-80">
                 <div class="item range range-positive">
-                  <a class="button button-icon icon  ion-minus-round" ng-click="ChangeRange(-1)"></a>
+                  <a class="button button-icon icon  ion-minus-round" style="color:black"  ng-click="ChangeRange(-1)"></a>
                   &nbsp;&nbsp;&nbsp;
                   <input type="range" name="doses" min="0" max="20" value="1" ng-model="doses">
-                  <a class="button button-icon icon  ion-plus-round" ng-click="ChangeRange(1)"></a>
+                  <a class="button button-icon icon  ion-plus-round" style="color:black"  ng-click="ChangeRange(1)"></a>
                 </div>
               </div>
               <div class="col col-center" align="center">
@@ -946,7 +946,7 @@
           </form>
         </ion-content>
         <div class="bar bar-footer button-event" ng-controller="FooterUpdateCartao">
-          <div class="title" ng-click="click1()">Salvar</div>
+          <div class="title" ng-click="click1()" style="color:#FFF">Salvar</div>
         </div>
       </ion-view>
     </script>
