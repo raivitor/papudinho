@@ -79,13 +79,13 @@ function getGpS(){
 //convide
  $scope.convideAmigo = function() {
     console.log('amigo')
-     window.plugins.socialsharing.share('Estou usando o Papudinho Clube do Whisky, vamos tomar uma?!');
+     window.plugins.socialsharing.share('Estou usando o WhiskYou Clube do Whisky, vamos tomar uma?!');
      $scope.closeModal(2);
  };
 
  $scope.convideApp = function() {
     console.log('app')
-     window.plugins.socialsharing.share('Baixe o app na GOOGLE PLAY (http://urele.com/Papudinho-Android) ou na APP STORE (http://urele.com/PAPUDINHO-IOS) e entre para o maior clube de apreciadores de Whisky do mundo =D');
+     window.plugins.socialsharing.share('Baixe o app na GOOGLE PLAY (http://urele.com/WhiskYou-Android) ou na APP STORE (http://urele.com/WhiskYou-IOS) e entre para o maior clube de apreciadores de Whisky do mundo =D');
      $scope.closeModal(2);
  };
 

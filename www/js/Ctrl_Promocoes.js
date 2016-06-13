@@ -31,6 +31,7 @@ app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
       } else {
         $scope.msg = "";
         $scope.Promocoes = data;
+        console.log(data)
       }
     }).
 
@@ -43,6 +44,18 @@ app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
 
   Atualizar();
   $scope.doRefresh = function() {
-    Atualizar();
+
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      window.localStorage['latitude'] = position.coords.latitude;
+      window.localStorage['longitude'] = position.coords.longitude;
+      console.log(position.coords.latitude, position.coords.longitude)
+      Atualizar();
+
+    }, function(error) {
+        console.log('Erro ao pegar localização: ' + error.message);
+    });
+
+    
   }
 }]);

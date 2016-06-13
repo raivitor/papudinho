@@ -1,4 +1,30 @@
 app.controller('Bares', ['$scope', '$http','$ionicModal' , function($scope, $http,$ionicModal) {
+
+
+atualizar()
+
+
+$scope.maisBares = function(){
+
+  
+
+}
+
+
+$scope.doRefresh = function(){
+  
+    navigator.geolocation.getCurrentPosition(function(position) {
+      window.localStorage['latitude'] = position.coords.latitude;
+      window.localStorage['longitude'] = position.coords.longitude;
+      console.log(position.coords.latitude, position.coords.longitude)
+      atualizar();
+      
+    }, function(error) {
+        console.log('Erro ao pegar localização: ' + error.message);
+    });
+}
+
+function atualizar() {
   $http({
     url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
     method: "GET",
@@ -9,13 +35,18 @@ app.controller('Bares', ['$scope', '$http','$ionicModal' , function($scope, $htt
   }).
 
   success(function (data, status, headers, config) {
+    console.log(data)
     G_bares = data;
     $scope.Bares = data;
+    $scope.$broadcast('scroll.refreshComplete');
   }).
 
   error(function (data, status, headers, config) {
     console.log('Error bares');
+    $scope.$broadcast('scroll.refreshComplete');
   });
+
+}
 
 
 $scope.modal = function(bar){

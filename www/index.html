@@ -206,9 +206,9 @@
               <a href="#/menu/home" class="item" menu-close><i class="icon ion-android-home" ></i> Home</a>
               <a href="#/menu/meuscartoes" class="item" menu-close><i class="icon ion-card" ></i> Clubes pessoais</a>
               <a href="#/menu/amigos" class="item" menu-close><i class="icon ion-person-stalker" ></i> Amigos</a>
-              <a href="#/menu/bares" class="item" menu-close><i class="icon ion-ios-location" ></i> Bares</a>
+              <a href="#/menu/bares" class="item" menu-close><i class="icon ion-ios-location" ></i> Bares Próximos</a>
               <a href="#/menu/cartoes" class="item" menu-close><i class="icon ion-card" ></i> Clubes (bar/restaurante)</a>
-              <a href="#/menu/promocao" class="item" menu-close><i class="icon ion-bag" ></i> Promoções</a>
+              <a href="#/menu/promocao" class="item" menu-close><i class="icon ion-bag" ></i> Promoções Próximas</a>
               <a href="#/menu/barMensagem" class="item" menu-close><i class="icon ion-email" ></i> Mensagens do Bar</a>
               <a href="#/menu/dados" class="item" menu-close><i class="icon ion-android-home" ></i> Meus Dados</a>
               <a href="#/menu/config" class="item" menu-close><i class="icon ion-ios-gear-outline" ></i> Configurações</a>
@@ -530,7 +530,7 @@
 
 
     <script id="bares" type="text/ng-template">
-      <ion-view view-title="Bares" ng-controller="Bares">
+      <ion-view view-title="Bares Próximos" ng-controller="Bares">
 
         <ion-nav-bar class="bar-royal">
           <ion-nav-buttons side="left">
@@ -539,6 +539,7 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
+          <ion-refresher on-refresh="doRefresh()" disable-pulling-rotation="false"></ion-refresher>
           <a href="#/addBar" class="clearLink">
             <button class="button button-event button-block">
               <b>Sugerir bar</b>
@@ -579,7 +580,7 @@
           <p align="center">Telefone: {{bar.phone}}</p>
           <p align="center"></p>
          <p align="center">
-         <a class="button icon-left ion-ios-location" ng-click="geolocalizar(bar)" style="color:black">View on Google Maps</a><p align="center">
+         <a class="button icon-left ion-ios-location" ng-click="geolocalizar(bar)" style="color:black">Ver no Mapa</a><p align="center">
 
         </ion-content>
       </ion-modal-view>
@@ -690,7 +691,7 @@
     </script>
 
     <script id="promocao" type="text/ng-template">
-      <ion-view title="Promoções" ng-controller="Promocoes">
+      <ion-view title="Promoções Próximas" ng-controller="Promocoes">
           <ion-content padding="true" class="has-header">
             <ion-refresher on-refresh="doRefresh()"></ion-refresher>
             <label class="item item-input busca">
@@ -772,7 +773,7 @@
                     </ion-toggle>
 
                     <ion-toggle ng-model="visibilidade" ng-change="ConfigChange()">
-                      Visibilidade para outros papudinhos
+                      Visibilidade para outros usuários
                     </ion-toggle>
 
                     <ion-toggle ng-model="privacidade" ng-change="ConfigChange()">
