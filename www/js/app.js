@@ -320,6 +320,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $urlRouterProvider.otherwise('/login');
 });
 
+
 /**
 * Adicionando um novo método no objeto 'Array'
 */

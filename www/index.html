@@ -555,6 +555,7 @@
                 <img ng-src="{{ module.logo.thumb.url }}">
                 <h2>{{ module.name }}</h2>
                 <p>{{ module.city }}, {{ module.state }}</p>
+                <p>{{ module.distance }} Km</p>
               </a>
             </div>
           </div>
@@ -708,6 +709,7 @@
                 <img class="full-image" src="{{module.avatar.avatar.url}}">
                 <p>{{module.description}}<br>
                   Válido até {{module.date | date:'dd/MM/yyyy'}}</p>
+                  <p>{{ module.distance }} Km</p>
               </div>
             </div>
           </ion-content>
