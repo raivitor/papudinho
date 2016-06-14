@@ -203,17 +203,17 @@
           </ion-header-bar>
           <ion-content class="bar-royal">
             <ul class="list">
-              <a href="#/menu/home" class="item" menu-close><i class="icon ion-android-home" ></i> Home</a>
-              <a href="#/menu/meuscartoes" class="item" menu-close><i class="icon ion-card" ></i> Clubes pessoais</a>
-              <a href="#/menu/amigos" class="item" menu-close><i class="icon ion-person-stalker" ></i> Amigos</a>
-              <a href="#/menu/bares" class="item" menu-close><i class="icon ion-ios-location" ></i> Bares Próximos</a>
-              <a href="#/menu/cartoes" class="item" menu-close><i class="icon ion-card" ></i> Clubes (bar/restaurante)</a>
-              <a href="#/menu/promocao" class="item" menu-close><i class="icon ion-bag" ></i> Promoções Próximas</a>
-              <a href="#/menu/barMensagem" class="item" menu-close><i class="icon ion-email" ></i> Mensagens do Bar</a>
-              <a href="#/menu/dados" class="item" menu-close><i class="icon ion-android-home" ></i> Meus Dados</a>
-              <a href="#/menu/config" class="item" menu-close><i class="icon ion-ios-gear-outline" ></i> Configurações</a>
-              <a href="#/menu/sobre" class="item" menu-close><i class="icon ion-ios-information" ></i> Sobre</a>
-              <a href="#/menu/logoff" class="item" menu-close ><i class="icon ion-forward" ></i> Sair</a>
+              <a href="#/menu/home" class="itemMenu" menu-close><i class="icon ion-android-home" ></i> Home</a>
+              <a href="#/menu/meuscartoes" class="itemMenu" menu-close><i class="icon ion-card" ></i> Clubes pessoais</a>
+              <a href="#/menu/amigos" class="itemMenu" menu-close><i class="icon ion-person-stalker" ></i> Amigos</a>
+              <a href="#/menu/bares" class="itemMenu" menu-close><i class="icon ion-ios-location" ></i> Bares Próximos</a>
+              <a href="#/menu/cartoes" class="itemMenu" menu-close><i class="icon ion-card" ></i> Clubes (bar/restaurante)</a>
+              <a href="#/menu/promocao" class="itemMenu" menu-close><i class="icon ion-bag" ></i> Promoções Próximas</a>
+              <a href="#/menu/barMensagem" class="itemMenu" menu-close><i class="icon ion-email" ></i> Mensagens do Bar</a>
+              <a href="#/menu/dados" class="itemMenu" menu-close><i class="icon ion-android-home" ></i> Meus Dados</a>
+              <a href="#/menu/config" class="itemMenu" menu-close><i class="icon ion-ios-gear-outline" ></i> Configurações</a>
+              <a href="#/menu/sobre" class="itemMenu" menu-close><i class="icon ion-ios-information" ></i> Sobre</a>
+              <a href="#/menu/logoff" class="itemMenu" menu-close ><i class="icon ion-forward" ></i> Sair</a>
             </ul>
           </ion-content>
         </ion-side-menu>
@@ -844,7 +844,7 @@
             </div>
 
             <div class="row">
-              <div class="col col-80">
+              <div class="col col-100">
                 <div class="item range range-positive">
                   <a class="button button-icon icon  ion-minus-round" style="color:black" ng-click="ChangeRange(-1)"></a>
                   &nbsp;&nbsp;&nbsp;
@@ -852,19 +852,20 @@
                   <a class="button button-icon icon  ion-plus-round"  style="color:black" ng-click="ChangeRange(1)"></a>
                 </div>
               </div>
-              <div class="col col-center" align="center">
-                <p>Doses : {{doses}}</p>
-              </div>
+
             </div>
+             <div class="col col-center" align="center" >
+                <p style="font-size:15px;margin-top:-16px">Doses : {{doses}}</p>
+              </div>
 
             <div class="row">
               <div class='col'>
                 <img ng-src="{{imgDrink}}" width="100%" ng-click="openModal(1)">
-                <button ng-click="capturePhoto(1)" class="button button-small button-positive icon-left ion-ios-camera">Tirar Foto da Bebida</button>
+                <button ng-click="capturePhoto(1)" class="button button-small button-positive icon-left ion-ios-camera">Foto da Bebida</button>
               </div>
               <div class="col">
                 <img ng-src="{{imgCard}}" width="100%" ng-click="openModal(2)">
-                <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Tirar Foto do Clube</button>
+                <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Foto do Clube</button>
               </div>
             </div>
             <br/><br/>
@@ -923,7 +924,7 @@
             </div>
 
             <div class="row">
-              <div class="col col-80">
+              <div class="col col-100">
                 <div class="item range range-positive">
                   <a class="button button-icon icon  ion-minus-round" style="color:black"  ng-click="ChangeRange(-1)"></a>
                   &nbsp;&nbsp;&nbsp;
@@ -931,19 +932,20 @@
                   <a class="button button-icon icon  ion-plus-round" style="color:black"  ng-click="ChangeRange(1)"></a>
                 </div>
               </div>
-              <div class="col col-center" align="center">
-                <p>Doses : {{doses}}</p>
-              </div>
             </div>
+            
+             <div class="col col-center" align="center">
+                <p style="font-size:15px;margin-top:-16px">Doses : {{doses}}</p>
+              </div>
 
             <div class="row">
               <div class='col'>
                 <img ng-src="{{imgDrink}}" width="100%" ng-click="openModal(1)">
-                <button ng-click="capturePhoto(1)" class="button button-small button-positive icon-left ion-ios-camera">Tirar Foto da Bebida</button>
+                <button ng-click="capturePhoto(1)" class="button button-small button-positive icon-left ion-ios-camera">Foto da Bebida</button>
               </div>
               <div class="col">
                 <img ng-src="{{imgCard}}" width="100%" ng-click="openModal(2)">
-                <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Tirar Foto do Clube</button>
+                <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Foto do Clube</button>
               </div>
             </div>
           </form>
