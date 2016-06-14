@@ -1,6 +1,8 @@
 app.controller('Sidebar', ['$scope', '$state', '$http', '$location' ,function($scope, $state, $http,$location) {
 
     $scope.checked = true;
+    $scope.nome = window.localStorage['nome'];
+    console.log(window.localStorage['nome']);
 
   $scope.logoff = function() {
 

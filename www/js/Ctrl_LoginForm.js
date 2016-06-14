@@ -30,6 +30,8 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
     }).
 
     success(function (data, status, headers, config) {
+      console.log(data.name.substring(0,10))
+      window.localStorage['nome'] = data.name.substring(0,10);
       window.localStorage['email'] = $scope.email;
       window.localStorage['senha'] = $scope.senha;
       $scope.msg = "";

@@ -197,11 +197,11 @@
           <ion-nav-view name="menuContent"></ion-nav-view>
         </ion-side-menu-content>
 
-        <ion-side-menu side="left">
+        <ion-side-menu side="left" ng-controller="Sidebar">
           <ion-header-bar class="bar-royal button bot">
-             <h1 class="title">Menu</h1>
+             <h1 class="title">{{nome}}</h1>
           </ion-header-bar>
-          <ion-content ng-controller="Sidebar" class="bar-royal">
+          <ion-content class="bar-royal">
             <ul class="list">
               <a href="#/menu/home" class="item" menu-close><i class="icon ion-android-home" ></i> Home</a>
               <a href="#/menu/meuscartoes" class="item" menu-close><i class="icon ion-card" ></i> Clubes pessoais</a>
