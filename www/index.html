@@ -230,7 +230,7 @@
               <div class="item item-text-wrap" >
                 <div class="row">
                   <div class="col"><img ng-src = "{{cartao.historics[0].image_drink.thumb.url}}" width="100%"></div>
-                  <div class="col col-75">
+                  <div class="col col-75" style="font-size:13px">
                     Bar: <b>{{ cartao.bar }}</b><br>
                     Bebida: {{ cartao.drink }}<br>
                     Doses restantes: <b>{{ cartao.remaining_doses}}/{{cartao.total_doses }}</b><br>
@@ -318,7 +318,7 @@
               <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
                 <div class="row">
                   <div class="col"><img ng-src = "{{cartao.historics[0].image_drink.thumb.url}}" width="100%"></div>
-                  <div class="col col-75">
+                  <div class="col col-75" style="font-size:13px">
                     Bar: <b>{{ cartao.bar }}</b><br>
                     Bebida: {{ cartao.drink }}<br>
                     Doses restantes: <b>{{ cartao.historics[0].remaining_doses }}/{{cartao.total_doses }}</b><br>
@@ -340,7 +340,7 @@
               <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
                 <div class="row">
                   <div class="col"><img ng-src = "{{cartao.historics[0].image_drink.thumb.url}}" width="100%"></div>
-                  <div class="col col-75">
+                  <div class="col col-75" style="font-size:13px"> 
                     Bar: <b>{{ cartao.bar }}</b><br>
                     Bebida: {{ cartao.drink }}<br>
                     Doses restantes: <b>{{ cartao.remaining_doses}}/{{cartao.total_doses }}</b><br>
@@ -378,7 +378,7 @@
             <div class="card">
               <a href="#/cartaodetalhe/{{cartao.card_id}}/{{cartao.id}}" class="item item-text-wrap" >
                 <div class="row">
-                  <div class="col col-75">
+                  <div class="col col-75" style="font-size:13px">
                     Bar:  <b>{{ bar }}</b><br>
                     Bebida: {{ drink }} <br>
                     Doses restantes: <b>{{ cartao.remaining_doses}}/{{total_doses }}</b> <br>
@@ -423,7 +423,7 @@
           <div align="center">{{msg}}</div>
           <div class="card">
             <div class="item item-text-wrap" >
-              <p>
+              <p style="font-size:13px">
                 Bar:  <strong>{{ bar }}</strong><br>
                 Bebida: {{ drink }} <br>
                 Doses restantes: <b>{{ detalhe.remaining_doses}}/{{total_doses }}</b> <br>
@@ -651,7 +651,7 @@
                   <div class="row">
 
                     <div class="col"><img ng-src = "{{module.historics[0].image_drink.url}}" width="100%"></div>
-                    <div class="col col-75">
+                    <div class="col col-75" style="font-size:13px">
                       Bar:  <b>{{ module.bar }}</b><br>
                       Bebida: {{ module.drink }} <br>
                       Doses restantes: <b>{{ module.remaining_doses}}/{{module.total_doses }} </b><br>
@@ -675,7 +675,7 @@
               <a href="#/cartaoBarHistorico/{{cartao.id}}" class="item item-text-wrap" >
                 <div class="row">
                   <div class="col"><img ng-src = "{{cartao.historics[cartao.historics.length-1].image_drink.url}}" width="100%"></div>
-                  <div class="col col-75">
+                  <div class="col col-75" style="font-size:13px">
                     Bar: <b>{{ cartao.bar }}</b><br>
                     Bebida: {{ cartao.drink }}<br>
                     Doses restantes: <b>{{ cartao.remaining_doses}}/{{cartao.total_doses }}</b><br>
@@ -860,12 +860,14 @@
 
             <div class="row">
               <div class='col'>
-                <img ng-src="{{imgDrink}}" width="100%" ng-click="openModal(1)">
                 <button ng-click="capturePhoto(1)" class="button button-small button-positive icon-left ion-ios-camera">Foto da Bebida</button>
+                <img ng-src="{{imgDrink}}" width="70%" ng-click="openModal(1)">
+
               </div>
               <div class="col">
-                <img ng-src="{{imgCard}}" width="100%" ng-click="openModal(2)">
                 <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Foto do Clube</button>
+                <img ng-src="{{imgCard}}" width="70%" ng-click="openModal(2)">
+                
               </div>
             </div>
             <br/><br/>
@@ -933,19 +935,21 @@
                 </div>
               </div>
             </div>
-            
+
              <div class="col col-center" align="center">
                 <p style="font-size:15px;margin-top:-16px">Doses : {{doses}}</p>
               </div>
 
             <div class="row">
               <div class='col'>
-                <img ng-src="{{imgDrink}}" width="100%" ng-click="openModal(1)">
                 <button ng-click="capturePhoto(1)" class="button button-small button-positive icon-left ion-ios-camera">Foto da Bebida</button>
+                <img ng-src="{{imgDrink}}" width="70%" ng-click="openModal(1)">
+                
               </div>
               <div class="col">
-                <img ng-src="{{imgCard}}" width="100%" ng-click="openModal(2)">
                 <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Foto do Clube</button>
+                <img ng-src="{{imgCard}}" width="70%" ng-click="openModal(2)">
+                
               </div>
             </div>
           </form>
@@ -984,7 +988,7 @@
           </ul>
           <p>&nbsp;</p>
         </ion-content>
-        <div class="messages-bottom" ng-controller="Chat"  >
+        <div class="messages-bottom" ng-controller="Chat"  keyboard-attach='true'  >
           <div class="textarea">
             <textarea id="message"></textarea>
           </div>
