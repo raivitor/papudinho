@@ -63,6 +63,16 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
       to = data[0].from;
     }
 
+    user_id = window.localStorage['user_id'];
+
+    for (var i = 0; i < data.length; i++) {
+      if(Number(user_id) == Number(data[i].from_id)){
+        data[i].class = "chat-eu";
+      } else {
+        data[i].class = "chat-amigo";
+      }
+    }
+
     safeApply($scope, function(){
       $scope.messages = data;
       $ionicScrollDelegate.scrollBottom();
