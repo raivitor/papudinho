@@ -73,18 +73,18 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
   $scope.text = "";
 
   $scope.send = function(){
+    var textarea = document.getElementById("message");
+    if(textarea.value != ""){
 
-    if($scope.text != ""){ 
-     
       Papuchat.send(chat_uuid, {
         to_id: to_id,
         from_id: from_id,
         from: from,
         to: to,
-        text: $scope.text
+        text: textarea.value
       });
 
-      $scope.text = "";
+      textarea.value = "";
       document.getElementById("message").focus();
     }
   };

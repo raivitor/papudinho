@@ -64,7 +64,7 @@
 }
 
 .bar-royal{
-	
+
   background-color: rgb(255, 191, 37)!important;
   color: white;
   border: 0;
@@ -124,7 +124,10 @@ h2, .titulo{
     background: red;
 }
 
-.messages-chat {
+.messages-chat .messages-scroll {
+  position: absolute;
+  top: 0px;
+  left: 0px;
   bottom: 70px;
 }
 
@@ -173,6 +176,7 @@ h2, .titulo{
     background-color: rgba(0,0,0,0.1);
     color:  rgba(0,0,0,0.6);
     right: 5px;
+    z-index: 20000;
 }
 
 .textarea textarea {
