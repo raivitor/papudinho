@@ -150,7 +150,7 @@ h2, .titulo{
   left: 0px;
   right: 0px;
   width: 100%;
-  background-color: rgba(0,0,0,0.1);
+  background-color: #e6e6e6;
 }
 
 .messages-bottom .textarea {
