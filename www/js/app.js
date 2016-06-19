@@ -440,14 +440,67 @@ function onDeviceReady() {
 
   }
 
-  function initPushwoosh(idUser){
-    var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+  function initPushwoosh(idUser,$window){
+   
+
+    var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+
+    
+
+
+
+  var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+
+
+  if(deviceType == "iPhone" || deviceType == "iPad"){
+    //set push notification callback before we initialize the plugin
+    document.addEventListener('push-notification', function(event) {
+                                var notification = event.notification;
+
+                                try {
+
+                                    var id = notification.userdata.custom_data.promotion_id;
+                                    window.open('http://developer-papudinho.herokuapp.com/promocao/'+id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+
+                                }catch(err) {
+
+                                  alert(notification.aps.alert);
+                                }
+                                
+                                pushNotification.setApplicationIconBadgeNumber(1);
+                            });
+ 
+    //initialize the plugin
+    pushNotification.onDeviceReady({pw_appid:"60C72-3A9F2"});
+     
+    //register for pushes
+    pushNotification.registerDevice(
+        function(status) {
+            var deviceToken = status['deviceToken'];
+            //console.warn('registerDevice: ' + deviceToken);
+            window.localStorage['token'] = deviceToken;
+        },
+        function(status) {
+            console.warn('failed to register : ' + JSON.stringify(status));
+            alert(JSON.stringify(['failed to register ', status]));
+        }
+    );
+     
+    //reset badges on app start
+    pushNotification.setApplicationIconBadgeNumber(0);
+
+
+  }else { 
+
+    console.log(">>>>>>>>>>" + idUser)
 
     //set push notifications handler
     document.addEventListener('push-notification', function(event) {
         var title = event.notification.title;
         var userData = event.notification.userdata;
 
+
+        alert('user data: ' + JSON.stringify(userData))
         if(typeof(userData) != "undefined") {
             //alert('user data: ' + JSON.stringify(userData));
         }
@@ -473,8 +526,8 @@ function onDeviceReady() {
     pushNotification.registerDevice(
         function(status) {
           var pushToken = status;
-          console.warn('push token: ' + pushToken);
-          //Usuario.UpdateToken(idUser, pushToken);
+          console.warn('push token: ' + JSON.stringify(pushToken));
+          Usuario.UpdateToken(idUser, pushToken);
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
@@ -485,8 +538,10 @@ function onDeviceReady() {
       function(token)
       {
           //alert(token);
-          console.warn('push token: ' + token);
+          console.warn('push token: GETPUSH ' + token);
           window.localStorage['token'] = token;
       }
-);
+
+    );
+  }
 }
