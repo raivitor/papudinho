@@ -1,4 +1,4 @@
-app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario', function($scope, $http, $location, $state, Usuario) {
+app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario','Geolocalizacao', function($scope, $http, $location, $state, Usuario,Geolocalizacao) {
   $scope.msg = " ";
   $scope.checked = false;
   $scope.version = window.localStorage['version'];
@@ -25,7 +25,8 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
       method: "POST",
       params: {
         email: $scope.email,
-        password: $scope.senha
+        password: $scope.senha,
+        token: window.localStorage['token']
       }
     }).
 
@@ -44,7 +45,8 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
       $scope.checked = false;
       console.log(G_usuario.id);
       window.localStorage['user_id'] = G_usuario.id;
-      Usuario.UpdateToken(G_usuario.id, window.localStorage['token']);
+      //Usuario.UpdateToken(G_usuario.id, window.localStorage['token']);
+      Geolocalizacao.UpdateGps();
 
       var event = new CustomEvent('getiduser', { detail: G_usuario.id });
       window.dispatchEvent(event);

@@ -6,11 +6,11 @@ app.controller('Sidebar', ['$scope', '$state', '$http', '$location' ,function($s
 
   $scope.logoff = function() {
 
-    var idUser = window.localStorage['login'];
+    var idUser = window.localStorage['user_id'];
     console.log(idUser)
 
-    localStorage.clear();
     
+    //alert(idUser)
     var req = {
         method: 'POST',
         url: 'http://developer-papudinho.herokuapp.com/webservice/device_token',
@@ -23,10 +23,12 @@ app.controller('Sidebar', ['$scope', '$state', '$http', '$location' ,function($s
         then(function (sucesso) {
           console.warn("Sucesso token");
           console.log(sucesso);
+          localStorage.clear();
           $location.path('/login');
         },
         function(fail){
           console.error("Fail token");
+          localStorage.clear();
           $location.path('/login');
           //console.log(fail);
         });

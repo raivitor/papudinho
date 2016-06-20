@@ -499,6 +499,8 @@ function onDeviceReady() {
         var title = event.notification.title;
         var userData = event.notification.userdata;
 
+        alert(window.localStorage['token'])
+
         try {
 
           console.log(userData);
@@ -521,13 +523,16 @@ function onDeviceReady() {
         function(status) {
           var pushToken = status;
           console.warn('push token: ' + JSON.stringify(pushToken));
-          Usuario.UpdateToken(idUser, pushToken);
+          window.localStorage['token'] = pushToken;
+          alert(window.localStorage['token'])
+          //Usuario.UpdateToken(idUser, pushToken);
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
             //alert(JSON.stringify(['failed to register ', status]))
         }
     );
+    /*
     pushNotification.getPushToken(
       function(token)
       {
@@ -536,6 +541,6 @@ function onDeviceReady() {
           window.localStorage['token'] = token;
       }
 
-    );
+    );*/
   }
 }
