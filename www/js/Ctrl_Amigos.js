@@ -10,6 +10,12 @@ app.controller('Amigos', ['$scope', '$ionicModal', '$ionicPopup', 'Amizade', fun
 
   ListarSolicitacoes();
 
+  $scope.doRefresh = function(){
+    ListarAmigos();
+    ListarSolicitacoes();
+    $scope.$broadcast('scroll.refreshComplete');
+  }
+
   function ListarAmigos(){
     Amizade.getAllAmigos(G_usuario.id).then(function(_amigos){
       $scope.Amigos = _amigos;

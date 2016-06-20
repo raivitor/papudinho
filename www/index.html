@@ -64,11 +64,11 @@
       <ion-view title="WhiskYou" class="bg">
           <ion-nav-bar class="bar-royal" style="display:none;"></ion-nav-bar>
           <ion-content padding="true" class="has-header login" >
-              <div style="border: 0px; text-align: center; " >
-                  <img src='img/logo-papudinho.png' width="60%" style="vertical-align: middle;" class="login">
+              <div style="border: 0px; text-align: center; margin-top: 35px;" >
+                  <img src='img/logo-papudinho.png' width="70%" style="vertical-align: middle;" class="login">
               </div>
 
-              <form ng-submit="submit()" ng-controller="LoginForm" class="login">
+              <form ng-submit="submit()" ng-controller="LoginForm" class="login" style=" margin-top: 50px;">
 
                   <div align="center" id="msghome" ng-model="checked">
                     <ion-spinner icon="lines" class="spinner-stable" ng-show="checked"></ion-spinner>
@@ -460,13 +460,14 @@
         </ion-nav-bar>
 
         <ion-content padding="true" class="has-header">
+          <ion-refresher on-refresh="doRefresh()" disable-pulling-rotation="false"></ion-refresher>
           <div class="list">
             <div align="center" class="msg" id="msgamigos">{{msg}}</div>
             <ion-list>
-              <ion-item href="#/chat/{{amigo.user_id}}/{{amigo.name}}/{{amigo.friendship_id}}" class="item-remove-animate item-icon-right" ng-repeat="amigo in Amigos" type="item-text-wrap" on-hold="deletar({{amigo.friendship_id}}, '{{amigo.name}}')">
+              <ion-item href="#/chat/{{amigo.user_id}}/{{amigo.name}}/{{amigo.friendship_id}}" class="item-remove-animate item-icon-right" style="color:black" ng-repeat="amigo in Amigos" type="item-text-wrap" on-hold="deletar({{amigo.friendship_id}}, '{{amigo.name}}')">
                 ‎<span class="titulo">{{amigo.name}}</span><br>
                 <small>{{amigo.phone}}</small>
-                <i class="icon ion-chevron-right icon-accessory"></i>
+                <i class="icon ion-chevron-right icon-accessory" style="color:black" ></i>
               </ion-item>
             </ion-list>
           </div>
@@ -489,9 +490,9 @@
           <div class="list list-inset">
             <div class="item" ng-hide="p1 == true" ng-repeat="solicitacao in solicitacoes">
               <div class="row">
-                <div class="col col-60 col-center">{{solicitacao.friendship_id}}-{{solicitacao.name}}</div>
-                <div class="col"><a class="button button-icon icon ion-checkmark-round" ng-click="aceitar({{solicitacao.friendship_id}})"></a></div>
-                <div class="col"><a class="button button-icon icon ion-close-round" ng-click="deletar({{solicitacao.friendship_id}}, '{{solicitacao.name}}')"></a></div>
+                <div class="col col-60 col-center">{{solicitacao.name}}</div>
+                <div class="col"><a class="button button-icon icon ion-checkmark-round" style="color:black" ng-click="aceitar({{solicitacao.friendship_id}})"></a></div>
+                <div class="col"><a class="button button-icon icon ion-close-round" style="color:black"ng-click="deletar({{solicitacao.friendship_id}}, '{{solicitacao.name}}')"></a></div>
               </div>
             </div>
           </div>
@@ -577,11 +578,15 @@
             <img src="{{bar.logo.url}}" align="center" style="width:40%" />
           </div>
           <br><br>
-          <p align="center">Endereço: {{bar.street}}, {{bar.state}} - {{bar.cep}}</p>
-          <p align="center">Telefone: {{bar.phone}}</p>
-          <p align="center"></p>
-         <p align="center">
-         <a class="button icon-left ion-ios-location" ng-click="geolocalizar(bar)" style="color:black">Ver no Mapa</a><p align="center">
+          <p style="margin-left:15px">Endereço: {{bar.street}}, {{bar.number}}</p>
+          <p style="margin-left:15px">Bairro: {{bar.district}}</p>
+          <p style="margin-left:15px">Cidade: {{bar.state}}</p>
+          
+          <br/>
+          <p style="margin-left:15px">Telefone: <a href="tel:{{bar.phone}}" style="color:red">{{bar.phone}}</p>
+          <p align="center">
+          <a class="button icon-left ion-ios-location" ng-click="geolocalizar(bar)" style="color:black">Ver no Mapa</a><p align="center">
+         </p>
 
         </ion-content>
       </ion-modal-view>
