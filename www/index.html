@@ -341,7 +341,7 @@
               <a href="#/cartao/{{cartao.id}}" class="item item-text-wrap" >
                 <div class="row">
                   <div class="col"><img ng-src = "{{cartao.historics[0].image_drink.thumb.url}}" width="100%"></div>
-                  <div class="col col-75" style="font-size:13px"> 
+                  <div class="col col-75" style="font-size:13px">
                     Bar: <b>{{ cartao.bar }}</b><br>
                     Bebida: {{ cartao.drink }}<br>
                     Doses restantes: <b>{{ cartao.remaining_doses}}/{{cartao.total_doses }}</b><br>
@@ -873,7 +873,7 @@
               <div class="col">
                 <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Foto do Clube</button>
                 <img ng-src="{{imgCard}}" width="70%" ng-click="openModal(2)">
-                
+
               </div>
             </div>
             <br/><br/>
@@ -950,12 +950,12 @@
               <div class='col'>
                 <button ng-click="capturePhoto(1)" class="button button-small button-positive icon-left ion-ios-camera">Foto da Bebida</button>
                 <img ng-src="{{imgDrink}}" width="70%" ng-click="openModal(1)">
-                
+
               </div>
               <div class="col">
                 <button ng-click="capturePhoto(2)" class="button button-small button-positive icon-left ion-ios-camera">Foto do Clube</button>
                 <img ng-src="{{imgCard}}" width="70%" ng-click="openModal(2)">
-                
+
               </div>
             </div>
           </form>
@@ -983,7 +983,7 @@
         </ion-nav-bar>
 
         <div  ng-controller="ChatUsuarios">
-        <ion-content padding="true" class="has-header">
+        <ion-content padding="true" class="has-header messages-scroll">
           <ul class="list">
             <li class="item" ng-repeat="message in messages">
               <label ng-if="message.name == meuName">  {{ my_name }}</label>

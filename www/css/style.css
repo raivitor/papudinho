@@ -124,11 +124,8 @@ h2, .titulo{
     background: red;
 }
 
-.messages-chat .messages-scroll {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: 70px;
+.messages-scroll {
+  bottom: 70px !important;
 }
 
 .messages-chat  li {
