@@ -10,7 +10,7 @@
 
 
   <div>
-  <ion-content padding="true" class="has-header">
+  <ion-content padding="true" class="has-header messages-scroll">
     <ul class="list">
       <li class="item" ng-repeat="message in messages">
         <label>  {{ message.from }}</label>
@@ -23,7 +23,7 @@
     <div class="textarea">
       <textarea id="message"></textarea>
     </div>
-    <i class="icon ion-paper-airplane" ng-click="send()"></i>
+    <i class="icon ion-paper-airplane" onclick="sendUserBarMessage()"></i>
   </div>
 </div>
 </ion-view>

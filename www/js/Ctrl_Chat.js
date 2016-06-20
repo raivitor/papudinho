@@ -38,14 +38,21 @@ app.controller('Chat', function($scope, $http, $rootScope, Amizade,$location){
 
 });
 
+
+var chat_uuid = null;
+var from_id = null;
+var to_id = "";
+var from = "";
+var to = "";
+
 app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
 
-  var chat_uuid = $state.params.id;
-  var from_id = window.localStorage['user_id'];
+  chat_uuid = $state.params.id;
+  from_id = window.localStorage['user_id'];
   $scope.user_id = from_id;
-  var to_id = "";
-  var from = "";
-  var to = "";
+  to_id = "";
+  from = "";
+  to = "";
 
 
 
@@ -82,25 +89,26 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
 
   $scope.text = "";
 
-  $scope.send = function(){
-    var textarea = document.getElementById("message");
-    if(textarea.value != ""){
 
-      Papuchat.send(chat_uuid, {
-        to_id: to_id,
-        from_id: from_id,
-        from: from,
-        to: to,
-        text: textarea.value
-      });
-
-      textarea.value = "";
-      document.getElementById("message").focus();
-    }
-  };
 
 });
 
+function sendUserBarMessage(){
+  var textarea = document.getElementById("message");
+  if(textarea.value != ""){
+
+    Papuchat.send(chat_uuid, {
+      to_id: to_id,
+      from_id: from_id,
+      from: from,
+      to: to,
+      text: textarea.value
+    });
+
+    textarea.value = "";
+    document.getElementById("message").focus();
+  }
+};
 
 app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrollDelegate', '$interval', '$ionicNavBarDelegate','$http', function($scope, $stateParams, $firebaseArray, $ionicScrollDelegate, $interval, $ionicNavBarDelegate, $http) {
   $scope.meuName = localStorage.getItem('user_id');
