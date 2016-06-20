@@ -159,18 +159,26 @@ h2, .titulo{
   right: 50px;
 }
 
-
-.messages-bottom .icon {
+.messages-bottom button {
     position: absolute;
     top: 15px;
     width: 40px;
     text-align: center;
     height: 40px;
     border-radius: 20px;
-    padding-top: 7px;
-    padding-right: 3px;
+    border: none;
+    padding-right: 7px;
     font-size: 25px;
     background-color: rgba(0,0,0,0.1);
+    color:  rgba(0,0,0,0.6);
+    right: 5px;
+    z-index: 20000;
+}
+
+
+.messages-bottom .icon {
+    text-align: center;
+    font-size: 25px;
     color:  rgba(0,0,0,0.6);
     right: 5px;
     z-index: 20000;
