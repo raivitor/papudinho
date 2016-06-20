@@ -35,7 +35,7 @@ function getGpS(){
           $scope.msg = "Nenhum clube a expirar";
         }
         else{
-          $scope.msg = "Clubes perto do vencimento";
+          $scope.msg = "Clubes a expirar";
         }
       }).
 

@@ -467,7 +467,7 @@ function onDeviceReady() {
                                   alert(notification.aps.alert);
                                 }
                                 
-                                pushNotification.setApplicationIconBadgeNumber(1);
+                                pushNotification.setApplicationIconBadgeNumber(0);
                             });
  
     //initialize the plugin
@@ -499,23 +499,17 @@ function onDeviceReady() {
         var title = event.notification.title;
         var userData = event.notification.userdata;
 
+        try {
 
-        alert('user data: ' + JSON.stringify(userData))
-        if(typeof(userData) != "undefined") {
-            //alert('user data: ' + JSON.stringify(userData));
+          console.log(userData);
+          console.log(userData.custom_data.promotion_id);
+          window.open('http://developer-papudinho.herokuapp.com/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+
+        }catch(err) {
+
+          alert(title);
         }
-        
-        if(typeof(userData) == "undefined") {
-            alert(JSON.stringify(title));
-            return false;
-        }
-        
 
-        console.log(userData);
-        console.log(userData.custom_data.promotion_id);
-
-
-        window.open('http://developer-papudinho.herokuapp.com/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
 
     });
 
