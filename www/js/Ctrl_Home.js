@@ -1,4 +1,4 @@
-app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootScope','$window','$location', function($scope, $http, $ionicModal, $ionicPopup, $rootScope,$window,$location) {
+app.controller('Home', ['$scope', '$http', '$ionicModal', '$ionicPopup','$rootScope','$window','$location','Geolocalizacao', function($scope, $http, $ionicModal, $ionicPopup, $rootScope,$window,$location,Geolocalizacao) {
   window.localStorage['login'] = 1;
 
 
@@ -8,6 +8,7 @@ function getGpS(){
       window.localStorage['latitude'] = position.coords.latitude;
       window.localStorage['longitude'] = position.coords.longitude;
       console.log(position.coords.latitude, position.coords.longitude)
+      Geolocalizacao.UpdateGps();
     }, function(error) {
         console.log('Erro ao pegar localização: ' + error.message);
     });//{ timeout: 60000 });

@@ -499,8 +499,6 @@ function onDeviceReady() {
         var title = event.notification.title;
         var userData = event.notification.userdata;
 
-        alert(window.localStorage['token'])
-
         try {
 
           console.log(userData);
@@ -524,8 +522,7 @@ function onDeviceReady() {
           var pushToken = status;
           console.warn('push token: ' + JSON.stringify(pushToken));
           window.localStorage['token'] = pushToken;
-          alert(window.localStorage['token'])
-          //Usuario.UpdateToken(idUser, pushToken);
+          
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
