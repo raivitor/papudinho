@@ -245,11 +245,13 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('promocaoId', {
       url: '/promocao/:id',
+      cache: false,
       templateUrl: 'promocao'
     })
 
     .state('bar', {
       url: '/bar/:id',
+      cache: false,
       templateUrl: 'bar'
     })
 
@@ -261,21 +263,25 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('addAmigo', {
       url: '/addAmigo',
+      cache: false,
       templateUrl: 'addAmigo'
     })
 
     .state('chat', {
       url: '/chat/:chatId/:nome/:relacionamento',
+      cache: false,
       templateUrl: 'chat'
     })
 
     .state('chatUsuarios', {
       url: '/chat/:chatId/:nome',
+      cache: false,
       templateUrl: 'chat'
     })
 
     .state('cartao', {
       url: '/cartao/:cartaoId',
+      cache: false,
       templateUrl: 'cartao'
     })
 
@@ -333,21 +339,6 @@ Array.prototype.getId = function(id) {
     return 0;
 }
 
-/* Guarda as informações do usuário. Exemplo abaixo:
-"id": 11,
-"email": "raivitor@gmail.com",
-"created_at": "2015-03-02T00:55:46.865Z",
-"updated_at": "2015-03-02T00:55:46.865Z",
-"name": "teste3",
-"user_type": "Sub-usuário",
-"master_id": null,
-"bar_id": null,
-"phone": null,
-"cpf": null,
-"promotion": true,
-"gps": true,
-"visibility": true
-*/
 var G_usuario = [];
 
 /**
@@ -359,41 +350,6 @@ var G_usuario = [];
 */
 var G_tempo = 300000;
 
-/* Guarda os bares. Exemplo:
-"id": 1,
-"name": "Casimiro",
-"city": "Angicos",
-"street": "Centro",
-"number": "23",
-"phone": "(84) 9654-489",
-"created_at": "2015-01-20T13:58:30.540Z",
-"updated_at": "2015-07-31T15:41:04.425Z",
-"avatar": {
-"url": "http://res.cloudinary.com/durxmldew/image/upload/v1438357264/wtfzq4qfcvvtqmwwbbbw.jpg",
-"thumb": {
-"url": "http://res.cloudinary.com/durxmldew/image/upload/c_fill,h_50,w_50/v1438357264/wtfzq4qfcvvtqmwwbbbw.jpg"
-}
-},
-"district": "Alto da Esperança",
-"state": "RN",
-"CNPJ": "12.321.321/3123-21",
-"social_reason": "Bar e somente bar.",
-"responsible": "Marcos Oliveira",
-"logo": {
-"url": "http://res.cloudinary.com/durxmldew/image/upload/v1438357265/gadv9kxjxuw9kyvl6f5c.jpg",
-"thumb": {
-"url": "http://res.cloudinary.com/durxmldew/image/upload/c_fill,h_50,w_50/v1438357265/gadv9kxjxuw9kyvl6f5c.jpg"
-}
-},
-"cep": "32132-132",
-"latitude": "-5.668664499999999",
-"longitude": "-36.6062205",
-"site": "casimiro.com",
-"email": "casimiro@email.com",
-"twitter": "@casimiro",
-"ad_package": "básico",
-"note": ""
-*/
 var G_bares = [];
 
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -404,41 +360,6 @@ function onDeviceReady() {
 
     
 }
-
-
-
-  function pupularGeofencer(lista){
-
-   
-    console.log(lista)
-
-    /*
-    window.geofence.addOrUpdate({
-      id:             String, //A unique identifier of geofence 
-      latitude:       Number, //Geo latitude of geofence 
-      longitude:      Number, //Geo longitude of geofence 
-      radius:         Number, //Radius of geofence in meters 
-      transitionType: Number, //Type of transition 1 - Enter, 2 - Exit, 3 - Both 
-      notification: {         //Notification object 
-          id:             Number, //optional should be integer, id of notification 
-          title:          String, //Title of notification 
-          text:           String, //Text of notification 
-          smallIcon:      String, //Small icon showed in notification area, only res URI 
-          icon:           String, //icon showed in notification drawer 
-          openAppOnClick: Boolean,//is main app activity should be opened after clicking on notification 
-          vibration:      [Integer], //Optional vibration pattern - see description 
-          data:           Object  //Custom object associated with notification 
-      }
-    }).then(function () {
-      console.log('Geofence successfully added');
-    }, function (reason) {
-      console.log('Adding geofence failed', reason);
-    });
-    */
-
-
-
-  }
 
   function initPushwoosh(idUser,$window){
    
@@ -526,18 +447,9 @@ function onDeviceReady() {
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
-            //alert(JSON.stringify(['failed to register ', status]))
+           
         }
     );
-    /*
-    pushNotification.getPushToken(
-      function(token)
-      {
-          //alert(token);
-          console.warn('push token: GETPUSH ' + token);
-          window.localStorage['token'] = token;
-      }
-
-    );*/
+   
   }
 }
