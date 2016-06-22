@@ -148,6 +148,11 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
         console.log(dados);
         $scope.messages.$add(dados);
 
+
+//
+
+        //add mensagem
+        /*
         var req = {
           method: 'POST',
           url: servidor+'/webservice/chat',
@@ -164,6 +169,29 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
             },
             function(fail){}
           );
+        */
+        // com Push
+        var chatuuid;
+        if(localStorage.getItem('user_id') < $stateParams.chatId){
+          chatuuid = localStorage.getItem('user_id')+""+$stateParams.chatId;
+        } else{
+          chatuuid = $stateParams.chatId+""+localStorage.getItem('user_id');
+        }
+
+        var data = {
+            name: $scope.my_name,
+            message: document.getElementById('message').value 
+            to_id: $stateParams.chatId,
+            chatuuid: chatuuid
+        }
+
+        $http(data).
+          then(
+            function (sucesso) {
+              console.log(sucesso);
+            },
+            function(fail){}
+          );        
 
     }
     document.getElementById('message').value = "";
