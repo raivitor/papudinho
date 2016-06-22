@@ -124,7 +124,7 @@ app.controller('NovoCartao', ['$scope', '$http', '$location', '$ionicPopup', 'Ca
     
     var req = {
       method: 'POST',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/new_card',
+      url: servidor+'/webservice/new_card',
       data: { 
         drink: $scope.bebida,
         particular: true,

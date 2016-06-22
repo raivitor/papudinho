@@ -1,7 +1,7 @@
 app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', function($scope, $http, $location, $ionicPopup) {
   
   $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/users', 
+      url: servidor+'/webservice/users', 
       method: "GET"
     }).
 
@@ -49,7 +49,7 @@ app.controller('AddAmigo', ['$scope', '$http', '$location', '$ionicPopup', funct
     return false;
     */
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/new_friendship', 
+      url: servidor+'/webservice/new_friendship', 
       method: "POST",
       params: {
         id: G_usuario.id,

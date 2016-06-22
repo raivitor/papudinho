@@ -13,7 +13,7 @@ app.controller('Sidebar', ['$scope', '$state', '$http', '$location' ,function($s
     //alert(idUser)
     var req = {
         method: 'POST',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/device_token',
+        url: servidor+'/webservice/device_token',
         params:{
           id: idUser, 
           token: "nulo"
@@ -41,4 +41,12 @@ app.controller('Sidebar', ['$scope', '$state', '$http', '$location' ,function($s
   $scope.sair = function() {
 
   }
+}]);
+
+app.controller('Sobre', ['$scope', '$state', '$http', '$location' ,function($scope, $state, $http,$location) {
+
+
+  $scope.teste = servidor.includes("teste");
+  $scope.servidor = servidor;
+   
 }]);

@@ -8,7 +8,7 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
 
   var req = {
     method: 'GET',
-    url: 'http://developer-papudinho.herokuapp.com/webservice/cards/'+$stateParams.cartaoId,
+    url: servidor+'/webservice/cards/'+$stateParams.cartaoId,
   }
   $http(req).
     then(function (sucesso) {
@@ -115,7 +115,7 @@ app.controller('UpdateCartao', ['$scope', '$http', '$location', '$ionicPopup', '
     $ionicScrollDelegate.scrollTop();
     var req = {
       method: 'POST',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/update_card',
+      url: servidor+'/webservice/update_card',
       data: { 
         card_id: $scope.id,
         remaining_doses : $scope.doses,

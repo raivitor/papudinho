@@ -8,6 +8,9 @@
 var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 
 
+var servidor = "http://teste-papudinho.herokuapp.com";
+//var servidor = "http://developer-papudinho.herokuapp.com";
+
 window.addEventListener('getiduser', function(event) {
   directpush.on(event.detail, function(data){
     var event = new CustomEvent('directpush', { detail: data });
@@ -381,7 +384,7 @@ function onDeviceReady() {
                                 try {
 
                                     var id = notification.userdata.custom_data.promotion_id;
-                                    window.open('http://developer-papudinho.herokuapp.com/promocao/'+id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+                                    window.open(servidor+'/promocao/'+id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
 
                                 }catch(err) {
 
@@ -424,7 +427,7 @@ function onDeviceReady() {
 
           console.log(userData);
           console.log(userData.custom_data.promotion_id);
-          window.open('http://developer-papudinho.herokuapp.com/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+          window.open(servidor+'/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
 
         }catch(err) {
 

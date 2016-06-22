@@ -47,7 +47,7 @@ app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup', '$i
     }
 
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/change_password', 
+      url: servidor+'/webservice/change_password', 
       method: "POST",
       params: {
         id: G_usuario.id,

@@ -22,7 +22,7 @@ app.controller('Cartao', ['$scope', '$ionicPopup', 'CartoesPessoais', '$statePar
 
     var req = {
         method: 'GET',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/'+id,
+        url: servidor+'/webservice/cards/'+id,
       }
       $http(req).
         then(function (sucesso) {

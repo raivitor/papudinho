@@ -21,7 +21,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
     }
     $scope.checked = true;
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/authenticate_user/',
+      url: servidor+'/webservice/authenticate_user/',
       method: "POST",
       params: {
         email: $scope.email,

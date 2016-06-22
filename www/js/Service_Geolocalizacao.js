@@ -5,7 +5,7 @@ app.factory('Geolocalizacao', ['$http', function($http){
 
       var req = {
         method: 'POST',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/user_geo',
+        url: servidor+'/webservice/user_geo',
         params:{
           id: window.localStorage['user_id'], 
           latitude: window.localStorage['latitude'], 

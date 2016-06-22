@@ -118,12 +118,12 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
   $scope.ju = "hello";
 
   $scope.my_name = null;
-  $http.get('http://developer-papudinho.herokuapp.com/webservice/users/'+$scope.meuName).then(function(res){
+  $http.get(servidor+'/webservice/users/'+$scope.meuName).then(function(res){
     $scope.my_name  = res.data[0].name ;
   });
 
   $scope.other_name = null;
-  $http.get('http://developer-papudinho.herokuapp.com/webservice/users/'+$scope.nameAmigo).then(function(res){
+  $http.get(servidor+'/webservice/users/'+$scope.nameAmigo).then(function(res){
     $scope.other_name  = res.data[0].name ;
   });
 
@@ -150,7 +150,7 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
 
         var req = {
           method: 'POST',
-          url: 'http://developer-papudinho.herokuapp.com/webservice/chat',
+          url: servidor+'/webservice/chat',
           params:{
             name: G_usuario.id,
             text: $scope.message

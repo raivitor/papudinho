@@ -7,7 +7,7 @@ app.controller('Config', ['$scope', '$http', '$ionicPopup', function($scope, $ht
   console.log("user id:" + G_usuario.id);
 	$scope.submitConfig = function() {
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/update_config/', 
+      url: servidor+'/webservice/update_config/', 
       method: "POST",
       params: {
         id: G_usuario.id,

@@ -10,7 +10,7 @@ app.controller('CartaoBarHistorico', ['$scope', '$http', '$interval','$location'
     console.log($state.params.cartaoId);
 
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/cards/'+$state.params.cartaoId, 
+      url: servidor+'/webservice/cards/'+$state.params.cartaoId, 
       method: "GET",
     }).
 

@@ -22,7 +22,7 @@ function getGpS(){
     if(window.localStorage['login'] == 1){
       //clearTimeout(time);
       $http({
-        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/due_date', 
+        url: servidor+'/webservice/cards/due_date', 
         method: "GET",
         params: {
           user: G_usuario.id
@@ -57,7 +57,7 @@ function getGpS(){
 
   $scope.checkin = function(bar){
     $http({
-    url: 'http://developer-papudinho.herokuapp.com/webservice/check_in', 
+    url: servidor+'/webservice/check_in', 
     method: "POST",
     params: {
       bar_id: bar,
@@ -139,7 +139,7 @@ function getGpS(){
 
         console.log(window.localStorage['latitude'],window.localStorage['longitude'])
         $http({
-          url: 'http://developer-papudinho.herokuapp.com/webservice/get_near_bars', 
+          url: servidor+'/webservice/get_near_bars', 
           method: "GET",
           params: {
             latitude: window.localStorage['latitude'],

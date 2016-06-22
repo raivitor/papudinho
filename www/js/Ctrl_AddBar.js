@@ -46,7 +46,7 @@ app.controller('AddBar', ['$scope', '$http', '$location', '$ionicPopup', functio
     }
 
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/create_suggestion', 
+      url: servidor+'/webservice/create_suggestion', 
       method: "POST",
       params: {
         name: $scope.name,

@@ -27,7 +27,7 @@ app.controller('Cartoes', ['$scope', '$http', '$interval','$window', function($s
 
 
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/cards/', 
+      url: servidor+'/webservice/cards/', 
       method: "GET",
       params: {
         user: G_usuario.id

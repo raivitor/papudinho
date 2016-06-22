@@ -21,7 +21,7 @@ app.controller('MeusCartoes', ['$scope', '$http', '$interval', 'CartoesPessoais'
 
 
     
-    $http.get("http://developer-papudinho.herokuapp.com/webservice/cards/particular", { params: { user: G_usuario.id } })
+    $http.get(servidor+"/webservice/cards/particular", { params: { user: G_usuario.id } })
     .success(function(data) {
         console.log(data);
           $scope.cartoes = data.aberto;

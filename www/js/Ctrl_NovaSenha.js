@@ -7,7 +7,7 @@ app.controller('NovaSenha', ['$scope', '$http', '$location', '$ionicPopup',  fun
     } 
     $scope.checked = true;
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/reset_password/', 
+      url: servidor+'/webservice/reset_password/', 
       method: "POST",
       params: {
         email: $scope.email

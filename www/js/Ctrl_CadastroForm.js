@@ -56,7 +56,7 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup', '
     $scope.msg = "";
     $scope.checked = true;
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/registering_user/', 
+      url: servidor+'/webservice/registering_user/', 
       method: "POST",
       params: {
         name: $scope.user,

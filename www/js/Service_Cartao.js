@@ -8,7 +8,7 @@ app.factory('CartoesPessoais', ['$http', function($http){
     if(cartoes == 0){
       var req = {
         method: 'GET',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular',
+        url: servidor+'/webservice/cards/particular',
         params:{
           user: id
         }
@@ -32,7 +32,7 @@ app.factory('CartoesPessoais', ['$http', function($http){
     if(cartoes == 0){
       var req = {
         method: 'GET',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/cards/',
+        url: servidor+'/webservice/cards/',
         params:{
           id: id
         }
@@ -53,7 +53,7 @@ app.factory('CartoesPessoais', ['$http', function($http){
   function atualizar(id){
     var req = {
       method: 'GET',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/cards/particular/',
+      url: servidor+'/webservice/cards/particular/',
       params: { 
         user: id
       }
@@ -72,7 +72,7 @@ app.factory('CartoesPessoais', ['$http', function($http){
   function deletar(cardId, userId){
     var req = {
       method: 'GET',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/delete_card/',
+      url: servidor+'/webservice/delete_card/',
       params: { 
         user_id: userId,
         card_id: cardId

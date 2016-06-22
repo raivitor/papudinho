@@ -26,7 +26,7 @@ $scope.doRefresh = function(){
 
 function atualizar() {
   $http({
-    url: 'http://developer-papudinho.herokuapp.com/webservice/bars', 
+    url: servidor+'/webservice/bars', 
     method: "GET",
     params:{
           latitude: window.localStorage['latitude'],

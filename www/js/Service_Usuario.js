@@ -9,7 +9,7 @@ app.factory('Usuario', ['$http', function($http){
     if(cartoes == 0){
       var req = {
         method: 'POST',
-        url: 'http://developer-papudinho.herokuapp.com/webservice/device_token',
+        url: servidor+'/webservice/device_token',
         params:{
           id: idUser, 
           token: tokenUser

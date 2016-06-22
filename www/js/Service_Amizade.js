@@ -6,7 +6,7 @@ app.factory('Amizade', ['$http', function($http){
   function getAllAmigos(myId){
     var req = {
       method: 'GET',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/friends',
+      url: servidor+'/webservice/friends',
       params: { 
         id: myId
       }
@@ -25,7 +25,7 @@ app.factory('Amizade', ['$http', function($http){
   function getAllSolicitacoes(myId){
     var req = {
       method: 'GET',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/friends/new',
+      url: servidor+'/webservice/friends/new',
       params: { 
         id: myId
       }
@@ -48,7 +48,7 @@ app.factory('Amizade', ['$http', function($http){
   function AceitarAmizade(idSolicitacao){
     var req = {
       method: 'POST',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/friends/acept',
+      url: servidor+'/webservice/friends/acept',
       params: { 
         id: idSolicitacao
       }
@@ -67,7 +67,7 @@ app.factory('Amizade', ['$http', function($http){
   function RecusarAmizade(idSolicitacao){
     var req = {
       method: 'POST',
-      url: 'http://developer-papudinho.herokuapp.com/webservice/friends/remove',
+      url: servidor+'/webservice/friends/remove',
       params: { 
         id: idSolicitacao
       }
