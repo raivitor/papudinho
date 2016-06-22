@@ -118,11 +118,13 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
     .state('signup', {
+      cache: false,
       url: '/signup',
       templateUrl: 'signup'
     })
 
     .state('senha', {
+      cache: false,
       url: '/senha',
       templateUrl: 'senha'
     })
@@ -155,6 +157,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.meuscartoes', {
       url: "/meuscartoes",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "meuscartoes"
@@ -164,6 +167,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.cartoes', {
       url: "/cartoes",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "cartoes"
@@ -173,6 +177,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.promocao', {
       url: "/promocao",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "promocao"
@@ -192,6 +197,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.bares', {
       url: "/bares",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "bares"
@@ -201,6 +207,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.dados', {
       url: "/dados",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "dados"
@@ -210,6 +217,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.config', {
       url: "/config",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "config"
@@ -220,6 +228,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.sobre', {
       url: "/sobre",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "sobre"
@@ -229,6 +238,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.logoff', {
       url: "/logoff",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "logoff"
@@ -238,6 +248,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     .state('eventmenu.bar', {
       url: "/barmsg",
+      cache: false,
       views: {
         'menuContent' :{
           templateUrl: "barmsg"

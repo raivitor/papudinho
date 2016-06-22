@@ -1,5 +1,6 @@
 app.controller('Amigos', ['$scope', '$ionicModal', '$ionicPopup', 'Amizade', function($scope, $ionicModal, $ionicPopup, Amizade) {
   var amigos;
+  $scope.countpush =  false;
   $scope.solicitacoes;
   $scope.solPen = 0; //Quantidade de solicitacoes pendentes
 
@@ -11,16 +12,18 @@ app.controller('Amigos', ['$scope', '$ionicModal', '$ionicPopup', 'Amizade', fun
   ListarSolicitacoes();
 
   $scope.doRefresh = function(){
+    $scope.msg = ""
     ListarAmigos();
     ListarSolicitacoes();
     $scope.$broadcast('scroll.refreshComplete');
   }
 
   function ListarAmigos(){
+  
     Amizade.getAllAmigos(G_usuario.id).then(function(_amigos){
       $scope.Amigos = _amigos;
       if($scope.Amigos != -1){
-        if($scope.Amigos.length == 0){
+        if($scope.Amigos.length == 0 ){
           $scope.msg = "Você ainda não tem amigos, clique no + para adicionar novos amigos";
         }
       }
@@ -38,6 +41,8 @@ app.controller('Amigos', ['$scope', '$ionicModal', '$ionicPopup', 'Amizade', fun
   }
 
   $scope.aceitar = function(idSolicitacao){
+    $scope.countpush = true;
+    $scope.msg = ""
     console.log(idSolicitacao);
     Amizade.AceitarAmizade(idSolicitacao);
     ListarAmigos();
@@ -73,6 +78,7 @@ app.controller('Amigos', ['$scope', '$ionicModal', '$ionicPopup', 'Amizade', fun
     $scope.modal.show();
   };
   $scope.closeModal = function() {
+    $scope.countpush = true;
     $scope.modal.hide();
   };
   //Cleanup the modal when we're done with it!
