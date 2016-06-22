@@ -54,8 +54,6 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
   from = "";
   to = "";
 
-
-
   console.log(chat_uuid)
 
   $scope.messages = [];
@@ -89,26 +87,27 @@ app.controller('Messages', function($scope, $state, $ionicScrollDelegate){
 
   $scope.text = "";
 
+  $scope.sendUserBarMessage = function(){
+    var textarea = document.getElementById("message");
+    if(textarea.value != ""){
 
+      Papuchat.send(chat_uuid, {
+        to_id: to_id,
+        from_id: from_id,
+        from: from,
+        to: to,
+        text: textarea.value
+      });
+
+      textarea.value = "";
+      document.getElementById("message").focus();
+      $ionicScrollDelegate.scrollBottom();
+    }
+  };
 
 });
 
-function sendUserBarMessage(){
-  var textarea = document.getElementById("message");
-  if(textarea.value != ""){
 
-    Papuchat.send(chat_uuid, {
-      to_id: to_id,
-      from_id: from_id,
-      from: from,
-      to: to,
-      text: textarea.value
-    });
-
-    textarea.value = "";
-    document.getElementById("message").focus();
-  }
-};
 
 app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$ionicScrollDelegate', '$interval', '$ionicNavBarDelegate','$http', function($scope, $stateParams, $firebaseArray, $ionicScrollDelegate, $interval, $ionicNavBarDelegate, $http) {
   $scope.meuName = localStorage.getItem('user_id');
