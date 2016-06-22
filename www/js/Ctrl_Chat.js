@@ -180,18 +180,14 @@ app.controller('ChatUsuarios', ['$scope', '$stateParams', '$firebaseArray', '$io
 
         var data = {
             name: $scope.my_name,
-            message: document.getElementById('message').value 
+            message: document.getElementById('message').value,
             to_id: $stateParams.chatId,
             chatuuid: chatuuid
         }
 
-        $http(data).
-          then(
-            function (sucesso) {
-              console.log(sucesso);
-            },
-            function(fail){}
-          );        
+        $http.post(servidor + '/webservice/chat/notification',data).then(function () {
+          console.log('sucesso com o push');
+         });
 
     }
     document.getElementById('message').value = "";
