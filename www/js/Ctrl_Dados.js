@@ -14,8 +14,8 @@ app.controller('dados', ['$scope', '$http', '$ionicPlatform', '$ionicPopup', '$i
   }
 
   $scope.submitDados = function() {
-    $location.path('/menu/home');
-    return 0;
+    //$location.path('/menu/home');
+    //return 0;
     if($scope.passwordOld == undefined ){
       alerta($ionicPopup, "Notificação", "O campo 'Senha Antiga' está vazio");
       return 0;
