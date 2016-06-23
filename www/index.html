@@ -463,7 +463,7 @@
         <ion-content padding="true" class="has-header">
           <ion-refresher on-refresh="doRefresh()" disable-pulling-rotation="false"></ion-refresher>
           <div class="list">
-            <div align="center" class="msg" id="msgamigos">{{msg}}</div>
+            <div align="center" class="msg" id="msgamigos" ng-hide="countpush">{{msg}}</div>
             <ion-list>
               <ion-item href="#/chat/{{amigo.user_id}}/{{amigo.name}}/{{amigo.friendship_id}}" class="item-remove-animate item-icon-right" style="color:black" ng-repeat="amigo in Amigos" type="item-text-wrap" on-hold="deletar({{amigo.friendship_id}}, '{{amigo.name}}')">
                 ‎<span class="titulo">{{amigo.name}}</span><br>
@@ -976,9 +976,7 @@
             </button>
           </ion-nav-buttons>
           <ion-nav-buttons side="right">
-            <button class="button back-button buttons button-clear header-item" ng-click="excluirAmizade()">
-              Excluir Amizade
-            </button>
+            <button class="button back-button buttons button-clear header-item ion-android-remove-circle" ng-click="excluirAmizade()"></button>
           </ion-nav-buttons>
         </ion-nav-bar>
 
