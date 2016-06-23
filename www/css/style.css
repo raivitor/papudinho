@@ -167,7 +167,7 @@ h2, .titulo{
     height: 40px;
     border-radius: 20px;
     border: none;
-    padding-right: 7px;
+    padding: 0px;
     font-size: 25px;
     background-color: rgba(0,0,0,0.1);
     color:  rgba(0,0,0,0.6);
@@ -177,11 +177,10 @@ h2, .titulo{
 
 
 .messages-bottom .icon {
-    text-align: center;
     font-size: 25px;
     color:  rgba(0,0,0,0.6);
     right: 5px;
-    z-index: 20000;
+    margin: 0px;
 }
 
 .textarea textarea {
