@@ -6,8 +6,7 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup', '
       $scope.msg = "O campo 'Nome' está vazio.";
       return 0;
     }
-
-    if($scope.email == undefined ){
+    if($scope.email == undefined || $scope.email == ""){
       $scope.msg = "O campo 'Email' está vazio.";
       return 0;
     } 
