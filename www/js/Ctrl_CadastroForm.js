@@ -93,7 +93,7 @@ app.controller('CadastroForm', ['$scope', '$http', '$location', '$ionicPopup', '
     });
   }
 
-  $ionicModal.fromTemplateUrl('my-contrato.html', {
+  $ionicModal.fromTemplateUrl('views/my-contrato.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
