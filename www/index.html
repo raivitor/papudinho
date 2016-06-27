@@ -491,7 +491,7 @@
           <div class="list list-inset">
             <div class="item" ng-hide="p1 == true" ng-repeat="solicitacao in solicitacoes">
               <div class="row">
-                <div class="col col-60 col-center">{{solicitacao.name}}</div>
+                <div class="col col-60 col-center">{{solicitacao.name.substring(0, 14)}}...</div>
                 <div class="col"><a class="button button-icon icon ion-checkmark-round" style="color:black" ng-click="aceitar({{solicitacao.friendship_id}})"></a></div>
                 <div class="col"><a class="button button-icon icon ion-close-round" style="color:black"ng-click="deletar({{solicitacao.friendship_id}}, '{{solicitacao.name}}')"></a></div>
               </div>
