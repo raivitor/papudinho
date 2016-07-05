@@ -29,6 +29,19 @@ app.controller('AddBar', ['$scope', '$http', '$location', '$ionicPopup', functio
   }
 
   $scope.submitbar = function() {
+
+
+    if($scope.name == "" || $scope.phone == "" || $scope.state == "" || $scope.city == "" || $scope.district == "" || $scope.street == "" || $scope.number == "" || $scope.email == "" ){
+      alert("Preencha todos os dados")
+      return false;
+    }
+
+
+
+
+
+
+
     $scope.msg = "";
     
     GetLocation();

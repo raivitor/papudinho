@@ -17,7 +17,7 @@ app.controller('Promocoes', ['$scope', '$http',  function($scope, $http) {
 
   function Atualizar () {
     $http({
-      url: 'http://developer-papudinho.herokuapp.com/webservice/promotions/', 
+      url: servidor+'/webservice/promotions/', 
       method: "GET",
       params:{
           latitude: window.localStorage['latitude'],

@@ -137,6 +137,15 @@ function getGpS(){
         console.log('Modal ' + modal.id + ' is shown!');
 
 
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+     
+        window.localStorage['latitude'] = position.coords.latitude;
+        window.localStorage['longitude'] = position.coords.longitude;
+        console.log(position.coords.latitude, position.coords.longitude)
+      
+
+
         console.log(window.localStorage['latitude'],window.localStorage['longitude'])
         $http({
           url: servidor+'/webservice/get_near_bars', 
@@ -154,6 +163,14 @@ function getGpS(){
         error(function (data, status, headers, config) {
           console.log('Error bares');
         });
+      
+    }, function(error) {
+        alert("Erro ao obter lista de bares...")
+        console.log('Erro ao pegar localização: ' + error.message);
+    });
+
+
+        
 
     });
 
