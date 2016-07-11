@@ -87,7 +87,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
 
     var params = [fid, latitude, longitude, radius];
       DGGeofencing.startMonitoringRegion(params, function(result) {}, function(error) {
-          alert("failed to add region");
+        //  alert("failed to add region");
       });
 
     //Localizacao do GPS
@@ -372,15 +372,15 @@ function onDeviceReady() {
     // Now safe to use device APIs
     initPushwoosh();
 
-    
+
 }
 
   function initPushwoosh(idUser,$window){
-   
+
 
     var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 
-    
+
 
 
 
@@ -399,15 +399,15 @@ function onDeviceReady() {
 
                                 }catch(err) {
 
-                                  alert(notification.aps.alert);
+                                //  alert(notification.aps.alert);
                                 }
-                                
+
                                 pushNotification.setApplicationIconBadgeNumber(0);
                             });
- 
+
     //initialize the plugin
     pushNotification.onDeviceReady({pw_appid:"60C72-3A9F2"});
-     
+
     //register for pushes
     pushNotification.registerDevice(
         function(status) {
@@ -417,15 +417,15 @@ function onDeviceReady() {
         },
         function(status) {
             console.warn('failed to register : ' + JSON.stringify(status));
-            alert(JSON.stringify(['failed to register ', status]));
+            // alert(JSON.stringify(['failed to register ', status]));
         }
     );
-     
+
     //reset badges on app start
     pushNotification.setApplicationIconBadgeNumber(0);
 
 
-  }else { 
+  }else {
 
     console.log(">>>>>>>>>>" + idUser)
 
@@ -442,7 +442,7 @@ function onDeviceReady() {
 
         }catch(err) {
 
-          alert(title);
+          // alert(title);
         }
 
 
@@ -457,13 +457,13 @@ function onDeviceReady() {
           var pushToken = status;
           console.warn('push token: ' + JSON.stringify(pushToken));
           window.localStorage['token'] = pushToken;
-          
+
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
-           
+
         }
     );
-   
+
   }
 }
