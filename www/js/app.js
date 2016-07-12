@@ -378,11 +378,12 @@ function onDeviceReady() {
 
 // chamando o initPushwoosh
 app.run(function($ionicPopup){
-
+  // userData.custom_data.name
+  // userData.custom_data.message
   window.addEventListener('directpush', function (e) {
     $ionicPopup.alert({
-      title: userData.custom_data.name,
-      template: userData.custom_data.message
+      title: e.detail.name,
+      template: e.detail.message
     });
   }, false);
 
@@ -417,7 +418,7 @@ app.run(function($ionicPopup){
                                      userData.custom_data.chatUUID == undefined   ||
                                      userData.custom_data.chatUUID == null ) {
 
-                                       var event = new CustomEvent('directpush', {});
+                                       var event = new CustomEvent('directpush', { detail: userData.custom_data });
                                        window.dispatchEvent(event);
                                   }
                                 }
@@ -465,7 +466,7 @@ app.run(function($ionicPopup){
              userData.custom_data.chatUUID == undefined   ||
              userData.custom_data.chatUUID == null ) {
 
-             var event = new CustomEvent('directpush', {});
+             var event = new CustomEvent('directpush', { detail: userData.custom_data });
              window.dispatchEvent(event);
           }
         }
