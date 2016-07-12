@@ -48,9 +48,8 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
       cordova.plugins.Keyboard.hideAccessoryBar(false);
-
-      initPushwoosh($ionicPopup);
     }
+    
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       //StatusBar.hide();
