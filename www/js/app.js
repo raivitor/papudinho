@@ -49,7 +49,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
       cordova.plugins.Keyboard.disableScroll(true);
       cordova.plugins.Keyboard.hideAccessoryBar(false);
     }
-    
+
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       //StatusBar.hide();
@@ -368,21 +368,25 @@ var G_tempo = 300000;
 
 var G_bares = [];
 
-/* // desativando o deviceready
+
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     // Now safe to use device APIs
     initPushwoosh();
-
-
-}*/
+}
 
 // chamando o initPushwoosh
 app.run(function($ionicPopup){
-  if (window.cordova && window.cordova.plugins) {
-    initPushwoosh($ionicPopup);
-  }
+
+  window.addEventListener('directpush', function (e) {
+    $ionicPopup.alert({
+      title: userData.custom_data.name,
+      template: userData.custom_data.message
+    });
+  }, false);
+
+
 });
 
   function initPushwoosh($ionicPopup){
@@ -413,10 +417,8 @@ app.run(function($ionicPopup){
                                      userData.custom_data.chatUUID == undefined   ||
                                      userData.custom_data.chatUUID == null ) {
 
-                                    $ionicPopup.alert({
-                                      title: userData.custom_data.name,
-                                      template: userData.custom_data.message
-                                    });
+                                       var event = new CustomEvent('directpush', {});
+                                       window.dispatchEvent(event);
                                   }
                                 }
 
@@ -463,10 +465,8 @@ app.run(function($ionicPopup){
              userData.custom_data.chatUUID == undefined   ||
              userData.custom_data.chatUUID == null ) {
 
-            $ionicPopup.alert({
-              title: userData.custom_data.name,
-              template: userData.custom_data.message
-            });
+             var event = new CustomEvent('directpush', {});
+             window.dispatchEvent(event);
           }
         }
 
