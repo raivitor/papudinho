@@ -455,6 +455,9 @@ app.run(function($ionicPopup){
         var title = event.notification.title;
         var userData = event.notification.userdata;
 
+        console.log('userData.custom_data');
+        console.log(JSON.stringify(userData.custom_data));
+
         if(userData && userData.custom_data){
           // caso seja promoçãp
           if(userData.custom_data.promotion_id){
