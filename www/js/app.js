@@ -9,7 +9,7 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 
 
 var servidor = "http://teste-papudinho.herokuapp.com";
-//var servidor = "http://developer-papudinho.herokuapp.com";
+//var servidor = "http://sistema.whiskyouapp.com.br";
 
 window.addEventListener('getiduser', function(event) {
   directpush.on(event.detail, function(data){
