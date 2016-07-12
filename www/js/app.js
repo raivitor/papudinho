@@ -11,12 +11,13 @@ var app = angular.module('app', ['ionic', 'ngCordova', 'ngMask', 'firebase']);
 var servidor = "http://teste-papudinho.herokuapp.com";
 //var servidor = "http://sistema.whiskyouapp.com.br";
 
+/*
 window.addEventListener('getiduser', function(event) {
   directpush.on(event.detail, function(data){
     var event = new CustomEvent('directpush', { detail: data });
     window.dispatchEvent(event);
   })
-});
+});*/
 
 
 
@@ -29,7 +30,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
     //faz nada
   }
 
-
+ /*
   window.addEventListener('directpush', function (e) {
     $ionicPopup.alert({
      title: e.detail.bar_name,
@@ -37,7 +38,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
     });
 
     directpush.clean(localStorage.getItem('user_id'));
-   }, false);
+  }, false);*/
 
   $ionicPlatform.ready(function() {
 
@@ -47,6 +48,8 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
       cordova.plugins.Keyboard.hideAccessoryBar(false);
+
+      initPushwoosh($ionicPopup);
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -87,7 +90,7 @@ app.run(function($ionicPlatform, $ionicHistory, $location, $ionicPopup, $http) {
 
     var params = [fid, latitude, longitude, radius];
       DGGeofencing.startMonitoringRegion(params, function(result) {}, function(error) {
-          alert("failed to add region");
+        //  alert("failed to add region");
       });
 
     //Localizacao do GPS
@@ -366,21 +369,28 @@ var G_tempo = 300000;
 
 var G_bares = [];
 
+/* // desativando o deviceready
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     // Now safe to use device APIs
     initPushwoosh();
 
-    
-}
 
-  function initPushwoosh(idUser,$window){
-   
+}*/
+
+// chamando o initPushwoosh
+app.run(function($ionicPopup){
+  if (window.cordova && window.cordova.plugins) {
+    initPushwoosh($ionicPopup);
+  }
+});
+
+  function initPushwoosh($ionicPopup){
 
     var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
 
-    
+
 
 
 
@@ -399,15 +409,24 @@ function onDeviceReady() {
 
                                 }catch(err) {
 
-                                  alert(notification.aps.alert);
+                                //  alert(notification.aps.alert);
+                                  if(userData.custom_data.chatUUID == 'undifined' ||
+                                     userData.custom_data.chatUUID == undefined   ||
+                                     userData.custom_data.chatUUID == null ) {
+
+                                    $ionicPopup.alert({
+                                      title: userData.custom_data.name,
+                                      template: userData.custom_data.message
+                                    });
+                                  }
                                 }
-                                
+
                                 pushNotification.setApplicationIconBadgeNumber(0);
                             });
- 
+
     //initialize the plugin
     pushNotification.onDeviceReady({pw_appid:"60C72-3A9F2"});
-     
+
     //register for pushes
     pushNotification.registerDevice(
         function(status) {
@@ -417,17 +436,15 @@ function onDeviceReady() {
         },
         function(status) {
             console.warn('failed to register : ' + JSON.stringify(status));
-            alert(JSON.stringify(['failed to register ', status]));
+            // alert(JSON.stringify(['failed to register ', status]));
         }
     );
-     
+
     //reset badges on app start
     pushNotification.setApplicationIconBadgeNumber(0);
 
 
-  }else { 
-
-    console.log(">>>>>>>>>>" + idUser)
+  }else {
 
     //set push notifications handler
     document.addEventListener('push-notification', function(event) {
@@ -442,7 +459,16 @@ function onDeviceReady() {
 
         }catch(err) {
 
-          alert(title);
+          // alert(title);
+          if(userData.custom_data.chatUUID == 'undifined' ||
+             userData.custom_data.chatUUID == undefined   ||
+             userData.custom_data.chatUUID == null ) {
+
+            $ionicPopup.alert({
+              title: userData.custom_data.name,
+              template: userData.custom_data.message
+            });
+          }
         }
 
 
@@ -457,13 +483,13 @@ function onDeviceReady() {
           var pushToken = status;
           console.warn('push token: ' + JSON.stringify(pushToken));
           window.localStorage['token'] = pushToken;
-          
+
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
-           
+
         }
     );
-   
+
   }
 }
