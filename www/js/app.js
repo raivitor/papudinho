@@ -404,27 +404,29 @@ app.run(function($ionicPopup){
   if(deviceType == "iPhone" || deviceType == "iPad"){
     //set push notification callback before we initialize the plugin
     document.addEventListener('push-notification', function(event) {
-                                var notification = event.notification;
+        var notification = event.notification;
 
-                                try {
+        if(notification && notification.userdata){
+          // caso seja promoçãp
+          if(notification.userdata.custom_data.promotion_id){
+            var id = notification.userdata.custom_data.promotion_id;
+            window.open(servidor+'/promocao/'+id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+          } else {
+            console.log("CHAT ou push direto");
+            console.log(userData.custom_data.chatUUID);
 
-                                    var id = notification.userdata.custom_data.promotion_id;
-                                    window.open(servidor+'/promocao/'+id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+            if(notification.userdata.custom_data.chatUUID == 'undifined' ||
+               notification.userdata.custom_data.chatUUID == undefined   ||
+               notification.userdata.custom_data.chatUUID == null ) {
 
-                                }catch(err) {
+               var event = new CustomEvent('directpush', { detail: notification.userdata.custom_data });
+               window.dispatchEvent(event);
+            }
+          }
+        }
 
-                                //  alert(notification.aps.alert);
-                                  if(userData.custom_data.chatUUID == 'undifined' ||
-                                     userData.custom_data.chatUUID == undefined   ||
-                                     userData.custom_data.chatUUID == null ) {
-
-                                       var event = new CustomEvent('directpush', { detail: userData.custom_data });
-                                       window.dispatchEvent(event);
-                                  }
-                                }
-
-                                pushNotification.setApplicationIconBadgeNumber(0);
-                            });
+        pushNotification.setApplicationIconBadgeNumber(0);
+    });
 
     //initialize the plugin
     pushNotification.onDeviceReady({pw_appid:"60C72-3A9F2"});
@@ -453,24 +455,25 @@ app.run(function($ionicPopup){
         var title = event.notification.title;
         var userData = event.notification.userdata;
 
-        try {
+        if(userData && userData.custom_data){
+          // caso seja promoçãp
+          if(userData.custom_data.promotion_id){
+            console.log(userData);
+            console.log(userData.custom_data.promotion_id);
+            window.open(servidor+'/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+          } else {
+            console.log("CHAT ou push direto");
+            console.log(userData.custom_data.chatUUID);
 
-          console.log(userData);
-          console.log(userData.custom_data.promotion_id);
-          window.open(servidor+'/promocao/'+userData.custom_data.promotion_id, '_blank', 'location=yes','closebuttoncaption=FECHAR');
+            if(userData.custom_data.chatUUID == 'undifined' ||
+               userData.custom_data.chatUUID == undefined   ||
+               userData.custom_data.chatUUID == null ) {
 
-        }catch(err) {
-
-          // alert(title);
-          if(userData.custom_data.chatUUID == 'undifined' ||
-             userData.custom_data.chatUUID == undefined   ||
-             userData.custom_data.chatUUID == null ) {
-
-             var event = new CustomEvent('directpush', { detail: userData.custom_data });
-             window.dispatchEvent(event);
+               var event = new CustomEvent('directpush', { detail: userData.custom_data });
+               window.dispatchEvent(event);
+            }
           }
         }
-
 
     });
 
