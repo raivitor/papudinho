@@ -6,7 +6,7 @@ app.controller('LoginForm', ['$scope', '$http', '$location', '$state', 'Usuario'
     $scope.msg = " ";
 
     if($scope.email == undefined ){
-      $scope.msg = "O campo 'Email' está vazio";
+      $scope.msg = "O e-mail digitado é inválido";
       return 0;
     }
 
